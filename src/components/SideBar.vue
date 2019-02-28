@@ -25,6 +25,7 @@
 </template>
 
 <script>
+//
 export default {
   name: 'SideBar',
   data: function() {
