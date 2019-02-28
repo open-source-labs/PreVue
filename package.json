@@ -12,7 +12,9 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "konva": "^3.1.6",
     "vue": "^2.6.6",
+    "vue-konva": "^2.0.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
