@@ -23,7 +23,7 @@
     <button>Submit</button>
   </div>
 </template>
-
+//
 <script>
 export default {
   name: 'SideBar',
