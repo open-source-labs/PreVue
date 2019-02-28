@@ -2,16 +2,16 @@
   <div id="displayBox">
     <ComponentDisplay />
     <SideBar />
-    <button>Hello</button>
+    <button @click="renderNewComponent">Hello</button>
   </div>
 </template>
 
 <script>
-import ComponentDisplay from '../components/ComponentDisplay.vue';
-import SideBar from '../components/SideBar.vue';
+import ComponentDisplay from './ComponentDisplay.vue';
+import SideBar from './SideBar.vue';
 
 export default {
-  name: 'Home',
+  name: 'AppDisplay',
   components: {
     SideBar,
     ComponentDisplay
@@ -21,11 +21,10 @@ export default {
 
 <style scoped>
 #displayBox {
-  display: grid;
-  grid-template-columns: repeat(minmax(240px, 1fr));
-  height: 100%;
-
+  /* height: 100%; */
   /* margin: 0 auto; */
   border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 </style>
