@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="displayBox">
+    <ComponentDisplay />
+    <!-- <SideBar /> -->
+    <button>Hello</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import ComponentDisplay from '../components/ComponentDisplay.vue';
+import SideBar from '../components/SideBar.vue';
 
 export default {
-  name: "home",
+  name: 'Home',
   components: {
-    HelloWorld
+    SideBar,
+    ComponentDisplay
   }
 };
 </script>
+
+<style scoped>
+#displayBox {
+  display: grid;
+  grid-template-columns: repeat(minmax(240px, 1fr));
+  height: 100%;
+
+  /* margin: 0 auto; */
+  border: 1px solid black;
+}
+</style>
