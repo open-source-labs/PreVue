@@ -2,7 +2,7 @@
   <div>
     <v-text-field
       :label="label ? label : null"
-      maxlength="12"
+      maxlength="20"
       append-icon="add"
       @input="updateValue"
       type="text"
