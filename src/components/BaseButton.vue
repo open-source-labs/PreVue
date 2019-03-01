@@ -4,17 +4,21 @@
       large
       depressed
       class="green accent-2"
-      v-bind="$attrs"
-      v-on="$listeners"
+      :disabled="componentName ? false : true"
     >
-      <slot />
+      <span>{{ name }}</span>
+      <v-icon small right>{{ icon }}</v-icon>
     </v-btn>
   </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false
+  props: {
+    componentName: [String],
+    name: [String],
+    icon: [String]
+  }
 };
 </script>
 
