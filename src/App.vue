@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <div id="app">
       <nav id="nav">
         <br />
@@ -7,14 +7,15 @@
         <v-toolbar flat app>
           <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer" />
           <v-toolbar-title>
-            <span class="green--text">Pre</span>
-            <span class="black--text">Vue</span>
-
+            <span class="white--text">Pre</span>
+            <span class="green--text">Vue</span>
             |
             <!-- <li>Home</li>
             <li>Tree</li>-->
           </v-toolbar-title>
-          <router-link to="/tree">Tree</router-link>
+          <router-link to="/tree">
+            <span class="green--text">Tree</span>
+          </router-link>
         </v-toolbar>
       </nav>
       <v-content>
