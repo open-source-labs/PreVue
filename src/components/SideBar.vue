@@ -1,9 +1,10 @@
 <template>
   <div class="sidebar">
-    <h1>ADD COMPONENT</h1>
+    <h1>Add component</h1>
+    <v-icon class="white--text">dashboard</v-icon>
     <input type="text" placeholder="Component Name" v-model="componentName" />
     <section>
-      <select v-model="selectedHTML">
+      <v-select v-model="selectedHTML">
         <option disabled value>Add HTML Element</option>
         <option>Div</option>
         <option>Span</option>
@@ -13,14 +14,17 @@
         <option>Image</option>
         <option>Unordered List</option>
         <option>Ordered List</option>
-      </select>
+      </v-select>
     </section>
     <section>
       <select v-model="selectedChild">
         <option disabled value>Add Child Component</option>
       </select>
     </section>
-    <button>Submit</button>
+    <v-btn small depressed class="pink white--text">
+      <span>add element</span>
+      <v-icon small right>add_circle</v-icon>
+    </v-btn>
   </div>
 </template>
 //
@@ -37,4 +41,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+input {
+  border: 1px solid grey;
+}
+</style>
