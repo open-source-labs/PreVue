@@ -1,5 +1,15 @@
 <template>
   <div class="about">
-    <h1>TREE GOES HERE</h1>
+    <router-link to="/">Home</router-link>
+    <SideNav />
   </div>
 </template>
+
+<script>
+import SideNav from '../components/SideNav';
+export default {
+  components: {
+    SideNav
+  }
+};
+</script>

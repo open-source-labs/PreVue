@@ -1,7 +1,7 @@
 <template>
   <div id="displayBox">
     <ComponentDisplay />
-    <SideBar />
+    <!-- <SideBar /> -->
     <button>Hello</button>
   </div>
 </template>
