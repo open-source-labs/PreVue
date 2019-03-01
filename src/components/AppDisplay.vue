@@ -19,12 +19,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#displayBox {
-  /* height: 100%; */
-  /* margin: 0 auto; */
-  /* border: 1px solid black;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
-}
-</style>
+<style scoped></style>
