@@ -1,21 +1,24 @@
 <template>
   <div class="sidebar">
-    <h1>Add component</h1>
-    <v-icon class="white--text">dashboard</v-icon>
-    <input type="text" placeholder="Component Name" v-model="componentName" />
+    <h1 class="white--text">Add component</h1>
+
+    <v-input
+      :messages="hi"
+      append-icon="close"
+      prepend-icon="phone"
+      class="white--text"
+      >Default Slot</v-input
+    >
+
     <section>
-      <v-select v-model="selectedHTML">
-        <option disabled value>Add HTML Element</option>
-        <option>Div</option>
-        <option>Span</option>
-        <option>Button</option>
-        <option>Input</option>
-        <option>Link</option>
-        <option>Image</option>
-        <option>Unordered List</option>
-        <option>Ordered List</option>
-      </v-select>
+      <!-- <v-label class="white--text">Select HTML</v-label> -->
+      <BaseSelect :options="options" label="Select an element"></BaseSelect>
+      <BaseSelect
+        :options="components"
+        label="Select a child component"
+      ></BaseSelect>
     </section>
+
     <section>
       <select v-model="selectedChild">
         <option disabled value>Add Child Component</option>
@@ -27,16 +30,20 @@
     </v-btn>
   </div>
 </template>
-//
+
 <script>
+import BaseSelect from './BaseSelect';
 export default {
   name: 'SideBar',
   data: function() {
     return {
       componentName: '',
-      selectedHTML: '',
-      selectedChild: ''
+      options: ['div', 'span', 'button'],
+      components: ['Milk', 'Steam']
     };
+  },
+  components: {
+    BaseSelect
   }
 };
 </script>
