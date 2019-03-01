@@ -2,7 +2,7 @@
   <div>
     <label class="white--text" v-if="label">{{ label }}</label>
     <v-select
-      outline="true"
+      :outline="true"
       :value="value"
       v-bind="$attrs"
       @change="updateValue"
@@ -25,6 +25,7 @@ export default {
 
   methods: {
     updateValue(event) {
+      console.log(event.target.value);
       this.$emit('input', event.target.value);
     }
   }
