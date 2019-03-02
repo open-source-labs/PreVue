@@ -7,7 +7,7 @@
           <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer" />
           <v-toolbar-title>
             <span class="white--text">Pre</span>
-            <span class="green--text">Vue</span>
+            <span class="green--text text--accent-2">Vue</span>
             |
           </v-toolbar-title>
           <router-link to="/tree">

@@ -2,7 +2,7 @@
   <div>
     <nav>
       <v-toolbar flat app>
-        <v-toolbar-title />
+        <v-toolbar-title></v-toolbar-title>
       </v-toolbar>
     </nav>
   </div>

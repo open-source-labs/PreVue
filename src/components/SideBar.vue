@@ -2,39 +2,51 @@
   <div class="sidebar">
     <h1 class="white--text">Add a new component</h1>
 
-    <v-text-field
-      append-icon="add"
-      placeholder="Component Name"
-      box
-    ></v-text-field>
-    <section>
-      <BaseSelect :options="options" label="Select an element"></BaseSelect>
-      <BaseSelect
-        :options="components"
-        label="Select a child component"
-      ></BaseSelect>
-    </section>
+    <v-form class="px-3">
+      <BaseTextfield
+        label="Component Name"
+        v-model="componentName"
+        :value="componentName"
+      />
 
-    <v-btn large depressed class="green darken-2 white--text">
-      <span>add component</span>
-      <v-icon small right>add_circle</v-icon>
-    </v-btn>
+      <section>
+        <BaseSelect
+          :options="options"
+          label="Select an element"
+          color="green accent-2"
+        ></BaseSelect>
+        <BaseSelect
+          :options="components"
+          label="Select a child component"
+          color="green accent-2"
+        ></BaseSelect>
+      </section>
+    </v-form>
+    <BaseButton
+      :componentName="componentName"
+      name="add component"
+      icon="add_circle"
+    ></BaseButton>
   </div>
 </template>
 
 <script>
 import BaseSelect from './BaseSelect';
+import BaseTextfield from './BaseTextfield';
+import BaseButton from './BaseButton';
 export default {
   name: 'SideBar',
   data: function() {
     return {
       componentName: '',
       options: ['div', 'span', 'button'],
-      components: ['Milk', 'Steam']
+      components: ['Milk']
     };
   },
   components: {
-    BaseSelect
+    BaseSelect,
+    BaseTextfield,
+    BaseButton
   }
 };
 </script>
