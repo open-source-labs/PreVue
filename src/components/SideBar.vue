@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar">
-    <h1 class="white--text">Add a new component</h1>
+    <h1 class="headline green--text text--accent-2 pa-2">
+      Create a new component
+    </h1>
 
     <v-form class="px-3">
       <BaseTextfield
@@ -12,8 +14,10 @@
         <Icons />
       </section>
     </v-form>
+
     <section>
-      <label lg class="white--text">List</label>
+      <h1 class="headline green--text text--accent-2">Selected Elements</h1>
+      <hr />
       <Queue />
     </section>
 
@@ -52,6 +56,8 @@ export default {
     addComponent() {
       const payload = { name: this.componentName, htmlList: this.elementsList };
       this.$store.commit(types.ADD_TO_COMPONENT_MAP, payload);
+      this.$store.commit(types.CLEAR_LIST);
+      this.componentName = '';
     }
   }
 };
@@ -60,6 +66,6 @@ export default {
 <style>
 .sidebar {
   display: grid;
-  grid-template-rows: 1fr 3fr 4fr 1fr;
+  grid-template-rows: 0.5fr 3.5fr 4fr 1fr;
 }
 </style>

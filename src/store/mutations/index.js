@@ -18,9 +18,11 @@ const mutations = {
     state.elementsList = newElementList;
   },
   [types.ADD_TO_COMPONENT_MAP]: function(state, payload) {
-    console.log(payload);
     const { name, htmlList } = payload;
     state.componentMap[name] = htmlList;
+  },
+  [types.CLEAR_LIST]: function(state) {
+    state.elementsList = [];
   }
 };
 

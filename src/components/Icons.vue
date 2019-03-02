@@ -15,6 +15,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import * as types from '../store/types.js';
 export default {
   name: 'Icons',
   computed: {
@@ -26,7 +27,7 @@ export default {
         id: idx,
         icon: this.icons[idx]
       };
-      this.$store.commit('ADD_TO_LIST', payload);
+      this.$store.commit(types.ADD_TO_LIST, payload);
     }
   }
 };
