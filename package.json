@@ -15,6 +15,7 @@
     "konva": "^3.1.6",
     "vue": "^2.6.6",
     "vue-konva": "^2.0.2",
+    "vue-nestable": "^2.2.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.4",
     "vuex": "^3.0.1"

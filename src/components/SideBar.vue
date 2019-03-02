@@ -8,20 +8,15 @@
         v-model="componentName"
         :value="componentName"
       />
-
       <section>
-        <BaseSelect
-          :options="options"
-          label="Select an element"
-          color="green accent-2"
-        ></BaseSelect>
-        <BaseSelect
-          :options="components"
-          label="Select a child component"
-          color="green accent-2"
-        ></BaseSelect>
+        <Icons />
       </section>
     </v-form>
+    <section>
+      <label lg class="white--text">List</label>
+      <Queue />
+    </section>
+
     <BaseButton
       :componentName="componentName"
       name="add component"
@@ -31,28 +26,30 @@
 </template>
 
 <script>
-import BaseSelect from './BaseSelect';
 import BaseTextfield from './BaseTextfield';
 import BaseButton from './BaseButton';
+import Icons from './Icons';
+import Queue from './Queue';
 export default {
   name: 'SideBar',
   data: function() {
     return {
       componentName: '',
-      options: ['div', 'span', 'button'],
-      components: ['Milk']
+      options: ['div', 'span', 'button']
     };
   },
   components: {
-    BaseSelect,
     BaseTextfield,
-    BaseButton
+    BaseButton,
+    Icons,
+    Queue
   }
 };
 </script>
 
 <style>
-input {
-  border: 1px solid grey;
+.sidebar {
+  display: grid;
+  grid-template-rows: 1fr 3fr 4fr 1fr;
 }
 </style>
