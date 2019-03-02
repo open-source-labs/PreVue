@@ -1,8 +1,11 @@
 import icons from './state/icons';
-import addElements from './state/addElements';
+import elementsList from './state/elementsList';
+import componentMap from './state/componentMap';
+
 const newState = {
   icons,
-  addElements
+  elementsList,
+  componentMap
 };
 
 export default newState;

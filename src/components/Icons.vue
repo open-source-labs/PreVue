@@ -17,10 +17,16 @@
 import { mapState } from 'vuex';
 export default {
   name: 'Icons',
-  computed: mapState(['icons']),
+  computed: {
+    ...mapState(['icons'])
+  },
   methods: {
     addToList(idx) {
-      this.$store.commit('ADD_TO_LIST', this.icons[idx].caption);
+      const payload = {
+        id: idx,
+        icon: this.icons[idx]
+      };
+      this.$store.commit('ADD_TO_LIST', payload);
     }
   }
 };

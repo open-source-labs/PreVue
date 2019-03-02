@@ -3,25 +3,17 @@
     <h1 class="white--text">Add a new component</h1>
 
     <v-form class="px-3">
-      <BaseTextfield
-        label="Component Name"
-        v-model="componentName"
-        :value="componentName"
-      />
+      <BaseTextfield label="Component Name" v-model="componentName" :value="componentName"/>
       <section>
-        <Icons />
+        <Icons/>
       </section>
     </v-form>
     <section>
       <label lg class="white--text">List</label>
-      <Queue />
+      <Queue/>
     </section>
 
-    <BaseButton
-      :componentName="componentName"
-      name="add component"
-      icon="add_circle"
-    ></BaseButton>
+    <BaseButton :componentName="componentName" name="add component" icon="add_circle"></BaseButton>
   </div>
 </template>
 
@@ -34,8 +26,7 @@ export default {
   name: 'SideBar',
   data: function() {
     return {
-      componentName: '',
-      options: ['div', 'span', 'button']
+      componentName: ''
     };
   },
   components: {
