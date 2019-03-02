@@ -1,33 +1,21 @@
 <template>
   <div>
     <label class="white--text" v-if="label">{{ label }}</label>
-    <v-select
-      :outline="true"
-      :value="value"
-      v-bind="$attrs"
-      @change="updateValue"
-      :items="options"
-    ></v-select>
+    <v-select :outline="true" :items="options"></v-select>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'BaseSelect',
   inheritAttrs: false,
   props: {
     options: {
       type: Array,
       required: true
     },
-    value: [String, Number],
+    // value: [String, Number],
     label: String
-  },
-
-  methods: {
-    updateValue(event) {
-      console.log(event.target.value);
-      this.$emit('input', event.target.value);
-    }
   }
 };
 </script>

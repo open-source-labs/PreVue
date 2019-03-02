@@ -7,7 +7,18 @@
       id="thestage"
     >
       <v-layer ref="layer">
-        <v-rect v-for="item in rectangles" :key="item.id" :config="item" />
+        <v-rect
+          v-for="(rect, index) in rectangles"
+          :key="index"
+          :config="rect.shape"
+          @dragstart="handleDragStart(rect.shape.name, index)"
+          @dragend="handleDragEnd(rect.shape.name, index)"
+        />
+        <v-text
+          v-for="rect in rectangles"
+          :key="rect.name"
+          :config="rect.text"
+        />
         <v-transformer ref="transformer" />
       </v-layer>
     </v-stage>
@@ -15,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -26,32 +38,46 @@ export default {
         width: width,
         height: height
       },
-      rectNumber: 0,
-      rectangles: [
-        {
-          x: 150,
-          y: 150,
-          width: 100,
-          height: 100,
-          fill: 'green',
-          name: 'rect' + this.rectNumber,
-          draggable: true
-        }
-      ],
-      selectedShapeName: ''
+      selectedShapeName: '',
+      startX: 0,
+      startY: 0
     };
   },
+  computed: mapState(['rectNumber', 'rectangles']),
   methods: {
-    renderNewComponent() {
-      this.rectangles.push({
-        x: 150,
-        y: 150,
-        width: 100,
-        height: 100,
-        fill: 'red',
-        name: 'rect' + this.rectNumber++,
-        draggable: true
-      });
+    // renderNewComponent() {
+    //   this.rectangles.push({
+    //     x: 150,
+    //     y: 150,
+    //     width: 100,
+    //     height: 100,
+    //     fill: 'red',
+    //     name: 'rect' + this.rectNumber++,
+    //     draggable: true
+    //   });
+    // },
+    handleDragStart(name, index) {
+      const { x, y } = this.$refs.stage.getStage().getPointerPosition();
+      this.startX = x;
+      this.startY = y;
+      // this.rectangles[index].text.x = this.rectangles[index].shape.x;
+      // this.rectangles[index].text.y = this.rectangles[index].shape.y;
+    },
+    handleDragEnd(name, index) {
+      console.log(this.rectangles[index].shape.x);
+      console.log(this.rectangles[index].shape.y);
+      const { x, y } = this.$refs.stage.getStage().getPointerPosition();
+      let xDifference = x - this.startX;
+      let yDifference = y - this.startY;
+
+      console.log('MOVED BY X DIFFERENCE: ', xDifference);
+      console.log('MOVED BY Y DIFFERENCE: ', yDifference);
+      this.rectangles[index].text.x += xDifference;
+      this.rectangles[index].text.y += yDifference;
+      this.rectangles[index].shape.x += xDifference;
+      this.rectangles[index].shape.y += yDifference;
+
+      // console.log(name);
     },
     handleStageMouseDown(e) {
       // clicked on stage - cler selection
@@ -69,8 +95,9 @@ export default {
       }
 
       // find clicked rect by its name
+      // console.log(this);
       const name = e.target.name();
-      const rect = this.rectangles.find(r => r.name === name);
+      const rect = this.rectangles.find(r => r.shape.name === name);
       if (rect) {
         this.selectedShapeName = name;
       } else {
@@ -109,6 +136,6 @@ export default {
 }
 
 #thestage {
-  background-color: yellow;
+  background-color: white;
 }
 </style>

@@ -4,8 +4,8 @@
 
     <v-form class="px-3">
       <BaseTextfield
-        label="Component Name"
         v-model="componentName"
+        label="Component Name"
         :value="componentName"
       />
 
@@ -26,6 +26,7 @@
       :componentName="componentName"
       name="add component"
       icon="add_circle"
+      @click="addShape"
     ></BaseButton>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
   data: function() {
     return {
       componentName: '',
-      options: ['div', 'span', 'button'],
+      options: ['div', 'span', 'button', 'input'],
       components: ['Milk']
     };
   },
@@ -47,6 +48,11 @@ export default {
     BaseSelect,
     BaseTextfield,
     BaseButton
+  },
+  methods: {
+    addShape() {
+      this.$store.dispatch('addShape', this.componentName);
+    }
   }
 };
 </script>
