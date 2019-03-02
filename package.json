@@ -14,6 +14,7 @@
   "dependencies": {
     "konva": "^3.1.6",
     "vue": "^2.6.6",
+    "vue-drag-resize": "^1.3.2",
     "vue-konva": "^2.0.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.4",

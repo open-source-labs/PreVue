@@ -1,8 +1,8 @@
 <template>
-  <div id="displayBox">
+  <div>
     <ComponentDisplay />
 
-    <button>Hello</button>
+    <!-- <button>Hello</button> -->
   </div>
 </template>
 
@@ -17,12 +17,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#displayBox {
-  display: grid;
-  grid-template-columns: repeat(minmax(240px, 1fr));
-  height: 100%;
-
-  border: 1px solid black;
-}
-</style>
+<style scoped></style>

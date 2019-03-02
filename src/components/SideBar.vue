@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     addShape() {
-      this.$store.dispatch('addShape', this.componentName);
+      this.$store.dispatch('addComponent', this.componentName);
     }
   }
 };

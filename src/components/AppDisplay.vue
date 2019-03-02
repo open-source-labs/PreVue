@@ -2,7 +2,7 @@
   <div id="displayBox">
     <ComponentDisplay />
     <SideBar />
-    <button @click="renderNewComponent">Hello</button>
+    <!-- <button @click="renderNewComponent">Hello</button> -->
   </div>
 </template>
 
