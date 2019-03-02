@@ -5,6 +5,7 @@
       depressed
       class="green accent-2"
       :disabled="componentName ? false : true"
+      v-on="$listeners"
     >
       <span>{{ name }}</span>
       <v-icon small right>{{ icon }}</v-icon>
@@ -14,6 +15,7 @@
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     componentName: [String],
     name: [String],

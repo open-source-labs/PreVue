@@ -3,17 +3,26 @@
     <h1 class="white--text">Add a new component</h1>
 
     <v-form class="px-3">
-      <BaseTextfield label="Component Name" v-model="componentName" :value="componentName"/>
+      <BaseTextfield
+        label="Component Name"
+        v-model="componentName"
+        :value="componentName"
+      />
       <section>
-        <Icons/>
+        <Icons />
       </section>
     </v-form>
     <section>
       <label lg class="white--text">List</label>
-      <Queue/>
+      <Queue />
     </section>
 
-    <BaseButton :componentName="componentName" name="add component" icon="add_circle"></BaseButton>
+    <BaseButton
+      :componentName="componentName"
+      name="add component"
+      icon="add_circle"
+      @click="addComponent"
+    ></BaseButton>
   </div>
 </template>
 
@@ -22,6 +31,9 @@ import BaseTextfield from './BaseTextfield';
 import BaseButton from './BaseButton';
 import Icons from './Icons';
 import Queue from './Queue';
+import { mapState } from 'vuex';
+import * as types from '../store/types.js';
+
 export default {
   name: 'SideBar',
   data: function() {
@@ -34,6 +46,13 @@ export default {
     BaseButton,
     Icons,
     Queue
+  },
+  computed: { ...mapState(['elementsList']) },
+  methods: {
+    addComponent() {
+      const payload = { name: this.componentName, htmlList: this.elementsList };
+      this.$store.commit(types.ADD_TO_COMPONENT_MAP, payload);
+    }
   }
 };
 </script>
