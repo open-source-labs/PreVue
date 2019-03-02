@@ -1,12 +1,18 @@
 <template>
   <div class="sidebar">
-    <h1 class="white--text">Add component</h1>
+    <h1 class="white--text">Add a new component</h1>
 
-    <v-text-field append-icon="add" placeholder="Component Name" box></v-text-field>
+    <v-text-field
+      append-icon="add"
+      placeholder="Component Name"
+      box
+    ></v-text-field>
     <section>
-      <!-- <v-label class="white--text">Select HTML</v-label> -->
       <BaseSelect :options="options" label="Select an element"></BaseSelect>
-      <BaseSelect :options="components" label="Select a child component"></BaseSelect>
+      <BaseSelect
+        :options="components"
+        label="Select a child component"
+      ></BaseSelect>
     </section>
 
     <v-btn large depressed class="green darken-2 white--text">

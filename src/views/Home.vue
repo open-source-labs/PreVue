@@ -1,8 +1,6 @@
 <template>
   <div id="displayBox">
     <ComponentDisplay />
-    <!-- <SideBar /> -->
-    <button>Hello</button>
   </div>
 </template>
 

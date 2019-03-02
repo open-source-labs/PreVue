@@ -3,15 +3,12 @@
     <div id="app">
       <nav id="nav">
         <br />
-        <!-- <v-toolbar-side-icon flat app> -->
         <v-toolbar flat app>
           <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer" />
           <v-toolbar-title>
             <span class="white--text">Pre</span>
             <span class="green--text">Vue</span>
             |
-            <!-- <li>Home</li>
-            <li>Tree</li>-->
           </v-toolbar-title>
           <router-link to="/tree">
             <span class="green--text">Tree</span>
