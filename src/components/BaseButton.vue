@@ -3,7 +3,7 @@
     <v-btn
       large
       depressed
-      class="green accent-2"
+      class="indigo accent-2"
       :disabled="componentName ? false : true"
       v-on="$listeners"
     >

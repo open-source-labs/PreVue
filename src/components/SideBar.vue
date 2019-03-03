@@ -16,7 +16,7 @@
     </v-form>
 
     <section>
-      <h1 class="headline green--text text--accent-2">Selected Elements</h1>
+      <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
       <hr />
       <Queue />
     </section>
