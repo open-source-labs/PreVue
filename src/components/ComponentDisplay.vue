@@ -1,5 +1,6 @@
 <template>
   <div class="componentDisplay">
+    <LoadingBar :duration="2000" />
     <VueDragResize
       class="component"
       :isActive="true"
@@ -10,29 +11,42 @@
       v-for="(componentName, index) in componentNames"
       :key="index"
       :style="{ backgroundColor: theBackgroundColor }"
+      @clicked="handleClick"
     >
       <h3>{{ componentName }}</h3>
-      <p>{{ top }} х {{ left }}</p>
+      <p>{{ left }} х {{ top }}</p>
+
       <p>{{ width }} х {{ height }}</p>
     </VueDragResize>
+    <modals-container></modals-container>
+    <ComponentModal :modalWidth="800" :modalHeight="900" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import VueDragResize from 'vue-drag-resize';
+import LoadingBar from './LoadingBar.vue';
+import ComponentModal from './ComponentModal.vue';
+// import SideBar from './SideBar.vue';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDragResize
+    VueDragResize,
+    LoadingBar,
+    ComponentModal
   },
   data() {
     return {
+      //might make this an array of objects to correspond to each individual component
       width: 0,
       height: 0,
       top: 0,
-      left: 0
+      left: 0,
+      lastTimeClicked: Date.now(),
+      dialog: false,
+      showModal: false
     };
   },
   computed: {
@@ -55,6 +69,17 @@ export default {
         color += letters[Math.floor(Math.random() * 16)];
       }
       return color;
+    },
+    handleClick() {
+      if (Date.now() - this.lastTimeClicked < 200) this.doubleClick();
+      else {
+        this.lastTimeClicked = Date.now();
+      }
+    },
+    doubleClick() {
+      // console.log('I AM DOUBLE CLICKED');
+      // this.showModal = true;
+      this.$modal.show('demo-login');
     }
   }
 };

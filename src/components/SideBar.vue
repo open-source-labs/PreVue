@@ -61,4 +61,8 @@ export default {
 input {
   border: 1px solid grey;
 }
+
+/* .sidebar {
+  background-color: aqua;
+} */
 </style>
