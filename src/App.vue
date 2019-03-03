@@ -1,20 +1,7 @@
 <template>
   <v-app dark>
     <div id="app">
-      <nav id="nav">
-        <br />
-        <v-toolbar flat app>
-          <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer" />
-          <v-toolbar-title>
-            <span class="white--text">Pre</span>
-            <span class="green--text text--accent-2">Vue</span>
-            |
-          </v-toolbar-title>
-          <router-link to="/tree">
-            <span class="green--text">Tree</span>
-          </router-link>
-        </v-toolbar>
-      </nav>
+      <NavBar @click="drawer = !drawer"></NavBar>
       <v-content>
         <router-view />
       </v-content>
@@ -27,6 +14,7 @@
 
 <script>
 import Sidebar from './components/SideBar';
+import NavBar from '@/components/NavBar.vue';
 export default {
   data() {
     return {
@@ -34,7 +22,8 @@ export default {
     };
   },
   components: {
-    Sidebar
+    Sidebar,
+    NavBar
   }
 };
 </script>
