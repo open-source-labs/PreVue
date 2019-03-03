@@ -8,15 +8,17 @@
       :h="200"
       v-on:resizing="resize"
       v-on:dragging="resize"
-      v-for="(componentName, index) in Object.keys(componentMap)"
+      v-for="(component, index) in Object.entries(componentMap)"
       :key="index"
       :style="{ backgroundColor: theBackgroundColor }"
       @clicked="handleClick"
     >
-      <h3>{{ componentName }}</h3>
-      <p>{{ left }} х {{ top }}</p>
+      <h3>{{ component[0] }}</h3>
+      <p v-for="(element, index) in component[1]" :key="index">
+        {{ element.text }}
+      </p>
 
-      <p>{{ width }} х {{ height }}</p>
+      <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
     <modals-container></modals-container>
     <button @click="consoleCM" class="white--text">click</button>
