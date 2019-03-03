@@ -25,8 +25,7 @@ export default {
 
   methods: {
     updateValue(event) {
-      console.log(event.target.value);
-      this.$emit('input', event.target.value);
+      this.$emit('input', event);
     }
   }
 };

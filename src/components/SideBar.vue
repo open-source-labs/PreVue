@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar">
-    <h1 class="white--text">Add component</h1>
+    <h1 class="headline green--text text--accent-2 pa-2">
+      Create a new component
+    </h1>
 
     <v-form class="px-3">
       <BaseTextfield
@@ -8,51 +10,62 @@
         v-model="componentName"
         :value="componentName"
       />
-
       <section>
-        <BaseSelect
-          :options="options"
-          label="Select an element"
-          color="green accent-2"
-        ></BaseSelect>
-        <BaseSelect
-          :options="components"
-          label="Select a child component"
-          color="green accent-2"
-        ></BaseSelect>
+        <Icons />
       </section>
     </v-form>
+
+    <section>
+      <h1 class="headline green--text text--accent-2">Selected Elements</h1>
+      <hr />
+      <Queue />
+    </section>
+
     <BaseButton
       :componentName="componentName"
       name="add component"
       icon="add_circle"
+      @click="addComponent"
     ></BaseButton>
   </div>
 </template>
 
 <script>
-import BaseSelect from './BaseSelect';
 import BaseTextfield from './BaseTextfield';
 import BaseButton from './BaseButton';
+import Icons from './Icons';
+import Queue from './Queue';
+import { mapState } from 'vuex';
+import * as types from '../store/types.js';
+
 export default {
   name: 'SideBar',
   data: function() {
     return {
-      componentName: '',
-      options: ['div', 'span', 'button'],
-      components: ['Milk']
+      componentName: ''
     };
   },
   components: {
-    BaseSelect,
     BaseTextfield,
-    BaseButton
+    BaseButton,
+    Icons,
+    Queue
+  },
+  computed: { ...mapState(['elementsList']) },
+  methods: {
+    addComponent() {
+      const payload = { name: this.componentName, htmlList: this.elementsList };
+      this.$store.commit(types.ADD_TO_COMPONENT_MAP, payload);
+      this.$store.commit(types.CLEAR_LIST);
+      this.componentName = '';
+    }
   }
 };
 </script>
 
 <style>
-input {
-  border: 1px solid grey;
+.sidebar {
+  display: grid;
+  grid-template-rows: 0.5fr 3.5fr 4fr 1fr;
 }
 </style>
