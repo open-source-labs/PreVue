@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar">
-    <h1 class="headline green--text text--accent-2 pa-2">
-      Create a new component
-    </h1>
+    <header class="headline green--text text--accent-2 pa-2">
+      {{ header }}
+    </header>
 
     <v-form class="px-3">
       <BaseTextfield
@@ -45,6 +45,7 @@ export default {
       componentName: ''
     };
   },
+  props: ['header'],
   components: {
     BaseTextfield,
     BaseButton,
