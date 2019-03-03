@@ -6,8 +6,8 @@
 
     <v-form class="px-3">
       <BaseTextfield
-        label="Component Name"
         v-model="componentName"
+        label="Component Name"
         :value="componentName"
       />
       <section>
@@ -55,8 +55,7 @@ export default {
   methods: {
     addComponent() {
       const payload = { name: this.componentName, htmlList: this.elementsList };
-      this.$store.commit(types.ADD_TO_COMPONENT_MAP, payload);
-      this.$store.commit(types.CLEAR_LIST);
+      this.$store.dispatch(types.ADD_TO_COMPONENT_MAP_ACTION, payload);
       this.componentName = '';
     }
   }
@@ -68,4 +67,8 @@ export default {
   display: grid;
   grid-template-rows: 0.5fr 3.5fr 4fr 1fr;
 }
+
+/* .sidebar {
+  background-color: aqua;
+} */
 </style>

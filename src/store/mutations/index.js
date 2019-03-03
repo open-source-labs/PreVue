@@ -19,7 +19,9 @@ const mutations = {
   },
   [types.ADD_TO_COMPONENT_MAP]: function(state, payload) {
     const { name, htmlList } = payload;
-    state.componentMap[name] = htmlList;
+    let newStateComponentMap = Object.assign({}, state.componentMap);
+    newStateComponentMap[name] = htmlList;
+    state.componentMap = newStateComponentMap;
   },
   [types.CLEAR_LIST]: function(state) {
     state.elementsList = [];
