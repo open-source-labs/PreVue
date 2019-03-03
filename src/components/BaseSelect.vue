@@ -16,6 +16,12 @@ export default {
     },
     // value: [String, Number],
     label: String
+  },
+
+  methods: {
+    updateValue(event) {
+      this.$emit('input', event);
+    }
   }
 };
 </script>

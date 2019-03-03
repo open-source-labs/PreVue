@@ -8,7 +8,7 @@
       :h="200"
       v-on:resizing="resize"
       v-on:dragging="resize"
-      v-for="(componentName, index) in componentNames"
+      v-for="(componentName, index) in Object.keys(componentMap)"
       :key="index"
       :style="{ backgroundColor: theBackgroundColor }"
       @clicked="handleClick"
@@ -19,6 +19,7 @@
       <p>{{ width }} х {{ height }}</p>
     </VueDragResize>
     <modals-container></modals-container>
+    <button @click="consoleCM" class="white--text">click</button>
     <ComponentModal :modalWidth="800" :modalHeight="900" />
   </div>
 </template>
@@ -50,7 +51,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['componentNames']),
+    ...mapState(['componentMap']),
     theBackgroundColor: function() {
       return this.getRandomColor();
     }
@@ -80,6 +81,9 @@ export default {
       // console.log('I AM DOUBLE CLICKED');
       // this.showModal = true;
       this.$modal.show('demo-login');
+    },
+    consoleCM() {
+      console.log(Object.keys(this.componentMap));
     }
   }
 };

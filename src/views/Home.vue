@@ -1,8 +1,6 @@
 <template>
   <div>
     <ComponentDisplay />
-
-    <!-- <button>Hello</button> -->
   </div>
 </template>
 
