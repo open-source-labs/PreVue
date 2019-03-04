@@ -1,6 +1,15 @@
 <template>
   <v-toolbar flat app>
-    <v-toolbar-side-icon class="grey--text" v-on="$listeners"/>
+    <v-toolbar-side-icon
+      v-if="show === 'home'"
+      class="grey--text"
+      v-on="$listeners"
+    >
+      <v-icon>add_circle_outline</v-icon>
+    </v-toolbar-side-icon>
+    <v-toolbar-side-icon v-if="show === 'tree'" class="grey--text" flat>
+      <v-icon>landscape</v-icon>
+    </v-toolbar-side-icon>
     <v-toolbar-title id="nav" class="nav">
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
@@ -17,7 +26,8 @@
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  props: ['show']
 };
 </script>
 
