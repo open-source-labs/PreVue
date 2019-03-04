@@ -3,12 +3,12 @@
     <button
       @click.prevent="addToList(idx)"
       type="submit"
-      v-for="(icon, idx) in icons"
-      :key="idx"
+      v-for="(icon, idx) in Object.entries(icons)"
+      :key="icon[1].icon + Date.now()"
     >
-      <v-icon>{{ icon.icon }}</v-icon>
+      <v-icon>{{ icon[1].icon }}</v-icon>
       <br />
-      <span class="white--text">{{ icon.caption }}</span>
+      <span class="white--text">{{ icon[0] }}</span>
     </button>
   </section>
 </template>
@@ -24,8 +24,7 @@ export default {
   methods: {
     addToList(idx) {
       const payload = {
-        id: idx,
-        icon: this.icons[idx]
+        icon: Object.entries(this.icons)[idx][0]
       };
       this.$store.commit(types.ADD_TO_LIST, payload);
     }

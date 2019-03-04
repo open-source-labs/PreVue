@@ -8,7 +8,7 @@
   >
     <EditSideBar :header="comp" :name="comp" />
 
-    <ComponentCodeDisplay />
+    <ComponentCodeDisplay :compName="comp" />
   </modal>
 </template>
 
