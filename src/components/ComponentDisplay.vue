@@ -15,6 +15,7 @@
     >
       <h3>{{ component[0] }}</h3>
       <p v-for="(element, index) in component[1].htmlElements" :key="index">{{ element.text }}</p>
+      <p v-for="(element, index) in component[1].children" :key="index">{{ element }}</p>
 
       <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
