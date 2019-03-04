@@ -1,6 +1,14 @@
 <template>
   <div class="container">
-    <tree :data="tree" node-text="name" layoutType="circular"></tree>
+    <tree
+      :data="tree"
+      node-text="name"
+      layoutType="euclidean"
+      type="tree"
+      :duration="0"
+      :zoomable="true"
+      radius="4"
+    ></tree>
   </div>
 </template>
 
@@ -17,7 +25,16 @@ export default {
         children: [
           {
             name: 'son1',
-            children: [{ name: 'grandson' }, { name: 'grandson2' }]
+            children: [
+              {
+                name: 'grandson',
+                children: [
+                  { name: 'great grandson' },
+                  { name: 'great grandson 2' }
+                ]
+              },
+              { name: 'grandson2' }
+            ]
           },
           {
             name: 'son2',
@@ -29,3 +46,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.container {
+  height: 600px;
+  width: 90%;
+}
+</style>
