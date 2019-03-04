@@ -10,7 +10,7 @@
       radius="4"
     ></tree>
 
-    <button @click="viewComponentMap">VIEW MAP</button>
+    <button @click="buildTree" class="white--text">BUILD TREE</button>
   </div>
 </template>
 
@@ -20,9 +20,6 @@ import { mapState } from 'vuex';
 export default {
   components: {
     tree
-  },
-  created() {
-    this.buildTree();
   },
   computed: {
     ...mapState(['componentMap']),
@@ -42,9 +39,43 @@ export default {
       console.log(this.componentMap);
     },
     buildTree() {
-      let currentNode = this.componentMap['App'];
-      this.tree.name = currentNode.componentName;
-      // while()
+      let treeObj = { name: 'App', children: [] };
+      let componentMapPointer = this.componentMap['App'].componentName;
+      let stack = [componentMapPointer];
+      let treePointer = treeObj;
+      let treeStack = [treePointer];
+
+      let index = 0;
+      // check if component has children
+      while (stack.length > 0) {
+        // check if component has a next child after incrementing index
+        if (this.componentMap[componentMapPointer].children[index]) {
+          // check if tree pointer has a children array
+          // if it doesn't, assign an empty array to children
+          if (!Array.isArray(treePointer.children)) treePointer.children = [];
+          // push an empty  object
+          treePointer.children.push({
+            name: this.componentMap[componentMapPointer].children[index]
+          });
+          // building the recently pushed object
+          // treePointer.children[
+          //   treePointer.children.length - 1
+          // ].name = this.componentMap[componentMapPointer].children[index];
+          this.componentMap[componentMapPointer].children.forEach(child => {
+            stack.push(child);
+          });
+          treeStack.push(treePointer.children[treePointer.children.length - 1]);
+          index++;
+        } else {
+          index = 0;
+          treePointer = treeStack.pop();
+          componentMapPointer = stack.pop();
+          if (componentMapPointer === 'App') {
+            this.tree = treeObj;
+            return;
+          }
+        }
+      }
     }
   }
 };
