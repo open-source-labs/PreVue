@@ -1,6 +1,6 @@
 <template>
   <div class="componentDisplay">
-    <LoadingBar :duration="2000"/>
+    <LoadingBar :duration="2000" />
     <VueDragResize
       class="component"
       :isActive="true"
@@ -11,17 +11,21 @@
       v-for="(component, index) in Object.entries(componentMap)"
       :key="index"
       :style="{ backgroundColor: theBackgroundColor }"
-      @clicked="handleClick"
+      @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1].htmlElements" :key="index">{{ element.text }}</p>
-      <p v-for="(element, index) in component[1].children" :key="index">{{ element }}</p>
+      <p v-for="(element, index) in component[1].htmlElements" :key="index">
+        {{ element.text }}
+      </p>
+      <p v-for="(element, index) in component[1].children" :key="index">
+        {{ element }}
+      </p>
 
       <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
     <modals-container></modals-container>
     <button @click="consoleCM" class="white--text">click</button>
-    <ComponentModal :modalWidth="800" :modalHeight="900"/>
+    <ComponentModal :modalWidth="800" :modalHeight="900" />
   </div>
 </template>
 
@@ -72,16 +76,17 @@ export default {
       }
       return color;
     },
-    handleClick() {
-      if (Date.now() - this.lastTimeClicked < 200) this.doubleClick();
+    handleClick(componentName) {
+      if (Date.now() - this.lastTimeClicked < 200)
+        this.doubleClick(componentName);
       else {
         this.lastTimeClicked = Date.now();
       }
     },
-    doubleClick() {
-      // console.log('I AM DOUBLE CLICKED');
+    doubleClick(componentName) {
+      console.log(componentName);
       // this.showModal = true;
-      this.$modal.show('demo-login');
+      this.$modal.show('demo-login', { comp: componentName });
     },
     consoleCM() {
       console.log(Object.keys(this.componentMap));
