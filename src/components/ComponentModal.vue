@@ -6,15 +6,15 @@
     :width="900"
     :height="950"
   >
-    <SideBar :header="comp" :name="comp" />
-    <button @click="consoleThis" class="white--text">CLICK</button>
+    <EditSideBar :header="comp" :name="comp" />
+
     <ComponentCodeDisplay />
   </modal>
 </template>
 
 <script>
 //STRETCH: change background color of componentDisplay when modal Component pops up
-import SideBar from './SideBar.vue';
+import EditSideBar from './EditSideBar.vue';
 import ComponentCodeDisplay from './ComponentCodeDisplay.vue';
 export default {
   name: 'ComponentModal',
@@ -24,7 +24,7 @@ export default {
     };
   },
   components: {
-    SideBar,
+    EditSideBar,
     ComponentCodeDisplay
   },
   methods: {
@@ -41,5 +41,7 @@ export default {
 <style>
 .v--modal {
   background-color: #424242 !important;
+  display: flex;
+  padding: 15px;
 }
 </style>
