@@ -1,39 +1,32 @@
-const icons = [
-  {
-    caption: 'div',
+const icons = {
+  div: {
     icon: 'crop_square',
     html: '<div></div>'
   },
-  {
-    caption: 'button',
+  button: {
     icon: 'toggle_off',
     html: '<button></button>'
   },
-  {
-    caption: 'form',
+  form: {
     icon: 'list_alt',
     html: '<form></form>'
   },
-  {
-    caption: 'img',
+  img: {
     icon: 'image',
     html: '<img/>'
   },
-  {
-    caption: 'link',
+  link: {
     icon: 'link',
     html: '<a href="#"/>'
   },
-  {
-    caption: 'list',
+  list: {
     icon: 'format_list_bulleted',
     html: '<li></li>'
   },
-  {
-    caption: 'paragraph',
+  paragraph: {
     icon: 'notes',
     html: '<p></p>'
   }
-];
+};
 
 export default icons;

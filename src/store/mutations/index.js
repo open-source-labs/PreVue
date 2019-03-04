@@ -10,14 +10,11 @@ import {
 
 const mutations = {
   [ADD_TO_LIST]: function(state, payload) {
-    const {
-      id,
-      icon: { caption }
-    } = payload;
+    console.log(payload);
+    const { icon } = payload;
 
     const newElement = {
-      id,
-      text: caption
+      text: icon
     };
     state.elementsList.push(newElement);
   },
