@@ -3,7 +3,8 @@ import {
   ADD_TO_LIST,
   CLEAR_LIST,
   SET_LIST,
-  UPDATE_SELECTED_CHILDREN
+  UPDATE_SELECTED_CHILDREN,
+  SET_COMPONENT_MAP_LIST
 } from '../types';
 
 const mutations = {
@@ -22,6 +23,10 @@ const mutations = {
   //REFACTOR SAME FUNCTIONALITY MUTATIONS
   [SET_LIST]: function(state, payload) {
     state.elementsList = payload;
+  },
+  [SET_COMPONENT_MAP_LIST]: function(state, payload) {
+    const { value, componentName } = payload;
+    state.componentMap[componentName].htmlElements = value;
   },
   [UPDATE_SELECTED_CHILDREN]: function(state, payload) {
     state.selectedChildren = payload;
