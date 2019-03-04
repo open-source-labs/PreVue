@@ -1,7 +1,13 @@
-import * as types from '../types';
+import {
+  ADD_TO_COMPONENT_MAP,
+  ADD_TO_LIST,
+  CLEAR_LIST,
+  SET_LIST,
+  UPDATE_SELECTED_CHILDREN
+} from '../types';
 
 const mutations = {
-  [types.ADD_TO_LIST]: function(state, payload) {
+  [ADD_TO_LIST]: function(state, payload) {
     const {
       id,
       icon: { caption }
@@ -13,17 +19,22 @@ const mutations = {
     };
     state.elementsList.push(newElement);
   },
-  [types.SET_LIST]: function(state, payload) {
-    const newElementList = payload;
-    state.elementsList = newElementList;
+  //REFACTOR SAME FUNCTIONALITY MUTATIONS
+  [SET_LIST]: function(state, payload) {
+    state.elementsList = payload;
   },
-  [types.ADD_TO_COMPONENT_MAP]: function(state, payload) {
-    const { name, htmlList } = payload;
+  [UPDATE_SELECTED_CHILDREN]: function(state, payload) {
+    state.selectedChildren = payload;
+  },
+  [ADD_TO_COMPONENT_MAP]: function(state, payload) {
+    const { name, htmlList, children } = payload;
     let newStateComponentMap = Object.assign({}, state.componentMap);
-    newStateComponentMap[name] = htmlList;
+    newStateComponentMap[name] = {};
+    newStateComponentMap[name].htmlElements = htmlList;
+    newStateComponentMap[name].children = children;
     state.componentMap = newStateComponentMap;
   },
-  [types.CLEAR_LIST]: function(state) {
+  [CLEAR_LIST]: function(state) {
     state.elementsList = [];
   }
 };

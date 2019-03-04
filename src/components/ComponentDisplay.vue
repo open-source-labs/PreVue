@@ -1,6 +1,6 @@
 <template>
   <div class="componentDisplay">
-    <LoadingBar :duration="2000" />
+    <LoadingBar :duration="2000"/>
     <VueDragResize
       class="component"
       :isActive="true"
@@ -14,15 +14,14 @@
       @clicked="handleClick"
     >
       <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1]" :key="index">
-        {{ element.text }}
-      </p>
+      <p v-for="(element, index) in component[1].htmlElements" :key="index">{{ element.text }}</p>
+      <p v-for="(element, index) in component[1].children" :key="index">{{ element }}</p>
 
       <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
     <modals-container></modals-container>
     <button @click="consoleCM" class="white--text">click</button>
-    <ComponentModal :modalWidth="800" :modalHeight="900" />
+    <ComponentModal :modalWidth="800" :modalHeight="900"/>
   </div>
 </template>
 

@@ -1,24 +1,28 @@
 <template>
   <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      {{ header }}
-    </header>
+    <header class="headline green--text text--accent-2 pa-2">{{ header }}</header>
 
     <v-form class="px-3">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
+      <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
       <section>
-        <Icons />
+        <Icons/>
       </section>
     </v-form>
 
     <section>
+      <button @click="consoleMap">Click</button>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <Queue />
+      <hr>
+      <Queue/>
+      <v-select
+        v-model="selectedChildren"
+        :items="Object.keys(componentMap)"
+        label="Select"
+        multiple
+        chips
+        hint="Select child components"
+        persistent-hint
+      ></v-select>
     </section>
 
     <BaseButton
@@ -52,12 +56,30 @@ export default {
     Icons,
     Queue
   },
-  computed: { ...mapState(['elementsList']) },
+  computed: {
+    ...mapState(['elementsList', 'componentMap', 'selectedChildren']),
+    selectedChildren: {
+      get() {
+        return this.$store.state.selectedChildren;
+      },
+      set(newArray) {
+        console.log(newArray);
+        this.$store.commit(types.UPDATE_SELECTED_CHILDREN, newArray);
+      }
+    }
+  },
   methods: {
     addComponent() {
-      const payload = { name: this.componentName, htmlList: this.elementsList };
+      const payload = {
+        name: this.componentName,
+        htmlList: this.elementsList,
+        children: this.selectedChildren
+      };
       this.$store.dispatch(types.ADD_TO_COMPONENT_MAP_ACTION, payload);
       this.componentName = '';
+    },
+    consoleMap() {
+      console.log(this.selectedChildren);
     }
   }
 };

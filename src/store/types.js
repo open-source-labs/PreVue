@@ -3,6 +3,7 @@ export const ADD_TO_LIST = 'ADD_TO_LIST';
 export const SET_LIST = 'SET_LIST';
 export const ADD_TO_COMPONENT_MAP = 'ADD_TO_COMPONENT_MAP';
 export const CLEAR_LIST = 'CLEAR_LIST';
+export const UPDATE_SELECTED_CHILDREN = 'UPDATE_SELECTED_CHILDREN';
 
 //ACTIONS
 export const ADD_TO_COMPONENT_MAP_ACTION = 'addToComponentMap';
