@@ -30,10 +30,13 @@ const mutations = {
     state.selectedChildren = payload;
   },
   [ADD_TO_COMPONENT_MAP]: function(state, payload) {
-    const { name, htmlList, children } = payload;
+    const { name, htmlList, children, htmlCode } = payload;
+    console.log('htmlList', htmlList);
+    console.log('htmlCode', htmlCode);
     let newStateComponentMap = Object.assign({}, state.componentMap);
     newStateComponentMap[name] = {};
     newStateComponentMap[name].htmlElements = htmlList;
+    newStateComponentMap[name].htmlCode = htmlCode;
     newStateComponentMap[name].children = children;
     state.componentMap = newStateComponentMap;
   },
