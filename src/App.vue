@@ -1,12 +1,12 @@
 <template>
   <v-app dark>
     <div id="app">
-      <NavBar @click="drawer = !drawer"></NavBar>
+      <NavBar :show="$route.name" @click="drawer = !drawer"></NavBar>
       <v-content>
         <router-view />
       </v-content>
       <v-navigation-drawer right v-model="drawer" app>
-        <Sidebar />
+        <Sidebar header="Create" />
       </v-navigation-drawer>
     </div>
   </v-app>
