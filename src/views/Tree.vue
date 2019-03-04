@@ -7,7 +7,7 @@
       type="tree"
       :duration="0"
       :zoomable="true"
-      radius="5"
+      radius="4"
     ></tree>
   </div>
 </template>
