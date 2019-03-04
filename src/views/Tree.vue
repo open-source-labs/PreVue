@@ -9,40 +9,43 @@
       :zoomable="true"
       radius="4"
     ></tree>
+
+    <button @click="viewComponentMap">VIEW MAP</button>
   </div>
 </template>
 
 <script>
 import { tree } from 'vued3tree';
+import { mapState } from 'vuex';
 export default {
   components: {
     tree
   },
+  created() {
+    this.buildTree();
+  },
+  computed: {
+    ...mapState(['componentMap']),
+    componentMap: {
+      get() {
+        return this.$store.state.componentMap;
+      }
+    }
+  },
   data() {
     return {
-      tree: {
-        name: 'father',
-        children: [
-          {
-            name: 'son1',
-            children: [
-              {
-                name: 'grandson',
-                children: [
-                  { name: 'great grandson' },
-                  { name: 'great grandson 2' }
-                ]
-              },
-              { name: 'grandson2' }
-            ]
-          },
-          {
-            name: 'son2',
-            children: [{ name: 'grandson3' }, { name: 'grandson4' }]
-          }
-        ]
-      }
+      tree: {}
     };
+  },
+  methods: {
+    viewComponentMap() {
+      console.log(this.componentMap);
+    },
+    buildTree() {
+      let currentNode = this.componentMap['App'];
+      this.tree.name = currentNode.componentName;
+      // while()
+    }
   }
 };
 </script>

@@ -1,28 +1,22 @@
 <template>
   <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      {{ header }}
-    </header>
+    <header class="headline green--text text--accent-2 pa-2">{{ header }}</header>
 
     <v-form class="px-3">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
+      <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
       <section>
-        <Icons />
+        <Icons/>
       </section>
     </v-form>
 
     <section>
       <button @click="consoleMap">Click</button>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <Queue :name="name" />
+      <hr>
+      <Queue :name="name"/>
       <v-select
         v-model="selectedChildren"
-        :items="Object.keys(componentMap)"
+        :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
         label="Select"
         multiple
         chips
