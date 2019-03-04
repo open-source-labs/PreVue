@@ -36,6 +36,7 @@ const mutations = {
     const { name, htmlList, children } = payload;
     let newStateComponentMap = Object.assign({}, state.componentMap);
     newStateComponentMap[name] = {};
+    newStateComponentMap[name].componentName = name;
     newStateComponentMap[name].htmlElements = htmlList;
     newStateComponentMap[name].children = children;
     state.componentMap = newStateComponentMap;
