@@ -4,6 +4,7 @@ import {
   CLEAR_LIST,
   SET_LIST,
   UPDATE_SELECTED_CHILDREN,
+  UPDATE_CHILDREN,
   SET_COMPONENT_MAP_LIST
 } from '../types';
 
@@ -41,6 +42,12 @@ const mutations = {
   },
   [CLEAR_LIST]: function(state) {
     state.elementsList = [];
+    state.selectedChildren = [];
+  },
+
+  [UPDATE_CHILDREN]: function(state, payload) {
+    const { name, newArray } = payload;
+    state.componentMap[name].children = newArray;
   }
 };
 
