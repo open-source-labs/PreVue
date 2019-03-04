@@ -1,11 +1,30 @@
 <template>
   <div>
-    <h1>CODE DISPLAY</h1>
+    <span
+      class="white--text"
+      v-for="htmlCode in componentMap[compName].htmlCode"
+      :key="Date.now()"
+    >
+      {{ htmlCode }}
+      <br />
+    </span>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from 'vuex';
+export default {
+  name: 'ComponentCodeDisplay',
+  props: {
+    compName: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    ...mapState(['componentMap'])
+  }
+};
 </script>
 
 <style>
