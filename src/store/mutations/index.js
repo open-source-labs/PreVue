@@ -44,7 +44,6 @@ const mutations = {
     state.elementsList = [];
     state.selectedChildren = [];
   },
-
   [UPDATE_CHILDREN]: function(state, payload) {
     const { name, newArray } = payload;
     state.componentMap[name].children = newArray;
