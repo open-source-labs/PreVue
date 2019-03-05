@@ -11,6 +11,7 @@
     ></tree>
 
     <button @click="buildTree" class="white--text">BUILD TREE</button>
+    <button @click="viewComponentMap" class="white--text">data</button>
   </div>
 </template>
 
@@ -45,14 +46,24 @@ export default {
       let stack = [componentMapPointer];
       let treePointer = treeObj;
       let treeStack = [treePointer];
-
       let index = 0;
       // check if component has children
       while (stack.length > 0) {
+        console.log('[componentMapPointer] -- componentMapPointeris', [
+          componentMapPointer
+        ]);
         // check if component has a next child after incrementing index
         if (this.componentMap[componentMapPointer].children[index]) {
           // check if tree pointer has a children array
           // if it doesn't, assign an empty array to children
+          console.log(
+            '[componentMapPointer].children -- CHILDRENLIST',
+            this.componentMap[componentMapPointer].children
+          );
+          console.log(
+            '[componentMapPointer].children -- CHILDREN',
+            this.componentMap[componentMapPointer].children[index]
+          );
           if (!Array.isArray(treePointer.children)) treePointer.children = [];
           // push an empty  object
           treePointer.children.push({
