@@ -35,6 +35,7 @@ const mutations = {
     console.log('htmlCode', htmlCode);
     let newStateComponentMap = Object.assign({}, state.componentMap);
     newStateComponentMap[name] = {};
+    newStateComponentMap[name].componentName = name;
     newStateComponentMap[name].htmlElements = htmlList;
     newStateComponentMap[name].htmlCode = htmlCode;
     newStateComponentMap[name].children = children;

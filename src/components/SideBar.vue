@@ -16,7 +16,7 @@
       <Queue :name="name"/>
       <v-select
         v-model="selectedChildren"
-        :items="Object.keys(componentMap)"
+        :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
         label="Select"
         multiple
         chips
