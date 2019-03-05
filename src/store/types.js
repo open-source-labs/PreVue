@@ -1,11 +1,5 @@
-//MUTATIONS
-export const ADD_TO_LIST = 'ADD_TO_LIST';
-export const SET_LIST = 'SET_LIST';
+//Mutations
 export const ADD_TO_COMPONENT_MAP = 'ADD_TO_COMPONENT_MAP';
-export const CLEAR_LIST = 'CLEAR_LIST';
-export const UPDATE_SELECTED_CHILDREN = 'UPDATE_SELECTED_CHILDREN';
-export const UPDATE_CHILDREN = 'UPDATE_CHILDREN';
-export const SET_COMPONENT_MAP_LIST = 'SET_COMPONENT_MAP_LIST';
 
-//ACTIONS
-export const ADD_TO_COMPONENT_MAP_ACTION = 'addToComponentMap';
+//Actions
+export const registerComponent = 'registerComponent';
