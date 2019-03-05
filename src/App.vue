@@ -10,16 +10,9 @@
 </template>
 
 <script>
-import HomeSidebar from '@/components/HomeSidebar';
 import NavBar from '@/components/NavBar.vue';
 export default {
-  data() {
-    return {
-      drawer: false
-    };
-  },
   components: {
-    HomeSidebar,
     NavBar
   }
 };

@@ -1,11 +1,8 @@
-//MUTATIONS
-export const ADD_TO_LIST = 'ADD_TO_LIST';
-export const SET_LIST = 'SET_LIST';
-export const ADD_TO_COMPONENT_MAP = 'ADD_TO_COMPONENT_MAP';
-export const CLEAR_LIST = 'CLEAR_LIST';
-export const UPDATE_SELECTED_CHILDREN = 'UPDATE_SELECTED_CHILDREN';
-export const UPDATE_CHILDREN = 'UPDATE_CHILDREN';
-export const SET_COMPONENT_MAP_LIST = 'SET_COMPONENT_MAP_LIST';
+//UI Mutations
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 
-//ACTIONS
-export const ADD_TO_COMPONENT_MAP_ACTION = 'addToComponentMap';
+//Event Mutations
+export const ADD_TO_COMPONENT_MAP = 'ADD_TO_COMPONENT_MAP';
+
+//Event Actions
+export const registerComponent = 'registerComponent';
