@@ -11,6 +11,7 @@ import SideBar from './SideBar.vue';
 
 export default {
   name: 'AppDisplay',
+
   components: {
     SideBar,
     ComponentDisplay
