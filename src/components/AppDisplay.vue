@@ -1,19 +1,19 @@
 <template>
   <div id="displayBox">
-    <ComponentDisplay />
-    <SideBar />
+    <ComponentDisplay/>
+    <HomeSidebar/>
   </div>
 </template>
 
 <script>
 import ComponentDisplay from './ComponentDisplay.vue';
-import SideBar from './SideBar.vue';
+import HomeSidebar from './HomeSidebar.vue';
 
 export default {
   name: 'AppDisplay',
 
   components: {
-    SideBar,
+    HomeSidebar,
     ComponentDisplay
   }
 };

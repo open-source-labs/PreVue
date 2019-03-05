@@ -3,17 +3,14 @@
     <div id="app">
       <NavBar :show="$route.name" @click="drawer = !drawer"></NavBar>
       <v-content>
-        <router-view />
+        <router-view/>
       </v-content>
-      <v-navigation-drawer right v-model="drawer" app>
-        <Sidebar header="Create" />
-      </v-navigation-drawer>
     </div>
   </v-app>
 </template>
 
 <script>
-import Sidebar from './components/SideBar';
+import HomeSidebar from '@/components/HomeSidebar';
 import NavBar from '@/components/NavBar.vue';
 export default {
   data() {
@@ -22,7 +19,7 @@ export default {
     };
   },
   components: {
-    Sidebar,
+    HomeSidebar,
     NavBar
   }
 };

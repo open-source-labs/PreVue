@@ -43,7 +43,7 @@ import { mapState } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
-  name: 'SideBar',
+  name: 'HomeSidebar',
   data: function() {
     return {
       componentName: ''

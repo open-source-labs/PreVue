@@ -1,16 +1,20 @@
 <template>
   <div>
-    <ComponentDisplay />
+    <ComponentDisplay/>
+    <v-navigation-drawer right v-model="drawer" app>
+      <HomeSidebar header="Create"/>
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-import ComponentDisplay from '../components/ComponentDisplay.vue';
-
+import ComponentDisplay from '@/components/ComponentDisplay.vue';
+import HomeSidebar from '@/components/HomeSidebar';
 export default {
   name: 'Home',
   components: {
-    ComponentDisplay
+    ComponentDisplay,
+    HomeSidebar
   }
 };
 </script>
