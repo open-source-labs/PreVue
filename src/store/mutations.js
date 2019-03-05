@@ -1,9 +1,6 @@
-import { ADD_TO_COMPONENT_MAP, TOGGLE_SIDEBAR } from './types';
+import { ADD_TO_COMPONENT_MAP } from './types';
 
 const mutations = {
-  [TOGGLE_SIDEBAR]: state => {
-    state.displaySidebar = !state.displaySidebar;
-  },
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
     const { name, htmlList, children, htmlCode } = payload;
     state.componentMap = {

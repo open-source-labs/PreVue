@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <div id="app">
-      <NavBar :show="$route.name" @click="drawer = !drawer"></NavBar>
+      <NavBar :show="$route.name"></NavBar>
       <v-content>
         <router-view/>
       </v-content>
