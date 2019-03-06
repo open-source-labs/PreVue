@@ -14,7 +14,7 @@ const newState = {
       children: []
     }
   },
-  displaySidebar: true
+  selectedElementList: []
 };
 
 export default newState;
