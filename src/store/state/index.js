@@ -1,13 +1,20 @@
 import icons from './icons';
-import elementsList from './elementsList';
-import componentMap from './componentMap';
-import selectedChildren from './selectedChildren';
 
 const newState = {
   icons,
-  elementsList,
-  componentMap,
-  selectedChildren
+  componentMap: {
+    App: {
+      componentName: 'App',
+      htmlElements: [],
+      children: ['child1']
+    },
+    child1: {
+      componentName: 'child1',
+      htmlElements: [],
+      children: []
+    }
+  },
+  displaySidebar: true
 };
 
 export default newState;
