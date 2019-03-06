@@ -1,4 +1,8 @@
-import { ADD_TO_COMPONENT_MAP } from './types';
+import {
+  ADD_TO_COMPONENT_MAP,
+  ADD_TO_SELECTED_ELEMENT_LIST,
+  SET_SELECTED_ELEMENT_LIST
+} from './types';
 
 const mutations = {
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
@@ -12,6 +16,12 @@ const mutations = {
         htmlCode
       }
     };
+  },
+  [ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
+    state.selectedElementList.push(payload);
+  },
+  [SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
+    state.selectedElementList = payload;
   }
 };
 
