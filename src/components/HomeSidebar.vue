@@ -1,11 +1,17 @@
 <template>
   <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">{{ header }}</header>
+    <header class="headline green--text text--accent-2 pa-2">
+      {{ header }}
+    </header>
 
     <!-- <v-form class="px-3"> -->
-    <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
+    <BaseTextfield
+      v-model="componentName"
+      label="Component Name"
+      :value="componentName"
+    />
     <section>
-      <Icons @getClickedIcon="addToSelectedElementList"/>
+      <Icons @getClickedIcon="addToSelectedElementList" />
     </section>
     <!-- </v-form> -->
     <section>
@@ -19,11 +25,15 @@
         persistent-hint
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr>
-      <Queue :listToRender="selectedElementList"/>
+      <hr />
+      <Queue :listToRender="selectedElementList" />
     </section>
 
-    <BaseButton :componentName="componentName" name="add component" icon="add_circle"></BaseButton>
+    <BaseButton
+      :componentName="componentName"
+      name="add component"
+      icon="add_circle"
+    ></BaseButton>
   </div>
 </template>
 
@@ -64,7 +74,7 @@ export default {
   },
   methods: {
     addToSelectedElementList(elementName) {
-      this.selectedElementList.push(elementName);
+      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };

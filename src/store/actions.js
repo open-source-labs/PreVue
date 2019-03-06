@@ -7,10 +7,13 @@ const actions = {
       commit(types.ADD_TO_COMPONENT_MAP, payload);
     }
   },
-  [types.setSelectedElementList]: ({ state, commit }, payload) => {
+  [types.setSelectedElementList]: ({ commit }, payload) => {
     if (payload) {
       commit(types.SET_SELECTED_ELEMENT_LIST, payload);
     }
+  },
+  [types.addToSelectedElementList]: ({ commit }, payload) => {
+    commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   }
 };
 
