@@ -1,7 +1,7 @@
 <template>
   <div>
     <ComponentDisplay/>
-    <v-navigation-drawer right permanent="true" app>
+    <v-navigation-drawer right :permanent="true" app>
       <HomeSidebar header="Create a Component"/>
     </v-navigation-drawer>
   </div>
