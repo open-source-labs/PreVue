@@ -1,53 +1,54 @@
 <template>
   <div>
     <button @click="consoleThis" class="white--text">CLICK QUEUE</button>
-    <draggable
-      v-model="myList"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-    >
-      <div class="white--text" v-for="element in myList" :key="element.id">
-        {{ element.text }}
-      </div>
+    <draggable :list="listToRender" group="people" @start="drag = true" @end="drag = false">
+      <div class="white--text" v-for="element in listToRender">{{ element }}</div>
     </draggable>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
-import { mapState } from 'vuex';
 
 export default {
   name: 'Queue',
   props: {
     name: {
       type: String
+    },
+    listToRender: {
+      type: Array
     }
   },
   methods: {
     consoleThis() {
-      console.log(this.name);
+      console.log(this.listToRender);
     }
   },
   computed: {
-    ...mapState(['elementsList']),
-    myList: {
-      get() {
-        if (this.name)
-          return this.$store.state.componentMap[this.name].htmlElements;
-        return this.$store.state.elementsList;
-      },
-      set(value) {
-        const componentName = this.name;
-        if (componentName)
-          this.$store.commit('SET_COMPONENT_MAP_LIST', {
-            value,
-            componentName
-          });
-        this.$store.commit('SET_LIST', value);
-      }
-    }
+    // renderList: {
+    //   get() {
+    //     // if (this.name)
+    //     //   return this.$store.state.componentMap[this.name].htmlElements;
+    //     // console.log('listrernderque', this.listToRender);
+    //     console.log(this.test);
+    //     return this.listToRender;
+    //   }
+    //   // set(value) {
+    //     // console.log('value pushed', value);
+    //     // this.listToRender = value;
+    //     // console.log('set');
+    //     // this.test = this.listToRender;
+    //     // this.listToRender = value;
+    //     // const componentName = this.name;
+    //     // if (componentName)
+    //     //   this.$store.commit('SET_COMPONENT_MAP_LIST', {
+    //     //     value,
+    //     //     componentName
+    //     //   });
+    //     // this.$store.commit('SET_LIST', value);
+    //   }
+    // }
   },
   components: {
     draggable

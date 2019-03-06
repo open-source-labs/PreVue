@@ -11,7 +11,7 @@
     <section>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
       <hr>
-      <Queue :name="name"/>
+      <Queue :listToRender="selectedElementList"/>
       <v-select
         v-model="selectedChildren"
         :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
@@ -64,9 +64,7 @@ export default {
   },
   methods: {
     addToSelectedElementList(elementName) {
-      // console.log('icon', icon);
       this.selectedElementList.push(elementName);
-      console.log(this.selectedElementList);
     }
   }
 };
@@ -75,7 +73,7 @@ export default {
 <style>
 .sidebar {
   display: grid;
-  /* grid-template-rows: 0.5fr 3.5fr 4fr 1fr; */
+  grid-template-rows: 0.5fr 0.5 300px 4fr 1fr;
 }
 
 /* .sidebar {
