@@ -66,21 +66,25 @@ export default {
   },
   methods: {
     addComponent() {
-      console.log('clicked add component');
       const htmlCode = [];
       this.selectedElementList.forEach(element => {
         htmlCode.push(this.$store.state.icons[element].html);
       });
+
+      const { componentName, selectedElementList: htmlList, children } = this;
       const payload = {
-        componentName: this.componentName,
-        htmlList: this.selectedElementList,
-        children: this.selectedChildren,
+        componentName,
+        htmlList,
+        children,
         htmlCode
       };
-      this.$store.dispatch(types.registerComponent, payload);
-      this.componentName = '';
-      this.selectedChildren = [];
-      console.log('FINISHED clicked add component');
+      this.$store
+        .dispatch(types.registerComponent, payload)
+        .then(() => {
+          this.componentName = '';
+          this.selectedChildren = [];
+        })
+        .catch(err => console.log(err));
     },
     consoleMap() {
       console.log(this.selectedChildren);
