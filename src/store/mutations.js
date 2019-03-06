@@ -5,7 +5,7 @@ const mutations = {
     const { componentName, htmlList, children, htmlCode } = payload;
     state.componentMap = {
       ...state.componentMap,
-      componentName: {
+      [componentName]: {
         componentName,
         children,
         htmlList,

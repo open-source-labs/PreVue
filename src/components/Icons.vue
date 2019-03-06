@@ -1,14 +1,13 @@
 <template>
   <section class="icon-grid">
     <button
-      @click.prevent="addToList(idx)"
-      type="submit"
-      v-for="(icon, idx) in Object.entries(icons)"
-      :key="icon[1].icon + Date.now()"
+      @click="changeState(elementName)"
+      v-for="([elementName, iconData], idx) in Object.entries(icons)"
+      :key="idx + Date.now()"
     >
-      <v-icon>{{ icon[1].icon }}</v-icon>
-      <br />
-      <span class="white--text">{{ icon[0] }}</span>
+      <v-icon>{{ iconData.icon }}</v-icon>
+      <br>
+      <span class="white--text">{{ elementName }}</span>
     </button>
   </section>
 </template>
@@ -22,11 +21,9 @@ export default {
     ...mapState(['icons'])
   },
   methods: {
-    addToList(idx) {
-      const payload = {
-        icon: Object.entries(this.icons)[idx][0]
-      };
-      this.$store.commit(types.ADD_TO_LIST, payload);
+    changeState(elementName) {
+      // console.log(icon[0]);
+      this.$emit('getClickedIcon', elementName);
     }
   }
 };

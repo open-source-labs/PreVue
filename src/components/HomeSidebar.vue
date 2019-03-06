@@ -4,22 +4,20 @@
       {{ header }}
     </header>
 
-    <v-form class="px-3">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
-      <section>
-        <Icons />
-      </section>
-    </v-form>
-
+    <!-- <v-form class="px-3"> -->
+    <BaseTextfield
+      v-model="componentName"
+      label="Component Name"
+      :value="componentName"
+    />
     <section>
-      <button @click="consoleMap">Click</button>
+      <Icons @getClickedIcon="addToSelectedElementList" />
+    </section>
+    <!-- </v-form> -->
+    <section>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
       <hr />
-      <Queue :name="name" />
+      <Queue :listToRender="selectedElementList" />
       <v-select
         v-model="selectedChildren"
         :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
@@ -52,7 +50,9 @@ export default {
   name: 'HomeSidebar',
   data: function() {
     return {
-      componentName: ''
+      componentName: '',
+      selectedElementList: [],
+      selectedChildren: []
     };
   },
   props: ['header', 'name'],
@@ -63,27 +63,18 @@ export default {
     Queue
   },
   computed: {
-    ...mapState(['elementsList', 'componentMap', 'selectedChildren']),
-    selectedChildren: {
-      get() {
-        return this.$store.state.selectedChildren;
-      },
-      set(newArray) {
-        console.log(newArray);
-        this.$store.commit(types.UPDATE_SELECTED_CHILDREN, newArray);
-      }
-    }
+    ...mapState(['componentMap'])
   },
   methods: {
     addComponent() {
       console.log('clicked add component');
       const htmlCode = [];
-      this.elementsList.forEach(element => {
-        htmlCode.push(this.$store.state.icons[element.text].html);
+      this.selectedElementList.forEach(element => {
+        htmlCode.push(this.$store.state.icons[element].html);
       });
       const payload = {
         componentName: this.componentName,
-        htmlList: this.elementsList,
+        htmlList: this.selectedElementList,
         children: this.selectedChildren,
         htmlCode
       };
@@ -93,6 +84,9 @@ export default {
     },
     consoleMap() {
       console.log(this.selectedChildren);
+    },
+    addToSelectedElementList(elementName) {
+      this.selectedElementList.push(elementName);
     }
   }
 };
@@ -101,7 +95,7 @@ export default {
 <style>
 .sidebar {
   display: grid;
-  grid-template-rows: 0.5fr 3.5fr 4fr 1fr;
+  grid-template-rows: 0.5fr 0.5 300px 4fr 1fr;
 }
 
 /* .sidebar {
