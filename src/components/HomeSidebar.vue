@@ -33,6 +33,7 @@
       :componentName="componentName"
       name="add component"
       icon="add_circle"
+      @click="addComponent"
     ></BaseButton>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default {
   data: function() {
     return {
       componentName: '',
-      selectedElementList: []
+      selectedChildren: []
     };
   },
   props: ['header', 'name'],
@@ -61,18 +62,29 @@ export default {
     Queue
   },
   computed: {
-    ...mapState(['elementsList', 'componentMap', 'selectedChildren']),
-    selectedChildren: {
-      get() {
-        return this.$store.state.selectedChildren;
-      },
-      set(newArray) {
-        console.log(newArray);
-        this.$store.commit(types.UPDATE_SELECTED_CHILDREN, newArray);
-      }
-    }
+    ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
+    addComponent() {
+      console.log('clicked add component');
+      const htmlCode = [];
+      this.selectedElementList.forEach(element => {
+        htmlCode.push(this.$store.state.icons[element].html);
+      });
+      const payload = {
+        componentName: this.componentName,
+        htmlList: this.selectedElementList,
+        children: this.selectedChildren,
+        htmlCode
+      };
+      this.$store.dispatch(types.registerComponent, payload);
+      this.componentName = '';
+      this.selectedChildren = [];
+      console.log('FINISHED clicked add component');
+    },
+    consoleMap() {
+      console.log(this.selectedChildren);
+    },
     addToSelectedElementList(elementName) {
       this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
