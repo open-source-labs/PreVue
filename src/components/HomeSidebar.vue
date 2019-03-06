@@ -23,7 +23,12 @@
       ></v-select>
     </section>
 
-    <BaseButton :componentName="componentName" name="add component" icon="add_circle"></BaseButton>
+    <BaseButton
+      :componentName="componentName"
+      name="add component"
+      icon="add_circle"
+      @click="addComponent"
+    ></BaseButton>
   </div>
 </template>
 
@@ -65,6 +70,22 @@ export default {
   methods: {
     addToSelectedElementList(elementName) {
       this.selectedElementList.push(elementName);
+    },
+    addComponent() {
+      const htmlCode = [];
+      this.selectedElementList.forEach(element => {
+        htmlCode.push(this.$store.state.icons[element].html);
+      });
+      console.log(this.componentName);
+      const payload = {
+        componentName: this.componentName,
+        htmlList: this.selectedElementList,
+        children: this.selectedChildren,
+        htmlCode
+      };
+      this.$store.dispatch(types.registerComponent, payload);
+      this.componentName = '';
+      this.selectedElementList = [];
     }
   }
 };
