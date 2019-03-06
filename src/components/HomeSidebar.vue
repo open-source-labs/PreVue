@@ -15,9 +15,6 @@
     </section>
     <!-- </v-form> -->
     <section>
-      <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <Queue :listToRender="selectedElementList" />
       <v-select
         v-model="selectedChildren"
         :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
@@ -27,6 +24,9 @@
         hint="Select child components"
         persistent-hint
       ></v-select>
+      <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
+      <hr />
+      <Queue :listToRender="selectedElementList" />
     </section>
 
     <BaseButton
@@ -51,7 +51,6 @@ export default {
   data: function() {
     return {
       componentName: '',
-      selectedElementList: [],
       selectedChildren: []
     };
   },
@@ -63,7 +62,7 @@ export default {
     Queue
   },
   computed: {
-    ...mapState(['componentMap'])
+    ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
     addComponent() {
@@ -80,13 +79,14 @@ export default {
       };
       this.$store.dispatch(types.registerComponent, payload);
       this.componentName = '';
+      this.selectedChildren = [];
       console.log('FINISHED clicked add component');
     },
     consoleMap() {
       console.log(this.selectedChildren);
     },
     addToSelectedElementList(elementName) {
-      this.selectedElementList.push(elementName);
+      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };
@@ -95,7 +95,7 @@ export default {
 <style>
 .sidebar {
   display: grid;
-  grid-template-rows: 0.5fr 0.5 300px 4fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
 }
 
 /* .sidebar {
