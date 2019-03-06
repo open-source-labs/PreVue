@@ -1,19 +1,25 @@
 <template>
   <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">{{ header }}</header>
+    <header class="headline green--text text--accent-2 pa-2">
+      {{ header }}
+    </header>
 
     <v-form class="px-3">
-      <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
+      <BaseTextfield
+        v-model="componentName"
+        label="Component Name"
+        :value="componentName"
+      />
       <section>
-        <Icons/>
+        <Icons />
       </section>
     </v-form>
 
     <section>
       <button @click="consoleMap">Click</button>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr>
-      <Queue :name="name"/>
+      <hr />
+      <Queue :name="name" />
       <v-select
         v-model="selectedChildren"
         :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
@@ -70,18 +76,20 @@ export default {
   },
   methods: {
     addComponent() {
+      console.log('clicked add component');
       const htmlCode = [];
       this.elementsList.forEach(element => {
         htmlCode.push(this.$store.state.icons[element.text].html);
       });
       const payload = {
-        name: this.componentName,
+        componentName: this.componentName,
         htmlList: this.elementsList,
         children: this.selectedChildren,
         htmlCode
       };
-      this.$store.dispatch(types.ADD_TO_COMPONENT_MAP_ACTION, payload);
+      this.$store.dispatch(types.registerComponent, payload);
       this.componentName = '';
+      console.log('FINISHED clicked add component');
     },
     consoleMap() {
       console.log(this.selectedChildren);
