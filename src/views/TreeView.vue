@@ -18,6 +18,7 @@
 <script>
 import { tree } from 'vued3tree';
 import { mapState } from 'vuex';
+import _ from 'lodash';
 export default {
   name: 'TreeView',
   components: {
@@ -33,61 +34,57 @@ export default {
   },
   data() {
     return {
-      tree: {}
+      tree: null
     };
   },
   methods: {
+    transformToTree(arr) {
+      var nodes = {};
+      return arr.filter(function(obj) {
+        var id = obj['name'],
+          parentId = obj['parent'];
+
+        nodes[id] = _.defaults(obj, nodes[id], { children: [] });
+        parentId &&
+          (nodes[parentId] = nodes[parentId] || { children: [] })[
+            'children'
+          ].push(obj);
+
+        return !parentId;
+      });
+    },
     viewComponentMap() {
       console.log(this.componentMap);
     },
     buildTree() {
-      let treeObj = { name: 'App', children: [] };
-      let componentMapPointer = this.componentMap['App'].componentName;
-      let stack = [componentMapPointer];
-      let treePointer = treeObj;
-      let treeStack = [treePointer];
-      let index = 0;
-      // check if component has children
-      while (stack.length > 0) {
-        console.log('[componentMapPointer] -- componentMapPointeris', [
-          componentMapPointer
-        ]);
-        // check if component has a next child after incrementing index
-        if (this.componentMap[componentMapPointer].children[index]) {
-          // check if tree pointer has a children array
-          // if it doesn't, assign an empty array to children
-          console.log(
-            '[componentMapPointer].children -- CHILDRENLIST',
-            this.componentMap[componentMapPointer].children
-          );
-          console.log(
-            '[componentMapPointer].children -- CHILDREN',
-            this.componentMap[componentMapPointer].children[index]
-          );
-          if (!Array.isArray(treePointer.children)) treePointer.children = [];
-          // push an empty  object
-          treePointer.children.push({
-            name: this.componentMap[componentMapPointer].children[index]
+      let converted = [];
+      for (let component in this.componentMap) {
+        console.log(component);
+        console.log(this.componentMap[component].children);
+        let compObj = { name: component, parent: '' };
+        converted.push(compObj);
+      }
+      console.log(converted);
+
+      for (let component in this.componentMap) {
+        if (this.componentMap[component].children.length > 0) {
+          console.log('parent', component);
+          console.log('child', this.componentMap[component].children);
+          let childlist = this.componentMap[component].children;
+
+          childlist.forEach(child => {
+            for (let i = 0; i < converted.length; i++) {
+              if (converted[i].name == child) {
+                converted[i].parent = component;
+              }
+            }
           });
-          // building the recently pushed object
-          // treePointer.children[
-          //   treePointer.children.length - 1
-          // ].name = this.componentMap[componentMapPointer].children[index];
-          this.componentMap[componentMapPointer].children.forEach(child => {
-            stack.push(child);
-          });
-          treeStack.push(treePointer.children[treePointer.children.length - 1]);
-          index++;
-        } else {
-          index = 0;
-          treePointer = treeStack.pop();
-          componentMapPointer = stack.pop();
-          if (componentMapPointer === 'App') {
-            this.tree = treeObj;
-            return;
-          }
         }
       }
+      console.log(converted);
+      let build = this.transformToTree(converted);
+      console.log('build', build);
+      this.tree = build[0];
     }
   }
 };

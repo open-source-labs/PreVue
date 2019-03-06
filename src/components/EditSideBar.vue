@@ -4,18 +4,22 @@
 
     <v-form class="px-3">
       <section>
-        <Icons/>
+        <Icons />
       </section>
     </v-form>
 
     <section>
       <!-- <button @click="consoleMap">Click</button> -->
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr>
-      <Queue :name="name"/>
+      <hr />
+      <Queue :name="name" />
       <v-select
         v-model="selectedChildren"
-        :items="Object.keys(componentMap).filter(comp => comp !== name && comp !== 'App')"
+        :items="
+          Object.keys(componentMap).filter(
+            comp => comp !== name && comp !== 'App'
+          )
+        "
         label="Select"
         multiple
         chips

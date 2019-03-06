@@ -5,12 +5,12 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
-      htmlElements: [],
+      htmlList: [],
       children: ['child1']
     },
     child1: {
       componentName: 'child1',
-      htmlElements: [],
+      htmlList: [],
       children: []
     }
   },

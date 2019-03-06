@@ -50,7 +50,8 @@ export default {
   name: 'HomeSidebar',
   data: function() {
     return {
-      componentName: ''
+      componentName: '',
+      selectedChildren: []
     };
   },
   props: ['header', 'name'],
@@ -61,19 +62,15 @@ export default {
     Queue
   },
   computed: {
-    ...mapState(['selectedElementList', 'componentMap'])
+    ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
-    addToSelectedElementList(elementName) {
-      this.$store.dispatch(types.addToSelectedElementList, elementName);
-    },
-
     addComponent() {
+      console.log('clicked add component');
       const htmlCode = [];
       this.selectedElementList.forEach(element => {
         htmlCode.push(this.$store.state.icons[element].html);
       });
-      console.log(this.componentName);
       const payload = {
         componentName: this.componentName,
         htmlList: this.selectedElementList,
@@ -82,7 +79,31 @@ export default {
       };
       this.$store.dispatch(types.registerComponent, payload);
       this.componentName = '';
+      this.selectedChildren = [];
+      console.log('FINISHED clicked add component');
+    },
+    consoleMap() {
+      console.log(this.selectedChildren);
+    },
+    addToSelectedElementList(elementName) {
+      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
+
+    // addComponent() {
+    //   const htmlCode = [];
+    //   this.selectedElementList.forEach(element => {
+    //     htmlCode.push(this.$store.state.icons[element].html);
+    //   });
+    //   console.log(this.componentName);
+    //   const payload = {
+    //     componentName: this.componentName,
+    //     htmlList: this.selectedElementList,
+    //     children: this.selectedChildren,
+    //     htmlCode
+    //   };
+    //   this.$store.dispatch(types.registerComponent, payload);
+    //   this.componentName = '';
+    // }
   }
 };
 </script>

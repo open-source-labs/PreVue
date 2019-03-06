@@ -1,5 +1,6 @@
 import {
   ADD_TO_COMPONENT_MAP,
+  UPDATE_CHILDREN,
   ADD_TO_SELECTED_ELEMENT_LIST,
   SET_SELECTED_ELEMENT_LIST
 } from './types';
@@ -17,6 +18,10 @@ const mutations = {
       }
     };
     state.selectedElementList = [];
+  },
+  [UPDATE_CHILDREN]: function(state, payload) {
+    const { name, newArray } = payload;
+    state.componentMap[name].children = newArray;
   },
   [ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList.push(payload);
