@@ -1,28 +1,18 @@
 <template>
   <v-app dark>
     <div id="app">
-      <NavBar :show="$route.name" @click="drawer = !drawer"></NavBar>
+      <NavBar :show="$route.name"></NavBar>
       <v-content>
-        <router-view />
+        <router-view/>
       </v-content>
-      <v-navigation-drawer right v-model="drawer" app>
-        <Sidebar header="Create" />
-      </v-navigation-drawer>
     </div>
   </v-app>
 </template>
 
 <script>
-import Sidebar from './components/SideBar';
 import NavBar from '@/components/NavBar.vue';
 export default {
-  data() {
-    return {
-      drawer: false
-    };
-  },
   components: {
-    Sidebar,
     NavBar
   }
 };
