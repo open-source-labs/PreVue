@@ -4,7 +4,6 @@
       Create a Component
     </header>
 
-    <!-- <v-form class="px-3"> -->
     <BaseTextfield
       v-model="componentName"
       label="Component Name"
@@ -13,7 +12,7 @@
     <section>
       <Icons @getClickedIcon="addToSelectedElementList" />
     </section>
-    <!-- </v-form> -->
+
     <section>
       <v-select
         v-model="selectedChildren"
@@ -66,21 +65,15 @@ export default {
   },
   methods: {
     addComponent() {
-      const htmlCode = [];
-      this.selectedElementList.forEach(element => {
-        htmlCode.push(this.$store.state.icons[element].html);
-      });
-
       const {
         componentName,
         selectedElementList: htmlList,
-        selectedChildren
+        selectedChildren: children
       } = this;
       const payload = {
         componentName,
         htmlList,
-        children: selectedChildren,
-        htmlCode
+        children
       };
       this.$store
         .dispatch(types.registerComponent, payload)
@@ -90,28 +83,10 @@ export default {
         })
         .catch(err => console.log(err));
     },
-    consoleMap() {
-      console.log(this.selectedChildren);
-    },
+
     addToSelectedElementList(elementName) {
       this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
-
-    // addComponent() {
-    //   const htmlCode = [];
-    //   this.selectedElementList.forEach(element => {
-    //     htmlCode.push(this.$store.state.icons[element].html);
-    //   });
-    //   console.log(this.componentName);
-    //   const payload = {
-    //     componentName: this.componentName,
-    //     htmlList: this.selectedElementList,
-    //     children: this.selectedChildren,
-    //     htmlCode
-    //   };
-    //   this.$store.dispatch(types.registerComponent, payload);
-    //   this.componentName = '';
-    // }
   }
 };
 </script>
@@ -121,8 +96,4 @@ export default {
   display: grid;
   grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
 }
-
-/* .sidebar {
-  background-color: aqua;
-} */
 </style>

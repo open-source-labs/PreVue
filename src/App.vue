@@ -1,9 +1,9 @@
 <template>
   <v-app dark>
     <div id="app">
-      <NavBar :show="$route.name"></NavBar>
+      <NavBar></NavBar>
       <v-content>
-        <router-view/>
+        <router-view />
       </v-content>
     </div>
   </v-app>
