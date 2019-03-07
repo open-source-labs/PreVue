@@ -8,16 +8,12 @@ const newState = {
     App: {
       componentName: 'App',
       htmlList: [],
-      children: ['child1']
-    },
-    child1: {
-      componentName: 'child1',
-      htmlList: [],
       children: []
-    }
+    },
   },
   selectedElementList: [],
-  clickedComponent: ''
+  clickedComponent: '',
+  clickedComponentToDelete: ''
 };
 
 export default newState;

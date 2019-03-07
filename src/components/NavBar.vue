@@ -4,12 +4,10 @@
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
         <span class="green--text text--accent-2">Vue</span>
+      </router-link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <router-link :to="{ name: 'tree' }">
+        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
       </router-link>
-      <nav>
-        <router-link :to="{ name: 'tree' }">
-          <span class="purple--text text--accent-2">Tree</span>
-        </router-link>
-      </nav>
     </v-toolbar-title>
   </v-toolbar>
 </template>
@@ -44,5 +42,13 @@ export default {
 .nav .nav-item.router-link-exact-active {
   color: #39b982;
   border-bottom: solid 2px #39b982;
+}
+
+.tree-link {
+  float: right;
+}
+
+a {
+  text-decoration: none;
 }
 </style>

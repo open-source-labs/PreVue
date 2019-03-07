@@ -1,13 +1,13 @@
 <template>
   <div>
-    <span
-      class="white--text"
+    <div
+      id="component-code-display"
       v-for="(htmlElementTag, idx) in renderHTMLCodeList"
       :key="idx + Date.now()"
     >
-      {{ htmlElementMap[htmlElementTag] }}
+      <p class="white--text">{{ htmlElementMap[htmlElementTag] }}</p>
       <br>
-    </span>
+    </div>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: white;
+#component-code-display {
+  padding-left: 10px;
 }
 </style>

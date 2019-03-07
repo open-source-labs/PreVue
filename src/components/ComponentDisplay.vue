@@ -11,9 +11,12 @@
       :parentH="listHeight"
       v-on:resizing="resize"
       v-on:dragging="resize"
-      v-for="(component, index) in Object.entries(componentMap)"
+      v-for="(component, index) in Object.entries(getComponentMap)"
       :key="index"
-      :style="{ backgroundColor: theBackgroundColor }"
+      :style="{ border: '7px solid ' + getRandomColor() }"
+      :snapToGrid="true"
+      :gridX="200"
+      :gridY="200"
       @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
@@ -21,7 +24,6 @@
       <p v-for="(child, index) in component[1].children" :key="index + Date.now() / 2">{{ child }}</p>
     </VueDragResize>
     <modals-container></modals-container>
-    <button @click="consoleCM" class="white--text">click</button>
     <ComponentModal :modalWidth="800" :modalHeight="900"/>
   </div>
 </template>
@@ -31,6 +33,7 @@ import { mapState } from 'vuex';
 import VueDragResize from 'vue-drag-resize';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
+import { setComponentMap } from '../store/types';
 
 export default {
   name: 'ComponentDisplay',
@@ -64,8 +67,13 @@ export default {
   },
   computed: {
     ...mapState(['componentMap']),
-    theBackgroundColor: function() {
-      return this.getRandomColor();
+    getComponentMap: {
+      get() {
+        return this.componentMap;
+      },
+      set(value) {
+        this.$store.dispatch(setComponentMap, value);
+      }
     }
   },
   methods: {
@@ -84,34 +92,29 @@ export default {
       return color;
     },
     handleClick(componentName) {
+      this.$store.dispatch('setClickedComponent', componentName);
       if (Date.now() - this.lastTimeClicked < 200)
         this.doubleClick(componentName);
       else {
         this.lastTimeClicked = Date.now();
       }
     },
-    doubleClick(componentName) {
-      this.$store.dispatch('setClickedComponent', componentName);
+    doubleClick() {
       this.$modal.show('demo-login');
     },
     consoleCM() {
-      console.log(Object.keys(this.componentMap));
+      console.log(this.componentMap);
     }
   }
 };
 </script>
 
 <style scoped>
-/* .component {
-  background-color: green;
-} */
 .component-display {
   grid-area: component-display;
-  background-color: orange;
 }
 
-h3,
-p {
-  color: white;
+.vdr.active:before {
+  outline-style: solid !important;
 }
 </style>

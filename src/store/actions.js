@@ -24,6 +24,9 @@ const actions = {
   },
   [types.setClickedElementList]: ({ commit }, payload) => {
     commit(types.SET_CLICKED_ELEMENT_LIST, payload);
+  },
+  [types.deleteClickedComponent]: ({ commit }) => {
+    commit(types.DELETE_CLICKED_COMPONENT);
   }
 };
 
