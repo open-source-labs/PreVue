@@ -14,7 +14,8 @@ const newState = {
       children: []
     }
   },
-  selectedElementList: []
+  selectedElementList: [],
+  clickedComponent: ''
 };
 
 export default newState;

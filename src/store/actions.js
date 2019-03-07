@@ -15,6 +15,15 @@ const actions = {
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
+  },
+  [types.setClickedComponent]: ({ commit }, payload) => {
+    commit(types.SET_CLICKED_COMPONENT, payload);
+  },
+  [types.addToComponentElementList]: ({ commit }, payload) => {
+    commit(types.ADD_TO_COMPONENT_HTML_LIST, payload);
+  },
+  [types.setClickedElementList]: ({ commit }, payload) => {
+    commit(types.SET_CLICKED_ELEMENT_LIST, payload);
   }
 };
 
