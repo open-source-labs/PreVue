@@ -65,7 +65,11 @@ export default {
   },
   methods: {
     addComponent() {
-      const { componentName, selectedElementList: htmlList, children } = this;
+      const {
+        componentName,
+        selectedElementList: htmlList,
+        selectedChildren: children
+      } = this;
       const payload = {
         componentName,
         htmlList,
@@ -79,9 +83,7 @@ export default {
         })
         .catch(err => console.log(err));
     },
-    consoleMap() {
-      console.log(this.selectedChildren);
-    },
+
     addToSelectedElementList(elementName) {
       this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
@@ -94,8 +96,4 @@ export default {
   display: grid;
   grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
 }
-
-/* .sidebar {
-  background-color: aqua;
-} */
 </style>
