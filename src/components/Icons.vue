@@ -1,12 +1,12 @@
 <template>
   <section class="icon-grid">
     <button
-      @click="changeState(elementName)"
+      @click.prevent="changeState(elementName)"
       v-for="([elementName, iconData], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
       <v-icon>{{ iconData.icon }}</v-icon>
-      <br>
+      <br />
       <span class="white--text">{{ elementName }}</span>
     </button>
   </section>
@@ -14,7 +14,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import * as types from '../store/types.js';
+
 export default {
   name: 'Icons',
   computed: {
@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     changeState(elementName) {
-      // console.log(icon[0]);
       this.$emit('getClickedIcon', elementName);
     }
   }

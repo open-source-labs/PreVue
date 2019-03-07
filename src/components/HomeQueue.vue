@@ -17,7 +17,7 @@ import { mapState } from 'vuex';
 import { setSelectedElementList } from '../store/types';
 
 export default {
-  name: 'Queue',
+  name: 'HomeQueue',
   props: {
     name: {
       type: String

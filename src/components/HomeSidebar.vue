@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <header class="headline green--text text--accent-2 pa-2">
-      {{ header }}
+      Create a Component
     </header>
 
     <!-- <v-form class="px-3"> -->
@@ -26,7 +26,7 @@
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
       <hr />
-      <Queue :listToRender="selectedElementList" />
+      <HomeQueue :listToRender="selectedElementList" />
     </section>
 
     <BaseButton
@@ -42,7 +42,7 @@
 import BaseTextfield from './BaseTextfield';
 import BaseButton from './BaseButton';
 import Icons from './Icons';
-import Queue from './Queue';
+import HomeQueue from './HomeQueue';
 import { mapState } from 'vuex';
 import * as types from '../store/types.js';
 
@@ -54,33 +54,37 @@ export default {
       selectedChildren: []
     };
   },
-  props: ['header', 'name'],
+
   components: {
     BaseTextfield,
     BaseButton,
     Icons,
-    Queue
+    HomeQueue
   },
   computed: {
     ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
     addComponent() {
-      console.log('clicked add component');
       const htmlCode = [];
       this.selectedElementList.forEach(element => {
         htmlCode.push(this.$store.state.icons[element].html);
       });
+
+      const { componentName, selectedElementList: htmlList, children } = this;
       const payload = {
-        componentName: this.componentName,
-        htmlList: this.selectedElementList,
-        children: this.selectedChildren,
+        componentName,
+        htmlList,
+        children,
         htmlCode
       };
-      this.$store.dispatch(types.registerComponent, payload);
-      this.componentName = '';
-      this.selectedChildren = [];
-      console.log('FINISHED clicked add component');
+      this.$store
+        .dispatch(types.registerComponent, payload)
+        .then(() => {
+          this.componentName = '';
+          this.selectedChildren = [];
+        })
+        .catch(err => console.log(err));
     },
     consoleMap() {
       console.log(this.selectedChildren);

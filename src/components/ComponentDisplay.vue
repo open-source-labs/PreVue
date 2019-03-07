@@ -83,9 +83,8 @@ export default {
       }
     },
     doubleClick(componentName) {
-      console.log(componentName);
-      // this.showModal = true;
-      this.$modal.show('demo-login', { comp: componentName });
+      this.$store.dispatch('setClickedComponent', componentName);
+      this.$modal.show('demo-login');
     },
     consoleCM() {
       console.log(Object.keys(this.componentMap));
