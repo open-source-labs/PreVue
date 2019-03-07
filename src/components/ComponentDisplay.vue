@@ -1,11 +1,14 @@
 <template>
-  <div class="componentDisplay">
-    <LoadingBar :duration="2000" />
+  <div class="component-display">
+    <LoadingBar :duration="2000"/>
     <VueDragResize
       class="component"
       :isActive="true"
+      :parentLimitation="true"
       :w="200"
       :h="200"
+      :parentW="listWidth"
+      :parentH="listHeight"
       v-on:resizing="resize"
       v-on:dragging="resize"
       v-for="(component, index) in Object.entries(componentMap)"
@@ -14,22 +17,12 @@
       @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
-      <p
-        v-for="(element, index) in component[1].htmlList"
-        :key="index + Date.now()"
-      >
-        {{ element }}
-      </p>
-      <p
-        v-for="(child, index) in component[1].children"
-        :key="index + Date.now() / 2"
-      >
-        {{ child }}
-      </p>
+      <p v-for="(element, index) in component[1].htmlList" :key="index + Date.now()">{{ element }}</p>
+      <p v-for="(child, index) in component[1].children" :key="index + Date.now() / 2">{{ child }}</p>
     </VueDragResize>
     <modals-container></modals-container>
     <button @click="consoleCM" class="white--text">click</button>
-    <ComponentModal :modalWidth="800" :modalHeight="900" />
+    <ComponentModal :modalWidth="800" :modalHeight="900"/>
   </div>
 </template>
 
@@ -55,8 +48,19 @@ export default {
       left: 0,
       lastTimeClicked: Date.now(),
       dialog: false,
-      showModal: false
+      showModal: false,
+      listWidth: 0,
+      listHeight: 0
     };
+  },
+  mounted() {
+    let componentDisplay = document.querySelector('.component-display');
+    this.listWidth = componentDisplay.clientWidth;
+    this.listHeight = componentDisplay.clientHeight;
+    window.addEventListener('resize', () => {
+      this.listWidth = componentDisplay.clientWidth;
+      this.listHeight = componentDisplay.clientHeight;
+    });
   },
   computed: {
     ...mapState(['componentMap']),
@@ -97,12 +101,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* .component {
   background-color: green;
 } */
-.componentDisplay {
-  grid-area: componentDisplay;
+.component-display {
+  grid-area: component-display;
+  background-color: orange;
 }
 
 h3,

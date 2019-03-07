@@ -1,16 +1,10 @@
 <template>
-  <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      Create a Component
-    </header>
+  <div class="home-sidebar">
+    <header class="headline green--text text--accent-2 pa-2">Create a Component</header>
 
-    <BaseTextfield
-      v-model="componentName"
-      label="Component Name"
-      :value="componentName"
-    />
+    <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
     <section>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+      <Icons @getClickedIcon="addToSelectedElementList"/>
     </section>
 
     <section>
@@ -24,8 +18,8 @@
         persistent-hint
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <HomeQueue :listToRender="selectedElementList" />
+      <hr>
+      <HomeQueue :listToRender="selectedElementList"/>
     </section>
 
     <BaseButton
@@ -91,9 +85,8 @@ export default {
 };
 </script>
 
-<style>
-.sidebar {
-  display: grid;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
+<style scoped>
+.home-sidebar {
+  grid-area: home-sidebar;
 }
 </style>

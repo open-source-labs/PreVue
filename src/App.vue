@@ -2,8 +2,8 @@
   <v-app dark>
     <div id="app">
       <NavBar></NavBar>
-      <v-content>
-        <router-view />
+      <v-content class="content">
+        <router-view/>
       </v-content>
     </div>
   </v-app>
@@ -18,28 +18,22 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  display: grid;
-  grid-template-columns: 8fr 2fr;
-  grid-template-areas: 'componentDisplay sidebar';
+  height: 100%;
+  .content {
+    height: 100%;
+  }
 }
 #nav {
   margin-left: 0;
   padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    .router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>

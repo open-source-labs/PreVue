@@ -6,7 +6,7 @@
       :key="idx + Date.now()"
     >
       {{ htmlElementMap[htmlElementTag] }}
-      <br />
+      <br>
     </span>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
   color: white;
 }
