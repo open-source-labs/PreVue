@@ -1,0 +1,40 @@
+<template>
+  <section class="icon-grid">
+    <button
+      @click.prevent="changeState(elementName)"
+      v-for="([elementName, iconString], idx) in Object.entries(icons)"
+      :key="idx + Date.now()"
+    >
+      <v-icon>{{ iconString }}</v-icon>
+      <br />
+      <span class="white--text">{{ elementName }}</span>
+    </button>
+  </section>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  name: 'Icons',
+  computed: {
+    ...mapState(['icons'])
+  },
+  methods: {
+    changeState(elementName) {
+      this.$emit('getClickedIcon', elementName);
+    }
+  }
+};
+</script>
+
+<style scoped>
+.icon-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+button:hover {
+  cursor: pointer;
+}
+</style>
