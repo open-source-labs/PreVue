@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ComponentDisplay/>
+    <ComponentDisplay />
     <v-navigation-drawer right :permanent="true" app>
-      <HomeSidebar header="Create a Component"/>
+      <HomeSidebar />
     </v-navigation-drawer>
   </div>
 </template>

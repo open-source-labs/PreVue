@@ -7,7 +7,7 @@
       type="tree"
       :duration="0"
       :zoomable="true"
-      radius="4"
+      :radius="4"
     ></tree>
 
     <button @click="buildTree" class="white--text">BUILD TREE</button>
@@ -19,7 +19,7 @@
 import { tree } from 'vued3tree';
 import { mapState } from 'vuex';
 export default {
-  name: 'TreeView',
+  name: 'Tree',
   components: {
     tree
   },
@@ -45,21 +45,20 @@ export default {
           children: compMap[comp].children
         });
       }
-      console.log('FORMATTED RESULT IS ', result);
       return result;
     },
     transformToTree(data) {
       let result = {};
       let nodes = {};
       let formattedData = this.formatComponentMap(data);
-      formattedData.forEach(item => {
-        if (!nodes[item.name]) {
-          nodes[item.name] = { name: item.name, children: [] };
+      formattedData.forEach(component => {
+        if (!nodes[component.name]) {
+          nodes[component.name] = { name: component.name, children: [] };
           result = nodes;
         }
-        item.children.forEach(child => {
+        component.children.forEach(child => {
           nodes[child] = { name: child, children: [] };
-          nodes[item.name].children.push(nodes[child]);
+          nodes[component.name].children.push(nodes[child]);
         });
       });
       return result;
@@ -77,6 +76,6 @@ export default {
 <style scoped>
 .container {
   height: 600px;
-  width: 90%;
+  width: 150%;
 }
 </style>
