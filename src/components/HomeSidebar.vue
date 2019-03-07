@@ -1,17 +1,11 @@
 <template>
   <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      {{ header }}
-    </header>
+    <header class="headline green--text text--accent-2 pa-2">{{ header }}</header>
 
     <!-- <v-form class="px-3"> -->
-    <BaseTextfield
-      v-model="componentName"
-      label="Component Name"
-      :value="componentName"
-    />
+    <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
     <section>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+      <Icons @getClickedIcon="addToSelectedElementList"/>
     </section>
     <!-- </v-form> -->
     <section>
@@ -25,8 +19,8 @@
         persistent-hint
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <Queue :listToRender="selectedElementList" />
+      <hr>
+      <Queue :listToRender="selectedElementList"/>
     </section>
 
     <BaseButton
@@ -88,22 +82,6 @@ export default {
     addToSelectedElementList(elementName) {
       this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
-
-    // addComponent() {
-    //   const htmlCode = [];
-    //   this.selectedElementList.forEach(element => {
-    //     htmlCode.push(this.$store.state.icons[element].html);
-    //   });
-    //   console.log(this.componentName);
-    //   const payload = {
-    //     componentName: this.componentName,
-    //     htmlList: this.selectedElementList,
-    //     children: this.selectedChildren,
-    //     htmlCode
-    //   };
-    //   this.$store.dispatch(types.registerComponent, payload);
-    //   this.componentName = '';
-    // }
   }
 };
 </script>
