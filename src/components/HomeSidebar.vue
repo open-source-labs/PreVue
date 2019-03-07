@@ -4,7 +4,6 @@
       Create a Component
     </header>
 
-    <!-- <v-form class="px-3"> -->
     <BaseTextfield
       v-model="componentName"
       label="Component Name"
@@ -13,7 +12,7 @@
     <section>
       <Icons @getClickedIcon="addToSelectedElementList" />
     </section>
-    <!-- </v-form> -->
+
     <section>
       <v-select
         v-model="selectedChildren"

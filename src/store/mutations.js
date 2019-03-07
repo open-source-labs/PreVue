@@ -5,7 +5,6 @@ import {
   SET_SELECTED_ELEMENT_LIST,
   SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
-  ADD_TO_COMPONENT_HTML_CODE_LIST,
   SET_CLICKED_ELEMENT_LIST
 } from './types';
 
@@ -37,11 +36,6 @@ const mutations = {
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList.push(elementName);
-  },
-  //TODO
-  [ADD_TO_COMPONENT_HTML_CODE_LIST]: (state, elementName) => {
-    const componentName = state.clickedComponent;
-    state.componentMap[componentName].htmlCodeList.push(elementName);
   },
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
     const componentName = state.clickedComponent;

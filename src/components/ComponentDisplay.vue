@@ -20,8 +20,6 @@
       <p v-for="(child, index) in component[1].children" :key="index">
         {{ child }}
       </p>
-
-      <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
     <modals-container></modals-container>
     <button @click="consoleCM" class="white--text">click</button>
