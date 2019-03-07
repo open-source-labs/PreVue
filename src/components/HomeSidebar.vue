@@ -17,10 +17,10 @@
       <v-select
         v-model="selectedChildren"
         :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
-        label="Select"
+        label="Select child components"
         multiple
         chips
-        hint="Select child components"
+        hint
         persistent-hint
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>

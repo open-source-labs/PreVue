@@ -1,5 +1,8 @@
 <template>
   <div class="componentDisplay">
+    <button class="white--text" @click="consoleCM">
+      CLICK TO SEE COMPONENT MAP
+    </button>
     <LoadingBar :duration="2000" />
     <VueDragResize
       class="component"
@@ -8,9 +11,12 @@
       :h="200"
       v-on:resizing="resize"
       v-on:dragging="resize"
-      v-for="(component, index) in Object.entries(componentMap)"
+      v-for="(component, index) in Object.entries(getComponentMap)"
       :key="index"
-      :style="{ backgroundColor: theBackgroundColor }"
+      :style="{ border: '7px solid ' + getRandomColor() }"
+      :snapToGrid="true"
+      :gridX="200"
+      :gridY="200"
       @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
@@ -28,7 +34,6 @@
       </p>
     </VueDragResize>
     <modals-container></modals-container>
-    <button @click="consoleCM" class="white--text">click</button>
     <ComponentModal :modalWidth="800" :modalHeight="900" />
   </div>
 </template>
@@ -38,6 +43,7 @@ import { mapState } from 'vuex';
 import VueDragResize from 'vue-drag-resize';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
+import { setComponentMap } from '../store/types';
 
 export default {
   name: 'ComponentDisplay',
@@ -58,10 +64,29 @@ export default {
       showModal: false
     };
   },
+  // created() {
+  // window.addEventListener('keyup', event => {
+  //   console.log(event.key);
+  //   if (event.key === 'Backspace') {
+  //     if (
+  //       this.$store.state.componentMap[this.$store.state.clickedComponent] &&
+  //       this.$store.state.clickedComponentToDelete
+  //     ) {
+  //       console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
+  //       this.$store.dispatch('deleteClickedComponent');
+  //     }
+  //   }
+  // });
+  // },
   computed: {
     ...mapState(['componentMap']),
-    theBackgroundColor: function() {
-      return this.getRandomColor();
+    getComponentMap: {
+      get() {
+        return this.componentMap;
+      },
+      set(value) {
+        this.$store.dispatch(setComponentMap, value);
+      }
     }
   },
   methods: {
@@ -80,24 +105,24 @@ export default {
       return color;
     },
     handleClick(componentName) {
+      this.$store.dispatch('setClickedComponent', componentName);
       if (Date.now() - this.lastTimeClicked < 200)
         this.doubleClick(componentName);
       else {
         this.lastTimeClicked = Date.now();
       }
     },
-    doubleClick(componentName) {
-      this.$store.dispatch('setClickedComponent', componentName);
+    doubleClick() {
       this.$modal.show('demo-login');
     },
     consoleCM() {
-      console.log(Object.keys(this.componentMap));
+      console.log(this.componentMap);
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 /* .component {
   background-color: green;
 } */
@@ -108,5 +133,9 @@ export default {
 h3,
 p {
   color: white;
+}
+
+.vdr.active:before {
+  outline-style: solid !important;
 }
 </style>

@@ -17,7 +17,8 @@ const newState = {
     }
   },
   selectedElementList: [],
-  clickedComponent: ''
+  clickedComponent: '',
+  clickedComponentToDelete: ''
 };
 
 export default newState;

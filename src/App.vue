@@ -18,16 +18,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  display: grid;
-  grid-template-columns: 8fr 2fr;
-  grid-template-areas: 'componentDisplay sidebar';
+  height: 100%;
+  width: 100%;
 }
 #nav {
   margin-left: 0;
@@ -41,5 +40,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
 }
 </style>

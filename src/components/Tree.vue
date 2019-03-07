@@ -5,9 +5,10 @@
       node-text="name"
       layoutType="euclidean"
       type="tree"
-      :duration="0"
       :zoomable="true"
-      :radius="4"
+      :duration="750"
+      :radius="7"
+      :marginX="0"
     ></tree>
   </div>
 </template>
@@ -72,9 +73,23 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 .container {
   height: 600px;
-  width: 150%;
+  width: 100%;
 }
+
+.treeclass .nodetree text {
+  font: 19px Roboto !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  text-shadow: none !important;
+  background-color: red !important;
+  font-weight: bold;
+  color: white !important;
+}
+
+/* .treeclass .node--internal text {
+  color: white;
+} */
 </style>
