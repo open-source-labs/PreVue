@@ -2,10 +2,10 @@
   <section class="icon-grid">
     <button
       @click.prevent="changeState(elementName)"
-      v-for="([elementName, iconData], idx) in Object.entries(icons)"
+      v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
-      <v-icon>{{ iconData.icon }}</v-icon>
+      <v-icon>{{ iconString }}</v-icon>
       <br />
       <span class="white--text">{{ elementName }}</span>
     </button>

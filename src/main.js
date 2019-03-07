@@ -10,7 +10,6 @@ import VModal from 'vue-js-modal';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.config.productionTip = false;
-// Vue.use(VueKonva);
 Vue.use(Vuetify);
 Vue.use(VModal, { dynamic: true });
 Vue.component('vue-drag-resize', VueDragResize);

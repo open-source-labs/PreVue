@@ -32,8 +32,6 @@
       >
         {{ child }}
       </p>
-
-      <!-- <p>{{ width }} х {{ height }}</p> -->
     </VueDragResize>
     <modals-container></modals-container>
     <ComponentModal :modalWidth="800" :modalHeight="900" />
