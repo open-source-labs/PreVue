@@ -71,11 +71,15 @@ export default {
         htmlCode.push(this.$store.state.icons[element].html);
       });
 
-      const { componentName, selectedElementList: htmlList, children } = this;
+      const {
+        componentName,
+        selectedElementList: htmlList,
+        selectedChildren
+      } = this;
       const payload = {
         componentName,
         htmlList,
-        children,
+        children: selectedChildren,
         htmlCode
       };
       this.$store

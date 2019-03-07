@@ -14,10 +14,16 @@
       @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1].htmlList" :key="index">
+      <p
+        v-for="(element, index) in component[1].htmlList"
+        :key="index + Date.now()"
+      >
         {{ element }}
       </p>
-      <p v-for="(child, index) in component[1].children" :key="index">
+      <p
+        v-for="(child, index) in component[1].children"
+        :key="index + Date.now() / 2"
+      >
         {{ child }}
       </p>
 

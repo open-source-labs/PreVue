@@ -1,7 +1,6 @@
 <template>
   <modal name="demo-login" transition="pop-out" :width="900" :height="950">
-    <EditSideBar/>
-
+    <EditSideBar />
     <!-- <ComponentCodeDisplay /> -->
   </modal>
 </template>

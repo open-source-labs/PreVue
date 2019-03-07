@@ -6,7 +6,13 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <div class="white--text" v-for="element in renderList">{{ element }}</div>
+      <div
+        class="white--text"
+        v-for="(element, index) in renderList"
+        :key="index + Date.now()"
+      >
+        {{ element }}
+      </div>
     </draggable>
   </div>
 </template>
