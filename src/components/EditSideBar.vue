@@ -4,7 +4,7 @@
 
     <v-form class="px-3">
       <section>
-        <Icons />
+        <Icons @getClickedIcon="addToSelectedElementList" />
       </section>
     </v-form>
 
@@ -62,17 +62,11 @@ export default {
     }
   },
   methods: {
-    addComponent() {
-      const payload = {
-        name: this.componentName,
-        htmlList: this.elementsList,
-        children: this.selectedChildren
-      };
-      this.$store.dispatch(types.ADD_TO_COMPONENT_MAP_ACTION, payload);
-      this.componentName = '';
-    },
     consoleMap() {
       console.log(this.selectedChildren);
+    },
+    addToSelectedElementList(elementName) {
+      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };
