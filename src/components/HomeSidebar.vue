@@ -88,6 +88,22 @@ export default {
     addToSelectedElementList(elementName) {
       this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
+
+    // addComponent() {
+    //   const htmlCode = [];
+    //   this.selectedElementList.forEach(element => {
+    //     htmlCode.push(this.$store.state.icons[element].html);
+    //   });
+    //   console.log(this.componentName);
+    //   const payload = {
+    //     componentName: this.componentName,
+    //     htmlList: this.selectedElementList,
+    //     children: this.selectedChildren,
+    //     htmlCode
+    //   };
+    //   this.$store.dispatch(types.registerComponent, payload);
+    //   this.componentName = '';
+    // }
   }
 };
 </script>
