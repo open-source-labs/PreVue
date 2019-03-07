@@ -18,7 +18,6 @@
 <script>
 import { tree } from 'vued3tree';
 import { mapState } from 'vuex';
-import _ from 'lodash';
 export default {
   name: 'TreeView',
   components: {
@@ -38,53 +37,39 @@ export default {
     };
   },
   methods: {
-    transformToTree(arr) {
-      var nodes = {};
-      return arr.filter(function(obj) {
-        var id = obj['name'],
-          parentId = obj['parent'];
-
-        nodes[id] = _.defaults(obj, nodes[id], { children: [] });
-        parentId &&
-          (nodes[parentId] = nodes[parentId] || { children: [] })[
-            'children'
-          ].push(obj);
-
-        return !parentId;
+    formatComponentMap(compMap) {
+      let result = [];
+      for (let comp in compMap) {
+        result.push({
+          name: comp,
+          children: compMap[comp].children
+        });
+      }
+      console.log('FORMATTED RESULT IS ', result);
+      return result;
+    },
+    transformToTree(data) {
+      let result = {};
+      let nodes = {};
+      let formattedData = this.formatComponentMap(data);
+      formattedData.forEach(item => {
+        if (!nodes[item.name]) {
+          nodes[item.name] = { name: item.name, children: [] };
+          result = nodes;
+        }
+        item.children.forEach(child => {
+          nodes[child] = { name: child, children: [] };
+          nodes[item.name].children.push(nodes[child]);
+        });
       });
+      return result;
     },
     viewComponentMap() {
       console.log(this.componentMap);
     },
     buildTree() {
-      let converted = [];
-      for (let component in this.componentMap) {
-        console.log(component);
-        console.log(this.componentMap[component].children);
-        let compObj = { name: component, parent: '' };
-        converted.push(compObj);
-      }
-      console.log(converted);
-
-      for (let component in this.componentMap) {
-        if (this.componentMap[component].children.length > 0) {
-          console.log('parent', component);
-          console.log('child', this.componentMap[component].children);
-          let childlist = this.componentMap[component].children;
-
-          childlist.forEach(child => {
-            for (let i = 0; i < converted.length; i++) {
-              if (converted[i].name == child) {
-                converted[i].parent = component;
-              }
-            }
-          });
-        }
-      }
-      console.log(converted);
-      let build = this.transformToTree(converted);
-      console.log('build', build);
-      this.tree = build[0];
+      let build = this.transformToTree(this.componentMap);
+      this.tree = build['App'];
     }
   }
 };
