@@ -2,10 +2,10 @@
   <div>
     <span
       class="white--text"
-      v-for="(htmlCode, idx) in renderHTMLCodeList"
+      v-for="(htmlElementTag, idx) in renderHTMLCodeList"
       :key="idx + Date.now()"
     >
-      {{ htmlElementMap[htmlCode] }}
+      {{ htmlElementMap[htmlElementTag] }}
       <br />
     </span>
   </div>

@@ -11,14 +11,13 @@ import {
 
 const mutations = {
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, htmlList, children, htmlCode } = payload;
+    const { componentName, htmlList, children } = payload;
     state.componentMap = {
       ...state.componentMap,
       [componentName]: {
         componentName,
         children,
-        htmlList,
-        htmlCode
+        htmlList
       }
     };
   },

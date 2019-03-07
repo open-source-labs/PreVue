@@ -66,17 +66,11 @@ export default {
   },
   methods: {
     addComponent() {
-      const htmlCode = [];
-      this.selectedElementList.forEach(element => {
-        htmlCode.push(this.$store.state.icons[element].html);
-      });
-
       const { componentName, selectedElementList: htmlList, children } = this;
       const payload = {
         componentName,
         htmlList,
-        children,
-        htmlCode
+        children
       };
       this.$store
         .dispatch(types.registerComponent, payload)
