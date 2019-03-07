@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gridDisplay">
     <ComponentDisplay />
     <v-navigation-drawer right :permanent="true" app>
       <HomeSidebar />
@@ -19,4 +19,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gridDisplay {
+  display: grid;
+  /* grid-template-columns: 8fr 2fr; */
+}
+</style>

@@ -6,7 +6,9 @@ import {
   SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
   ADD_TO_COMPONENT_HTML_CODE_LIST,
-  SET_CLICKED_ELEMENT_LIST
+  SET_CLICKED_ELEMENT_LIST,
+  DELETE_CLICKED_COMPONENT,
+  SET_COMPONENT_MAP
 } from './types';
 
 const mutations = {
@@ -34,6 +36,11 @@ const mutations = {
   },
   [SET_CLICKED_COMPONENT]: (state, payload) => {
     state.clickedComponent = payload;
+    state.clickedComponentToDelete = payload;
+    setTimeout(() => {
+      state.clickedComponentToDelete = '';
+      console.log('clickedComponentToDelete has been reset');
+    }, 1600);
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.clickedComponent;
@@ -47,6 +54,20 @@ const mutations = {
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList = payload;
+  },
+  [DELETE_CLICKED_COMPONENT]: state => {
+    const { componentMap, clickedComponentToDelete: componentName } = state;
+    delete componentMap[componentName];
+    console.log(componentMap);
+    for (let compKey in componentMap) {
+      let children = componentMap[compKey].children;
+      children.forEach((child, index) => {
+        if (componentName === child) children.splice(index, 1);
+      });
+    }
+  },
+  [SET_COMPONENT_MAP]: (state, payload) => {
+    state.componentMap = payload;
   }
 };
 

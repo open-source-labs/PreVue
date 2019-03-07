@@ -15,11 +15,9 @@
         <span class="white--text">Pre</span>
         <span class="green--text text--accent-2">Vue</span>
       </router-link>
-      <nav>
-        <router-link :to="{ name: 'tree' }">
-          <span class="purple--text text--accent-2">Tree</span>
-        </router-link>
-      </nav>
+      <router-link :to="{ name: 'tree' }">
+        <span class="purple--text text--accent-2">Tree</span>
+      </router-link>
     </v-toolbar-title>
   </v-toolbar>
 </template>
