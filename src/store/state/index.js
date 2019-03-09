@@ -1,7 +1,9 @@
 import icons from './icons';
+import htmlElementMap from './htmlElementMap';
 
 const newState = {
   icons,
+  htmlElementMap,
   componentMap: {
     App: {
       componentName: 'App',
@@ -14,7 +16,9 @@ const newState = {
       children: []
     }
   },
-  selectedElementList: []
+  selectedElementList: [],
+  clickedComponent: '',
+  clickedComponentToDelete: ''
 };
 
 export default newState;

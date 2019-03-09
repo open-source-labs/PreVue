@@ -1,10 +1,12 @@
 <template>
   <div class="sidebar">
-    <h1 class="headline green--text text--accent-2">Edit {{ header }}</h1>
+    <h1 class="headline green--text text--accent-2">
+      Edit {{ clickedComponent }}
+    </h1>
 
     <v-form class="px-3">
       <section>
-        <Icons />
+        <Icons @getClickedIcon="addToComponentElementList" />
       </section>
     </v-form>
 
@@ -12,12 +14,12 @@
       <!-- <button @click="consoleMap">Click</button> -->
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
       <hr />
-      <Queue :name="name" />
+      <EditQueue />
       <v-select
         v-model="selectedChildren"
         :items="
           Object.keys(componentMap).filter(
-            comp => comp !== name && comp !== 'App'
+            comp => comp !== clickedComponent && comp !== 'App'
           )
         "
         label="Select"
@@ -32,47 +34,36 @@
 
 <script>
 import Icons from './Icons';
-import Queue from './Queue';
+import EditQueue from './EditQueue';
 import { mapState } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
   name: 'EditSideBar',
-  data: function() {
-    return {
-      componentName: ''
-    };
-  },
-  props: ['header', 'name'],
   components: {
     Icons,
-    Queue
+    EditQueue
   },
+  props: ['header', 'name'],
   computed: {
-    ...mapState(['elementsList', 'componentMap', 'selectedChildren']),
+    ...mapState(['clickedComponent', 'componentMap']),
     selectedChildren: {
       get() {
-        return this.$store.state.componentMap[this.name].children;
+        return this.$store.state.componentMap[this.clickedComponent].children;
       },
       set(newArray) {
         console.log(newArray);
-        const payload = { name: this.name, newArray };
+        const payload = { name: this.clickedComponent, newArray };
         this.$store.commit(types.UPDATE_CHILDREN, payload);
       }
     }
   },
   methods: {
-    addComponent() {
-      const payload = {
-        name: this.componentName,
-        htmlList: this.elementsList,
-        children: this.selectedChildren
-      };
-      this.$store.dispatch(types.ADD_TO_COMPONENT_MAP_ACTION, payload);
-      this.componentName = '';
-    },
     consoleMap() {
       console.log(this.selectedChildren);
+    },
+    addToComponentElementList(elementName) {
+      this.$store.dispatch(types.addToComponentElementList, elementName);
     }
   }
 };
@@ -83,8 +74,4 @@ export default {
   display: grid;
   grid-template-rows: 0.5fr 2fr 2fr 2fr;
 }
-
-/* .sidebar {
-  background-color: aqua;
-} */
 </style>
