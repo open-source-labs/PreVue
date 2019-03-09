@@ -66,20 +66,20 @@ export default {
       showModal: false
     };
   },
-  // created() {
-  // window.addEventListener('keyup', event => {
-  //   console.log(event.key);
-  //   if (event.key === 'Backspace') {
-  //     if (
-  //       this.$store.state.componentMap[this.$store.state.clickedComponent] &&
-  //       this.$store.state.clickedComponentToDelete
-  //     ) {
-  //       console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
-  //       this.$store.dispatch('deleteClickedComponent');
-  //     }
-  //   }
-  // });
-  // },
+  created() {
+    window.addEventListener('keyup', event => {
+      console.log(event.key);
+      if (event.key === 'Backspace') {
+        if (
+          this.$store.state.componentMap[this.$store.state.clickedComponent] &&
+          this.$store.state.clickedComponentToDelete
+        ) {
+          console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
+          this.$store.dispatch('deleteClickedComponent');
+        }
+      }
+    });
+  },
   computed: {
     ...mapState(['componentMap']),
     getComponentMap: {
