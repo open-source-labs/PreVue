@@ -13,14 +13,13 @@ import {
 
 const mutations = {
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, htmlList, children, htmlCode } = payload;
+    const { componentName, htmlList, children } = payload;
     state.componentMap = {
       ...state.componentMap,
       [componentName]: {
         componentName,
         children,
-        htmlList,
-        htmlCode
+        htmlList
       }
     };
   },
@@ -45,11 +44,6 @@ const mutations = {
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList.push(elementName);
-  },
-  //TODO
-  [ADD_TO_COMPONENT_HTML_CODE_LIST]: (state, elementName) => {
-    const componentName = state.clickedComponent;
-    state.componentMap[componentName].htmlCodeList.push(elementName);
   },
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
     const componentName = state.clickedComponent;

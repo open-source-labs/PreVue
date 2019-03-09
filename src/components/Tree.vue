@@ -10,9 +10,6 @@
       :radius="7"
       :marginX="0"
     ></tree>
-
-    <button @click="buildTree" class="black--text">BUILD TREE</button>
-    <!-- <button @click="viewComponentMap" class="white--text">data</button> -->
   </div>
 </template>
 
@@ -50,13 +47,14 @@ export default {
     },
     transformToTree(data) {
       let result = {};
-      let nodes = {};
-      let formattedData = this.formatComponentMap(data);
+      const nodes = {};
+      const formattedData = this.formatComponentMap(data);
       formattedData.forEach(component => {
         if (!nodes[component.name]) {
           nodes[component.name] = { name: component.name, children: [] };
           result = nodes;
         }
+
         component.children.forEach(child => {
           nodes[child] = { name: child, children: [] };
           nodes[component.name].children.push(nodes[child]);
@@ -64,13 +62,14 @@ export default {
       });
       return result;
     },
-    viewComponentMap() {
-      console.log(this.componentMap);
-    },
+
     buildTree() {
       let build = this.transformToTree(this.componentMap);
       this.tree = build['App'];
     }
+  },
+  created() {
+    this.buildTree();
   }
 };
 </script>

@@ -1,19 +1,20 @@
 <template>
   <modal name="demo-login" transition="pop-out" :width="900" :height="950">
     <EditSideBar />
-    <!-- <ComponentCodeDisplay /> -->
+
+    <ComponentCodeDisplay />
   </modal>
 </template>
 
 <script>
 //STRETCH: change background color of componentDisplay when modal Component pops up
 import EditSideBar from './EditSideBar.vue';
-// import ComponentCodeDisplay from './ComponentCodeDisplay.vue';
+import ComponentCodeDisplay from './ComponentCodeDisplay.vue';
 export default {
   name: 'ComponentModal',
   components: {
-    EditSideBar
-    // ComponentCodeDisplay
+    EditSideBar,
+    ComponentCodeDisplay
   }
 };
 </script>

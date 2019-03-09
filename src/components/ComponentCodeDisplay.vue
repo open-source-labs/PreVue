@@ -2,10 +2,10 @@
   <div>
     <span
       class="white--text"
-      v-for="htmlCode in componentMap[compName].htmlCode"
-      :key="Date.now()"
+      v-for="(htmlElementTag, idx) in renderHTMLCodeList"
+      :key="idx + Date.now()"
     >
-      {{ htmlCode }}
+      {{ htmlElementMap[htmlElementTag] }}
       <br />
     </span>
   </div>
@@ -15,14 +15,14 @@
 import { mapState } from 'vuex';
 export default {
   name: 'ComponentCodeDisplay',
-  props: {
-    compName: {
-      type: String,
-      required: true
-    }
-  },
+
   computed: {
-    ...mapState(['componentMap'])
+    ...mapState(['componentMap', 'clickedComponent', 'htmlElementMap']),
+    renderHTMLCodeList: {
+      get() {
+        return this.componentMap[this.clickedComponent].htmlList;
+      }
+    }
   }
 };
 </script>
