@@ -1,44 +1,41 @@
 <template>
   <div class="component-display">
-    <LoadingBar :duration="2000"/>
-    <VueDragResize
-      class="component"
-      :isActive="true"
-      :parentLimitation="true"
-      :w="200"
-      :h="200"
-      :parentW="listWidth"
-      :parentH="listHeight"
-      v-on:resizing="resize"
-      v-on:dragging="resize"
-      v-for="(component, index) in Object.entries(getComponentMap)"
-      :key="index"
-      :style="{ border: '7px solid ' + getRandomColor() }"
-      :snapToGrid="true"
-      :gridX="200"
-      :gridY="200"
-      @clicked="handleClick(component[0])"
-    >
-      <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1].htmlList" :key="index + Date.now()">{{ element }}</p>
-      <p v-for="(child, index) in component[1].children" :key="index + Date.now() / 2">{{ child }}</p>
-    </VueDragResize>
-    <modals-container></modals-container>
-    <ComponentModal :modalWidth="800" :modalHeight="900"/>
+    <!-- <LoadingBar :duration="2000"/> -->
+    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+      <VueDraggableResizable
+        class-name="component-box"
+        v-for="([componentName, componentData]) in Object.entries(computedComponentMap)"
+        :key="componentName"
+        :w="componentData.w"
+        :h="componentData.h"
+        @activated="handleClick(componentName)"
+        @dragging="onDrag"
+        @resizing="onResize"
+        :parent="true"
+      >
+        <h3>{{ componentName }}</h3>
+
+        <br>
+        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width: {{ componentData.width }} / Height: {{ componentData.height }}
+      </VueDraggableResizable>
+      <modals-container></modals-container>
+      <ComponentModal :modalWidth="800" :modalHeight="900"/>
+    </div>
   </div>
 </template>
-
 <script>
+// v-for="(component, index) in Object.entries(computedComponentMap)"
+
 import { mapState } from 'vuex';
-import VueDragResize from 'vue-drag-resize';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
 import { setComponentMap } from '../store/types';
+import VueDraggableResizable from 'vue-draggable-resizable';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDragResize,
+    VueDraggableResizable,
     LoadingBar,
     ComponentModal
   },
@@ -47,27 +44,17 @@ export default {
       //might make this an array of objects to correspond to each individual component
       width: 0,
       height: 0,
-      top: 0,
-      left: 0,
+      x: 0,
+      y: 0,
       lastTimeClicked: Date.now(),
       dialog: false,
-      showModal: false,
-      listWidth: 0,
-      listHeight: 0
+      showModal: false
     };
   },
-  mounted() {
-    let componentDisplay = document.querySelector('.component-display');
-    this.listWidth = componentDisplay.clientWidth;
-    this.listHeight = componentDisplay.clientHeight;
-    window.addEventListener('resize', () => {
-      this.listWidth = componentDisplay.clientWidth;
-      this.listHeight = componentDisplay.clientHeight;
-    });
-  },
+
   computed: {
-    ...mapState(['componentMap']),
-    getComponentMap: {
+    ...mapState(['componentMap', 'clickedComponent']),
+    computedComponentMap: {
       get() {
         return this.componentMap;
       },
@@ -77,11 +64,15 @@ export default {
     }
   },
   methods: {
-    resize(newRect) {
-      this.width = newRect.width;
-      this.height = newRect.height;
-      this.top = newRect.top;
-      this.left = newRect.left;
+    onResize: function(x, y, width, height) {
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
+      this.componentMap[this.clickedComponent].width = width;
+      this.componentMap[this.clickedComponent].height = height;
+    },
+    onDrag: function(x, y) {
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
     },
     getRandomColor() {
       var letters = '0123456789ABCDEF';
@@ -92,6 +83,7 @@ export default {
       return color;
     },
     handleClick(componentName) {
+      console.log(componentName);
       this.$store.dispatch('setClickedComponent', componentName);
       if (Date.now() - this.lastTimeClicked < 200)
         this.doubleClick(componentName);
@@ -101,9 +93,6 @@ export default {
     },
     doubleClick() {
       this.$modal.show('demo-login');
-    },
-    consoleCM() {
-      console.log(this.componentMap);
     }
   }
 };
@@ -114,6 +103,9 @@ export default {
   grid-area: component-display;
 }
 
+.component-box {
+  border: 1px solid white;
+}
 .vdr.active:before {
   outline-style: solid !important;
 }
