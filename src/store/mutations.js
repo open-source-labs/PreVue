@@ -19,6 +19,12 @@ const mutations = {
       ...state.componentMap,
       [componentName]: {
         componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        width: 0,
+        height: 0,
         children,
         htmlList
       }

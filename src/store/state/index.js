@@ -7,9 +7,13 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
+      x: 0,
+      y: 0,
+      w: 200,
+      h: 200,
       htmlList: [],
       children: []
-    },
+    }
   },
   selectedElementList: [],
   clickedComponent: '',
