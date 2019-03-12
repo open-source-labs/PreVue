@@ -23,8 +23,6 @@ const mutations = {
         y: 0,
         w: 200,
         h: 200,
-        width: 0,
-        height: 0,
         children,
         htmlList
       }

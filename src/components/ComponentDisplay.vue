@@ -1,31 +1,34 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
+
     <div
       style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
     >
       <button @click="showMap">SEE COMPONENT MAP</button>
+
       <VueDraggableResizable
         class-name="component-box"
         v-for="[componentName, componentData] in Object.entries(
           computedComponentMap
         )"
         :key="componentName"
+        :x="componentData.x"
+        :y="componentData.y"
         :w="componentData.w"
         :h="componentData.h"
         @activated="handleClick(componentName)"
         @dragging="onDrag"
         @resizing="onResize"
-        @dragstop="onDragStop"
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br />
+        <br>
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
-        {{ componentData.width }} / Height: {{ componentData.height }}
+        {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900" />
+      <ComponentModal :modalWidth="800" :modalHeight="900"/>
     </div>
   </div>
 </template>
@@ -41,16 +44,11 @@ export default {
   name: 'ComponentDisplay',
   components: {
     VueDraggableResizable,
-    LoadingBar,
+    // LoadingBar,
     ComponentModal
   },
   data() {
     return {
-      //might make this an array of objects to correspond to each individual component
-      width: 0,
-      height: 0,
-      x: 0,
-      y: 0,
       lastTimeClicked: Date.now(),
       dialog: false,
       showModal: false
@@ -80,19 +78,21 @@ export default {
     onResize: function(x, y, width, height) {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
-      this.componentMap[this.clickedComponent].width = width;
-      this.componentMap[this.clickedComponent].height = height;
+      this.componentMap[this.clickedComponent].w = width;
+      this.componentMap[this.clickedComponent].h = height;
     },
     onDrag: function(x, y) {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
+
     onDragStop: function(x, y) {
       // console.log('called');
       // console.log(x, y);
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
+
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';
