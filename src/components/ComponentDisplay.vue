@@ -1,10 +1,14 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
-    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+    <div
+      style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
+    >
       <VueDraggableResizable
         class-name="component-box"
-        v-for="([componentName, componentData]) in Object.entries(computedComponentMap)"
+        v-for="[componentName, componentData] in Object.entries(
+          computedComponentMap
+        )"
         :key="componentName"
         :w="componentData.w"
         :h="componentData.h"
@@ -15,11 +19,12 @@
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br>
-        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width: {{ componentData.width }} / Height: {{ componentData.height }}
+        <br />
+        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
+        {{ componentData.width }} / Height: {{ componentData.height }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900"/>
+      <ComponentModal :modalWidth="800" :modalHeight="900" />
     </div>
   </div>
 </template>
@@ -27,7 +32,8 @@
 import { mapState } from 'vuex';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
-import { setComponentMap } from '../store/types';
+import { setComponentMap, getPrevState } from '../store/types';
+import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
 export default {
@@ -50,6 +56,14 @@ export default {
     };
   },
 
+  created() {
+    localforage
+      .getItem('state')
+      .then(data => {
+        this.$store.dispatch(getPrevState, data);
+      })
+      .then(data => console.log('retrieved previous data'));
+  },
   computed: {
     ...mapState(['componentMap', 'clickedComponent']),
     computedComponentMap: {

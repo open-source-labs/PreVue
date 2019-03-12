@@ -1,4 +1,5 @@
 import * as types from './types';
+import { loadState } from '../localStorage';
 
 const actions = {
   [types.registerComponent]: ({ state, commit }, payload) => {
@@ -27,6 +28,12 @@ const actions = {
   },
   [types.deleteClickedComponent]: ({ commit }) => {
     commit(types.DELETE_CLICKED_COMPONENT);
+  },
+  [types.getPrevState]: ({ commit }, payload) => {
+    commit(types.GET_PREV_STATE, payload);
+  },
+  [types.deleteSelectedElement]: ({ commit }, payload) => {
+    commit(types.DELETE_SELECTED_ELEMENT, payload);
   }
 };
 

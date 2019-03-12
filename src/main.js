@@ -4,6 +4,7 @@ import router from './router';
 import store from './store/';
 import Vuetify from 'vuetify';
 import VModal from 'vue-js-modal';
+import { throttle } from 'lodash.throttle';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
 import 'vuetify/dist/vuetify.min.css';
