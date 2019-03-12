@@ -1,32 +1,28 @@
 <template>
   <section class="icon-grid">
     <button
-      @click.prevent="addToList(idx)"
-      type="submit"
-      v-for="(icon, idx) in Object.entries(icons)"
-      :key="icon[1].icon + Date.now()"
+      @click.prevent="changeState(elementName)"
+      v-for="([elementName, iconString], idx) in Object.entries(icons)"
+      :key="idx + Date.now()"
     >
-      <v-icon>{{ icon[1].icon }}</v-icon>
+      <v-icon>{{ iconString }}</v-icon>
       <br />
-      <span class="white--text">{{ icon[0] }}</span>
+      <span class="white--text">{{ elementName }}</span>
     </button>
   </section>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import * as types from '../store/types.js';
+
 export default {
   name: 'Icons',
   computed: {
     ...mapState(['icons'])
   },
   methods: {
-    addToList(idx) {
-      const payload = {
-        icon: Object.entries(this.icons)[idx][0]
-      };
-      this.$store.commit(types.ADD_TO_LIST, payload);
+    changeState(elementName) {
+      this.$emit('getClickedIcon', elementName);
     }
   }
 };

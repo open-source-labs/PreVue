@@ -1,13 +1,23 @@
 import icons from './icons';
-import elementsList from './elementsList';
-import componentMap from './componentMap';
-import selectedChildren from './selectedChildren';
+import htmlElementMap from './htmlElementMap';
 
 const newState = {
   icons,
-  elementsList,
-  componentMap,
-  selectedChildren
+  htmlElementMap,
+  componentMap: {
+    App: {
+      componentName: 'App',
+      x: 0,
+      y: 0,
+      w: 200,
+      h: 200,
+      htmlList: [],
+      children: []
+    }
+  },
+  selectedElementList: [],
+  clickedComponent: '',
+  clickedComponentToDelete: ''
 };
 
 export default newState;

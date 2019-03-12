@@ -1,25 +1,13 @@
 <template>
   <v-toolbar flat app>
-    <v-toolbar-side-icon
-      v-if="show === 'home'"
-      class="grey--text"
-      v-on="$listeners"
-    >
-      <v-icon>add_circle_outline</v-icon>
-    </v-toolbar-side-icon>
-    <v-toolbar-side-icon v-if="show === 'tree'" class="grey--text" flat>
-      <v-icon>landscape</v-icon>
-    </v-toolbar-side-icon>
     <v-toolbar-title id="nav" class="nav">
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
         <span class="green--text text--accent-2">Vue</span>
+      </router-link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <router-link :to="{ name: 'tree' }">
+        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
       </router-link>
-      <nav>
-        <router-link :to="{ name: 'tree' }">
-          <span class="purple--text text--accent-2">Tree</span>
-        </router-link>
-      </nav>
     </v-toolbar-title>
   </v-toolbar>
 </template>
@@ -27,7 +15,7 @@
 <script>
 export default {
   name: 'NavBar',
-  props: ['show']
+  props: ['route']
 };
 </script>
 
@@ -54,5 +42,13 @@ export default {
 .nav .nav-item.router-link-exact-active {
   color: #39b982;
   border-bottom: solid 2px #39b982;
+}
+
+.tree-link {
+  float: right;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
