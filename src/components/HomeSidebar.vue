@@ -73,8 +73,6 @@ export default {
         y: 0,
         w: 200,
         h: 200,
-        width: 0,
-        height: 0,
         htmlList: this.selectedElementList,
         children: this.selectedChildren
       };

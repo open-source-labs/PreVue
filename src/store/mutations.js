@@ -23,8 +23,6 @@ const mutations = {
         y: 0,
         w: 200,
         h: 200,
-        width: 0,
-        height: 0,
         children,
         htmlList
       }
@@ -46,7 +44,7 @@ const mutations = {
     setTimeout(() => {
       state.clickedComponentToDelete = '';
       console.log('clickedComponentToDelete has been reset');
-    }, 1600);
+    }, 2500);
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.clickedComponent;
@@ -58,14 +56,16 @@ const mutations = {
   },
   [DELETE_CLICKED_COMPONENT]: state => {
     const { componentMap, clickedComponentToDelete: componentName } = state;
-    delete componentMap[componentName];
     console.log(componentMap);
     for (let compKey in componentMap) {
       let children = componentMap[compKey].children;
       children.forEach((child, index) => {
-        if (componentName === child) children.splice(index, 1);
+        if (componentName === child) this.$delete(children, index);
       });
     }
+    delete componentMap[componentName];
+    let newObj = Object.assign({}, componentMap);
+    state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {
     state.componentMap = payload;
