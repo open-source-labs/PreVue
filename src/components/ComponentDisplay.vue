@@ -1,7 +1,12 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
-    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+
+    <div
+      style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
+    >
+      <button @click="showMap">SEE COMPONENT MAP</button>
+
       <VueDraggableResizable
         class-name="component-box"
         v-for="[componentName, componentData] in Object.entries(
@@ -51,12 +56,12 @@ export default {
   },
 
   created() {
-    localforage
-      .getItem('state')
-      .then(data => {
-        this.$store.dispatch(getPrevState, data);
-      })
-      .then(data => console.log('retrieved previous data'));
+    // localforage
+    //   .getItem('state')
+    //   .then(data => {
+    //     this.$store.dispatch(getPrevState, data);
+    //   })
+    //   .then(data => console.log('retrieved previous data'));
   },
   computed: {
     ...mapState(['componentMap', 'clickedComponent']),
@@ -81,6 +86,13 @@ export default {
       this.componentMap[this.clickedComponent].y = y;
     },
 
+    onDragStop: function(x, y) {
+      // console.log('called');
+      // console.log(x, y);
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
+    },
+
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';
@@ -89,8 +101,11 @@ export default {
       }
       return color;
     },
+    showMap() {
+      console.log(this.componentMap);
+    },
     handleClick(componentName) {
-      console.log(componentName);
+      console.log('CLICKED');
       this.$store.dispatch('setClickedComponent', componentName);
       if (Date.now() - this.lastTimeClicked < 200)
         this.doubleClick(componentName);
@@ -99,6 +114,7 @@ export default {
       }
     },
     doubleClick() {
+      console.log('DOUBLE CLICKED');
       this.$modal.show('demo-login');
     }
   }
