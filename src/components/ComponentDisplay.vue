@@ -1,9 +1,7 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
-    <div
-      style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
-    >
+    <div style="height: 700px; width: 700px; border: 1px solid red; position: relative;">
       <VueDraggableResizable
         class-name="component-box"
         v-for="[componentName, componentData] in Object.entries(
@@ -19,12 +17,12 @@
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br />
+        <br>
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.width }} / Height: {{ componentData.height }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900" />
+      <ComponentModal :modalWidth="800" :modalHeight="900"/>
     </div>
   </div>
 </template>
@@ -117,12 +115,15 @@ export default {
 </script>
 
 <style scoped>
-.component-display {
+/* .component-display {
   grid-area: component-display;
-}
+} */
 
 .component-box {
   border: 1px solid white;
+}
+.component-display {
+  border: 1px solid palegreen;
 }
 .vdr.active:before {
   outline-style: solid !important;
