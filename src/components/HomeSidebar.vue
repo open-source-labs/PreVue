@@ -1,16 +1,10 @@
 <template>
-  <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      Create a Component
-    </header>
+  <div class="home-sidebar">
+    <header class="headline green--text text--accent-2 pa-2">Create a Component</header>
 
-    <BaseTextfield
-      v-model="componentName"
-      label="Component Name"
-      :value="componentName"
-    />
+    <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
     <section>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+      <Icons @getClickedIcon="addToSelectedElementList"/>
     </section>
 
     <section>
@@ -24,8 +18,8 @@
         persistent-hint
       ></v-select>
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <HomeQueue :listToRender="selectedElementList" />
+      <hr>
+      <HomeQueue :listToRender="selectedElementList"/>
     </section>
 
     <BaseButton
@@ -65,16 +59,18 @@ export default {
   },
   methods: {
     addComponent() {
-      const {
-        componentName,
-        selectedElementList: htmlList,
-        selectedChildren: children
-      } = this;
       const payload = {
-        componentName,
-        htmlList,
-        children
+        componentName: this.componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        width: 0,
+        height: 0,
+        htmlList: this.selectedElementList,
+        children: this.selectedChildren
       };
+
       this.$store
         .dispatch(types.registerComponent, payload)
         .then(() => {
@@ -91,9 +87,12 @@ export default {
 };
 </script>
 
-<style>
-.sidebar {
-  display: grid;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
+<style scoped>
+.home-sidebar {
+  grid-area: home-sidebar;
+  /* background-color: white; */
+  border: 1px solid;
+  padding: 10px;
+  border-color: white;
 }
 </style>

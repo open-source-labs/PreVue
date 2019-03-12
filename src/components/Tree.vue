@@ -6,9 +6,8 @@
       layoutType="euclidean"
       type="tree"
       :zoomable="true"
-      :duration="750"
+      :duration="0"
       :radius="7"
-      :marginX="0"
     ></tree>
   </div>
 </template>

@@ -1,9 +1,7 @@
 <template>
-  <div class="gridDisplay">
-    <ComponentDisplay />
-    <v-navigation-drawer right :permanent="true" app>
-      <HomeSidebar />
-    </v-navigation-drawer>
+  <div class="grid-container">
+    <ComponentDisplay/>
+    <HomeSidebar/>
   </div>
 </template>
 
@@ -20,8 +18,12 @@ export default {
 </script>
 
 <style scoped>
-.gridDisplay {
+.grid-container {
   display: grid;
-  /* grid-template-columns: 8fr 2fr; */
+  grid-template-areas: 'component-display home-sidebar ';
+  grid-gap: 10px;
+  grid-template-columns: 8fr 2fr;
+  padding: 10px;
+  height: 100%;
 }
 </style>
