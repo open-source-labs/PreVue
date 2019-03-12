@@ -59,16 +59,18 @@ export default {
   },
   methods: {
     addComponent() {
-      const {
-        componentName,
-        selectedElementList: htmlList,
-        selectedChildren: children
-      } = this;
       const payload = {
-        componentName,
-        htmlList,
-        children
+        componentName: this.componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        width: 0,
+        height: 0,
+        htmlList: this.selectedElementList,
+        children: this.selectedChildren
       };
+
       this.$store
         .dispatch(types.registerComponent, payload)
         .then(() => {

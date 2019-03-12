@@ -11,10 +11,10 @@
         @activated="handleClick(componentName)"
         @dragging="onDrag"
         @resizing="onResize"
+        @dragstop="onDragStop"
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-
         <br>
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width: {{ componentData.width }} / Height: {{ componentData.height }}
       </VueDraggableResizable>
@@ -24,8 +24,6 @@
   </div>
 </template>
 <script>
-// v-for="(component, index) in Object.entries(computedComponentMap)"
-
 import { mapState } from 'vuex';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
@@ -71,6 +69,12 @@ export default {
       this.componentMap[this.clickedComponent].height = height;
     },
     onDrag: function(x, y) {
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
+    },
+    onDragStop: function(x, y) {
+      console.log('called');
+      console.log(x, y);
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },

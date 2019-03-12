@@ -5,7 +5,6 @@ import {
   SET_SELECTED_ELEMENT_LIST,
   SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
-  ADD_TO_COMPONENT_HTML_CODE_LIST,
   SET_CLICKED_ELEMENT_LIST,
   DELETE_CLICKED_COMPONENT,
   SET_COMPONENT_MAP
@@ -18,6 +17,12 @@ const mutations = {
       ...state.componentMap,
       [componentName]: {
         componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        width: 0,
+        height: 0,
         children,
         htmlList
       }
