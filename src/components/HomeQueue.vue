@@ -52,8 +52,6 @@ export default {
   },
   methods: {
     deleteElement(index) {
-      console.log(index);
-      console.log(this.selectedElementList);
       this.$store.dispatch(deleteSelectedElement, index);
     }
   },
