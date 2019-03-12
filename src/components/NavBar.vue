@@ -8,14 +8,41 @@
       <router-link :to="{ name: 'tree' }">
         <span class="purple--text text--accent-2">Tree</span>
       </router-link>
+      <button class="white--text" @click="exportProject">
+        EXPORT YOUR PROJECT
+      </button>
     </v-toolbar-title>
   </v-toolbar>
 </template>
 
 <script>
+import fs from 'fs-extra';
+import path from 'path';
+// const { remote } = require('electron');
+const ipc = require('electron').ipcRenderer;
+
+// console.log(remote);
+// const mainProcess = remote.require('../src/background.js');/
+
 export default {
   name: 'NavBar',
-  props: ['route']
+  props: ['route'],
+  methods: {
+    exportProject: function() {
+      ipc.send('show-dialog');
+    }
+  },
+  mounted() {
+    ipc.on('project-location', (event, data) => {
+      console.log(data);
+      if (!fs.existsSync(data)) {
+        fs.mkdirSync(data);
+        console.log('FOLDER CREATED!');
+      }
+      fs.writeFileSync(path.join(data, 'hello.txt'), 'HELLO');
+      fs.copySync('./../vue-boiler-plate', data);
+    });
+  }
 };
 </script>
 

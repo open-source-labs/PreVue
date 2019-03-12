@@ -1,15 +1,35 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
-import {
+const { app, protocol, BrowserWindow, dialog } = require('electron');
+const ipc = require('electron').ipcMain;
+
+const {
   createProtocol,
   installVueDevtools
-} from 'vue-cli-plugin-electron-builder/lib';
+} = require('vue-cli-plugin-electron-builder/lib');
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+
+function showDialog(event) {
+  // var dir = './tmp';
+  dialog.showSaveDialog(
+    {
+      title: 'Choose location to save folder in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save folder in',
+      nameFieldLabel: 'Application Name'
+    },
+    result => {
+      // console.log(result);
+      event.sender.send('project-location', result);
+    }
+  );
+  // console.log(val);
+}
 
 // Standard scheme must be registered before the app is ready
 protocol.registerStandardSchemes(['app'], { secure: true });
@@ -78,3 +98,7 @@ if (isDevelopment) {
     });
   }
 }
+
+ipc.on('show-dialog', event => {
+  showDialog(event);
+});
