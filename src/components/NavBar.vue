@@ -4,18 +4,31 @@
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
         <span class="green--text text--accent-2">Vue</span>
-      </router-link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </router-link>
       <router-link :to="{ name: 'tree' }">
         <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
       </router-link>
+      <span>
+        <v-icon class="save-icon" @click="saveState">save_alt</v-icon>
+        <span>save</span>
+      </span>
     </v-toolbar-title>
   </v-toolbar>
 </template>
 
 <script>
+import localforage from 'localforage';
 export default {
   name: 'NavBar',
-  props: ['route']
+  props: ['route'],
+  methods: {
+    saveState() {
+      const currentState = this.$store.state;
+      localforage
+        .setItem('state', currentState)
+        .then(data => console.log(data));
+    }
+  }
 };
 </script>
 
@@ -50,5 +63,9 @@ export default {
 
 a {
   text-decoration: none;
+}
+
+.save-icon:hover {
+  cursor: pointer;
 }
 </style>

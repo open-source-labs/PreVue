@@ -1,6 +1,6 @@
 <template>
   <div class="component-display">
-    <LoadingBar :duration="2000"/>
+    <LoadingBar :duration="2000" />
     <VueDragResize
       class="component"
       :isActive="true"
@@ -20,11 +20,21 @@
       @clicked="handleClick(component[0])"
     >
       <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1].htmlList" :key="index + Date.now()">{{ element }}</p>
-      <p v-for="(child, index) in component[1].children" :key="index + Date.now() / 2">{{ child }}</p>
+      <p
+        v-for="(element, index) in component[1].htmlList"
+        :key="index + Date.now()"
+      >
+        {{ element }}
+      </p>
+      <p
+        v-for="(child, index) in component[1].children"
+        :key="index + Date.now() / 2"
+      >
+        {{ child }}
+      </p>
     </VueDragResize>
     <modals-container></modals-container>
-    <ComponentModal :modalWidth="800" :modalHeight="900"/>
+    <ComponentModal :modalWidth="800" :modalHeight="900" />
   </div>
 </template>
 
@@ -33,7 +43,8 @@ import { mapState } from 'vuex';
 import VueDragResize from 'vue-drag-resize';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
-import { setComponentMap } from '../store/types';
+import { setComponentMap, getPrevState } from '../store/types';
+import localforage from 'localforage';
 
 export default {
   name: 'ComponentDisplay',
@@ -64,6 +75,14 @@ export default {
       this.listWidth = componentDisplay.clientWidth;
       this.listHeight = componentDisplay.clientHeight;
     });
+  },
+  created() {
+    localforage
+      .getItem('state')
+      .then(data => {
+        this.$store.dispatch(getPrevState, data);
+      })
+      .then(data => console.log('retrieved previous data'));
   },
   computed: {
     ...mapState(['componentMap']),

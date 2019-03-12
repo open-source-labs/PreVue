@@ -3,16 +3,22 @@
     <draggable
       v-model="renderList"
       group="people"
+      class="list-group"
+      ghost-class="ghost"
       @start="drag = true"
       @end="drag = false"
     >
-      <div
-        class="white--text"
+      <li
+        class="list-group-item"
         v-for="(element, index) in renderList"
         :key="index + Date.now()"
       >
-        {{ element }}
-      </div>
+        <span>{{ element }}</span>
+
+        <v-icon class="delete-icon" @click="deleteElement(index)"
+          >remove_circle_outline</v-icon
+        >
+      </li>
     </draggable>
   </div>
 </template>
@@ -20,7 +26,7 @@
 <script>
 import draggable from 'vuedraggable';
 import { mapState } from 'vuex';
-import { setSelectedElementList } from '../store/types';
+import { setSelectedElementList, deleteSelectedElement } from '../store/types';
 
 export default {
   name: 'HomeQueue',
@@ -44,10 +50,31 @@ export default {
       }
     }
   },
+  methods: {
+    deleteElement(index) {
+      console.log(index);
+      console.log(this.selectedElementList);
+      this.$store.dispatch(deleteSelectedElement, index);
+    }
+  },
   components: {
     draggable
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+li {
+  list-style-type: none;
+}
+.list-group-item {
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 0.5cm;
+  background-color: palevioletred;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
+}
+</style>

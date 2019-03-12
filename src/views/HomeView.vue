@@ -23,7 +23,6 @@ export default {
   grid-template-areas: 'component-display home-sidebar ';
   grid-gap: 10px;
   grid-template-columns: 8fr 2fr;
-  /* background-color: #2196f3; */
   padding: 10px;
   height: 100%;
 }
