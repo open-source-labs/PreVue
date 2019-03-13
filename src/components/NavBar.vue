@@ -62,9 +62,9 @@ export default {
     writeTemplate(children) {
       let str = '';
       children.forEach(name => {
-        str += `\t<${name}>\n\t</${name}>\n`;
+        str += `\t\t<${name}>\n\t\t</${name}>\n`;
       });
-      return `<template>\n${str}</template>`;
+      return `<template>\n\t<div>\n${str}\t</div>\n</template>`;
     },
     writeScript(componentName, children) {
       let str = '';
@@ -84,7 +84,7 @@ export default {
       let style =
         componentName !== 'App'
           ? ''
-          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
+          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
       return `\n\n<style scoped>\n${style}</style>`;
     }
   },
