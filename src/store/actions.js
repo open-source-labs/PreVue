@@ -27,6 +27,15 @@ const actions = {
   },
   [types.deleteClickedComponent]: ({ commit }) => {
     commit(types.DELETE_CLICKED_COMPONENT);
+  },
+  [types.getPrevState]: ({ commit }, payload) => {
+    commit(types.GET_PREV_STATE, payload);
+  },
+  [types.deleteSelectedElement]: ({ commit }, payload) => {
+    commit(types.DELETE_SELECTED_ELEMENT, payload);
+  },
+  [types.addProject]: ({ commit }, payload) => {
+    commit(types.ADD_PROJECT, payload);
   }
 };
 
