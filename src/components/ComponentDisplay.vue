@@ -1,7 +1,6 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
-
     <div
       style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
     >
@@ -23,12 +22,12 @@
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br>
+        <br />
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900"/>
+      <ComponentModal :modalWidth="800" :modalHeight="900" />
     </div>
   </div>
 </template>
