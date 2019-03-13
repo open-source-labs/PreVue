@@ -53,7 +53,6 @@ export default {
       selectedChildren: []
     };
   },
-
   components: {
     BaseTextfield,
     BaseButton,

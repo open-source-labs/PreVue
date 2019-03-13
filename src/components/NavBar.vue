@@ -3,10 +3,12 @@
     <v-toolbar-title id="nav" class="nav">
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
-        <span class="green--text text--accent-2">Vue</span>
-      </router-link>
+        <span class="green--text text--accent-2">Vue</span> </router-link
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <router-link :to="{ name: 'tree' }">
-        <span class="purple--text text--accent-2">Tree</span>
+        <span id="tree-link" class="purple--text text--accent-2"
+          >View Component Tree</span
+        >
       </router-link>
     </v-toolbar-title>
   </v-toolbar>

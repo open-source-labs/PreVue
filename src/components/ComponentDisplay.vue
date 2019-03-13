@@ -1,12 +1,10 @@
 <template>
-  <div class="componentDisplay">
-    <button class="white--text" @click="consoleCM">
-      CLICK TO SEE COMPONENT MAP
-    </button>
+  <div id="componentDisplay">
     <LoadingBar :duration="2000" />
     <VueDragResize
       class="component"
-      :isActive="true"
+      @activated="onActivated"
+      @deactivated="onDeactivated"
       :w="200"
       :h="200"
       v-on:resizing="resize"
@@ -24,7 +22,7 @@
         v-for="(element, index) in component[1].htmlList"
         :key="index + Date.now()"
       >
-        {{ element }}
+        {{ element.text }}
       </p>
       <p
         v-for="(child, index) in component[1].children"
@@ -61,23 +59,21 @@ export default {
       left: 0,
       lastTimeClicked: Date.now(),
       dialog: false,
-      showModal: false
+      showModal: false,
+      abilityToDelete: false
     };
   },
-  // created() {
-  // window.addEventListener('keyup', event => {
-  //   console.log(event.key);
-  //   if (event.key === 'Backspace') {
-  //     if (
-  //       this.$store.state.componentMap[this.$store.state.clickedComponent] &&
-  //       this.$store.state.clickedComponentToDelete
-  //     ) {
-  //       console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
-  //       this.$store.dispatch('deleteClickedComponent');
-  //     }
-  //   }
-  // });
-  // },
+  mounted() {
+    window.addEventListener('keyup', event => {
+      if (event.key === 'Backspace') {
+        if (this.abilityToDelete && this.$store.state.clickedComponent) {
+          console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
+          this.$store.dispatch('deleteClickedComponent');
+          this.abilityToDelete = false;
+        }
+      }
+    });
+  },
   computed: {
     ...mapState(['componentMap']),
     getComponentMap: {
@@ -104,6 +100,12 @@ export default {
       }
       return color;
     },
+    onActivated() {
+      this.abilityToDelete = true;
+    },
+    onDeactivated() {
+      this.abilityToDelete = false;
+    },
     handleClick(componentName) {
       this.$store.dispatch('setClickedComponent', componentName);
       if (Date.now() - this.lastTimeClicked < 200)
@@ -114,9 +116,6 @@ export default {
     },
     doubleClick() {
       this.$modal.show('demo-login');
-    },
-    consoleCM() {
-      console.log(this.componentMap);
     }
   }
 };
