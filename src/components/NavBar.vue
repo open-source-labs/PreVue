@@ -1,22 +1,18 @@
 <template>
-  <v-toolbar flat app>
+  <v-toolbar dense id="toolbar">
     <v-toolbar-title id="nav" class="nav">
+      <span>
+        <v-icon class="save-icon" @click="saveState">save_alt</v-icon>
+      </span>
+      <button class="white--text" @click="exportProject">EXPORT YOUR PROJECT</button>
+      <v-spacer></v-spacer>
+      <router-link :to="{ name: 'tree' }">
+        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
+      </router-link>
       <router-link :to="{ name: 'home' }" class="prevue">
         <span class="white--text">Pre</span>
         <span class="green--text text--accent-2">Vue</span>
       </router-link>
-      <router-link :to="{ name: 'tree' }">
-        <span id="tree-link" class="purple--text text--accent-2"
-          >View Component Tree</span
-        >
-      </router-link>
-      <button class="white--text" @click="exportProject">
-        EXPORT YOUR PROJECT
-      </button>
-      <span>
-        <v-icon class="save-icon" @click="saveState">save_alt</v-icon>
-        <span>save</span>
-      </span>
     </v-toolbar-title>
   </v-toolbar>
 </template>
@@ -114,9 +110,14 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  width: 100%;
+  height: 100%;
 }
-.nav > .prevue {
+
+#toolbar {
+  background-color: #393f4d;
+}
+/* .nav > .prevue {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1.5em;
@@ -142,7 +143,7 @@ export default {
 
 a {
   text-decoration: none;
-}
+} */
 
 .save-icon:hover {
   cursor: pointer;

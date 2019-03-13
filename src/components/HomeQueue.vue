@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <section class="home-queue">
+    <h1>QUEUE</h1>
     <draggable
       v-model="renderList"
       group="people"
@@ -20,7 +21,7 @@
         >
       </li>
     </draggable>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -62,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+.home-queue {
+  border: 1px solid aqua;
+}
 li {
   list-style-type: none;
 }

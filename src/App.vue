@@ -1,12 +1,14 @@
 <template>
-  <v-app dark>
-    <div id="app">
+  <div id="app">
+    <v-app dark>
       <NavBar></NavBar>
-      <v-content class="content">
-        <router-view/>
+      <v-content>
+        <v-container fluid class="container">
+          <router-view />
+        </v-container>
       </v-content>
-    </div>
-  </v-app>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -18,27 +20,32 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-#app {
-  height: 100%;
-  .content {
-    height: 100%;
-  }
+<style lang="scss">
+html {
+  box-sizing: border-box;
+  font-size: 10px;
 }
-#nav {
-  margin-left: 0;
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    .router-link-exact-active {
-      color: #42b983;
-    }
-  }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  padding: 0;
+  margin: 0;
+
+  line-height: 2;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 
-.content {
-  width: 100%;
+#app {
   height: 100%;
+  box-sizing: border-box;
+  .container {
+    height: 100%;
+  }
 }
 </style>
