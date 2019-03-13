@@ -1,40 +1,63 @@
 <template>
-  <v-toolbar flat app>
-    <v-toolbar-title id="nav" class="nav">
-      <router-link :to="{ name: 'home' }" class="prevue">
-        <span class="white--text">Pre</span>
-        <span class="green--text text--accent-2">Vue</span>
+  <nav
+    class="navbar"
+    id="navbar"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div class="navbar-brand">
+      <router-link :to="{ name: 'home' }" class="navbar-item" href="#">
+        <img
+          src="https://bulma.io/images/bulma-logo.png"
+          width="112"
+          height="28"
+        />
       </router-link>
-      <router-link :to="{ name: 'tree' }">
-        <span id="tree-link" class="purple--text text--accent-2"
-          >View Component Tree</span
-        >
-      </router-link>
-      <button class="white--text" @click="exportProject">
-        EXPORT YOUR PROJECT
-      </button>
-      <span>
-        <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
-        <span>SAVE</span>
-      </span>
-      <button class="white--text" @click="openProjectJSON">OPEN</button>
-    </v-toolbar-title>
-  </v-toolbar>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <router-link :to="{ name: 'tree' }" class="navbar-item" href="#">
+          <i class="fas fa-tree fa-lg"></i>
+        </router-link>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <button class="white--text" @click="exportProject">
+            EXPORT YOUR PROJECT
+          </button>
+          <span>
+            <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
+            <span>SAVE</span>
+          </span>
+          <button class="white--text" @click="openProjectJSON">OPEN</button>
+          <i class="fas fa-save fa-lg"></i>
+
+          <i class="fas fa-file-export fa-lg"></i>
+          <i class="fas fa-folder-plus fa-lg" @click="addProject"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import fs from 'fs-extra';
 import path from 'path';
+import { addProject, setState } from '../store/types';
+import localforage from 'localforage';
 
 const ipc = require('electron').ipcRenderer;
-import { setState } from '../store/types';
-import localforage from 'localforage';
-import { readFileSync, readFile } from 'fs';
+
 export default {
   name: 'NavBar',
   props: ['route'],
   methods: {
+    addProject() {
+      this.$store.dispatch(addProject, 'test');
+    },
     exportProject: function() {
       ipc.send('show-export-dialog');
     },
@@ -119,47 +142,19 @@ export default {
       // console.log(rdmMsg);
     });
     ipc.on('open-location', (event, data) => {
-      // console.log('READING DATA');
-      // console.log(JSON.parse(readFileSync(data[0], 'utf8')));
-      this.$store.dispatch(setState, JSON.parse(readFileSync(data[0], 'utf8')));
+      this.$store.dispatch(
+        setState,
+        JSON.parse(fs.readFileSync(data[0], 'utf8'))
+      );
     });
   }
 };
 </script>
 
 <style scoped>
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-}
-.nav > .prevue {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #39b982;
-  text-decoration: none;
-}
-
-.nav .nav-item {
-  box-sizing: border-box;
-  margin: 0 5px;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-}
-
-.nav .nav-item.router-link-exact-active {
-  color: #39b982;
-  border-bottom: solid 2px #39b982;
-}
-
-.tree-link {
-  float: right;
-}
-
-a {
-  text-decoration: none;
+#navbar {
+  background-color: #d4d4dc;
+  height: 50px;
 }
 
 .save-icon:hover {

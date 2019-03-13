@@ -10,7 +10,8 @@ import {
   SET_COMPONENT_MAP,
   GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
-  SET_STATE
+  SET_STATE,
+  ADD_PROJECT
 } from './types';
 
 const mutations = {
@@ -81,6 +82,9 @@ const mutations = {
     console.log('SETTING STATE');
     console.log(payload);
     Object.assign(state, payload);
+  },
+  [ADD_PROJECT]: (state, payload) => {
+    state.activeProjects.push(payload);
   }
 };
 

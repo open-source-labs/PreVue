@@ -6,7 +6,7 @@
       :key="idx + Date.now()"
     >
       <p class="white--text">{{ htmlElementMap[htmlElementTag] }}</p>
-      <br>
+      <br />
     </div>
   </div>
 </template>

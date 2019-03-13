@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <section class="home-queue">
+    <p class="panel-heading">selected elements</p>
     <draggable
       v-model="renderList"
       group="people"
@@ -20,7 +21,7 @@
         >
       </li>
     </draggable>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -62,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+.home-queue {
+  border: 1px solid aqua;
+}
 li {
   list-style-type: none;
 }
@@ -69,7 +73,7 @@ li {
   margin-top: 5px;
   border: 1px solid black;
   border-radius: 0.5cm;
-  background-color: palevioletred;
+  background-color: #d1bfa7;
 }
 
 .delete-icon:hover {
