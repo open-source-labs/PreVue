@@ -1,23 +1,7 @@
 <template>
   <div class="component-display">
-    <!-- <LoadingBar :duration="2000"/> -->
-    <div class="tabs is-small is-boxed">
-      <ul>
-        <li class="is-active">
-          <a>Pictures</a>
-        </li>
-        <li>
-          <a>Music</a>
-        </li>
-        <li>
-          <a>Videos</a>
-        </li>
-        <li>
-          <a>Documents</a>
-        </li>
-      </ul>
-    </div>
-    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+    <ProjectTabs id="project-tabs"></ProjectTabs>
+    <div style="height: 800px; width: 800px; border: 1px solid red; position: relative;">
       <button @click="showMap">SEE COMPONENT MAP</button>
 
       <VueDraggableResizable
@@ -30,6 +14,7 @@
         :y="componentData.y"
         :w="componentData.w"
         :h="componentData.h"
+        id="componentName"
         @activated="handleClick(componentName)"
         @dragging="onDrag"
         @resizing="onResize"
@@ -48,6 +33,7 @@
 <script>
 import { mapState } from 'vuex';
 import LoadingBar from './LoadingBar.vue';
+import ProjectTabs from '@/components/ProjectTabs';
 import ComponentModal from './ComponentModal.vue';
 import { setComponentMap, getPrevState } from '../store/types';
 import localforage from 'localforage';
@@ -58,7 +44,8 @@ export default {
   components: {
     VueDraggableResizable,
     // LoadingBar,
-    ComponentModal
+    ComponentModal,
+    ProjectTabs
   },
   data() {
     return {
@@ -135,17 +122,16 @@ export default {
 </script>
 
 <style scoped>
-/* .component-display {
-  grid-area: component-display;
-} */
-
-.component-box {
-  border: 1px solid white;
-}
 .component-display {
   border: 1px solid palegreen;
+  /* background-color: #d4d4dc; */
 }
 .vdr.active:before {
   outline-style: solid !important;
+}
+
+#componentName {
+  color: #d4d4dc;
+  border: 1px solid #d4d4dc;
 }
 </style>

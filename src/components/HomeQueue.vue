@@ -1,6 +1,6 @@
 <template>
   <section class="home-queue">
-    <h1>QUEUE</h1>
+    <p class="panel-heading">selected elements</p>
     <draggable
       v-model="renderList"
       group="people"
@@ -73,7 +73,7 @@ li {
   margin-top: 5px;
   border: 1px solid black;
   border-radius: 0.5cm;
-  background-color: palevioletred;
+  background-color: #d1bfa7;
 }
 
 .delete-icon:hover {

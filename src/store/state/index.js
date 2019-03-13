@@ -53,7 +53,8 @@ const newState = {
   },
   selectedElementList: [],
   clickedComponent: '',
-  clickedComponentToDelete: ''
+  clickedComponentToDelete: '',
+  activeProjects: ['Project1']
 };
 
 export default newState;

@@ -1,5 +1,4 @@
 import * as types from './types';
-import { loadState } from '../localStorage';
 
 const actions = {
   [types.registerComponent]: ({ state, commit }, payload) => {
@@ -34,6 +33,9 @@ const actions = {
   },
   [types.deleteSelectedElement]: ({ commit }, payload) => {
     commit(types.DELETE_SELECTED_ELEMENT, payload);
+  },
+  [types.addProject]: ({ commit }, payload) => {
+    commit(types.ADD_PROJECT, payload);
   }
 };
 
