@@ -1,27 +1,69 @@
 <template>
-  <v-toolbar dense id="toolbar">
-    <v-toolbar-title id="nav" class="nav">
-      <span>
-        <v-icon class="save-icon" @click="saveState">save_alt</v-icon>
-      </span>
-      <button class="white--text" @click="exportProject">EXPORT YOUR PROJECT</button>
-      <v-spacer></v-spacer>
-      <router-link :to="{ name: 'tree' }">
-        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
+  <nav
+    class="navbar"
+    id="navbar"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div class="navbar-brand">
+      <router-link :to="{ name: 'home' }" class="navbar-item" href="#">
+        <img
+          src="https://bulma.io/images/bulma-logo.png"
+          width="112"
+          height="28"
+        />
       </router-link>
-      <router-link :to="{ name: 'home' }" class="prevue">
-        <span class="white--text">Pre</span>
-        <span class="green--text text--accent-2">Vue</span>
-      </router-link>
-    </v-toolbar-title>
-  </v-toolbar>
+
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <router-link :to="{ name: 'tree' }" class="navbar-item" href="#"
+          >Tree</router-link
+        >
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">Projects</a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">About</a>
+            <a class="navbar-item">Jobs</a>
+            <a class="navbar-item">Contact</a>
+            <hr class="navbar-divider" />
+            <a class="navbar-item">Report an issue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light">Log in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import fs from 'fs-extra';
 import path from 'path';
-// const { remote } = require('electron');
 const ipc = require('electron').ipcRenderer;
 
 import localforage from 'localforage';
@@ -29,6 +71,9 @@ export default {
   name: 'NavBar',
   props: ['route'],
   methods: {
+    test() {
+      console.log('test');
+    },
     exportProject: function() {
       ipc.send('show-dialog');
     },
@@ -106,44 +151,10 @@ export default {
 </script>
 
 <style scoped>
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+#navbar {
+  background-color: palevioletred;
+  height: 50px;
 }
-
-#toolbar {
-  background-color: #393f4d;
-}
-/* .nav > .prevue {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #39b982;
-  text-decoration: none;
-}
-
-.nav .nav-item {
-  box-sizing: border-box;
-  margin: 0 5px;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-}
-
-.nav .nav-item.router-link-exact-active {
-  color: #39b982;
-  border-bottom: solid 2px #39b982;
-}
-
-.tree-link {
-  float: right;
-}
-
-a {
-  text-decoration: none;
-} */
 
 .save-icon:hover {
   cursor: pointer;

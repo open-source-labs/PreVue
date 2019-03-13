@@ -1,15 +1,11 @@
 <template>
   <div class="home-sidebar">
     <!-- <header class="green--text text--accent-2 pa-2">Create a Component</header> -->
-    <RouteDisplay></RouteDisplay>
+    <!-- <RouteDisplay></RouteDisplay> -->
     <section class="add-component-display">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
+      <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
       <section>
-        <Icons @getClickedIcon="addToSelectedElementList" />
+        <Icons @getClickedIcon="addToSelectedElementList"/>
       </section>
 
       <section>
@@ -23,7 +19,7 @@
           persistent-hint
         ></v-select>
         <header class="purple--text text--accent-2">Selected Elements</header>
-        <hr />
+        <hr>
         <!-- <HomeQueue :listToRender="selectedElementList"/> -->
       </section>
 
@@ -103,6 +99,6 @@ export default {
 }
 
 .add-component-display {
-  background-color: red;
+  /* background-color: red; */
 }
 </style>

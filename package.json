@@ -12,6 +12,7 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "buefy": "^0.7.3",
     "electron-compile": "^6.4.4",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
@@ -42,6 +43,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "tailwindcss": "^0.7.4",
     "vue-cli-plugin-electron-builder": "^1.0.4",
     "vue-template-compiler": "^2.5.21"
   },

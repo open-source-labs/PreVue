@@ -1,13 +1,9 @@
 <template>
-  <div id="app">
-    <v-app dark>
-      <NavBar></NavBar>
-      <v-content>
-        <v-container fluid class="container">
-          <router-view />
-        </v-container>
-      </v-content>
-    </v-app>
+  <div id="app" class="hero is-fullHeight">
+    <NavBar></NavBar>
+    <section class="section">
+      <router-view />
+    </section>
   </div>
 </template>
 
@@ -24,6 +20,7 @@ export default {
 html {
   box-sizing: border-box;
   font-size: 10px;
+  height: 100%;
 }
 *,
 *:before,
@@ -33,6 +30,7 @@ html {
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
 
   line-height: 2;
 }
@@ -47,5 +45,11 @@ a {
   .container {
     height: 100%;
   }
+  background-color: papayawhip;
+}
+
+.section {
+  background: aquamarine;
+  height: 100%;
 }
 </style>

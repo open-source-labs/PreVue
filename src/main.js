@@ -10,7 +10,11 @@ import VueDraggableResizable from 'vue-draggable-resizable';
 import 'vuetify/dist/vuetify.min.css';
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 
+import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
+
 Vue.config.productionTip = false;
+Vue.use(Buefy);
 Vue.use(Vuetify);
 Vue.use(VModal, { dynamic: true });
 

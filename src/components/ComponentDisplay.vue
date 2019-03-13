@@ -1,9 +1,23 @@
 <template>
   <div class="component-display">
     <!-- <LoadingBar :duration="2000"/> -->
-    <div
-      style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
-    >
+    <div class="tabs is-small is-boxed">
+      <ul>
+        <li class="is-active">
+          <a>Pictures</a>
+        </li>
+        <li>
+          <a>Music</a>
+        </li>
+        <li>
+          <a>Videos</a>
+        </li>
+        <li>
+          <a>Documents</a>
+        </li>
+      </ul>
+    </div>
+    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
       <button @click="showMap">SEE COMPONENT MAP</button>
 
       <VueDraggableResizable
@@ -22,12 +36,12 @@
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br />
+        <br>
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900" />
+      <ComponentModal :modalWidth="800" :modalHeight="900"/>
     </div>
   </div>
 </template>
