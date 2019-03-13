@@ -11,6 +11,7 @@ export const SET_COMPONENT_MAP = 'SET_COMPONENT_MAP';
 export const GET_PREV_STATE = 'GET_PREV_STATE';
 export const DELETE_FROM_QUEUE = 'DELETE_FROM_QUEUE';
 export const DELETE_SELECTED_ELEMENT = 'DELETE_SELECTED_ELEMENT';
+export const SET_STATE = 'SET_STATE';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -24,3 +25,4 @@ export const setComponentMap = 'setComponentMap';
 export const getPrevState = 'getPrevState';
 export const deleteFromQueue = 'deleteFromQueue';
 export const deleteSelectedElement = 'deleteSelectedElement';
+export const setState = 'setState';

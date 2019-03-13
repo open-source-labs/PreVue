@@ -17,6 +17,7 @@
         :w="componentData.w"
         :h="componentData.h"
         @activated="handleClick(componentName)"
+        @dblclick.native="doubleClick"
         @dragging="onDrag"
         @resizing="onResize"
         :parent="true"
@@ -33,7 +34,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-import LoadingBar from './LoadingBar.vue';
+// import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
 import { setComponentMap, getPrevState } from '../store/types';
 import localforage from 'localforage';
@@ -55,12 +56,12 @@ export default {
   },
 
   created() {
-    // localforage
-    //   .getItem('state')
-    //   .then(data => {
-    //     this.$store.dispatch(getPrevState, data);
-    //   })
-    //   .then(data => console.log('retrieved previous data'));
+    localforage
+      .getItem('state')
+      .then(data => {
+        this.$store.dispatch(getPrevState, data);
+      })
+      .then(data => console.log('retrieved previous data', data));
   },
   computed: {
     ...mapState(['componentMap', 'clickedComponent']),
@@ -84,14 +85,12 @@ export default {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-
     onDragStop: function(x, y) {
       // console.log('called');
       // console.log(x, y);
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';

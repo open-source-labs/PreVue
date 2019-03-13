@@ -14,9 +14,10 @@
         EXPORT YOUR PROJECT
       </button>
       <span>
-        <v-icon class="save-icon" @click="saveState">save_alt</v-icon>
-        <span>save</span>
+        <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
+        <span>SAVE</span>
       </span>
+      <button class="white--text" @click="openProjectJSON">OPEN</button>
     </v-toolbar-title>
   </v-toolbar>
 </template>
@@ -25,22 +26,29 @@
 import { mapState } from 'vuex';
 import fs from 'fs-extra';
 import path from 'path';
-// const { remote } = require('electron');
-const ipc = require('electron').ipcRenderer;
 
+const ipc = require('electron').ipcRenderer;
+import { setState } from '../store/types';
 import localforage from 'localforage';
+import { readFileSync, readFile } from 'fs';
 export default {
   name: 'NavBar',
   props: ['route'],
   methods: {
     exportProject: function() {
-      ipc.send('show-dialog');
+      ipc.send('show-export-dialog');
+    },
+    saveProjectJSON() {
+      ipc.send('show-save-json-dialog');
     },
     saveState() {
       const currentState = this.$store.state;
       localforage
         .setItem('state', currentState)
         .then(data => console.log(data));
+    },
+    openProjectJSON() {
+      ipc.send('show-open-dialog');
     },
     createComponentCode(componentLocation, componentName, children) {
       fs.writeFileSync(
@@ -104,6 +112,16 @@ export default {
             this.componentMap[componentName].children
           );
       }
+    });
+    ipc.on('json-location', (event, data) => {
+      fs.writeFileSync(data, JSON.stringify(this.$store.state, null, 2));
+      console.log('PROJECT SAVED AS A JSON OBJECT!');
+      // console.log(rdmMsg);
+    });
+    ipc.on('open-location', (event, data) => {
+      // console.log('READING DATA');
+      // console.log(JSON.parse(readFileSync(data[0], 'utf8')));
+      this.$store.dispatch(setState, JSON.parse(readFileSync(data[0], 'utf8')));
     });
   }
 };
