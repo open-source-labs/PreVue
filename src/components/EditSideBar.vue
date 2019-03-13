@@ -69,9 +69,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .sidebar {
-  display: grid;
-  grid-template-rows: 0.5fr 2fr 2fr 2fr;
+  /* padding-right: 20px; */
+  border-right: 1px solid;
+  border-right-color: white;
+  color: black;
 }
 </style>

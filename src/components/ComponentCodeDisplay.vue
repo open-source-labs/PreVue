@@ -40,9 +40,9 @@ export default {
 };
 </script>
 
-<style>
-h1 {
-  color: white;
+<style scoped>
+#component-code-display {
+  padding-left: 10px;
 }
 .nested {
   margin-left: 20px;

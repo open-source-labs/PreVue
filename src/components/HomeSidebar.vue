@@ -1,43 +1,44 @@
 <template>
-  <div class="sidebar">
-    <header class="headline green--text text--accent-2 pa-2">
-      Create a Component
-    </header>
+  <div class="home-sidebar">
+    <!-- <header class="green--text text--accent-2 pa-2">Create a Component</header> -->
+    <RouteDisplay></RouteDisplay>
+    <section class="add-component-display">
+      <BaseTextfield
+        v-model="componentName"
+        label="Component Name"
+        :value="componentName"
+      />
+      <section>
+        <Icons @getClickedIcon="addToSelectedElementList" />
+      </section>
 
-    <BaseTextfield
-      v-model="componentName"
-      label="Component Name"
-      :value="componentName"
-    />
-    <section>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+      <section>
+        <v-select
+          v-model="selectedChildren"
+          :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
+          label="Select child components"
+          multiple
+          chips
+          hint
+          persistent-hint
+        ></v-select>
+        <header class="purple--text text--accent-2">Selected Elements</header>
+        <hr />
+        <!-- <HomeQueue :listToRender="selectedElementList"/> -->
+      </section>
+
+      <BaseButton
+        :componentName="componentName"
+        name="add component"
+        icon="add_circle"
+        @click="addComponent"
+      ></BaseButton>
     </section>
-
-    <section>
-      <v-select
-        v-model="selectedChildren"
-        :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
-        label="Select child components"
-        multiple
-        chips
-        hint
-        persistent-hint
-      ></v-select>
-      <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr />
-      <HomeQueue :listToRender="selectedElementList" />
-    </section>
-
-    <BaseButton
-      :componentName="componentName"
-      name="add component"
-      icon="add_circle"
-      @click="addComponent"
-    ></BaseButton>
   </div>
 </template>
 
 <script>
+import RouteDisplay from './RouteDisplay';
 import BaseTextfield from './BaseTextfield';
 import BaseButton from './BaseButton';
 import Icons from './Icons';
@@ -57,23 +58,24 @@ export default {
     BaseTextfield,
     BaseButton,
     Icons,
-    HomeQueue
+    HomeQueue,
+    RouteDisplay
   },
   computed: {
     ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
     addComponent() {
-      const {
-        componentName,
-        selectedElementList: htmlList,
-        selectedChildren: children
-      } = this;
       const payload = {
-        componentName,
-        htmlList,
-        children
+        componentName: this.componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        htmlList: this.selectedElementList,
+        children: this.selectedChildren
       };
+
       this.$store
         .dispatch(types.registerComponent, payload)
         .then(() => {
@@ -90,9 +92,16 @@ export default {
 };
 </script>
 
-<style>
-.sidebar {
-  display: grid;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 4fr 1fr;
+<style scoped>
+.home-sidebar {
+  grid-area: home-sidebar;
+  width: 250px;
+  border: 1px solid;
+  padding: 10px;
+  border-color: white;
+}
+
+.add-component-display {
+  background-color: red;
 }
 </style>

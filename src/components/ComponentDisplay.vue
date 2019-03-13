@@ -1,71 +1,69 @@
 <template>
-  <div id="componentDisplay">
-    <LoadingBar :duration="2000" />
-    <VueDragResize
-      class="component"
-      @activated="onActivated"
-      @deactivated="onDeactivated"
-      :w="200"
-      :h="200"
-      v-on:resizing="resize"
-      v-on:dragging="resize"
-      v-for="(component, index) in Object.entries(getComponentMap)"
-      :key="index"
-      :style="{ border: '7px solid ' + getRandomColor() }"
-      :snapToGrid="true"
-      :gridX="200"
-      :gridY="200"
-      @clicked="handleClick(component[0])"
-    >
-      <h3>{{ component[0] }}</h3>
-      <p
-        v-for="(element, index) in component[1].htmlList"
-        :key="index + Date.now()"
+  <div class="component-display">
+    <!-- <LoadingBar :duration="2000"/> -->
+    <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+      <VueDraggableResizable
+        class-name="component-box"
+        v-for="[componentName, componentData] in Object.entries(
+          computedComponentMap
+        )"
+        :key="componentName"
+        :x="componentData.x"
+        :y="componentData.y"
+        :w="componentData.w"
+        :h="componentData.h"
+        @activated="onActivated(componentName)"
+        @deactivated="onDeactivated"
+        @dragging="onDrag"
+        @resizing="onResize"
+        :parent="true"
+        @dblclick.native="handleDoubleClick"
       >
-        {{ element.text }}
-      </p>
-      <p
-        v-for="(child, index) in component[1].children"
-        :key="index + Date.now() / 2"
-      >
-        {{ child }}
-      </p>
-    </VueDragResize>
-    <modals-container></modals-container>
-    <ComponentModal :modalWidth="800" :modalHeight="900" />
+        <h3>{{ componentName }}</h3>
+        <br>
+        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
+        {{ componentData.w }} / Height: {{ componentData.h }}
+      </VueDraggableResizable>
+      <modals-container></modals-container>
+      <ComponentModal :modalWidth="800" :modalHeight="900"/>
+    </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
-import VueDragResize from 'vue-drag-resize';
 import LoadingBar from './LoadingBar.vue';
 import ComponentModal from './ComponentModal.vue';
-import { setComponentMap } from '../store/types';
+import { setComponentMap, getPrevState } from '../store/types';
+import localforage from 'localforage';
+import VueDraggableResizable from 'vue-draggable-resizable';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDragResize,
-    LoadingBar,
+    VueDraggableResizable,
+    // LoadingBar,
     ComponentModal
   },
   data() {
     return {
-      //might make this an array of objects to correspond to each individual component
-      width: 0,
-      height: 0,
-      top: 0,
-      left: 0,
       lastTimeClicked: Date.now(),
       dialog: false,
       showModal: false,
       abilityToDelete: false
     };
   },
+  created() {
+    // localforage
+    //   .getItem('state')
+    //   .then(data => {
+    //     this.$store.dispatch(getPrevState, data);
+    //   })
+    //   .then(data => console.log('retrieved previous data'));
+  },
   mounted() {
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
+        console.log('clickedcomponent', this.$store.state.clickedComponent);
         if (this.abilityToDelete && this.$store.state.clickedComponent) {
           console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
           this.$store.dispatch('deleteClickedComponent');
@@ -75,8 +73,8 @@ export default {
     });
   },
   computed: {
-    ...mapState(['componentMap']),
-    getComponentMap: {
+    ...mapState(['componentMap', 'clickedComponent']),
+    computedComponentMap: {
       get() {
         return this.componentMap;
       },
@@ -86,12 +84,17 @@ export default {
     }
   },
   methods: {
-    resize(newRect) {
-      this.width = newRect.width;
-      this.height = newRect.height;
-      this.top = newRect.top;
-      this.left = newRect.left;
+    onResize: function(x, y, width, height) {
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
+      this.componentMap[this.clickedComponent].w = width;
+      this.componentMap[this.clickedComponent].h = height;
     },
+    onDrag: function(x, y) {
+      this.componentMap[this.clickedComponent].x = x;
+      this.componentMap[this.clickedComponent].y = y;
+    },
+
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';
@@ -100,21 +103,20 @@ export default {
       }
       return color;
     },
-    onActivated() {
+    onActivated(componentName) {
+      this.handleClick(componentName);
       this.abilityToDelete = true;
     },
     onDeactivated() {
       this.abilityToDelete = false;
     },
     handleClick(componentName) {
+      console.log('componentName', componentName);
+      console.log('CLICKED');
       this.$store.dispatch('setClickedComponent', componentName);
-      if (Date.now() - this.lastTimeClicked < 200)
-        this.doubleClick(componentName);
-      else {
-        this.lastTimeClicked = Date.now();
-      }
     },
-    doubleClick() {
+    handleDoubleClick() {
+      console.log('DOUBLE CLICKED');
       this.$modal.show('demo-login');
     }
   }
@@ -122,18 +124,16 @@ export default {
 </script>
 
 <style scoped>
-/* .component {
-  background-color: green;
+/* .component-display {
+  grid-area: component-display;
 } */
-.componentDisplay {
-  grid-area: componentDisplay;
-}
 
-h3,
-p {
-  color: white;
+.component-box {
+  border: 1px solid white;
 }
-
+.component-display {
+  border: 1px solid palegreen;
+}
 .vdr.active:before {
   outline-style: solid !important;
 }

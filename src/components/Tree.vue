@@ -8,7 +8,6 @@
       :zoomable="true"
       :duration="0"
       :radius="7"
-      :marginX="0"
     ></tree>
   </div>
 </template>
@@ -75,8 +74,8 @@ export default {
 </script>
 <style>
 .container {
-  height: 600px;
-  width: 100%;
+  max-height: 600px;
+  max-width: 100%;
 }
 
 .treeclass .nodetree text {
