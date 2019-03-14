@@ -1,27 +1,6 @@
 <template>
   <div>
     <div id="codeDisplay"></div>
-    <!-- <span
-      class="white--text"
-      v-for="(htmlElementName, idx) in activeComponentHtmlList"
-      :key="idx + Date.now()"
-    >
-      <span v-if="htmlElementName.children.length > 0">
-        {{ htmlElementMap[htmlElementName.text][0] }}
-        <div v-for="(child, idx) in htmlElementName.children" :key="idx">
-          <p class="nested">
-            {{ htmlElementMap[child.text][0] }}
-            {{ htmlElementMap[child.text][1] }}
-          </p>
-        </div>
-        {{ htmlElementMap[htmlElementName.text][1] }}
-      </span>
-      <span v-else>
-        {{ htmlElementMap[htmlElementName.text][0] }}
-        {{ htmlElementMap[htmlElementName.text][1] }}
-      </span>
-      <br />
-    </span>-->
   </div>
 </template>
 
