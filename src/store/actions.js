@@ -34,6 +34,10 @@ const actions = {
   [types.deleteSelectedElement]: ({ commit }, payload) => {
     commit(types.DELETE_SELECTED_ELEMENT, payload);
   },
+  [types.setState]: ({ commit }, payload) => {
+    // console.log('COMMITTING PAYLOAD: ', payload);
+    commit(types.SET_STATE, payload);
+  },
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
   }
