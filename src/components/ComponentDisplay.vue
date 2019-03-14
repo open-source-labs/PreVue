@@ -1,7 +1,9 @@
 <template>
   <div class="component-display">
     <ProjectTabs id="project-tabs"></ProjectTabs>
-    <div style="height: 800px; width: 800px; border: 1px solid red; position: relative;">
+    <div
+      style="height: 800px; width: 800px; border: 1px solid red; position: relative;"
+    >
       <button @click="showMap">SEE COMPONENT MAP</button>
 
       <VueDraggableResizable
@@ -16,17 +18,18 @@
         :h="componentData.h"
         id="componentName"
         @activated="handleClick(componentName)"
+        @dblclick.native="doubleClick"
         @dragging="onDrag"
         @resizing="onResize"
         :parent="true"
       >
         <h3>{{ componentName }}</h3>
-        <br>
+        <br />
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
       <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900"/>
+      <ComponentModal :modalWidth="800" :modalHeight="900" />
     </div>
   </div>
 </template>
@@ -56,12 +59,12 @@ export default {
   },
 
   created() {
-    // localforage
-    //   .getItem('state')
-    //   .then(data => {
-    //     this.$store.dispatch(getPrevState, data);
-    //   })
-    //   .then(data => console.log('retrieved previous data'));
+    localforage
+      .getItem('state')
+      .then(data => {
+        this.$store.dispatch(getPrevState, data);
+      })
+      .then(data => console.log('retrieved previous data', data));
   },
   computed: {
     ...mapState(['componentMap', 'clickedComponent']),
@@ -85,14 +88,12 @@ export default {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-
     onDragStop: function(x, y) {
       // console.log('called');
       // console.log(x, y);
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';

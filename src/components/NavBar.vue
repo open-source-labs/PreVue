@@ -1,8 +1,17 @@
 <template>
-  <nav class="navbar" id="navbar" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar"
+    id="navbar"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="navbar-brand">
       <router-link :to="{ name: 'home' }" class="navbar-item" href="#">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <img
+          src="https://bulma.io/images/bulma-logo.png"
+          width="112"
+          height="28"
+        />
       </router-link>
     </div>
 
@@ -15,8 +24,16 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
+          <button class="white--text" @click="exportProject">
+            EXPORT YOUR PROJECT
+          </button>
+          <span>
+            <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
+            <span>SAVE</span>
+          </span>
+          <button class="white--text" @click="openProjectJSON">OPEN</button>
           <i class="fas fa-save fa-lg"></i>
-          
+
           <i class="fas fa-file-export fa-lg"></i>
           <i class="fas fa-folder-plus fa-lg" @click="addProject"></i>
         </div>
@@ -29,7 +46,7 @@
 import { mapState } from 'vuex';
 import fs from 'fs-extra';
 import path from 'path';
-import * as types from '@/store/types.js';
+import { addProject, setState } from '../store/types';
 import localforage from 'localforage';
 
 const ipc = require('electron').ipcRenderer;
@@ -39,16 +56,22 @@ export default {
   props: ['route'],
   methods: {
     addProject() {
-      this.$store.dispatch(types.addProject, 'test');
+      this.$store.dispatch(addProject, 'test');
     },
     exportProject: function() {
-      ipc.send('show-dialog');
+      ipc.send('show-export-dialog');
+    },
+    saveProjectJSON() {
+      ipc.send('show-save-json-dialog');
     },
     saveState() {
       const currentState = this.$store.state;
       localforage
         .setItem('state', currentState)
         .then(data => console.log(data));
+    },
+    openProjectJSON() {
+      ipc.send('show-open-dialog');
     },
     createComponentCode(componentLocation, componentName, children) {
       fs.writeFileSync(
@@ -62,9 +85,9 @@ export default {
     writeTemplate(children) {
       let str = '';
       children.forEach(name => {
-        str += `\t<${name}>\n\t</${name}>\n`;
+        str += `\t\t<${name}>\n\t\t</${name}>\n`;
       });
-      return `<template>\n${str}</template>`;
+      return `<template>\n\t<div>\n${str}\t</div>\n</template>`;
     },
     writeScript(componentName, children) {
       let str = '';
@@ -84,7 +107,7 @@ export default {
       let style =
         componentName !== 'App'
           ? ''
-          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
+          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
       return `\n\n<style scoped>\n${style}</style>`;
     }
   },
@@ -112,6 +135,17 @@ export default {
             this.componentMap[componentName].children
           );
       }
+    });
+    ipc.on('json-location', (event, data) => {
+      fs.writeFileSync(data, JSON.stringify(this.$store.state, null, 2));
+      console.log('PROJECT SAVED AS A JSON OBJECT!');
+      // console.log(rdmMsg);
+    });
+    ipc.on('open-location', (event, data) => {
+      this.$store.dispatch(
+        setState,
+        JSON.parse(fs.readFileSync(data[0], 'utf8'))
+      );
     });
   }
 };
