@@ -1,18 +1,16 @@
 <template>
-  <div id="app">
-    <v-app dark>
-      <NavBar></NavBar>
-      <v-content>
-        <v-container fluid class="container">
-          <router-view />
-        </v-container>
-      </v-content>
-    </v-app>
+  <div id="app" class="hero is-fullHeight">
+    <NavBar></NavBar>
+
+    <section class="section">
+      <router-view />
+    </section>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+
 export default {
   components: {
     NavBar
@@ -21,24 +19,76 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~bulma/sass/utilities/_all';
+$tabs-link-color: #d4d4dc;
+
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+// List
+ul {
+  list-style: none;
+}
+
+// Form
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+// Box sizing
 html {
   box-sizing: border-box;
-  font-size: 10px;
 }
+
 *,
-*:before,
-*:after {
+::before,
+::after {
   box-sizing: inherit;
 }
-body {
-  padding: 0;
-  margin: 0;
 
-  line-height: 2;
-}
-a {
-  text-decoration: none;
-  color: black;
+i:hover {
+  cursor: pointer;
 }
 
 #app {
@@ -47,5 +97,11 @@ a {
   .container {
     height: 100%;
   }
+  /* background-color: papayawhip; */
+}
+
+.section {
+  /* background: aquamarine; */
+  height: 100%;
 }
 </style>

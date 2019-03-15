@@ -12,7 +12,7 @@ const newState = {
       w: 200,
       h: 200,
       htmlList: [],
-      children: ['Parent1', 'Parent2']
+      children: []
     },
     Parent1: {
       componentName: 'Parent1',
@@ -52,7 +52,9 @@ const newState = {
     }
   },
   selectedElementList: [],
-  clickedComponent: ''
+  clickedComponent: '',
+  clickedComponentToDelete: '',
+  activeProjects: ['Project1']
 };
 
 export default newState;

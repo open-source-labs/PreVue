@@ -12,10 +12,10 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "buefy": "^0.7.3",
     "electron-compile": "^6.4.4",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
-    "lodash": "^4.17.11",
     "lodash.throttle": "^4.1.1",
     "vue": "^2.6.6",
     "vue-drag-resize": "^1.3.2",

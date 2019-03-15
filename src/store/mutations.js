@@ -9,7 +9,9 @@ import {
   DELETE_CLICKED_COMPONENT,
   SET_COMPONENT_MAP,
   GET_PREV_STATE,
-  DELETE_SELECTED_ELEMENT
+  DELETE_SELECTED_ELEMENT,
+  SET_STATE,
+  ADD_PROJECT
 } from './types';
 
 const mutations = {
@@ -76,6 +78,14 @@ const mutations = {
   },
   [DELETE_SELECTED_ELEMENT]: (state, payload) => {
     state.selectedElementList.splice(payload, 1);
+  },
+  [SET_STATE]: (state, payload) => {
+    console.log('SETTING STATE');
+    console.log(payload);
+    Object.assign(state, payload);
+  },
+  [ADD_PROJECT]: (state, payload) => {
+    state.activeProjects.push(payload);
   }
 };
 

@@ -1,48 +1,24 @@
 <template>
   <div class="home-sidebar">
-    <!-- <header class="green--text text--accent-2 pa-2">Create a Component</header> -->
-    <RouteDisplay></RouteDisplay>
     <section class="add-component-display">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
-      <section>
-        <Icons @getClickedIcon="addToSelectedElementList" />
-      </section>
+      <b-field label="Create a Component">
+        <b-input v-model="componentName" placeholder="Component name"></b-input>
+      </b-field>
+      <Icons @getClickedIcon="addToSelectedElementList" />
 
-      <section>
-        <v-select
-          v-model="selectedChildren"
-          :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
-          label="Select child components"
-          multiple
-          chips
-          hint
-          persistent-hint
-        ></v-select>
-        <header class="purple--text text--accent-2">Selected Elements</header>
-        <hr />
-        <!-- <HomeQueue :listToRender="selectedElementList"/> -->
-      </section>
-
-      <BaseButton
-        :componentName="componentName"
-        name="add component"
-        icon="add_circle"
+      <button
+        class="button is-primary"
         @click="addComponent"
-      ></BaseButton>
+        :disabled="!componentName"
+      >
+        Add Component
+      </button>
     </section>
   </div>
 </template>
 
 <script>
-import RouteDisplay from './RouteDisplay';
-import BaseTextfield from './BaseTextfield';
-import BaseButton from './BaseButton';
 import Icons from './Icons';
-import HomeQueue from './HomeQueue';
 import { mapState } from 'vuex';
 import * as types from '../store/types.js';
 
@@ -55,11 +31,7 @@ export default {
     };
   },
   components: {
-    BaseTextfield,
-    BaseButton,
-    Icons,
-    HomeQueue,
-    RouteDisplay
+    Icons
   },
   computed: {
     ...mapState(['componentMap', 'selectedElementList'])
@@ -91,17 +63,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.home-sidebar {
-  grid-area: home-sidebar;
-  width: 250px;
-  border: 1px solid;
-  padding: 10px;
-  border-color: white;
-}
-
-.add-component-display {
-  background-color: red;
-}
-</style>

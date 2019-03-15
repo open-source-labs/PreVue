@@ -1,61 +1,55 @@
 <template>
-  <v-layout row class="home">
-    <v-flex shrink pa-1>
-      <v-layout column>
-        <v-flex shrink pa-1>
-          <HomeSidebar class="home-sidebar" />
-        </v-flex>
-        <v-flex grow pa-1>
-          <HomeSidebar class="home-sidebar" />
-        </v-flex>
-      </v-layout>
-    </v-flex>
-    <v-flex grow pa-1 d-flex>
+  <div class="columns">
+    <aside class="column is-2 aside hero is-fullheight">
+      <div class="column is-fullheight" id="route-display">
+        <RouteDisplay></RouteDisplay>
+      </div>
+
+      <div class="column is-fullheight" id="add-component">
+        <HomeSidebar class="home-sidebar" />
+      </div>
+    </aside>
+
+    <div class="column is-8 hero is-fullheight">
       <ComponentDisplay class="component-display" />
-    </v-flex>
-    <v-flex shrink pa-1 d-flex>
-      <HomeQueue />
-    </v-flex>
-  </v-layout>
+    </div>
+    <div class="column is-2 aside hero is-fullheight">
+      <HomeQueue class="home-queue" />
+    </div>
+  </div>
 </template>
 
 <script>
 import ComponentDisplay from '@/components/ComponentDisplay.vue';
 import HomeSidebar from '@/components/HomeSidebar';
 import HomeQueue from '@/components/HomeQueue';
+import RouteDisplay from '@/components/RouteDisplay';
 export default {
   name: 'Home',
   components: {
     ComponentDisplay,
     HomeSidebar,
-    HomeQueue
+    HomeQueue,
+    RouteDisplay
   }
 };
 </script>
 
 <style scoped>
-/* .grid-container {
-  display: grid;
-  grid-template-areas: 'home-sidebar component-display';
-  grid-gap: 10px;
-  grid-template-columns: 1fr 5fr;
-  padding: 10px;
-  height: 100%;
-  background-color: #1d1e22;
-  width: 100%;
-}
-*/
-.home {
-  height: 100%;
-  /* background-color: papayawhip; */
-}
-.home-sidebar {
-  /* background-color: palevioletred; */
+.component-display,
+.home-queue {
   background-color: #393f4d;
-  /* background-color: #393f4d; */
+  height: 100%;
 }
 
-.component-display {
+#route-display {
   background-color: #393f4d;
+  height: 100%;
+}
+
+#add-component {
+  border: 1px solid #d1bfa7;
+  height: 100%;
+  background-color: #d4d4dc;
 }
 </style>

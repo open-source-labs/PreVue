@@ -74,8 +74,8 @@ export default {
 </script>
 <style>
 .container {
-  max-height: 600px;
-  max-width: 100%;
+  height: 600px;
+  width: 100%;
 }
 
 .treeclass .nodetree text {
