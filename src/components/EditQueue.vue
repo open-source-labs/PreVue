@@ -17,10 +17,12 @@
         <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
     </draggable>-->
+    <p class="panel-heading">Selected Elements</p>
     <Tree :data="renderList" draggable="draggable" cross-tree="cross-tree">
       <div slot-scope="{ data }" class="white --text">
         <template v-if="!data.isDragPlaceHolder">
           <span>{{ data.text }}</span>
+          <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
         </template>
       </div>
     </Tree>
@@ -34,7 +36,7 @@ import { mapState, mapActions } from 'vuex';
 import { setClickedElementList } from '../store/types';
 
 export default {
-  name: 'TestEditQueue',
+  name: 'EditQueue',
   props: {
     name: {
       type: String

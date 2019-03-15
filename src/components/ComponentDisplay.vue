@@ -19,7 +19,7 @@
         @dragging="onDrag"
         @resizing="onResize"
         :parent="true"
-        @dblclick.native="handleDoubleClick"
+        @dblclick.native="doubleClick"
       >
         <h3>{{ componentName }}</h3>
         <br />
@@ -128,5 +128,10 @@ export default {
 #componentName {
   color: #d4d4dc;
   border: 1px solid #d4d4dc;
+}
+
+.component-box {
+  color: white;
+  border: 1px solid salmon;
 }
 </style>

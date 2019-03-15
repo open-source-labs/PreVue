@@ -1,14 +1,7 @@
 <template>
   <div>
     <p class="panel-heading">{{ clickedComponent }} Code Display</p>
-    <div
-      id="component-code-display"
-      v-for="(htmlElementTag, idx) in renderHTMLCodeList"
-      :key="idx + Date.now()"
-    >
-      <p class="white--text">{{ htmlElementMap[htmlElementTag] }}</p>
-      <br />
-    </div>
+    <div id="codeDisplay"></div>
   </div>
 </template>
 
@@ -82,5 +75,9 @@ export default {
 }
 .nested {
   white-space: pre;
+}
+
+#codeDisplay {
+  background-color: aqua;
 }
 </style>

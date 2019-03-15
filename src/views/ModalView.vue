@@ -2,15 +2,15 @@
   <div class="columns">
     <aside class="column is-3 aside hero is-fullheight" id="aside">
       <!-- <div class="column is-fullheight" id="add-component"> -->
-      <EditSidebar class="home-sidebar" />
+      <EditSidebar class="home-sidebar"/>
       <!-- </div> -->
     </aside>
 
     <div class="column is-6 hero is-fullheight">
-      <ComponentCodeDisplay class="component-code-display" />
+      <ComponentCodeDisplay class="component-code-display"/>
     </div>
     <div class="column is-3 aside hero is-fullheight">
-      <EditQueue class="home-queue" />
+      <EditQueue class="home-queue"/>
     </div>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
 #aside {
   background-color: #d4d4dc;
   height: 100%;
+  padding-right: 0;
 }
 
 #route-display {

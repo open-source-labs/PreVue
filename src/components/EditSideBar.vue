@@ -12,7 +12,7 @@ import { mapState } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
-  name: 'TestEditSidebar',
+  name: 'EditSidebar',
 
   components: {
     Icons
