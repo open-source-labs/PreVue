@@ -1,19 +1,20 @@
 <template>
   <div class="home-sidebar">
-    <section class="add-component-display">
-      <b-field label="Create a Component">
-        <b-input v-model="componentName" placeholder="Component name"></b-input>
-      </b-field>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+    <!-- <section class="add-component-display"> -->
+    <p class="panel-heading">Create a component</p>
+    <!-- <b-field label="Create a Component"> -->
+    <b-input v-model="componentName" placeholder="Component name"></b-input>
+    <!-- </b-field> -->
+    <Icons @getClickedIcon="addToSelectedElementList" />
 
-      <button
-        class="button is-primary"
-        @click="addComponent"
-        :disabled="!componentName"
-      >
-        Add Component
-      </button>
-    </section>
+    <button
+      class="button is-primary"
+      @click="addComponent"
+      :disabled="!componentName"
+    >
+      Add Component
+    </button>
+    <!-- </section> -->
   </div>
 </template>
 

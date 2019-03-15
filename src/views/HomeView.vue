@@ -1,7 +1,8 @@
 <template>
   <div class="columns">
-    <aside class="column is-2 aside hero is-fullheight">
+    <aside class="column is-2 aside hero is-fullheight" id="aside">
       <div class="column is-fullheight" id="route-display">
+        <p class="panel-heading">rodutes</p>
         <RouteDisplay></RouteDisplay>
       </div>
 
@@ -24,6 +25,7 @@ import ComponentDisplay from '@/components/ComponentDisplay.vue';
 import HomeSidebar from '@/components/HomeSidebar';
 import HomeQueue from '@/components/HomeQueue';
 import RouteDisplay from '@/components/RouteDisplay';
+
 export default {
   name: 'Home',
   components: {
@@ -45,6 +47,8 @@ export default {
 #route-display {
   background-color: #393f4d;
   height: 100%;
+  /* width: 100%; */
+  padding: 0;
 }
 
 #add-component {

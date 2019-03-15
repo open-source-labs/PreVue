@@ -120,7 +120,10 @@ export default {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
       }
-      fs.copySync('./../vue-boiler-plate', data);
+      fs.copySync(
+        '/Users/Hubert/Desktop/Codesmith/ProductionProject/dev/PreVue/vue-boiler-plate',
+        data
+      );
       for (let componentName in this.componentMap) {
         if (componentName === 'App')
           this.createComponentCode(
