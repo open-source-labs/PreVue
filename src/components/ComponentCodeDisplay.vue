@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p class="panel-heading">{{ clickedComponent }} Code Display</p>
     <div id="codeDisplay"></div>
   </div>
 </template>
@@ -74,5 +75,9 @@ export default {
 }
 .nested {
   white-space: pre;
+}
+
+#codeDisplay {
+  background-color: aqua;
 }
 </style>

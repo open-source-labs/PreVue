@@ -1,19 +1,21 @@
 <template>
-  <div class="routes-grid">
-    <p class="panel-heading">routes</p>
-    <a class="panel-block">
+  <table class="table is-fullwidth is-scrollable">
+    <a class="panel-block" v-for="item in name">
       <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
+        <i class="fas fa-location-arrow" aria-hidden="true"></i>
       </span>
-      route
+      {{ item }}
     </a>
-  </div>
+  </table>
 </template>
 
 <script>
 export default {
-  name: 'Routes'
+  name: 'Routes',
+  data() {
+    return {
+      name: ['test', 'test2', 'test3', 'test4', 'test5']
+    };
+  }
 };
 </script>
-
-<style></style>
