@@ -11,6 +11,8 @@ import 'vuetify/dist/vuetify.min.css';
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 
 import Buefy from 'buefy';
+// import { Tabs } from 'bootstrap-vue/es/components/tabs'
+// Vue.use(Tabs)
 // import 'buefy/dist/buefy.css';
 
 Vue.config.productionTip = false;

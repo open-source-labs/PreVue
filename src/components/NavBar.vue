@@ -56,7 +56,10 @@ export default {
   props: ['route'],
   methods: {
     addProject() {
-      this.$store.dispatch(addProject, 'test');
+      this.$store.dispatch(
+        addProject,
+        'untitled-' + this.$store.state.projectNumber
+      );
     },
     exportProject: function() {
       ipc.send('show-export-dialog');

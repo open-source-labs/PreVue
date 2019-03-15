@@ -40,6 +40,12 @@ const actions = {
   },
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
+  },
+  [types.changeActiveTab]: ({ commit }, payload) => {
+    commit(types.CHANGE_ACTIVE_TAB, payload);
+  },
+  [types.setComponentMap]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_MAP, payload);
   }
 };
 

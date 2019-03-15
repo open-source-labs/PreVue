@@ -11,7 +11,8 @@ import {
   GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
-  ADD_PROJECT
+  ADD_PROJECT,
+  CHANGE_ACTIVE_TAB
 } from './types';
 
 const mutations = {
@@ -30,7 +31,7 @@ const mutations = {
       }
     };
   },
-  [UPDATE_CHILDREN]: function(state, payload) {
+  [UPDATE_CHILDREN]: function (state, payload) {
     const { name, newArray } = payload;
     state.componentMap[name].children = newArray;
   },
@@ -70,6 +71,7 @@ const mutations = {
     state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {
+    console.log(payload);
     state.componentMap = payload;
   },
   [GET_PREV_STATE]: (state, payload) => {
@@ -85,6 +87,10 @@ const mutations = {
   },
   [ADD_PROJECT]: (state, payload) => {
     state.activeProjects.push(payload);
+    state.projectNumber++;
+  },
+  [CHANGE_ACTIVE_TAB]: (state, payload) => {
+    state.activeTab = payload;
   }
 };
 
