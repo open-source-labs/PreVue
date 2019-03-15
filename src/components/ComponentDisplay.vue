@@ -128,6 +128,12 @@ export default {
   border: 1px solid palegreen;
   /* background-color: #d4d4dc; */
 }
+
+.component-box {
+  color: white;
+  border: 1px solid white;
+}
+
 .vdr.active:before {
   outline-style: solid !important;
 }
