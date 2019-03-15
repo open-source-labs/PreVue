@@ -35,38 +35,39 @@ const mutations = {
     state.componentMap[name].children = newArray;
   },
   [ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
-    state.selectedElementList.push(payload);
+    state.selectedElementList.push({ text: payload, children: [] });
   },
   [SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
   },
   [SET_CLICKED_COMPONENT]: (state, payload) => {
     state.clickedComponent = payload;
-    state.clickedComponentToDelete = payload;
-    setTimeout(() => {
-      state.clickedComponentToDelete = '';
-      console.log('clickedComponentToDelete has been reset');
-    }, 2500);
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.clickedComponent;
-    state.componentMap[componentName].htmlList.push(elementName);
+    state.componentMap[componentName].htmlList.push({
+      text: elementName,
+      children: []
+    });
   },
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList = payload;
   },
   [DELETE_CLICKED_COMPONENT]: state => {
-    const { componentMap, clickedComponentToDelete: componentName } = state;
+    const { componentMap, clickedComponent: componentName } = state;
+
+    let newObj = Object.assign({}, componentMap);
+
+    delete newObj[componentName];
+
     console.log(componentMap);
-    for (let compKey in componentMap) {
-      let children = componentMap[compKey].children;
+    for (let compKey in newObj) {
+      let children = newObj[compKey].children;
       children.forEach((child, index) => {
-        if (componentName === child) this.$delete(children, index);
+        if (componentName === child) children.splice(index, 1);
       });
     }
-    delete componentMap[componentName];
-    let newObj = Object.assign({}, componentMap);
     state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {

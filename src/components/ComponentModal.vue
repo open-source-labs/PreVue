@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .v--modal {
   background-color: #424242 !important;
   display: flex;

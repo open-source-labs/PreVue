@@ -17,6 +17,6 @@ export default {
 <style scoped>
 .tree {
   background-color: white;
-  height: 100%;
+  height: 600px;
 }
 </style>

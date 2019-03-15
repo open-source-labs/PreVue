@@ -1,18 +1,20 @@
 <template>
   <div class="sidebar">
-    <h1 class="headline green--text text--accent-2">Edit {{ clickedComponent }}</h1>
+    <h1 class="headline green--text text--accent-2">
+      Edit {{ clickedComponent }}
+    </h1>
 
     <v-form class="px-3">
       <section>
-        <Icons @getClickedIcon="addToComponentElementList"/>
+        <Icons @getClickedIcon="addToComponentElementList" />
       </section>
     </v-form>
 
     <section>
       <!-- <button @click="consoleMap">Click</button> -->
       <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr>
-      <EditQueue/>
+      <hr />
+      <EditQueue />
       <v-select
         v-model="selectedChildren"
         :items="
@@ -72,5 +74,6 @@ export default {
   /* padding-right: 20px; */
   border-right: 1px solid;
   border-right-color: white;
+  color: black;
 }
 </style>

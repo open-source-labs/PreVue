@@ -14,7 +14,7 @@
         v-for="(element, index) in renderList"
         :key="index + Date.now()"
       >
-        <span>{{ element }}</span>
+        <span>{{ element.text }}</span>
 
         <v-icon class="delete-icon" @click="deleteElement(index)"
           >remove_circle_outline</v-icon

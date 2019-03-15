@@ -1,24 +1,18 @@
 <template>
   <div>
-    <draggable
-      v-model="renderList"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-    >
-      <div
-        class="white--text"
-        v-for="(element, index) in renderList"
-        :key="index + Date.now()"
-      >
-        {{ element }}
+    <Tree :data="renderList" draggable="draggable" cross-tree="cross-tree">
+      <div slot-scope="{ data }" class="white --text">
+        <template v-if="!data.isDragPlaceHolder">
+          <span>{{ data.text }}</span>
+        </template>
       </div>
-    </draggable>
+    </Tree>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
+import { DraggableTree } from 'vue-draggable-nested-tree';
 import { mapState, mapActions } from 'vuex';
 import { setClickedElementList } from '../store/types';
 
@@ -32,7 +26,6 @@ export default {
       type: Array
     }
   },
-
   computed: {
     ...mapState(['clickedComponent', 'componentMap']),
     renderList: {
@@ -48,7 +41,8 @@ export default {
     ...mapActions([setClickedElementList])
   },
   components: {
-    draggable
+    draggable,
+    Tree: DraggableTree
   }
 };
 </script>
