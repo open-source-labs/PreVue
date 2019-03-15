@@ -1,7 +1,9 @@
 <template>
   <div class="component-display">
     <ProjectTabs id="project-tabs"></ProjectTabs>
-    <div style="height: 800px; width: 800px; border: 1px solid red; position: relative;">
+    <div
+      style="height: 800px; width: 800px; border: 1px solid red; position: relative;"
+    >
       <VueDraggableResizable
         class-name="component-box"
         v-for="[componentName, componentData] in Object.entries(
@@ -17,32 +19,30 @@
         @dragging="onDrag"
         @resizing="onResize"
         :parent="true"
-        @dblclick.native="handleDoubleClick"
+        @dblclick.native="doubleClick"
       >
         <h3>{{ componentName }}</h3>
-        <br>
+        <br />
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
-      <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900"/>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
+// import LoadingBar from './LoadingBar.vue';
 import ProjectTabs from '@/components/ProjectTabs';
-import ComponentModal from './ComponentModal.vue';
 import { setComponentMap, getPrevState } from '../store/types';
 import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
+import ModalView from '@/views/ModalView';
+import { ModalProgrammatic } from 'buefy/dist/components/modal';
 
 export default {
   name: 'ComponentDisplay',
   components: {
     VueDraggableResizable,
-    // LoadingBar,
-    ComponentModal,
     ProjectTabs
   },
   data() {
@@ -95,14 +95,6 @@ export default {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-    getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-    },
     onActivated(componentName) {
       this.handleClick(componentName);
       this.abilityToDelete = true;
@@ -115,9 +107,11 @@ export default {
       console.log('CLICKED');
       this.$store.dispatch('setClickedComponent', componentName);
     },
-    handleDoubleClick() {
-      console.log('DOUBLE CLICKED');
-      this.$modal.show('demo-login');
+    doubleClick() {
+      ModalProgrammatic.open({
+        parent: this,
+        component: ModalView
+      });
     }
   }
 };
@@ -126,7 +120,6 @@ export default {
 <style scoped>
 .component-display {
   border: 1px solid palegreen;
-  /* background-color: #d4d4dc; */
 }
 
 .component-box {
@@ -141,5 +134,10 @@ export default {
 #componentName {
   color: #d4d4dc;
   border: 1px solid #d4d4dc;
+}
+
+.component-box {
+  color: white;
+  border: 1px solid salmon;
 }
 </style>

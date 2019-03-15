@@ -1,6 +1,6 @@
 <template>
   <section class="home-queue">
-    <p class="panel-heading">selected elements</p>
+    <p class="panel-heading">Selected Elements</p>
     <draggable
       v-model="renderList"
       group="people"
@@ -16,9 +16,7 @@
       >
         <span>{{ element.text }}</span>
 
-        <v-icon class="delete-icon" @click="deleteElement(index)"
-          >remove_circle_outline</v-icon
-        >
+        <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
     </draggable>
   </section>

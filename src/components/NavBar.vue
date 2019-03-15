@@ -28,7 +28,8 @@
             EXPORT YOUR PROJECT
           </button>
           <span>
-            <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
+            <!-- <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon> -->
+            <button class="save-icon" @click="saveProjectJSON"></button>
             <span>SAVE</span>
           </span>
           <button class="white--text" @click="openProjectJSON">OPEN</button>
@@ -120,7 +121,10 @@ export default {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
       }
-      fs.copySync('./../vue-boiler-plate', data);
+      fs.copySync(
+        '/Users/Hubert/Desktop/Codesmith/ProductionProject/dev/PreVue/vue-boiler-plate',
+        data
+      );
       for (let componentName in this.componentMap) {
         if (componentName === 'App')
           this.createComponentCode(

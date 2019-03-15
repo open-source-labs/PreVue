@@ -1,11 +1,6 @@
 <template>
   <div class="route-display">
     <Routes></Routes>
-    <div class="panel-block">
-      <button class="button is-link is-outlined is-fullwidth">
-        delete all routes
-      </button>
-    </div>
   </div>
 </template>
 
@@ -23,7 +18,9 @@ export default {
 <style scoped>
 .route-display {
   border: 1px solid white;
-  background-color: #d4d4dc;
+  overflow: auto;
+  height: 60%;
+  padding: 0;
 }
 
 i:hover {
