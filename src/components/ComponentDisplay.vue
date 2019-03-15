@@ -14,12 +14,12 @@
         :y="componentData.y"
         :w="componentData.w"
         :h="componentData.h"
-        id="componentName"
-        @activated="handleClick(componentName)"
-        @dblclick.native="doubleClick"
+        @activated="onActivated(componentName)"
+        @deactivated="onDeactivated"
         @dragging="onDrag"
         @resizing="onResize"
         :parent="true"
+        @dblclick.native="handleDoubleClick"
       >
         <h3>{{ componentName }}</h3>
         <br />
@@ -49,10 +49,10 @@ export default {
     return {
       lastTimeClicked: Date.now(),
       dialog: false,
-      showModal: false
+      showModal: false,
+      abilityToDelete: false
     };
   },
-
   created() {
     localforage
       .getItem('state')
@@ -60,6 +60,18 @@ export default {
         this.$store.dispatch(getPrevState, data);
       })
       .then(data => console.log('retrieved previous data', data));
+  },
+  mounted() {
+    window.addEventListener('keyup', event => {
+      if (event.key === 'Backspace') {
+        console.log('clickedcomponent', this.$store.state.clickedComponent);
+        if (this.abilityToDelete && this.$store.state.clickedComponent) {
+          console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
+          this.$store.dispatch('deleteClickedComponent');
+          this.abilityToDelete = false;
+        }
+      }
+    });
   },
   computed: {
     ...mapState(['componentMap', 'clickedComponent']),
@@ -83,23 +95,17 @@ export default {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-
-    getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+    onActivated(componentName) {
+      this.handleClick(componentName);
+      this.abilityToDelete = true;
+    },
+    onDeactivated() {
+      this.abilityToDelete = false;
     },
     handleClick(componentName) {
+      console.log('componentName', componentName);
       console.log('CLICKED');
       this.$store.dispatch('setClickedComponent', componentName);
-      if (Date.now() - this.lastTimeClicked < 200)
-        this.doubleClick(componentName);
-      else {
-        this.lastTimeClicked = Date.now();
-      }
     },
     doubleClick() {
       ModalProgrammatic.open({

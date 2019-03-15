@@ -29,7 +29,6 @@ export default {
       selectedChildren: []
     };
   },
-
   components: {
     Icons
   },

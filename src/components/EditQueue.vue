@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="panel-heading">selected elements</p>
+    <!-- <p class="panel-heading">selected elements</p>
     <draggable
       v-model="renderList"
       group="people"
@@ -16,12 +16,20 @@
 
         <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
-    </draggable>
+    </draggable>-->
+    <Tree :data="renderList" draggable="draggable" cross-tree="cross-tree">
+      <div slot-scope="{ data }" class="white --text">
+        <template v-if="!data.isDragPlaceHolder">
+          <span>{{ data.text }}</span>
+        </template>
+      </div>
+    </Tree>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
+import { DraggableTree } from 'vue-draggable-nested-tree';
 import { mapState, mapActions } from 'vuex';
 import { setClickedElementList } from '../store/types';
 
@@ -35,7 +43,6 @@ export default {
       type: Array
     }
   },
-
   computed: {
     ...mapState(['clickedComponent', 'componentMap']),
     renderList: {
@@ -51,7 +58,8 @@ export default {
     ...mapActions([setClickedElementList])
   },
   components: {
-    draggable
+    draggable,
+    Tree: DraggableTree
   }
 };
 </script>

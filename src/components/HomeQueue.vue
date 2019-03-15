@@ -14,7 +14,7 @@
         v-for="(element, index) in renderList"
         :key="index + Date.now()"
       >
-        <span>{{ element }}</span>
+        <span>{{ element.text }}</span>
 
         <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
