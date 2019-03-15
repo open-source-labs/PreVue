@@ -13,6 +13,12 @@ export const DELETE_FROM_QUEUE = 'DELETE_FROM_QUEUE';
 export const DELETE_SELECTED_ELEMENT = 'DELETE_SELECTED_ELEMENT';
 export const SET_STATE = 'SET_STATE';
 export const ADD_PROJECT = 'ADD_PROJECT';
+export const ADD_CHILD_TO_ROUTE = 'ADD_CHILD_TO_ROUTE';
+export const ADD_ROUTE = 'ADD_ROUTE';
+export const SET_ACTIVE_COMPONENT = 'SET_ACTIVE_COMPONENT';
+export const SET_ACTIVE_PROJECT = 'SET_ACTIVE_PROJECT';
+export const SET_ACTIVE_ROUTE = 'SET_ACTIVE_ROUTE';
+export const INCREMENT_PROJECT_ID = 'INCREMENT_PROJECT_ID';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -28,3 +34,7 @@ export const deleteFromQueue = 'deleteFromQueue';
 export const deleteSelectedElement = 'deleteSelectedElement';
 export const setState = 'setState';
 export const addProject = 'addProject';
+export const addRoute = 'addRoute';
+export const setActiveProject = 'setActiveProject';
+export const setActiveRoute = 'setActiveRoute';
+export const incrementProjectId = 'incrementProjectIds';

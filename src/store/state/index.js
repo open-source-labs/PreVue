@@ -16,11 +16,22 @@ const newState = {
     }
   },
   routes: {
-    HomeView: []
+    HomeView: [
+      {
+        componentName: 'Mug',
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        htmlList: [],
+        children: []
+      }
+    ]
   },
   activeComponent: '',
   activeProject: '',
   activeRoute: '',
+  projectId: 1,
   selectedElementList: [],
   clickedComponent: '',
   clickedComponentToDelete: '',
