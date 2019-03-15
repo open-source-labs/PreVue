@@ -28,7 +28,8 @@
             EXPORT YOUR PROJECT
           </button>
           <span>
-            <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
+            <!-- <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon> -->
+            <button class="save-icon" @click="saveProjectJSON"></button>
             <span>SAVE</span>
           </span>
           <button class="white--text" @click="openProjectJSON">OPEN</button>

@@ -4,8 +4,6 @@
     <div
       style="height: 800px; width: 800px; border: 1px solid red; position: relative;"
     >
-      <button @click="showMap">SEE COMPONENT MAP</button>
-
       <VueDraggableResizable
         class-name="component-box"
         v-for="[componentName, componentData] in Object.entries(
@@ -28,26 +26,23 @@
         X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
         {{ componentData.w }} / Height: {{ componentData.h }}
       </VueDraggableResizable>
-      <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900" />
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
-import LoadingBar from './LoadingBar.vue';
+// import LoadingBar from './LoadingBar.vue';
 import ProjectTabs from '@/components/ProjectTabs';
-import ComponentModal from './ComponentModal.vue';
 import { setComponentMap, getPrevState } from '../store/types';
 import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
+import ModalView from '@/views/ModalView';
+import { ModalProgrammatic } from 'buefy/dist/components/modal';
 
 export default {
   name: 'ComponentDisplay',
   components: {
     VueDraggableResizable,
-    // LoadingBar,
-    ComponentModal,
     ProjectTabs
   },
   data() {
@@ -88,12 +83,7 @@ export default {
       this.componentMap[this.clickedComponent].x = x;
       this.componentMap[this.clickedComponent].y = y;
     },
-    onDragStop: function(x, y) {
-      // console.log('called');
-      // console.log(x, y);
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
-    },
+
     getRandomColor() {
       var letters = '0123456789ABCDEF';
       var color = '#';
@@ -101,9 +91,6 @@ export default {
         color += letters[Math.floor(Math.random() * 16)];
       }
       return color;
-    },
-    showMap() {
-      console.log(this.componentMap);
     },
     handleClick(componentName) {
       console.log('CLICKED');
@@ -115,8 +102,10 @@ export default {
       }
     },
     doubleClick() {
-      console.log('DOUBLE CLICKED');
-      this.$modal.show('demo-login');
+      ModalProgrammatic.open({
+        parent: this,
+        component: ModalView
+      });
     }
   }
 };
@@ -125,7 +114,6 @@ export default {
 <style scoped>
 .component-display {
   border: 1px solid palegreen;
-  /* background-color: #d4d4dc; */
 }
 .vdr.active:before {
   outline-style: solid !important;

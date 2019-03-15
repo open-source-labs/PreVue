@@ -2,7 +2,7 @@
   <div class="columns">
     <aside class="column is-2 aside hero is-fullheight" id="aside">
       <div class="column is-fullheight" id="route-display">
-        <p class="panel-heading">rodutes</p>
+        <p class="panel-heading">Routes</p>
         <RouteDisplay></RouteDisplay>
       </div>
 
