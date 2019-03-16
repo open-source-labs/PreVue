@@ -1,6 +1,6 @@
 <template>
   <section class="home-queue">
-    <p class="panel-heading">selected elements</p>
+    <p class="panel-heading">Selected Elements</p>
     <draggable
       v-model="renderList"
       group="people"
@@ -9,16 +9,10 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <li
-        class="list-group-item"
-        v-for="(element, index) in renderList"
-        :key="index + Date.now()"
-      >
-        <span>{{ element }}</span>
-
-        <v-icon class="delete-icon" @click="deleteElement(index)"
-          >remove_circle_outline</v-icon
-        >
+      <li class="list-group-item" v-for="(element, index) in renderList" :key="index + Date.now()">
+        <span>{{ element.text }}</span>
+        
+        <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
     </draggable>
   </section>
@@ -65,6 +59,8 @@ export default {
 <style scoped>
 .home-queue {
   border: 1px solid aqua;
+  background-color: #393f4d;
+  height: 100%;
 }
 li {
   list-style-type: none;

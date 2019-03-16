@@ -14,7 +14,13 @@ export const DELETE_SELECTED_ELEMENT = 'DELETE_SELECTED_ELEMENT';
 export const SET_STATE = 'SET_STATE';
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB';
-export const CHANGE_TAB_NAME = 'CHANGE_TAB_NAME';
+export const ADD_COMPONENT_TO_ACTIVE_ROUTE = 'ADD_COMPONENT_TO_ACTIVE_ROUTE';
+export const ADD_ROUTE = 'ADD_ROUTE';
+export const SET_ACTIVE_COMPONENT = 'SET_ACTIVE_COMPONENT';
+export const SET_ACTIVE_PROJECT = 'SET_ACTIVE_PROJECT';
+export const SET_ACTIVE_ROUTE = 'SET_ACTIVE_ROUTE';
+export const INCREMENT_PROJECT_ID = 'INCREMENT_PROJECT_ID';
+export const SET_ROUTES = 'SET_ROUTES';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -31,4 +37,8 @@ export const deleteSelectedElement = 'deleteSelectedElement';
 export const setState = 'setState';
 export const addProject = 'addProject';
 export const changeActiveTab = 'changeActiveTab';
-export const changeTabName = 'changeTabName';
+export const addRoute = 'addRoute';
+export const setActiveComponent = 'setActiveComponent';
+export const setActiveRoute = 'setActiveRoute';
+export const incrementProjectId = 'incrementProjectId';
+export const setRoutes = 'setRoutes';

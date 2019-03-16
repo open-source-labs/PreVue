@@ -28,8 +28,8 @@
             EXPORT YOUR PROJECT
           </button>
           <span>
-            <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon>
-            <span>SAVE</span>
+            <!-- <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon> -->
+            <button class="save-icon" @click="saveProjectJSON">SAVE</button>
           </span>
           <button class="white--text" @click="openProjectJSON">OPEN</button>
           <i class="fas fa-save fa-lg"></i>
@@ -127,7 +127,10 @@ export default {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
       }
-      fs.copySync('./../vue-boiler-plate', data);
+      fs.copySync(
+        '/Users/Hubert/Desktop/Codesmith/ProductionProject/dev/PreVue/vue-boiler-plate',
+        data
+      );
       for (let componentName in this.componentMap) {
         if (componentName === 'App')
           this.createComponentCode(
@@ -145,9 +148,7 @@ export default {
     });
     ipc.on('save-json-location', (event, data) => {
       //delete original key from local forage
-      let deleteKey = this.$store.state.activeProjects[
-        this.$store.state.activeTab
-      ];
+      let deleteKey = this.$store.state.projects[this.$store.state.activeTab];
       localforage
         .removeItem(deleteKey)
         .then(function() {
@@ -160,7 +161,7 @@ export default {
       let fileName = this.parseFileName(data);
       // this.$store.dispatch(changeTabName, fileName);
       this.$set(
-        this.$store.state.activeProjects,
+        this.$store.state.projects,
         this.$store.state.activeTab,
         fileName
       );

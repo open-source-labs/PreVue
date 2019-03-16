@@ -1,35 +1,34 @@
 <template>
-  <b-tabs type="is-boxed" id="project-tabs" @change="changeTab">
-    <b-tab-item
-      class="has-background-white"
-      id="tab-item"
-      v-for="(label, idx) in activeProjects"
-      :label="label"
-      :key="idx"
-    ></b-tab-item>
-  </b-tabs>
+  <div id="project-tabs">
+    <b-tabs type="is-boxed" @change="changeTab">
+      <b-tab-item
+        class="has-background-white tab-item"
+        v-for="(label, idx) in projects"
+        :label="label"
+        :key="idx"
+      ></b-tab-item>
+    </b-tabs>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import { setComponentMap, changeActiveTab } from '../store/types';
+import { setComponentMap, changeActiveTab, setRoutes } from '../store/types';
 import localforage from 'localforage';
 
 export default {
   name: 'ProjectTabs',
-  computed: mapState(['activeProjects']),
+  computed: mapState(['projects']),
   methods: {
     changeTab(idx) {
       let currTab = this.$store.state.activeTab;
-      console.log(this.activeProjects[currTab], ' was clicked');
       //STORE PREV TAb IN LOCAL FORAGE IF NOT EXIST
-      this.saveProjectToSession(this.activeProjects[currTab]);
-      console.log('SAVED', this.activeProjects[currTab], ' TO SESSION');
+      this.saveProjectToSession(this.projects[currTab]);
 
       this.$store.dispatch(changeActiveTab, idx);
       //RESET COMPONENT MAP IF NEW TAB PROJECT DOESN'T EXIST IN LOCALFORAGE
       localforage
-        .getItem(this.activeProjects[idx])
+        .getItem(this.projects[idx])
         .then(value => {
           if (!value) {
             this.$store.dispatch(setComponentMap, {
@@ -37,9 +36,13 @@ export default {
                 children: []
               }
             });
+            this.$store.dispatch(setRoutes, {
+              HomeView: []
+            });
           } else {
             console.log(value);
             this.$store.dispatch(setComponentMap, value.componentMap);
+            this.$store.dispatch(setRoutes, value.routes);
           }
         })
         .catch(err => {

@@ -9,11 +9,17 @@ const newState = {
       children: []
     }
   },
+  routes: {
+    HomeView: []
+  },
+
+  projects: ['Untitled-1'],
+  activeRoute: 'HomeView',
+  activeComponent: '',
   selectedElementList: [],
   clickedComponent: '',
   clickedComponentToDelete: '',
   projectNumber: 2,
-  activeProjects: ['untitled-1'],
   activeTab: 0
 };
 

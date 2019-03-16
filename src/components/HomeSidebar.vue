@@ -1,25 +1,24 @@
 <template>
   <div class="home-sidebar">
-    <section class="add-component-display">
-      <b-field label="Create a Component">
-        <b-input v-model="componentName" placeholder="Component name"></b-input>
-      </b-field>
-      <Icons @getClickedIcon="addToSelectedElementList" />
+    <p class="panel-heading">Create a component</p>
 
-      <button
-        class="button is-primary"
-        @click="addComponent"
-        :disabled="!componentName"
-      >
-        Add Component
-      </button>
-    </section>
+    <b-input v-model="componentName" placeholder="Component name"></b-input>
+
+    <Icons @getClickedIcon="addToSelectedElementList" />
+
+    <button
+      class="button is-primary"
+      @click="handleClick"
+      :disabled="!componentName"
+    >
+      Add Component
+    </button>
   </div>
 </template>
 
 <script>
 import Icons from './Icons';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
@@ -27,10 +26,9 @@ export default {
   data: function() {
     return {
       componentName: '',
-      selectedChildren: []
+      children: []
     };
   },
-
   components: {
     Icons
   },
@@ -38,28 +36,25 @@ export default {
     ...mapState(['componentMap', 'selectedElementList'])
   },
   methods: {
-    addComponent() {
-      const payload = {
+    ...mapActions(['registerComponent', 'addToSelectedElementList']),
+    handleClick() {
+      const component = {
         componentName: this.componentName,
         x: 0,
         y: 0,
         w: 200,
         h: 200,
         htmlList: this.selectedElementList,
-        children: this.selectedChildren
+
+        children: this.children
       };
 
-      this.$store
-        .dispatch(types.registerComponent, payload)
+      this.registerComponent(component)
         .then(() => {
           this.componentName = '';
-          this.selectedChildren = [];
+          this.children = [];
         })
         .catch(err => console.log(err));
-    },
-
-    addToSelectedElementList(elementName) {
-      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };
