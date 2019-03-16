@@ -98,24 +98,29 @@ function showExportDialog(event) {
   );
 }
 
-function showSaveJsonDialog(event) {
-  dialog.showSaveDialog(
-    {
-      title: 'Choose location to save JSON object in',
-      defaultPath: app.getPath('desktop'),
-      message: 'Choose location to save JSON object in',
-      nameFieldLabel: 'Application State Name',
-      filters: [
-        {
-          name: 'JSON Files',
-          extensions: ['json']
-        }
-      ]
-    },
-    result => {
-      event.sender.send('json-location', result);
-    }
-  );
+function showSaveJsonDialog(event, result) {
+  if (!result) {
+    dialog.showSaveDialog(
+      {
+        title: 'Choose location to save JSON object in',
+        defaultPath: app.getPath('desktop'),
+        message: 'Choose location to save JSON object in',
+        nameFieldLabel: 'Application State Name',
+        filters: [
+          {
+            name: 'JSON Files',
+            extensions: ['json']
+          }
+        ]
+      },
+      result => {
+        event.sender.send('json-location', result);
+        console.log('result', result);
+      }
+    );
+  } else {
+    event.sender.send('json-location', result);
+  }
 }
 
 ipc.on('show-open-dialog', event => {

@@ -11,7 +11,8 @@ import {
   GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
-  ADD_PROJECT
+  ADD_PROJECT,
+  DELETE_FROM_COMPONENT_HTML_LIST
 } from './types';
 
 const mutations = {
@@ -50,6 +51,27 @@ const mutations = {
       children: []
     });
   },
+  [DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
+    const componentName = state.clickedComponent;
+    const htmlList = state.componentMap[componentName].htmlList;
+    console.log(htmlList);
+
+    function parseAndDelete(htmlList) {
+      htmlList.forEach((element, index) => {
+        if (element.children.length > 0) {
+          parseAndDelete(element.children);
+        }
+        if (id === element._id) {
+          htmlList.splice(index, 1);
+        }
+      });
+
+      let copied = htmlList.slice(0);
+      state.componentMap[componentName].htmlList = copied;
+    }
+    parseAndDelete(htmlList);
+  },
+
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList = payload;

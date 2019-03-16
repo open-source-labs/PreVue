@@ -33,7 +33,6 @@
           </span>
           <button class="white--text" @click="openProjectJSON">OPEN</button>
           <i class="fas fa-save fa-lg"></i>
-
           <i class="fas fa-file-export fa-lg"></i>
           <i class="fas fa-folder-plus fa-lg" @click="addProject"></i>
         </div>
@@ -50,6 +49,15 @@ import { addProject, setState } from '../store/types';
 import localforage from 'localforage';
 
 const ipc = require('electron').ipcRenderer;
+const Mousetrap = require('mousetrap');
+
+// hot key commands
+Mousetrap.bind(['command+s', 'ctrl+s'], () => {
+  ipc.send('show-save-json-dialog');
+});
+Mousetrap.bind(['command+o', 'ctr+o'], () => {
+  ipc.send('show-open-dialog');
+});
 
 export default {
   name: 'NavBar',

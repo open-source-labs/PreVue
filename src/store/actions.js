@@ -40,6 +40,9 @@ const actions = {
   },
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
+  },
+  [types.deleteFromComponentHtmlList]: ({ commit }, payload) => {
+    commit(types.DELETE_FROM_COMPONENT_HTML_LIST, payload);
   }
 };
 

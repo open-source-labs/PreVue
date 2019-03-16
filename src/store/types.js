@@ -13,6 +13,8 @@ export const DELETE_FROM_QUEUE = 'DELETE_FROM_QUEUE';
 export const DELETE_SELECTED_ELEMENT = 'DELETE_SELECTED_ELEMENT';
 export const SET_STATE = 'SET_STATE';
 export const ADD_PROJECT = 'ADD_PROJECT';
+export const DELETE_FROM_COMPONENT_HTML_LIST =
+  'DELETE_FROM_COMPONENT_HTML_LIST';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -28,3 +30,4 @@ export const deleteFromQueue = 'deleteFromQueue';
 export const deleteSelectedElement = 'deleteSelectedElement';
 export const setState = 'setState';
 export const addProject = 'addProject';
+export const deleteFromComponentHtmlList = 'deleteFromComponentHtmlList';

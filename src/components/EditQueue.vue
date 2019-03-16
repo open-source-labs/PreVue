@@ -4,6 +4,9 @@
       <div slot-scope="{ data }" class="white --text">
         <template v-if="!data.isDragPlaceHolder">
           <span>{{ data.text }}</span>
+          <v-icon class="delete-icon" @click="deleteElement(data._id)"
+            >remove_circle_outline</v-icon
+          >
         </template>
       </div>
     </Tree>
@@ -14,7 +17,10 @@
 import draggable from 'vuedraggable';
 import { DraggableTree } from 'vue-draggable-nested-tree';
 import { mapState, mapActions } from 'vuex';
-import { setClickedElementList } from '../store/types';
+import {
+  setClickedElementList,
+  deleteFromComponentHtmlList
+} from '../store/types';
 
 export default {
   name: 'EditQueue',
@@ -38,7 +44,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions([setClickedElementList])
+    ...mapActions([setClickedElementList]),
+    getIndex() {
+      this.index++;
+    },
+    deleteElement(id) {
+      //console.log(element);
+      this.$store.dispatch(deleteFromComponentHtmlList, id);
+    }
   },
   components: {
     draggable,
@@ -46,5 +59,8 @@ export default {
   }
 };
 </script>
-
-<style></style>
+<style>
+.list-group-item {
+  display: inline;
+}
+</style>
