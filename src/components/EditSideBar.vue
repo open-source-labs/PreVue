@@ -25,6 +25,7 @@
         label="Select"
         multiple
         chips
+        :deletable-chips="true"
         hint="Select child components"
         persistent-hint
       ></v-select>
