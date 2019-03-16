@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="columns">
-      <div id="project-tabs-container" class="column is-2 is-offset-2"></div>
+      <div id="project-tabs-container" class="column is-8 is-offset-2">
+        <ProjectTabs />
+      </div>
     </div>
     <div class="columns">
       <aside
@@ -37,6 +39,7 @@ import ComponentDisplay from '@/components/ComponentDisplay.vue';
 import HomeSidebar from '@/components/HomeSidebar';
 import HomeQueue from '@/components/HomeQueue';
 import RouteDisplay from '@/components/RouteDisplay';
+import ProjectTabs from '@/components/ProjectTabs';
 
 export default {
   name: 'Home',
@@ -44,7 +47,8 @@ export default {
     ComponentDisplay,
     HomeSidebar,
     HomeQueue,
-    RouteDisplay
+    RouteDisplay,
+    ProjectTabs
   }
 };
 </script>

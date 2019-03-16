@@ -6,14 +6,14 @@ const newState = {
   htmlElementMap,
   componentMap: {
     App: {
-      children: []
+      children: ['HomeView']
     }
   },
   routes: {
     HomeView: []
   },
 
-  projects: ['Untitled-1'],
+  projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
