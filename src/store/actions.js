@@ -15,6 +15,7 @@ const actions = {
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
+    console.log('payload', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.setClickedComponent]: ({ commit }, payload) => {
@@ -42,8 +43,11 @@ const actions = {
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
   },
-  [types.setActiveProject]: ({ commit }, payload) => {
-    commit(types.SET_ACTIVE_PROJECT, payload);
+  [types.changeActiveTab]: ({ commit }, payload) => {
+    commit(types.CHANGE_ACTIVE_TAB, payload);
+  },
+  [types.setComponentMap]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_MAP, payload);
   },
   [types.addRoute]: ({ commit }, payload) => {
     commit(types.ADD_ROUTE, payload);
@@ -54,6 +58,9 @@ const actions = {
   },
   [types.setActiveComponent]: ({ commit }, payload) => {
     commit(types.SET_ACTIVE_COMPONENT, payload);
+  },
+  [types.setRoutes]: ({ commit }, payload) => {
+    commit(types.SET_ROUTES, payload);
   }
 };
 

@@ -12,12 +12,12 @@ import {
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
   ADD_PROJECT,
+  CHANGE_ACTIVE_TAB,
   ADD_COMPONENT_TO_ACTIVE_ROUTE,
   ADD_ROUTE,
   SET_ACTIVE_COMPONENT,
-  SET_ACTIVE_PROJECT,
   SET_ACTIVE_ROUTE,
-  INCREMENT_PROJECT_ID
+  SET_ROUTES
 } from './types';
 
 const mutations = {
@@ -77,6 +77,7 @@ const mutations = {
     state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {
+    console.log(payload);
     state.componentMap = payload;
   },
   [GET_PREV_STATE]: (state, payload) => {
@@ -91,10 +92,12 @@ const mutations = {
     Object.assign(state, payload);
   },
   [ADD_PROJECT]: (state, payload) => {
+    console.log('PUSHING ', payload);
     state.projects.push(payload);
+    state.projectNumber++;
   },
-  [SET_ACTIVE_PROJECT]: (state, payload) => {
-    state.activeProject = payload;
+  [CHANGE_ACTIVE_TAB]: (state, payload) => {
+    state.activeTab = payload;
   },
   [ADD_ROUTE]: (state, payload) => {
     state.routes = {
@@ -110,6 +113,9 @@ const mutations = {
   },
   [SET_ACTIVE_COMPONENT]: (state, payload) => {
     state.activeComponent = payload;
+  },
+  [SET_ROUTES]: (state, payload) => {
+    state.routes = Object.assign({}, payload);
   }
 };
 

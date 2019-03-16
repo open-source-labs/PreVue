@@ -10,27 +10,17 @@ const newState = {
     }
   },
   routes: {
-    HomeView: [
-      {
-        componentName: 'App',
-        x: 0,
-        y: 0,
-        w: 200,
-        h: 200,
-        htmlList: [],
-        children: []
-      }
-    ]
+    HomeView: []
   },
 
-  projects: ['Untitled-1', 'Untitled-2'],
-  activeProject: 'Untitled-1',
+  projects: ['Untitled-1'],
   activeRoute: 'HomeView',
   activeComponent: '',
-  projectId: 2,
   selectedElementList: [],
   clickedComponent: '',
-  clickedComponentToDelete: ''
+  clickedComponentToDelete: '',
+  projectNumber: 2,
+  activeTab: 0
 };
 
 export default newState;

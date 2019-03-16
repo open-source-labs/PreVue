@@ -1,35 +1,38 @@
 <template>
   <div>
     <div class="columns">
-      <div id="project-tabs-container" class="column is-2 is-offset-2">
-        <ProjectTabs/>
-      </div>
+      <div id="project-tabs-container" class="column is-2 is-offset-2"></div>
     </div>
     <div class="columns">
-      <aside id="left-side-container" class="column is-2 aside hero is-fullheight">
+      <aside
+        id="left-side-container"
+        class="column is-2 aside hero is-fullheight"
+      >
         <div id="route-display-container" class="column is-fullheight">
           <p class="panel-heading">Routes</p>
-          <RouteDisplay/>
+          <RouteDisplay />
         </div>
 
         <div id="create-component-container" class="column is-fullheight">
-          <HomeSidebar/>
+          <HomeSidebar />
         </div>
       </aside>
 
       <div id="center-container" class="column is-8 hero is-fullheight">
-        <ComponentDisplay/>
+        <ComponentDisplay />
       </div>
 
-      <div id="right-side-container" class="column is-2 aside hero is-fullheight">
-        <HomeQueue/>
+      <div
+        id="right-side-container"
+        class="column is-2 aside hero is-fullheight"
+      >
+        <HomeQueue />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProjectTabs from '@/components/ProjectTabs';
 import ComponentDisplay from '@/components/ComponentDisplay.vue';
 import HomeSidebar from '@/components/HomeSidebar';
 import HomeQueue from '@/components/HomeQueue';
@@ -41,8 +44,7 @@ export default {
     ComponentDisplay,
     HomeSidebar,
     HomeQueue,
-    RouteDisplay,
-    ProjectTabs
+    RouteDisplay
   }
 };
 </script>
