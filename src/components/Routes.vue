@@ -1,21 +1,33 @@
 <template>
   <table class="table is-fullwidth is-scrollable">
-    <a class="panel-block" v-for="item in name">
+    <a
+      class="panel-block"
+      v-for="route in Object.keys(routes)"
+      :key="route"
+      @click="handleClick(route)"
+    >
       <span class="panel-icon">
         <i class="fas fa-location-arrow" aria-hidden="true"></i>
       </span>
-      {{ item }}
+      {{ route }}
     </a>
   </table>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'Routes',
-  data() {
-    return {
-      name: ['test', 'test2', 'test3', 'test4', 'test5']
-    };
+  computed: {
+    ...mapState(['routes'])
+  },
+  methods: {
+    ...mapActions(['setActiveRoute']),
+    handleClick(route) {
+      console.log('ok');
+      this.setActiveRoute(route);
+    }
   }
 };
 </script>

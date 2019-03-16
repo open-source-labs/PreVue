@@ -1,20 +1,21 @@
 <template>
-  <b-tabs type="is-boxed" id="project-tabs" @change="consoleLog">
-    <b-tab-item
-      class="has-background-white"
-      id="tab-item"
-      v-for="(label, idx) in activeProjects"
-      :label="label"
-      :key="idx"
-    ></b-tab-item>
-  </b-tabs>
+  <div id="project-tabs">
+    <b-tabs type="is-boxed" @change="consoleLog">
+      <b-tab-item
+        class="has-background-white tab-item"
+        v-for="(label, idx) in projects"
+        :label="label"
+        :key="idx"
+      ></b-tab-item>
+    </b-tabs>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 export default {
   name: 'ProjectTabs',
-  computed: mapState(['activeProjects']),
+  computed: mapState(['projects']),
   methods: {
     consoleLog(idx) {
       console.log(idx);

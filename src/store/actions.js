@@ -5,6 +5,7 @@ const actions = {
     const { componentName } = payload;
     if (!state.componentMap[componentName]) {
       commit(types.ADD_TO_COMPONENT_MAP, payload);
+      commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE, payload);
       commit(types.SET_SELECTED_ELEMENT_LIST, []);
     }
   },
@@ -40,6 +41,19 @@ const actions = {
   },
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
+  },
+  [types.setActiveProject]: ({ commit }, payload) => {
+    commit(types.SET_ACTIVE_PROJECT, payload);
+  },
+  [types.addRoute]: ({ commit }, payload) => {
+    commit(types.ADD_ROUTE, payload);
+    commit(types.SET_ACTIVE_ROUTE, payload);
+  },
+  [types.setActiveRoute]: ({ commit }, payload) => {
+    commit(types.SET_ACTIVE_ROUTE, payload);
+  },
+  [types.setActiveComponent]: ({ commit }, payload) => {
+    commit(types.SET_ACTIVE_COMPONENT, payload);
   }
 };
 
