@@ -11,7 +11,13 @@ import {
   GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
-  ADD_PROJECT
+  ADD_PROJECT,
+  ADD_COMPONENT_TO_ACTIVE_ROUTE,
+  ADD_ROUTE,
+  SET_ACTIVE_COMPONENT,
+  SET_ACTIVE_PROJECT,
+  SET_ACTIVE_ROUTE,
+  INCREMENT_PROJECT_ID
 } from './types';
 
 const mutations = {
@@ -85,7 +91,25 @@ const mutations = {
     Object.assign(state, payload);
   },
   [ADD_PROJECT]: (state, payload) => {
-    state.activeProjects.push(payload);
+    state.projects.push(payload);
+  },
+  [SET_ACTIVE_PROJECT]: (state, payload) => {
+    state.activeProject = payload;
+  },
+  [ADD_ROUTE]: (state, payload) => {
+    state.routes = {
+      ...state.routes,
+      [payload]: []
+    };
+  },
+  [SET_ACTIVE_ROUTE]: (state, payload) => {
+    state.activeRoute = payload;
+  },
+  [ADD_COMPONENT_TO_ACTIVE_ROUTE]: (state, payload) => {
+    state.routes[state.activeRoute].push(payload);
+  },
+  [SET_ACTIVE_COMPONENT]: (state, payload) => {
+    state.activeComponent = payload;
   }
 };
 

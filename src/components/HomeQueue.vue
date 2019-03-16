@@ -9,13 +9,9 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <li
-        class="list-group-item"
-        v-for="(element, index) in renderList"
-        :key="index + Date.now()"
-      >
+      <li class="list-group-item" v-for="(element, index) in renderList" :key="index + Date.now()">
         <span>{{ element.text }}</span>
-
+        
         <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
       </li>
     </draggable>
@@ -63,6 +59,8 @@ export default {
 <style scoped>
 .home-queue {
   border: 1px solid aqua;
+  background-color: #393f4d;
+  height: 100%;
 }
 li {
   list-style-type: none;

@@ -9,13 +9,13 @@
       <span class="panel-icon">
         <i class="fas fa-location-arrow" aria-hidden="true"></i>
       </span>
-      {{route}}
+      {{ route }}
     </a>
   </table>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Routes',
@@ -23,7 +23,11 @@ export default {
     ...mapState(['routes'])
   },
   methods: {
-    handleClick(route) {}
+    ...mapActions(['setActiveRoute']),
+    handleClick(route) {
+      console.log('ok');
+      this.setActiveRoute(route);
+    }
   }
 };
 </script>

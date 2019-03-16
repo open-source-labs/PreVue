@@ -6,19 +6,13 @@ const newState = {
   htmlElementMap,
   componentMap: {
     App: {
-      componentName: 'App',
-      x: 0,
-      y: 0,
-      w: 200,
-      h: 200,
-      htmlList: [],
       children: []
     }
   },
   routes: {
     HomeView: [
       {
-        componentName: 'Mug',
+        componentName: 'App',
         x: 0,
         y: 0,
         w: 200,
@@ -28,14 +22,15 @@ const newState = {
       }
     ]
   },
+
+  projects: ['Untitled-1', 'Untitled-2'],
+  activeProject: 'Untitled-1',
+  activeRoute: 'HomeView',
   activeComponent: '',
-  activeProject: '',
-  activeRoute: '',
-  projectId: 1,
+  projectId: 2,
   selectedElementList: [],
   clickedComponent: '',
-  clickedComponentToDelete: '',
-  activeProjects: ['Project1']
+  clickedComponentToDelete: ''
 };
 
 export default newState;

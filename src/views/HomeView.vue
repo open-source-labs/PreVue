@@ -1,26 +1,35 @@
 <template>
-  <div class="columns">
-    <aside class="column is-2 aside hero is-fullheight" id="aside">
-      <div class="column is-fullheight" id="route-display">
-        <p class="panel-heading">Routes</p>
-        <RouteDisplay></RouteDisplay>
+  <div>
+    <div class="columns">
+      <div id="project-tabs-container" class="column is-2 is-offset-2">
+        <ProjectTabs/>
       </div>
-
-      <div class="column is-fullheight" id="add-component">
-        <HomeSidebar class="home-sidebar" />
-      </div>
-    </aside>
-
-    <div class="column is-8 hero is-fullheight">
-      <ComponentDisplay class="component-display" />
     </div>
-    <div class="column is-2 aside hero is-fullheight">
-      <HomeQueue class="home-queue" />
+    <div class="columns">
+      <aside id="left-side-container" class="column is-2 aside hero is-fullheight">
+        <div id="route-display-container" class="column is-fullheight">
+          <p class="panel-heading">Routes</p>
+          <RouteDisplay/>
+        </div>
+
+        <div id="create-component-container" class="column is-fullheight">
+          <HomeSidebar/>
+        </div>
+      </aside>
+
+      <div id="center-container" class="column is-8 hero is-fullheight">
+        <ComponentDisplay/>
+      </div>
+
+      <div id="right-side-container" class="column is-2 aside hero is-fullheight">
+        <HomeQueue/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import ProjectTabs from '@/components/ProjectTabs';
 import ComponentDisplay from '@/components/ComponentDisplay.vue';
 import HomeSidebar from '@/components/HomeSidebar';
 import HomeQueue from '@/components/HomeQueue';
@@ -32,26 +41,20 @@ export default {
     ComponentDisplay,
     HomeSidebar,
     HomeQueue,
-    RouteDisplay
+    RouteDisplay,
+    ProjectTabs
   }
 };
 </script>
 
 <style scoped>
-.component-display,
-.home-queue {
+#route-display-container {
   background-color: #393f4d;
   height: 100%;
-}
-
-#route-display {
-  background-color: #393f4d;
-  height: 100%;
-  /* width: 100%; */
   padding: 0;
 }
 
-#add-component {
+#create-component-container {
   border: 1px solid #d1bfa7;
   height: 100%;
   background-color: #d4d4dc;
