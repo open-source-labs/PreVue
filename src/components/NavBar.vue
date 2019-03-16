@@ -56,23 +56,28 @@ export default {
   props: ['route'],
   methods: {
     addProject() {
-      this.$store.dispatch(
-        addProject,
-        'untitled-' + this.$store.state.projectNumber
-      );
+      this.$store.dispatch(addProject, {
+        filename: 'untitled-' + this.$store.state.projectNumber,
+        lastSavedLocation: ''
+      });
     },
     exportProject: function() {
       ipc.send('show-export-dialog');
     },
     saveProjectJSON() {
-      ipc.send('show-save-json-dialog');
+      let projectLocation = this.$store.state.projects[
+        this.$store.state.activeTab
+      ].lastSavedLocation;
+      if (projectLocation) {
+        fs.writeFileSync(
+          projectLocation,
+          JSON.stringify(this.$store.state, null, 2)
+        );
+        console.log('PROJECT SAVED TO LAST SAVED LOCATION');
+      } else {
+        ipc.send('show-save-json-dialog');
+      }
     },
-    // saveState() {
-    //   const currentState = this.$store.state;
-    //   localforage
-    //     .setItem('state', currentState)
-    //     .then(data => console.log(data));
-    // },
     openProjectJSON() {
       ipc.send('show-open-dialog');
     },
@@ -148,7 +153,8 @@ export default {
     });
     ipc.on('save-json-location', (event, data) => {
       //delete original key from local forage
-      let deleteKey = this.$store.state.projects[this.$store.state.activeTab];
+      let deleteKey = this.$store.state.projects[this.$store.state.activeTab]
+        .filename;
       localforage
         .removeItem(deleteKey)
         .then(function() {
@@ -160,11 +166,10 @@ export default {
 
       let fileName = this.parseFileName(data);
       // this.$store.dispatch(changeTabName, fileName);
-      this.$set(
-        this.$store.state.projects,
-        this.$store.state.activeTab,
-        fileName
-      );
+      this.$set(this.$store.state.projects, this.$store.state.activeTab, {
+        filename: fileName,
+        lastSavedLocation: data
+      });
       // console.log('DATA[0]', data);
       fs.writeFileSync(data, JSON.stringify(this.$store.state, null, 2));
       localforage
@@ -172,8 +177,6 @@ export default {
         .then(() => console.log('saved ', fileName, 'to local forage'));
 
       console.log('PROJECT SAVED AS A JSON OBJECT!');
-
-      // console.log(rdmMsg);
     });
     ipc.on('open-json-location', (event, data) => {
       //set state of local forage
@@ -182,7 +185,10 @@ export default {
         .setItem(fileName, JSON.parse(fs.readFileSync(data[0], 'utf8')))
         .then(() => console.log('saved ', fileName, 'to local forage'));
       //create new tab name with file name
-      this.$store.dispatch(addProject, fileName);
+      this.$store.dispatch(addProject, {
+        filename: fileName,
+        lastSavedLocation: data[0]
+      });
       //when tab is switch, it will go thr right path.
     });
   }
