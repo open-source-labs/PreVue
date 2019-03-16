@@ -12,7 +12,8 @@ import {
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
   ADD_PROJECT,
-  CHANGE_ACTIVE_TAB
+  CHANGE_ACTIVE_TAB,
+  CHANGE_TAB_NAME
 } from './types';
 
 const mutations = {
@@ -91,7 +92,13 @@ const mutations = {
   },
   [CHANGE_ACTIVE_TAB]: (state, payload) => {
     state.activeTab = payload;
-  }
+  },
+  // [CHANGE_TAB_NAME]: (state, payload) => {
+  //   console.log('changing ', state.activeProjects, 'to ', state.activeTab);
+  //   // Vue.set(state.activeProjects, state.activeTab, payload);
+  //   // this.$set(state.activeProjects, state.activeTab, payload);
+  //   state.activeProjects[state.activeTab] = payload;
+  // }
 };
 
 export default mutations;

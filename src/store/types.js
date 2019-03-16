@@ -14,6 +14,7 @@ export const DELETE_SELECTED_ELEMENT = 'DELETE_SELECTED_ELEMENT';
 export const SET_STATE = 'SET_STATE';
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB';
+export const CHANGE_TAB_NAME = 'CHANGE_TAB_NAME';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -30,3 +31,4 @@ export const deleteSelectedElement = 'deleteSelectedElement';
 export const setState = 'setState';
 export const addProject = 'addProject';
 export const changeActiveTab = 'changeActiveTab';
+export const changeTabName = 'changeTabName';

@@ -46,7 +46,7 @@
 import { mapState } from 'vuex';
 import fs from 'fs-extra';
 import path from 'path';
-import { addProject, setState } from '../store/types';
+import { addProject, changeTabName } from '../store/types';
 import localforage from 'localforage';
 
 const ipc = require('electron').ipcRenderer;
@@ -67,12 +67,12 @@ export default {
     saveProjectJSON() {
       ipc.send('show-save-json-dialog');
     },
-    saveState() {
-      const currentState = this.$store.state;
-      localforage
-        .setItem('state', currentState)
-        .then(data => console.log(data));
-    },
+    // saveState() {
+    //   const currentState = this.$store.state;
+    //   localforage
+    //     .setItem('state', currentState)
+    //     .then(data => console.log(data));
+    // },
     openProjectJSON() {
       ipc.send('show-open-dialog');
     },
@@ -112,13 +112,17 @@ export default {
           ? ''
           : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
       return `\n\n<style scoped>\n${style}</style>`;
+    },
+    parseFileName(file) {
+      //'asdf/asdff/sdf.txt -> sdf.txt
+      return file.split('/').pop();
     }
   },
   computed: {
     ...mapState(['componentMap'])
   },
   mounted() {
-    ipc.on('project-location', (event, data) => {
+    ipc.on('export-project-location', (event, data) => {
       if (!fs.existsSync(data)) {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
@@ -139,16 +143,46 @@ export default {
           );
       }
     });
-    ipc.on('json-location', (event, data) => {
+    ipc.on('save-json-location', (event, data) => {
+      //delete original key from local forage
+      let deleteKey = this.$store.state.activeProjects[
+        this.$store.state.activeTab
+      ];
+      localforage
+        .removeItem(deleteKey)
+        .then(function() {
+          console.log(deleteKey, 'Key is cleared!');
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+
+      let fileName = this.parseFileName(data);
+      // this.$store.dispatch(changeTabName, fileName);
+      this.$set(
+        this.$store.state.activeProjects,
+        this.$store.state.activeTab,
+        fileName
+      );
+      // console.log('DATA[0]', data);
       fs.writeFileSync(data, JSON.stringify(this.$store.state, null, 2));
+      localforage
+        .setItem(fileName, JSON.parse(fs.readFileSync(data, 'utf8')))
+        .then(() => console.log('saved ', fileName, 'to local forage'));
+
       console.log('PROJECT SAVED AS A JSON OBJECT!');
+
       // console.log(rdmMsg);
     });
-    ipc.on('open-location', (event, data) => {
-      this.$store.dispatch(
-        setState,
-        JSON.parse(fs.readFileSync(data[0], 'utf8'))
-      );
+    ipc.on('open-json-location', (event, data) => {
+      //set state of local forage
+      let fileName = this.parseFileName(data[0]);
+      localforage
+        .setItem(fileName, JSON.parse(fs.readFileSync(data[0], 'utf8')))
+        .then(() => console.log('saved ', fileName, 'to local forage'));
+      //create new tab name with file name
+      this.$store.dispatch(addProject, fileName);
+      //when tab is switch, it will go thr right path.
     });
   }
 };

@@ -93,7 +93,7 @@ function showExportDialog(event) {
     result => {
       // console.log(result);
       // if (nameLabel === 'JSON Name') event.sender.send('json-location', result);
-      event.sender.send('project-location', result);
+      event.sender.send('export-project-location', result);
     }
   );
 }
@@ -113,7 +113,7 @@ function showSaveJsonDialog(event) {
       ]
     },
     result => {
-      event.sender.send('json-location', result);
+      event.sender.send('save-json-location', result);
     }
   );
 }
@@ -131,7 +131,7 @@ ipc.on('show-open-dialog', event => {
       ]
     },
     result => {
-      event.sender.send('open-location', result);
+      event.sender.send('open-json-location', result);
     }
   );
 });

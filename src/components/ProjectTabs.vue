@@ -1,5 +1,5 @@
 <template>
-  <b-tabs type="is-boxed" id="project-tabs" @change="changetab">
+  <b-tabs type="is-boxed" id="project-tabs" @change="changeTab">
     <b-tab-item
       class="has-background-white"
       id="tab-item"
@@ -19,26 +19,13 @@ export default {
   name: 'ProjectTabs',
   computed: mapState(['activeProjects']),
   methods: {
-    changetab(idx) {
+    changeTab(idx) {
       let currTab = this.$store.state.activeTab;
       console.log(this.activeProjects[currTab], ' was clicked');
       //STORE PREV TAb IN LOCAL FORAGE IF NOT EXIST
-      localforage
-        .getItem(this.activeProjects[currTab])
-        .then(value => {
-          if (!value) {
-            this.saveProjectToSession(this.activeProjects[currTab]);
-            console.log('SAVED', this.activeProjects[currTab], ' TO SESSION');
-          } else {
-            console.log(
-              this.activeProjects[currTab],
-              'IS ALREADY SAVED IN LOCAL FORAGE'
-            );
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.saveProjectToSession(this.activeProjects[currTab]);
+      console.log('SAVED', this.activeProjects[currTab], ' TO SESSION');
+
       this.$store.dispatch(changeActiveTab, idx);
       //RESET COMPONENT MAP IF NEW TAB PROJECT DOESN'T EXIST IN LOCALFORAGE
       localforage

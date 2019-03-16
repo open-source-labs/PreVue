@@ -47,6 +47,10 @@ const actions = {
   [types.setComponentMap]: ({ commit }, payload) => {
     commit(types.SET_COMPONENT_MAP, payload);
   }
+  // [types.changeTabName]: ({ commit }, payload) => {
+  //   console.log('CHANGING');
+  //   commit(types.CHANGE_TAB_NAME, payload);
+  // }
 };
 
 export default actions;
