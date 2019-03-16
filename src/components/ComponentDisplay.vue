@@ -1,55 +1,44 @@
 <template>
   <div class="component-display">
-    <ProjectTabs id="project-tabs"></ProjectTabs>
-    <div style="height: 800px; width: 800px; border: 1px solid red; position: relative;">
-      <VueDraggableResizable
-        class-name="component-box"
-        v-for="[componentName, componentData] in Object.entries(
-          computedComponentMap
-        )"
-        :key="componentName"
-        :x="componentData.x"
-        :y="componentData.y"
-        :w="componentData.w"
-        :h="componentData.h"
-        @activated="onActivated(componentName)"
-        @deactivated="onDeactivated"
-        @dragging="onDrag"
-        @resizing="onResize"
-        :parent="true"
-        @dblclick.native="handleDoubleClick"
-      >
-        <h3>{{ componentName }}</h3>
-        <br>
-        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
-        {{ componentData.w }} / Height: {{ componentData.h }}
-      </VueDraggableResizable>
-      <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900"/>
-    </div>
+    <ProjectTabs />
+    <VueDraggableResizable
+      class-name="component-box"
+      v-for="componentData in activeRouteArray"
+      :key="componentData.componentName"
+      :x="componentData.x"
+      :y="componentData.y"
+      :w="componentData.w"
+      :h="componentData.h"
+      :parent="true"
+      @activated="onActivated(componentData.componentName)"
+      @deactivated="onDeactivated"
+      @dragging="onDrag"
+      @resizing="onResize"
+      @dblclick.native="onDoubleClick"
+    >
+      <h3>{{ componentData.componentName }}</h3>
+      <br />
+      X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
+      {{ componentData.w }} / Height: {{ componentData.h }}
+    </VueDraggableResizable>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
-import ProjectTabs from '@/components/ProjectTabs';
-import ComponentModal from './ComponentModal.vue';
-import { setComponentMap, getPrevState } from '../store/types';
+import { mapState, mapActions } from 'vuex';
 import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
+import ModalView from '@/views/ModalView';
+import { ModalProgrammatic } from 'buefy/dist/components/modal';
+import ProjectTabs from '@/components/ProjectTabs';
 
 export default {
   name: 'ComponentDisplay',
   components: {
     VueDraggableResizable,
-    // LoadingBar,
-    ComponentModal,
     ProjectTabs
   },
   data() {
     return {
-      lastTimeClicked: Date.now(),
-      dialog: false,
-      showModal: false,
       abilityToDelete: false
     };
   },
@@ -57,16 +46,16 @@ export default {
     localforage
       .getItem('state')
       .then(data => {
-        this.$store.dispatch(getPrevState, data);
+        this.getPrevState(data);
       })
       .then(data => console.log('retrieved previous data', data));
   },
   mounted() {
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
-        console.log('clickedcomponent', this.$store.state.clickedComponent);
-        if (this.abilityToDelete && this.$store.state.clickedComponent) {
-          console.log(this.$store.state.clickedComponent, ' WILL BE DELETED');
+        console.log('clickedcomponent', this.$store.state.activeComponent);
+        if (this.abilityToDelete && this.$store.state.activeComponent) {
+          console.log(this.$store.state.activeComponent, ' WILL BE DELETED');
           this.$store.dispatch('deleteClickedComponent');
           this.abilityToDelete = false;
         }
@@ -74,50 +63,45 @@ export default {
     });
   },
   computed: {
-    ...mapState(['componentMap', 'clickedComponent']),
-    computedComponentMap: {
-      get() {
-        return this.componentMap;
-      },
-      set(value) {
-        this.$store.dispatch(setComponentMap, value);
-      }
+    ...mapState([
+      'routes',
+      'activeRoute',
+      'activeComponent',
+      'clickedComponent'
+    ]),
+    activeRouteArray() {
+      return this.routes[this.activeRoute];
+    },
+    activeComponentData() {
+      return this.activeRouteArray.filter(componentData => {
+        return componentData.componentName === this.activeComponent;
+      })[0];
     }
   },
   methods: {
+    ...mapActions(['setActiveComponent', 'getPrevState']),
     onResize: function(x, y, width, height) {
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
-      this.componentMap[this.clickedComponent].w = width;
-      this.componentMap[this.clickedComponent].h = height;
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
+      this.activeComponentData.w = width;
+      this.activeComponentData.h = height;
     },
     onDrag: function(x, y) {
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
-    },
-    getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
     },
     onActivated(componentName) {
-      this.handleClick(componentName);
+      this.setActiveComponent(componentName);
       this.abilityToDelete = true;
     },
     onDeactivated() {
       this.abilityToDelete = false;
     },
-    handleClick(componentName) {
-      console.log('componentName', componentName);
-      console.log('CLICKED');
-      this.$store.dispatch('setClickedComponent', componentName);
-    },
-    handleDoubleClick() {
-      console.log('DOUBLE CLICKED');
-      this.$modal.show('demo-login');
+    onDoubleClick() {
+      ModalProgrammatic.open({
+        parent: this,
+        component: ModalView
+      });
     }
   }
 };
@@ -125,15 +109,13 @@ export default {
 
 <style scoped>
 .component-display {
-  border: 1px solid palegreen;
-  /* background-color: #d4d4dc; */
-}
-.vdr.active:before {
-  outline-style: solid !important;
+  border: 1px solid plum;
+  height: 100%;
+  position: relative;
 }
 
-#componentName {
-  color: #d4d4dc;
-  border: 1px solid #d4d4dc;
+.component-box {
+  color: white;
+  border: 1px solid salmon;
 }
 </style>

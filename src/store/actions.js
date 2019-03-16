@@ -5,6 +5,7 @@ const actions = {
     const { componentName } = payload;
     if (!state.componentMap[componentName]) {
       commit(types.ADD_TO_COMPONENT_MAP, payload);
+      commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE, payload);
       commit(types.SET_SELECTED_ELEMENT_LIST, []);
     }
   },
@@ -14,6 +15,7 @@ const actions = {
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
+    console.log('payload', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.setClickedComponent]: ({ commit }, payload) => {
@@ -43,6 +45,25 @@ const actions = {
   },
   [types.deleteFromComponentHtmlList]: ({ commit }, payload) => {
     commit(types.DELETE_FROM_COMPONENT_HTML_LIST, payload);
+  },
+  [types.changeActiveTab]: ({ commit }, payload) => {
+    commit(types.CHANGE_ACTIVE_TAB, payload);
+  },
+  [types.setComponentMap]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_MAP, payload);
+  },
+  [types.addRoute]: ({ commit }, payload) => {
+    commit(types.ADD_ROUTE, payload);
+    commit(types.SET_ACTIVE_ROUTE, payload);
+  },
+  [types.setActiveRoute]: ({ commit }, payload) => {
+    commit(types.SET_ACTIVE_ROUTE, payload);
+  },
+  [types.setActiveComponent]: ({ commit }, payload) => {
+    commit(types.SET_ACTIVE_COMPONENT, payload);
+  },
+  [types.setRoutes]: ({ commit }, payload) => {
+    commit(types.SET_ROUTES, payload);
   }
 };
 

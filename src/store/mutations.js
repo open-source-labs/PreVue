@@ -12,7 +12,13 @@ import {
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
   ADD_PROJECT,
-  DELETE_FROM_COMPONENT_HTML_LIST
+  DELETE_FROM_COMPONENT_HTML_LIST,
+  CHANGE_ACTIVE_TAB,
+  ADD_COMPONENT_TO_ACTIVE_ROUTE,
+  ADD_ROUTE,
+  SET_ACTIVE_COMPONENT,
+  SET_ACTIVE_ROUTE,
+  SET_ROUTES
 } from './types';
 
 const mutations = {
@@ -45,14 +51,14 @@ const mutations = {
     state.clickedComponent = payload;
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
-    const componentName = state.clickedComponent;
+    const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: []
     });
   },
   [DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
-    const componentName = state.clickedComponent;
+    const componentName = state.activeComponent;
     const htmlList = state.componentMap[componentName].htmlList;
     console.log(htmlList);
 
@@ -77,22 +83,27 @@ const mutations = {
     state.componentMap[componentName].htmlList = payload;
   },
   [DELETE_CLICKED_COMPONENT]: state => {
-    const { componentMap, clickedComponent: componentName } = state;
+    const { componentMap, activeComponent } = state;
 
-    let newObj = Object.assign({}, componentMap);
+    console.log('componentName', activeComponent);
+    console.log('componentMap', componentMap);
 
-    delete newObj[componentName];
+    //let newObj = Object.assign({}, componentMap);
 
-    console.log(componentMap);
-    for (let compKey in newObj) {
-      let children = newObj[compKey].children;
+    delete componentMap[activeComponent];
+
+    console.log('componentmap post', componentMap);
+    for (let compKey in componentMap) {
+      let children = componentMap[compKey].children;
       children.forEach((child, index) => {
-        if (componentName === child) children.splice(index, 1);
+        if (activeComponent === child) children.splice(index, 1);
       });
     }
-    state.componentMap = newObj;
+
+    //state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {
+    console.log(payload);
     state.componentMap = payload;
   },
   [GET_PREV_STATE]: (state, payload) => {
@@ -107,7 +118,30 @@ const mutations = {
     Object.assign(state, payload);
   },
   [ADD_PROJECT]: (state, payload) => {
-    state.activeProjects.push(payload);
+    console.log('PUSHING ', payload);
+    state.projects.push(payload);
+    state.projectNumber++;
+  },
+  [CHANGE_ACTIVE_TAB]: (state, payload) => {
+    state.activeTab = payload;
+  },
+  [ADD_ROUTE]: (state, payload) => {
+    state.routes = {
+      ...state.routes,
+      [payload]: []
+    };
+  },
+  [SET_ACTIVE_ROUTE]: (state, payload) => {
+    state.activeRoute = payload;
+  },
+  [ADD_COMPONENT_TO_ACTIVE_ROUTE]: (state, payload) => {
+    state.routes[state.activeRoute].push(payload);
+  },
+  [SET_ACTIVE_COMPONENT]: (state, payload) => {
+    state.activeComponent = payload;
+  },
+  [SET_ROUTES]: (state, payload) => {
+    state.routes = Object.assign({}, payload);
   }
 };
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p class="panel-heading">{{ clickedComponent }} Code Display</p>
     <div id="codeDisplay"></div>
   </div>
 </template>
@@ -10,10 +11,10 @@ export default {
   name: 'ComponentCodeDisplay',
 
   computed: {
-    ...mapState(['componentMap', 'clickedComponent', 'htmlElementMap']),
+    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
     activeComponentHtmlList: {
       get() {
-        return this.componentMap[this.clickedComponent].htmlList;
+        return this.componentMap[this.activeComponent].htmlList;
       }
     }
   },
@@ -74,5 +75,9 @@ export default {
 }
 .nested {
   white-space: pre;
+}
+
+#codeDisplay {
+  background-color: aqua;
 }
 </style>
