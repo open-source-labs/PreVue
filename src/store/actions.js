@@ -68,6 +68,9 @@ const actions = {
   },
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);
+  },
+  [types.updateComponentChildrenMultiselectValue]: ({ commit }, payload) => {
+    commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, payload);
   }
 };
 

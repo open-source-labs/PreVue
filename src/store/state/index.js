@@ -23,7 +23,8 @@ const newState = {
   activeComponent: '',
   selectedElementList: [],
   projectNumber: 2,
-  activeTab: 0
+  activeTab: 0,
+  componentChildrenMultiselectValue: []
 };
 
 export default newState;

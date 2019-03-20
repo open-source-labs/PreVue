@@ -23,6 +23,8 @@ export const SET_ROUTES = 'SET_ROUTES';
 export const SET_ACTIVE_ROUTE_ARRAY = 'SET_ACTIVE_ROUTE_ARRAY';
 export const ADD_TO_ROUTE_CHILDREN = 'ADD_TO_ROUTE_CHILDREN';
 export const ADD_ROUTE_TO_COMPONENT_MAP = 'ADD_ROUTE_TO_COMPONENT_MAP';
+export const UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE =
+  'UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -43,3 +45,5 @@ export const setActiveComponent = 'setActiveComponent';
 export const setActiveRoute = 'setActiveRoute';
 export const incrementProjectId = 'incrementProjectId';
 export const setRoutes = 'setRoutes';
+export const updateComponentChildrenMultiselectValue =
+  'updateComponentChildrenMultiselectValue';

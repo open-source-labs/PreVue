@@ -7,11 +7,13 @@
     <Icons @getClickedIcon="addToSelectedElementList"/>
 
     <button class="button is-primary" @click="handleClick" :disabled="!componentName">Add Component</button>
+    <ChildrenMultiselect/>
   </div>
 </template>
 
 <script>
 import Icons from './Icons';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect';
 import { mapState, mapActions } from 'vuex';
 import * as types from '../store/types.js';
 
@@ -24,6 +26,7 @@ export default {
     };
   },
   components: {
+    ChildrenMultiselect,
     Icons
   },
   computed: {
