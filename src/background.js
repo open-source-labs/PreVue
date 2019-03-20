@@ -1,10 +1,13 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
-import {
+const { app, protocol, BrowserWindow, dialog } = require('electron');
+const ipc = require('electron').ipcMain;
+
+const {
   createProtocol,
   installVueDevtools
-} from 'vue-cli-plugin-electron-builder/lib';
+} = require('vue-cli-plugin-electron-builder/lib');
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -78,3 +81,65 @@ if (isDevelopment) {
     });
   }
 }
+
+function showExportDialog(event) {
+  dialog.showSaveDialog(
+    {
+      title: 'Choose location to save folder in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save folder in',
+      nameFieldLabel: 'Application Name'
+    },
+    result => {
+      // console.log(result);
+      // if (nameLabel === 'JSON Name') event.sender.send('json-location', result);
+      event.sender.send('export-project-location', result);
+    }
+  );
+}
+
+function showSaveJsonDialog(event) {
+  dialog.showSaveDialog(
+    {
+      title: 'Choose location to save JSON object in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save JSON object in',
+      nameFieldLabel: 'Application State Name',
+      filters: [
+        {
+          name: 'JSON Files',
+          extensions: ['json']
+        }
+      ]
+    },
+    result => {
+      event.sender.send('save-json-location', result);
+    }
+  );
+}
+
+ipc.on('show-open-dialog', event => {
+  dialog.showOpenDialog(
+    {
+      properties: ['openFile'],
+      filters: [
+        {
+          name: 'JSON Files',
+          extensions: ['json']
+        }
+        // { name: 'Text Files', extensions: ['txt', 'text'] },
+      ]
+    },
+    result => {
+      event.sender.send('open-json-location', result);
+    }
+  );
+});
+
+ipc.on('show-save-json-dialog', event => {
+  showSaveJsonDialog(event);
+});
+
+ipc.on('show-export-dialog', event => {
+  showExportDialog(event);
+});

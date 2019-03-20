@@ -1,109 +1,91 @@
 <template>
   <div class="component-display">
-    <LoadingBar :duration="2000"/>
-    <VueDragResize
-      class="component"
-      :isActive="true"
-      :parentLimitation="true"
-      :w="200"
-      :h="200"
-      :parentW="listWidth"
-      :parentH="listHeight"
-      v-on:resizing="resize"
-      v-on:dragging="resize"
-      v-for="(component, index) in Object.entries(getComponentMap)"
-      :key="index"
-      :style="{ border: '7px solid ' + getRandomColor() }"
-      :snapToGrid="true"
-      :gridX="200"
-      :gridY="200"
-      @clicked="handleClick(component[0])"
+    <!-- <ProjectTabs /> -->
+    <VueDraggableResizable
+      class-name="component-box"
+      v-for="componentData in activeRouteArray"
+      :key="componentData.componentName"
+      :x="componentData.x"
+      :y="componentData.y"
+      :w="componentData.w"
+      :h="componentData.h"
+      :parent="true"
+      @activated="onActivated(componentData)"
+      @deactivated="onDeactivated(componentData)"
+      @dragging="onDrag"
+      @resizing="onResize"
+      @dblclick.native="onDoubleClick"
     >
-      <h3>{{ component[0] }}</h3>
-      <p v-for="(element, index) in component[1].htmlList" :key="index + Date.now()">{{ element }}</p>
-      <p v-for="(child, index) in component[1].children" :key="index + Date.now() / 2">{{ child }}</p>
-    </VueDragResize>
-    <modals-container></modals-container>
-    <ComponentModal :modalWidth="800" :modalHeight="900"/>
+      <h3>{{ componentData.componentName }}</h3>
+      <br>
+      X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
+      {{ componentData.w }} / Height: {{ componentData.h }}
+    </VueDraggableResizable>
   </div>
 </template>
-
 <script>
-import { mapState } from 'vuex';
-import VueDragResize from 'vue-drag-resize';
-import LoadingBar from './LoadingBar.vue';
-import ComponentModal from './ComponentModal.vue';
-import { setComponentMap } from '../store/types';
+import { mapState, mapActions } from 'vuex';
+import localforage from 'localforage';
+import VueDraggableResizable from 'vue-draggable-resizable';
+import ModalView from '@/views/ModalView';
+import { ModalProgrammatic } from 'buefy/dist/components/modal';
+import ProjectTabs from '@/components/ProjectTabs';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDragResize,
-    LoadingBar,
-    ComponentModal
+    VueDraggableResizable,
+    ProjectTabs
   },
   data() {
     return {
-      //might make this an array of objects to correspond to each individual component
-      width: 0,
-      height: 0,
-      top: 0,
-      left: 0,
-      lastTimeClicked: Date.now(),
-      dialog: false,
-      showModal: false,
-      listWidth: 0,
-      listHeight: 0
+      abilityToDelete: false
     };
   },
   mounted() {
-    let componentDisplay = document.querySelector('.component-display');
-    this.listWidth = componentDisplay.clientWidth;
-    this.listHeight = componentDisplay.clientHeight;
-    window.addEventListener('resize', () => {
-      this.listWidth = componentDisplay.clientWidth;
-      this.listHeight = componentDisplay.clientHeight;
+    window.addEventListener('keyup', event => {
+      if (event.key === 'Backspace') {
+        if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('deleteActiveComponent');
+        }
+      }
     });
   },
   computed: {
-    ...mapState(['componentMap']),
-    getComponentMap: {
-      get() {
-        return this.componentMap;
-      },
-      set(value) {
-        this.$store.dispatch(setComponentMap, value);
-      }
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
+    activeRouteArray() {
+      return this.routes[this.activeRoute];
+    },
+    activeComponentData() {
+      return this.activeRouteArray.filter(componentData => {
+        return componentData.componentName === this.activeComponent;
+      })[0];
     }
   },
   methods: {
-    resize(newRect) {
-      this.width = newRect.width;
-      this.height = newRect.height;
-      this.top = newRect.top;
-      this.left = newRect.left;
+    ...mapActions(['setActiveComponent']),
+    onResize: function(x, y, width, height) {
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
+      this.activeComponentData.w = width;
+      this.activeComponentData.h = height;
     },
-    getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+    onDrag: function(x, y) {
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
     },
-    handleClick(componentName) {
-      this.$store.dispatch('setClickedComponent', componentName);
-      if (Date.now() - this.lastTimeClicked < 200)
-        this.doubleClick(componentName);
-      else {
-        this.lastTimeClicked = Date.now();
-      }
+    onActivated(componentData) {
+      this.setActiveComponent(componentData.componentName);
+      this.activeComponentData.isActive = true;
     },
-    doubleClick() {
-      this.$modal.show('demo-login');
+    onDeactivated() {
+      this.activeComponentData.isActive = false;
     },
-    consoleCM() {
-      console.log(this.componentMap);
+    onDoubleClick() {
+      ModalProgrammatic.open({
+        parent: this,
+        component: ModalView
+      });
     }
   }
 };
@@ -111,10 +93,13 @@ export default {
 
 <style scoped>
 .component-display {
-  grid-area: component-display;
+  border: 1px solid plum;
+  height: 100%;
+  position: relative;
 }
 
-.vdr.active:before {
-  outline-style: solid !important;
+.component-box {
+  color: white;
+  border: 1px solid salmon;
 }
 </style>

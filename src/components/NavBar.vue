@@ -1,54 +1,201 @@
 <template>
-  <v-toolbar flat app>
-    <v-toolbar-title id="nav" class="nav">
-      <router-link :to="{ name: 'home' }" class="prevue">
-        <span class="white--text">Pre</span>
-        <span class="green--text text--accent-2">Vue</span>
-      </router-link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <router-link :to="{ name: 'tree' }">
-        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
+  <nav
+    class="navbar"
+    id="navbar"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div class="navbar-brand">
+      <router-link :to="{ name: 'home' }" class="navbar-item" href="#">
+        <img
+          src="https://bulma.io/images/bulma-logo.png"
+          width="112"
+          height="28"
+        />
       </router-link>
-    </v-toolbar-title>
-  </v-toolbar>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <router-link :to="{ name: 'tree' }" class="navbar-item" href="#">
+          <i class="fas fa-tree fa-lg"></i>
+        </router-link>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <button class="white--text" @click="exportProject">
+            EXPORT YOUR PROJECT
+          </button>
+          <span>
+            <!-- <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon> -->
+            <button class="save-icon" @click="saveProjectJSON">SAVE</button>
+          </span>
+          <button class="white--text" @click="openProjectJSON">OPEN</button>
+          <i class="fas fa-save fa-lg"></i>
+
+          <i class="fas fa-file-export fa-lg"></i>
+          <i class="fas fa-folder-plus fa-lg" @click="addProject"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import fs from 'fs-extra';
+import path from 'path';
+import { addProject, changeTabName } from '../store/types';
+import localforage from 'localforage';
+
+const ipc = require('electron').ipcRenderer;
+
 export default {
   name: 'NavBar',
-  props: ['route']
+  props: ['route'],
+  methods: {
+    addProject() {
+      this.$store.dispatch(
+        addProject,
+        'untitled-' + this.$store.state.projectNumber
+      );
+    },
+    exportProject: function() {
+      ipc.send('show-export-dialog');
+    },
+    saveProjectJSON() {
+      ipc.send('show-save-json-dialog');
+    },
+    // saveState() {
+    //   const currentState = this.$store.state;
+    //   localforage
+    //     .setItem('state', currentState)
+    //     .then(data => console.log(data));
+    // },
+    openProjectJSON() {
+      ipc.send('show-open-dialog');
+    },
+    createComponentCode(componentLocation, componentName, children) {
+      fs.writeFileSync(
+        componentLocation + '.vue',
+        this.writeTemplate(children) +
+          this.writeScript(componentName, children) +
+          this.writeStyle(componentName)
+      );
+      console.log(children);
+    },
+    writeTemplate(children) {
+      let str = '';
+      children.forEach(name => {
+        str += `\t\t<${name}>\n\t\t</${name}>\n`;
+      });
+      return `<template>\n\t<div>\n${str}\t</div>\n</template>`;
+    },
+    writeScript(componentName, children) {
+      let str = '';
+      children.forEach(name => {
+        str +=
+          componentName === 'App'
+            ? `import ${name} from '@/components/${name}.vue';\n`
+            : `import ${name} from './${name}.vue';\n`;
+      });
+      let childrenComponentNames = '';
+      children.forEach(name => {
+        childrenComponentNames += `\t\t${name},\n`;
+      });
+      return `\n\n<script>\n${str}\nexport default {\n\tname: '${componentName}',\n\tcomponents: {\n${childrenComponentNames}\t}\n};\n<\/script>`;
+    },
+    writeStyle(componentName) {
+      let style =
+        componentName !== 'App'
+          ? ''
+          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
+      return `\n\n<style scoped>\n${style}</style>`;
+    },
+    parseFileName(file) {
+      //'asdf/asdff/sdf.txt -> sdf.txt
+      return file.split('/').pop();
+    }
+  },
+  computed: {
+    ...mapState(['componentMap'])
+  },
+  mounted() {
+    ipc.on('export-project-location', (event, data) => {
+      if (!fs.existsSync(data)) {
+        fs.mkdirSync(data);
+        console.log('FOLDER CREATED!');
+      }
+      fs.copySync(
+        '/Users/Hubert/Desktop/Codesmith/ProductionProject/dev/PreVue/vue-boiler-plate',
+        data
+      );
+      for (let componentName in this.componentMap) {
+        if (componentName === 'App')
+          this.createComponentCode(
+            path.join(data, 'src', componentName),
+            componentName,
+            this.componentMap[componentName].children
+          );
+        else
+          this.createComponentCode(
+            path.join(data, 'src', 'components', componentName),
+            componentName,
+            this.componentMap[componentName].children
+          );
+      }
+    });
+    ipc.on('save-json-location', (event, data) => {
+      //delete original key from local forage
+      let deleteKey = this.$store.state.projects[this.$store.state.activeTab];
+      localforage
+        .removeItem(deleteKey)
+        .then(function() {
+          console.log(deleteKey, 'Key is cleared!');
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+
+      let fileName = this.parseFileName(data);
+      // this.$store.dispatch(changeTabName, fileName);
+      this.$set(
+        this.$store.state.projects,
+        this.$store.state.activeTab,
+        fileName
+      );
+      // console.log('DATA[0]', data);
+      fs.writeFileSync(data, JSON.stringify(this.$store.state, null, 2));
+      localforage
+        .setItem(fileName, JSON.parse(fs.readFileSync(data, 'utf8')))
+        .then(() => console.log('saved ', fileName, 'to local forage'));
+
+      console.log('PROJECT SAVED AS A JSON OBJECT!');
+
+      // console.log(rdmMsg);
+    });
+    ipc.on('open-json-location', (event, data) => {
+      //set state of local forage
+      let fileName = this.parseFileName(data[0]);
+      localforage
+        .setItem(fileName, JSON.parse(fs.readFileSync(data[0], 'utf8')))
+        .then(() => console.log('saved ', fileName, 'to local forage'));
+      //create new tab name with file name
+      this.$store.dispatch(addProject, fileName);
+      //when tab is switch, it will go thr right path.
+    });
+  }
 };
 </script>
 
 <style scoped>
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-}
-.nav > .prevue {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #39b982;
-  text-decoration: none;
-}
-.nav .nav-item {
-  box-sizing: border-box;
-  margin: 0 5px;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-}
-.nav .nav-item.router-link-exact-active {
-  color: #39b982;
-  border-bottom: solid 2px #39b982;
+#navbar {
+  background-color: #d4d4dc;
+  height: 50px;
 }
 
-.tree-link {
-  float: right;
-}
-
-a {
-  text-decoration: none;
+.save-icon:hover {
+  cursor: pointer;
 }
 </style>
