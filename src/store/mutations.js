@@ -3,7 +3,6 @@ import {
   UPDATE_CHILDREN,
   ADD_TO_SELECTED_ELEMENT_LIST,
   SET_SELECTED_ELEMENT_LIST,
-  SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
   SET_CLICKED_ELEMENT_LIST,
   DELETE_ACTIVE_COMPONENT,
@@ -48,9 +47,6 @@ const mutations = {
   },
   [SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
-  },
-  [SET_CLICKED_COMPONENT]: (state, payload) => {
-    state.clickedComponent = payload;
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
