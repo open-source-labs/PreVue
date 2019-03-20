@@ -17,7 +17,7 @@
       @dblclick.native="onDoubleClick"
     >
       <h3>{{ componentData.componentName }}</h3>
-      <br>
+      <br />
       X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
       {{ componentData.w }} / Height: {{ componentData.h }}
     </VueDraggableResizable>
@@ -94,8 +94,8 @@ export default {
 <style scoped>
 .component-display {
   border: 1px solid plum;
-  height: 100%;
-  position: relative;
+  /* height: 100%; */
+  /* position: relative; */
 }
 
 .component-box {

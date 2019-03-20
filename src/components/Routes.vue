@@ -1,7 +1,7 @@
 <template>
   <table class="table is-fullwidth is-scrollable">
     <a
-      class="panel-block"
+      :class="route === activeRoute ? 'panel-block is-active' : 'panel-block'"
       v-for="route in Object.keys(routes)"
       :key="route"
       @click="handleClick(route)"
@@ -20,7 +20,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'Routes',
   computed: {
-    ...mapState(['routes'])
+    ...mapState(['routes', 'activeRoute'])
   },
   methods: {
     ...mapActions(['setActiveRoute']),

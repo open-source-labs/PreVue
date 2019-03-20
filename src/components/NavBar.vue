@@ -28,11 +28,10 @@
             EXPORT YOUR PROJECT
           </button>
           <span>
-            <!-- <v-icon class="save-icon" @click="saveProjectJSON">save_alt</v-icon> -->
             <button class="save-icon" @click="saveProjectJSON">SAVE</button>
           </span>
           <button class="white--text" @click="openProjectJSON">OPEN</button>
-          <i class="fas fa-save fa-lg"></i>
+          <i class="fas fa-save fa-lg" @click="saveProjectJSON"></i>
 
           <i class="fas fa-file-export fa-lg"></i>
           <i class="fas fa-folder-plus fa-lg" @click="addProject"></i>
