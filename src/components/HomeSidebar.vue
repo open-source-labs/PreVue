@@ -4,15 +4,9 @@
 
     <b-input v-model="componentName" placeholder="Component name"></b-input>
 
-    <Icons @getClickedIcon="addToSelectedElementList" />
+    <Icons @getClickedIcon="addToSelectedElementList"/>
 
-    <button
-      class="button is-primary"
-      @click="handleClick"
-      :disabled="!componentName"
-    >
-      Add Component
-    </button>
+    <button class="button is-primary" @click="handleClick" :disabled="!componentName">Add Component</button>
   </div>
 </template>
 
@@ -45,8 +39,8 @@ export default {
         w: 200,
         h: 200,
         htmlList: this.selectedElementList,
-
-        children: this.children
+        children: this.children,
+        isActive: false
       };
 
       this.registerComponent(component)

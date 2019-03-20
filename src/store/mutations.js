@@ -6,9 +6,8 @@ import {
   SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
   SET_CLICKED_ELEMENT_LIST,
-  DELETE_CLICKED_COMPONENT,
+  DELETE_ACTIVE_COMPONENT,
   SET_COMPONENT_MAP,
-  GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
   ADD_PROJECT,
@@ -17,12 +16,15 @@ import {
   ADD_ROUTE,
   SET_ACTIVE_COMPONENT,
   SET_ACTIVE_ROUTE,
-  SET_ROUTES
+  SET_ROUTES,
+  SET_ACTIVE_ROUTE_ARRAY,
+  ADD_TO_ROUTE_CHILDREN,
+  ADD_ROUTE_TO_COMPONENT_MAP
 } from './types';
 
 const mutations = {
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, htmlList, children } = payload;
+    const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {
       ...state.componentMap,
       [componentName]: {
@@ -32,7 +34,8 @@ const mutations = {
         w: 200,
         h: 200,
         children,
-        htmlList
+        htmlList,
+        isActive
       }
     };
   },
@@ -50,7 +53,7 @@ const mutations = {
     state.clickedComponent = payload;
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
-    const componentName = state.clickedComponent;
+    const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: []
@@ -60,18 +63,18 @@ const mutations = {
     const componentName = state.clickedComponent;
     state.componentMap[componentName].htmlList = payload;
   },
-  [DELETE_CLICKED_COMPONENT]: state => {
-    const { componentMap, clickedComponent: componentName } = state;
+  [DELETE_ACTIVE_COMPONENT]: state => {
+    const { componentMap, activeComponent } = state;
 
     let newObj = Object.assign({}, componentMap);
 
-    delete newObj[componentName];
+    delete newObj[activeComponent];
 
     console.log(componentMap);
     for (let compKey in newObj) {
       let children = newObj[compKey].children;
       children.forEach((child, index) => {
-        if (componentName === child) children.splice(index, 1);
+        if (activeComponent === child) children.splice(index, 1);
       });
     }
     state.componentMap = newObj;
@@ -79,9 +82,6 @@ const mutations = {
   [SET_COMPONENT_MAP]: (state, payload) => {
     console.log(payload);
     state.componentMap = payload;
-  },
-  [GET_PREV_STATE]: (state, payload) => {
-    Object.assign(state, payload);
   },
   [DELETE_SELECTED_ELEMENT]: (state, payload) => {
     state.selectedElementList.splice(payload, 1);
@@ -105,6 +105,16 @@ const mutations = {
       [payload]: []
     };
   },
+  [ADD_ROUTE_TO_COMPONENT_MAP]: (state, payload) => {
+    const { componentName, children } = payload;
+    state.componentMap = {
+      ...state.componentMap,
+      [componentName]: {
+        componentName,
+        children
+      }
+    };
+  },
   [SET_ACTIVE_ROUTE]: (state, payload) => {
     state.activeRoute = payload;
   },
@@ -116,6 +126,12 @@ const mutations = {
   },
   [SET_ROUTES]: (state, payload) => {
     state.routes = Object.assign({}, payload);
+  },
+  [SET_ACTIVE_ROUTE_ARRAY]: (state, payload) => {
+    state.routes[state.activeRoute] = payload;
+  },
+  [ADD_TO_ROUTE_CHILDREN]: (state, payload) => {
+    state.componentMap[state.activeRoute].children.push(payload);
   }
 };
 
