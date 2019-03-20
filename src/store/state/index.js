@@ -7,6 +7,9 @@ const newState = {
   componentMap: {
     App: {
       children: ['HomeView']
+    },
+    HomeView: {
+      children: ['asdf']
     }
   },
   routes: {
