@@ -1,4 +1,10 @@
 
+<p align="center">
+  <img src="/prevue-small.png?raw=true">
+  <h1 align="center">PreVue</h1>
+</p>
+
+
 ## WHAT IS PREVUE
 PreVue aims to streamline the development process by making it easy to visualize the architecture of a Vue application. PreVue makes Vue more accessible by allowing users to prototype components. With PreVue, users can easily set up their Vue component architecture with ease and export Vue.js code.
 
