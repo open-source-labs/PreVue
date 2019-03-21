@@ -2,11 +2,15 @@
   <div class="home-sidebar">
     <p class="panel-heading">Create a component</p>
 
-    <b-input v-model="componentName" placeholder="Component name"></b-input>
+    <b-input v-model="componentNameInputValue" placeholder="Component name"></b-input>
 
     <Icons @getClickedIcon="addToSelectedElementList"/>
 
-    <button class="button is-primary" @click="handleClick" :disabled="!componentName">Add Component</button>
+    <button
+      class="button is-primary"
+      @click="handleClick"
+      :disabled="!componentNameInputValue"
+    >Add Component</button>
     <ChildrenMultiselect/>
   </div>
 </template>
@@ -21,7 +25,6 @@ export default {
   name: 'HomeSidebar',
   data: function() {
     return {
-      componentName: '',
       children: []
     };
   },
@@ -30,13 +33,25 @@ export default {
     Icons
   },
   computed: {
-    ...mapState(['componentMap', 'selectedElementList'])
+    ...mapState(['componentMap', 'selectedElementList']),
+    componentNameInputValue: {
+      get() {
+        return this.$store.state.componentNameInputValue;
+      },
+      set(value) {
+        this.updateComponentNameInputValue(value);
+      }
+    }
   },
   methods: {
-    ...mapActions(['registerComponent', 'addToSelectedElementList']),
+    ...mapActions([
+      'registerComponent',
+      'addToSelectedElementList',
+      'updateComponentNameInputValue'
+    ]),
     handleClick() {
       const component = {
-        componentName: this.componentName,
+        componentName: this.componentNameInputValue,
         x: 0,
         y: 0,
         w: 200,
@@ -48,7 +63,6 @@ export default {
 
       this.registerComponent(component)
         .then(() => {
-          this.componentName = '';
           this.children = [];
         })
         .catch(err => console.log(err));

@@ -2,13 +2,11 @@
   <div>
     <label class="typo__label">Vuex example.</label>
     <multiselect
-      placeholder="Select Children"
+      placeholder="Select child components"
       :multiple="true"
-      :value="componentChildrenMultiselectValue"
       :close-on-select="false"
-      :clear-on-select="true"
       :options="options"
-      :searchable="false"
+      :value="componentChildrenMultiselectValue"
       @input="updateComponentChildrenMultiselectValue"
     ></multiselect>
   </div>
@@ -24,15 +22,14 @@ export default {
   },
   computed: {
     ...mapState([
-      'componentChildrenMultiselectValue',
       'componentMap',
       'routes',
-      'activeComponent'
+      'activeComponent',
+      'componentChildrenMultiselectValue'
     ]),
     options() {
       const routes = Object.keys(this.routes);
       const exceptions = new Set(['App', this.activeComponent, ...routes]);
-      console.log(exceptions);
       return Object.keys(this.componentMap).filter(component => {
         if (!exceptions.has(component)) return component;
       });

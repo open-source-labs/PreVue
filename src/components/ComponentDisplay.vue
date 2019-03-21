@@ -80,6 +80,7 @@ export default {
     },
     onDeactivated() {
       this.activeComponentData.isActive = false;
+      this.setActiveComponent('');
     },
     onDoubleClick() {
       ModalProgrammatic.open({

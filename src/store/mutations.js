@@ -1,7 +1,7 @@
 import * as types from './types';
 
 const mutations = {
-  [types.ADD_TO_COMPONENT_MAP]: (state, payload) => {
+  [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {
       ...state.componentMap,
@@ -17,18 +17,11 @@ const mutations = {
       }
     };
   },
-  [types.UPDATE_CHILDREN]: function(state, payload) {
-    const { name, newArray } = payload;
-    state.componentMap[name].children = newArray;
-  },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList.push({ text: payload, children: [] });
   },
   [types.SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
-  },
-  [types.SET_CLICKED_COMPONENT]: (state, payload) => {
-    state.clickedComponent = payload;
   },
   [types.ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
@@ -84,11 +77,11 @@ const mutations = {
     };
   },
   [types.ADD_ROUTE_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, children } = payload;
+    const { route, children } = payload;
     state.componentMap = {
       ...state.componentMap,
-      [componentName]: {
-        componentName,
+      [route]: {
+        componentName: route,
         children
       }
     };
@@ -96,7 +89,7 @@ const mutations = {
   [types.SET_ACTIVE_ROUTE]: (state, payload) => {
     state.activeRoute = payload;
   },
-  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE]: (state, payload) => {
+  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_IN_ROUTE_MAP]: (state, payload) => {
     state.routes[state.activeRoute].push(payload);
   },
   [types.SET_ACTIVE_COMPONENT]: (state, payload) => {
@@ -108,11 +101,25 @@ const mutations = {
   [types.SET_ACTIVE_ROUTE_ARRAY]: (state, payload) => {
     state.routes[state.activeRoute] = payload;
   },
-  [types.ADD_TO_ROUTE_CHILDREN]: (state, payload) => {
+  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN]: (state, payload) => {
     state.componentMap[state.activeRoute].children.push(payload);
   },
   [types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE]: (state, payload) => {
     state.componentChildrenMultiselectValue = payload;
+  },
+  [types.UPDATE_COMPONENT_CHILDREN_VALUE]: (state, payload) => {
+    const { component, value } = payload;
+    state.componentMap[component].children = value;
+  },
+  [types.UPDATE_ACTIVE_COMPONENT_CHILDREN_VALUE]: (state, payload) => {
+    state.componentMap[state.activeComponent].children = payload;
+  },
+  [types.UPDATE_COMPONENT_NAME_INPUT_VALUE]: (state, payload) => {
+    state.componentNameInputValue = payload;
+  },
+  [types.ADD_COMPONENT_TO_COMPONENT_CHILDREN]: (state, payload) => {
+    const { component, value } = payload;
+    state.componentMap[component].children.push(value);
   }
 };
 

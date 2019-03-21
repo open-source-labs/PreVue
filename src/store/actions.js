@@ -4,10 +4,18 @@ const actions = {
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
     if (!state.componentMap[componentName]) {
-      commit(types.ADD_TO_COMPONENT_MAP, payload);
-      commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE, payload);
+      commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
+      commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN, payload);
+      commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE_IN_ROUTE_MAP, payload);
+
+      let component = state.componentNameInputValue;
+      let value = state.componentChildrenMultiselectValue.map(component => {
+        return state.componentMap[component];
+      });
+      commit(types.UPDATE_COMPONENT_CHILDREN_VALUE, { component, value });
+      commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, []);
+      commit(types.UPDATE_COMPONENT_NAME_INPUT_VALUE, '');
       commit(types.SET_SELECTED_ELEMENT_LIST, []);
-      commit(types.ADD_TO_ROUTE_CHILDREN, payload);
     }
   },
   [types.setSelectedElementList]: ({ commit }, payload) => {
@@ -50,15 +58,15 @@ const actions = {
   [types.setComponentMap]: ({ commit }, payload) => {
     commit(types.SET_COMPONENT_MAP, payload);
   },
-  [types.addRoute]: ({ state, commit }, payload) => {
+  [types.addRouteToRouteMap]: ({ state, commit }, payload) => {
     commit(types.ADD_ROUTE, payload);
     commit(types.SET_ACTIVE_ROUTE, payload);
-
-    payload = {
-      componentName: state.activeRoute,
-      children: []
-    };
-    commit(types.ADD_ROUTE_TO_COMPONENT_MAP, payload);
+    let route = state.activeRoute;
+    let children = [];
+    commit(types.ADD_ROUTE_TO_COMPONENT_MAP, { route, children });
+    let component = 'App';
+    let value = state.componentMap[state.activeRoute];
+    commit(types.ADD_COMPONENT_TO_COMPONENT_CHILDREN, { component, value });
   },
   [types.setActiveRoute]: ({ commit }, payload) => {
     commit(types.SET_ACTIVE_ROUTE, payload);
@@ -71,6 +79,13 @@ const actions = {
   },
   [types.updateComponentChildrenMultiselectValue]: ({ commit }, payload) => {
     commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, payload);
+  },
+  [types.updateActiveComponentChildrenValue]: ({ commit }, payload) => {
+    commit(types.UPDATE_ACTIVE_COMPONENT_CHILDREN_VALUE, payload);
+    commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, []);
+  },
+  [types.updateComponentNameInputValue]: ({ commit }, payload) => {
+    commit(types.UPDATE_COMPONENT_NAME_INPUT_VALUE, payload);
   }
 };
 
