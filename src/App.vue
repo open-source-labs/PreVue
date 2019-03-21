@@ -3,7 +3,7 @@
     <NavBar></NavBar>
 
     <section class="section">
-      <router-view/>
+      <router-view />
     </section>
   </div>
 </template>
@@ -97,7 +97,7 @@ i:hover {
   .container {
     height: 100%;
   }
-  /* background-color: papayawhip; */
+  background-color: #393f4d;
 }
 
 .section {
