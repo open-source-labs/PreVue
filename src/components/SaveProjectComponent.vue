@@ -29,6 +29,14 @@ export default {
         }
         delete element._vm;
         delete element.parent;
+        delete element.open;
+        delete element.active;
+        delete element.style;
+        delete element.class;
+        delete element.innerStyle;
+        delete element.innerClass;
+        delete element.innerBackStyle;
+        delete element.innerBackClass;
       });
     },
     saveProjectJSON() {
@@ -45,6 +53,15 @@ export default {
             let htmlList = component.htmlList;
             this.parseAndDelete(htmlList);
           });
+        }
+        let componentMap = this.$store.state.componentMap;
+        console.log('compmap', componentMap);
+        for (let component in componentMap) {
+          if (componentMap[component].htmlList) {
+            let comphtml = componentMap[component].htmlList;
+            console.log('COMPHTML', comphtml);
+            this.parseAndDelete(comphtml);
+          }
         }
 
         fs.writeFileSync(projectLocation, JSON.stringify(state));
@@ -82,6 +99,13 @@ export default {
           let htmlList = component.htmlList;
           this.parseAndDelete(htmlList);
         });
+      }
+      let componentMap = this.$store.state.componentMap;
+      for (let component in componentMap) {
+        if (component.htmlList) {
+          let comphtml = component.htmlList;
+          this.parseAndDelete(comphtml);
+        }
       }
 
       fs.writeFileSync(data, JSON.stringify(state));

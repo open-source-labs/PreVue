@@ -28,9 +28,9 @@ export default {
     EditSidebar,
     EditQueue
   },
-  mounted() {
-    this.convert();
-  },
+  // mounted() {
+  //   this.convert();
+  // },
   computed: {
     ...mapState([
       'clickedComponent',
@@ -40,30 +40,30 @@ export default {
     ])
   },
   methods: {
-    convert() {
-      console.log('CONVERT CALLED');
-      let list = this.componentMap[this.activeComponent].htmlList;
-      console.log(list);
-      this.parseAndDelete(list);
-    },
-    parseAndDelete(htmlList) {
-      htmlList.forEach(element => {
-        if (element.children.length > 0) {
-          console.log('in recurse');
-          this.parseAndDelete(element.children);
-        }
-        delete element._vm;
-        delete element.parent;
-        delete element.open;
-        delete element.active;
-        delete element.style;
-        delete element.class;
-        delete element.innerStyle;
-        delete element.innerClass;
-        delete element.innerBackStyle;
-        delete element.innerBackClass;
-      });
-    }
+    //   convert() {
+    //     console.log('CONVERT CALLED');
+    //     let list = this.componentMap[this.activeComponent].htmlList;
+    //     console.log(list);
+    //     this.parseAndDelete(list);
+    //   },
+    //   parseAndDelete(htmlList) {
+    //     htmlList.forEach(element => {
+    //       if (element.children.length > 0) {
+    //         console.log('in recurse');
+    //         this.parseAndDelete(element.children);
+    //       }
+    //       delete element._vm;
+    //       delete element.parent;
+    //       delete element.open;
+    //       delete element.active;
+    //       delete element.style;
+    //       delete element.class;
+    //       delete element.innerStyle;
+    //       delete element.innerClass;
+    //       delete element.innerBackStyle;
+    //       delete element.innerBackClass;
+    //     });
+    //   }
   }
 };
 </script>

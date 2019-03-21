@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     parseFileName(file) {
-      //'asdf/asdff/sdf.txt -> sdf.txt
       return file.split('/').pop();
     },
     openProjectJSON() {
@@ -26,17 +25,14 @@ export default {
   },
   mounted() {
     ipc.on('open-json-location', (event, data) => {
-      //set state of local forage
       let fileName = this.parseFileName(data[0]);
       localforage
         .setItem(fileName, JSON.parse(fs.readFileSync(data[0], 'utf8')))
         .then(() => console.log('data', data));
-      //create new tab name with file name
       this.$store.dispatch(addProject, {
         filename: fileName,
         lastSavedLocation: data[0]
       });
-      //when tab is switch, it will go thr right path.
     });
   }
 };

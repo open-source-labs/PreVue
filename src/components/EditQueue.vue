@@ -1,28 +1,11 @@
 <template>
   <div>
-    <!-- <p class="panel-heading">selected elements</p>
-    <draggable
-      v-model="renderList"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-    >
-      <li
-        class="list-group-item"
-        v-for="(element, index) in renderList"
-        :key="index + Date.now()"
-      >
-        <span>{{ element }}</span>
-
-        <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
-      </li>
-    </draggable>-->
     <p class="panel-heading">Selected Elements</p>
-    <Tree :data="renderList" draggable="draggable" @change="convert">
-      <div slot-scope="{ data }" class="white --text">
+    <Tree :data="renderList" draggable="draggable">
+      <div slot-scope="{ data }" class="drag">
         <template v-if="!data.isDragPlaceHolder">
-          <span>{{ data.text }}</span>
-          <i class="fas fa-save fa-lg" @click="deleteElement(data._id)"></i>
+          <span class="drag-text">{{ data.text }}</span>
+          <i class="fas fa-trash fa-md" @click="deleteElement(data._id)"></i>
         </template>
       </div>
     </Tree>
@@ -39,6 +22,7 @@ import {
   setComponentHtmlList,
   addToComponentElementList
 } from '../store/types';
+import { setInterval } from 'timers';
 
 export default {
   name: 'EditQueue',
@@ -59,7 +43,6 @@ export default {
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
-        console.log('SET', newArr);
         this.setClickedElementList(newArr);
       }
     }
@@ -67,32 +50,7 @@ export default {
   methods: {
     ...mapActions([setClickedElementList]),
     deleteElement(id) {
-      //console.log(element);
       this.$store.dispatch(deleteFromComponentHtmlList, id);
-    },
-    convert() {
-      console.log('CONVERT CALLED');
-      let list = this.componentMap[this.activeComponent].htmlList;
-      console.log(list);
-      this.parseAndDelete(list);
-    },
-    parseAndDelete(htmlList) {
-      htmlList.forEach(element => {
-        if (element.children.length > 0) {
-          console.log('in recurse');
-          this.parseAndDelete(element.children);
-        }
-        delete element._vm;
-        delete element.parent;
-        delete element.open;
-        delete element.active;
-        delete element.style;
-        delete element.class;
-        delete element.innerStyle;
-        delete element.innerClass;
-        delete element.innerBackStyle;
-        delete element.innerBackClass;
-      });
     }
   },
   components: {
@@ -103,17 +61,15 @@ export default {
 </script>
 
 <style scoped>
-li {
-  list-style-type: none;
-}
-.list-group-item {
-  margin-top: 5px;
-  border: 1px solid black;
-  border-radius: 0.5cm;
-  background-color: #d1bfa7;
-}
-
 .delete-icon:hover {
   cursor: pointer;
+}
+.drag {
+  background-color: white;
+  margin: 0.5em;
+  border-radius: 5px;
+}
+.drag-text {
+  padding-left: 5px;
 }
 </style>

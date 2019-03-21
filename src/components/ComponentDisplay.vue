@@ -9,8 +9,8 @@
       :w="componentData.w"
       :h="componentData.h"
       :parent="true"
-      @activated="onActivated(componentData.componentName)"
-      @deactivated="onDeactivated"
+      @activated="onActivated(componentData)"
+      @deactivated="onDeactivated(componentData)"
       @dragging="onDrag"
       @resizing="onResize"
       @dblclick.native="onDoubleClick"
@@ -38,33 +38,17 @@ export default {
       abilityToDelete: false
     };
   },
-  created() {
-    localforage
-      .getItem('state')
-      .then(data => {
-        this.getPrevState(data);
-      })
-      .then(data => console.log('retrieved previous data', data));
-  },
   mounted() {
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
-        console.log('clickedcomponent', this.$store.state.activeComponent);
-        if (this.abilityToDelete && this.$store.state.activeComponent) {
-          console.log(this.$store.state.activeComponent, ' WILL BE DELETED');
-          this.$store.dispatch('deleteClickedComponent');
-          this.abilityToDelete = false;
+        if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('deleteActiveComponent');
         }
       }
     });
   },
   computed: {
-    ...mapState([
-      'routes',
-      'activeRoute',
-      'activeComponent',
-      'clickedComponent'
-    ]),
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
       return this.routes[this.activeRoute];
     },
@@ -75,7 +59,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setActiveComponent', 'getPrevState']),
+    ...mapActions(['setActiveComponent']),
     onResize: function(x, y, width, height) {
       this.activeComponentData.x = x;
       this.activeComponentData.y = y;
@@ -86,12 +70,12 @@ export default {
       this.activeComponentData.x = x;
       this.activeComponentData.y = y;
     },
-    onActivated(componentName) {
-      this.setActiveComponent(componentName);
-      this.abilityToDelete = true;
+    onActivated(componentData) {
+      this.setActiveComponent(componentData.componentName);
+      this.activeComponentData.isActive = true;
     },
     onDeactivated() {
-      this.abilityToDelete = false;
+      this.activeComponentData.isActive = false;
     },
     onDoubleClick() {
       ModalProgrammatic.open({

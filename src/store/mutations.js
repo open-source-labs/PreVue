@@ -3,12 +3,10 @@ import {
   UPDATE_CHILDREN,
   ADD_TO_SELECTED_ELEMENT_LIST,
   SET_SELECTED_ELEMENT_LIST,
-  SET_CLICKED_COMPONENT,
   ADD_TO_COMPONENT_HTML_LIST,
   SET_CLICKED_ELEMENT_LIST,
-  DELETE_CLICKED_COMPONENT,
+  DELETE_ACTIVE_COMPONENT,
   SET_COMPONENT_MAP,
-  GET_PREV_STATE,
   DELETE_SELECTED_ELEMENT,
   SET_STATE,
   ADD_PROJECT,
@@ -18,12 +16,18 @@ import {
   ADD_ROUTE,
   SET_ACTIVE_COMPONENT,
   SET_ACTIVE_ROUTE,
-  SET_ROUTES
+  SET_ROUTES,
+  SET_ACTIVE_ROUTE_ARRAY,
+  ADD_TO_ROUTE_CHILDREN,
+  ADD_ROUTE_TO_COMPONENT_MAP,
+  DELETE_PROJECT_TAB
 } from './types';
+
+import localforage from 'localforage';
 
 const mutations = {
   [ADD_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, htmlList, children } = payload;
+    const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {
       ...state.componentMap,
       [componentName]: {
@@ -33,7 +37,8 @@ const mutations = {
         w: 200,
         h: 200,
         children,
-        htmlList
+        htmlList,
+        isActive
       }
     };
   },
@@ -47,20 +52,8 @@ const mutations = {
   [SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
   },
-  [SET_CLICKED_COMPONENT]: (state, payload) => {
-    state.clickedComponent = payload;
-  },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
-    // let route = state.routes[state.activeRoute];
-    // route.forEach(component => {
-    //   if (component.componentName === componentName) {
-    //     console.log('componentName', componentName);
-    //     console.log('component.componentName', component.componentName);
-    //     component.htmlList.push({ text: elementName, children: [] });
-    //   }
-    // });
-
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: []
@@ -69,7 +62,6 @@ const mutations = {
   [DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
     const componentName = state.activeComponent;
     const htmlList = state.componentMap[componentName].htmlList;
-    console.log(htmlList);
 
     function parseAndDelete(htmlList) {
       htmlList.forEach((element, index) => {
@@ -91,43 +83,31 @@ const mutations = {
     const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList = payload;
   },
-  [DELETE_CLICKED_COMPONENT]: state => {
+  [DELETE_ACTIVE_COMPONENT]: state => {
     const { componentMap, activeComponent } = state;
 
-    console.log('componentName', activeComponent);
-    console.log('componentMap', componentMap);
+    let newObj = Object.assign({}, componentMap);
 
-    //let newObj = Object.assign({}, componentMap);
+    delete newObj[activeComponent];
 
-    delete componentMap[activeComponent];
-
-    console.log('componentmap post', componentMap);
-    for (let compKey in componentMap) {
-      let children = componentMap[compKey].children;
+    for (let compKey in newObj) {
+      let children = newObj[compKey].children;
       children.forEach((child, index) => {
         if (activeComponent === child) children.splice(index, 1);
       });
     }
-
-    //state.componentMap = newObj;
+    state.componentMap = newObj;
   },
   [SET_COMPONENT_MAP]: (state, payload) => {
-    console.log(payload);
     state.componentMap = payload;
-  },
-  [GET_PREV_STATE]: (state, payload) => {
-    Object.assign(state, payload);
   },
   [DELETE_SELECTED_ELEMENT]: (state, payload) => {
     state.selectedElementList.splice(payload, 1);
   },
   [SET_STATE]: (state, payload) => {
-    console.log('SETTING STATE');
-    console.log(payload);
     Object.assign(state, payload);
   },
   [ADD_PROJECT]: (state, payload) => {
-    console.log('PUSHING ', payload);
     state.projects.push(payload);
     state.projectNumber++;
   },
@@ -138,6 +118,16 @@ const mutations = {
     state.routes = {
       ...state.routes,
       [payload]: []
+    };
+  },
+  [ADD_ROUTE_TO_COMPONENT_MAP]: (state, payload) => {
+    const { componentName, children } = payload;
+    state.componentMap = {
+      ...state.componentMap,
+      [componentName]: {
+        componentName,
+        children
+      }
     };
   },
   [SET_ACTIVE_ROUTE]: (state, payload) => {
@@ -151,6 +141,19 @@ const mutations = {
   },
   [SET_ROUTES]: (state, payload) => {
     state.routes = Object.assign({}, payload);
+  },
+  [SET_ACTIVE_ROUTE_ARRAY]: (state, payload) => {
+    state.routes[state.activeRoute] = payload;
+  },
+  [ADD_TO_ROUTE_CHILDREN]: (state, payload) => {
+    state.componentMap[state.activeRoute].children.push(payload);
+  },
+  [DELETE_PROJECT_TAB]: (state, payload) => {
+    state.projects.splice(payload, 1);
+    localforage.getItem(state.projects[payload - 1].filename).then(data => {
+      state = data;
+    });
+    state.activeTab = state.activeTab - 1;
   }
 };
 

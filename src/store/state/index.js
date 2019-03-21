@@ -6,7 +6,14 @@ const newState = {
   htmlElementMap,
   componentMap: {
     App: {
-      children: ['HomeView']
+      componentName: 'App',
+      children: [],
+      htmlList: []
+    },
+    HomeView: {
+      componentName: 'HomeView',
+      children: [],
+      htmlList: []
     }
   },
   routes: {
@@ -17,8 +24,6 @@ const newState = {
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
-  clickedComponent: '',
-  clickedComponentToDelete: '',
   projectNumber: 2,
   activeTab: 0
 };

@@ -9,15 +9,10 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <li
-        class="list-group-item"
-        v-for="(element, index) in renderList"
-        :key="index + Date.now()"
-      >
-        <span>{{ element.text }}</span>
-
-        <i class="fas fa fa-trash fa-lg" @click="deleteElement(index)"></i>
-      </li>
+      <div class="list-group-item" v-for="(element, index) in renderList" :key="index + Date.now()">
+        {{ element.text }}
+        <i class="fas fa fa-trash fa-md" @click="deleteElement(index)"></i>
+      </div>
     </draggable>
   </section>
 </template>
@@ -62,23 +57,21 @@ export default {
 
 <style scoped>
 .home-queue {
-  border: 1px solid aqua;
-  background-color: #393f4d;
+  border: 1px solid white;
+  background-color: hsl(222, 15%, 26%);
   height: 100%;
 }
 li {
   list-style-type: none;
 }
 .list-group-item {
-  margin-top: 5px;
+  margin: 2px;
   border: 1px solid black;
   border-radius: 0.5cm;
-  background-color: #d1bfa7;
+  background-color: #e7d5bc;
   height: 35px;
-}
-span {
-  margin-top: 10px;
-  margin: 2em;
+  padding-top: 2px;
+  text-align: center;
 }
 
 .fa-trash:hover {

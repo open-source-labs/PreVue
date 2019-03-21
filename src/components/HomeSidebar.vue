@@ -1,13 +1,21 @@
 <template>
   <div class="home-sidebar">
     <p class="panel-heading">Create a component</p>
-
-    <b-input v-model="componentName" placeholder="Component name"></b-input>
     <div class="icon-container">
-      <Icons @getClickedIcon="addToSelectedElementList"/>
+      <Icons @getClickedIcon="addToSelectedElementList" />
     </div>
 
-    <button class="button is-primary" @click="handleClick" :disabled="!componentName">Add Component</button>
+    <form v-on:submit.prevent="handleClick">
+      <b-input v-model="componentName" placeholder="Component name"></b-input>
+    </form>
+
+    <button
+      class="button is-primary"
+      @click="handleClick"
+      :disabled="!componentName"
+    >
+      Add Component
+    </button>
   </div>
 </template>
 
@@ -40,8 +48,8 @@ export default {
         w: 200,
         h: 200,
         htmlList: this.selectedElementList,
-
-        children: this.children
+        children: this.children,
+        isActive: false
       };
 
       this.registerComponent(component)
@@ -57,6 +65,9 @@ export default {
 <style scoped>
 .is-primary {
   height: 45px;
+}
+form {
+  margin-bottom: 2em;
 }
 .icon-container {
   padding: 2em 0 2em 0;

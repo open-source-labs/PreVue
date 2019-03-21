@@ -79,5 +79,11 @@ export default {
 
 button {
   margin: 5px;
+  font-size: 15px;
+  background: none;
+  border: none;
+}
+button:hover {
+  color: #00c4a7;
 }
 </style>

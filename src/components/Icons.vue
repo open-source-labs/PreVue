@@ -6,7 +6,7 @@
       :key="idx + Date.now()"
     >
       <i :class="iconString"></i>
-      <br>
+      <br />
       <span class="white--text">{{ elementName }}</span>
     </button>
   </section>
@@ -34,8 +34,15 @@ export default {
   grid-template-columns: auto auto auto auto;
 }
 
+button {
+  background: none;
+  border: none;
+}
 button:hover {
   cursor: pointer;
   color: #00d1b2;
+}
+button:focus {
+  outline: none;
 }
 </style>
