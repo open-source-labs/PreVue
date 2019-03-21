@@ -7,7 +7,7 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
-      children: [],
+      children: [{ componentName: 'homeView', children: [] }],
       htmlList: []
     },
     HomeView: {
@@ -19,6 +19,7 @@ const newState = {
   routes: {
     HomeView: []
   },
+
   componentNameInputValue: '',
   projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',

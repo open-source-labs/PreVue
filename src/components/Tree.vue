@@ -36,12 +36,13 @@ export default {
   methods: {
     formatComponentMap(compMap) {
       let result = [];
-      for (let comp in compMap) {
+      Object.values(compMap).forEach(compData => {
         result.push({
-          name: comp,
-          children: compMap[comp].children
+          name: compData.componentName,
+          children: compData.children
         });
-      }
+      });
+      console.log(result);
       return result;
     },
     transformToTree(data) {
