@@ -32,6 +32,7 @@ export default {
 .icon-grid {
   display: grid;
   grid-template-columns: auto auto auto auto;
+  grid-row-gap: 1em;
 }
 
 button {
