@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="350" src="/prevue-large.png?raw=true">
+  <img width="350" src="src/assets/prevue-large.png?raw=true">
   <h1 align="center">PreVue</h1>
 </p>
 
