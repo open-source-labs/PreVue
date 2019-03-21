@@ -12,7 +12,7 @@
           <RouteDisplay />
         </div>
 
-        <div id="create-component-container" class="column">
+        <div id="create-component-container" class="column is-fullheight">
           <HomeSidebar />
         </div>
       </aside>
@@ -53,7 +53,7 @@ export default {
 <style scoped>
 #route-display-container {
   background-color: #393f4d;
-
+  height: 100%;
   padding: 0;
 }
 

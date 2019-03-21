@@ -8,7 +8,7 @@ import store from './store/';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
 // import 'vuetify/dist/vuetify.min.css';
-// import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 
 import Buefy from 'buefy';
 
