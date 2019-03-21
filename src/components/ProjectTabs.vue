@@ -8,6 +8,7 @@
         :key="idx"
       ></b-tab-item>
     </b-tabs>
+    <div></div>
   </div>
 </template>
 
@@ -15,10 +16,18 @@
 import { mapState } from 'vuex';
 import { setComponentMap, changeActiveTab, setRoutes } from '../store/types';
 import localforage from 'localforage';
+import { deleteProjectTab } from '../store/types';
+const Mousetrap = require('mousetrap');
 
 export default {
   name: 'ProjectTabs',
-  computed: mapState(['projects']),
+  computed: mapState(['projects', 'activeTab']),
+  created() {
+    Mousetrap.bind(['command+t', 'command+t'], () => {
+      console.log('triggered');
+      this.$store.dispatch(deleteProjectTab, this.activeTab);
+    });
+  },
   methods: {
     changeTab(idx) {
       let currTab = this.$store.state.activeTab;

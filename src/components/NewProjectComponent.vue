@@ -7,6 +7,11 @@ import { addProject } from '../store/types';
 
 export default {
   name: 'NewProjectComponent',
+  created() {
+    Mousetrap.bind(['command+n', 'ctrl+n'], () => {
+      this.addProject();
+    });
+  },
   methods: {
     addProject() {
       this.$store.dispatch(addProject, {

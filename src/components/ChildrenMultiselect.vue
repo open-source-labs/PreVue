@@ -30,6 +30,7 @@ export default {
     options() {
       const routes = Object.keys(this.routes);
       const exceptions = new Set(['App', this.activeComponent, ...routes]);
+      console.log('exceptions', exceptions);
       return Object.keys(this.componentMap).filter(component => {
         if (!exceptions.has(component)) return component;
       });

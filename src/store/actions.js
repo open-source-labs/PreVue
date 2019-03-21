@@ -24,7 +24,6 @@ const actions = {
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
-    console.log('payload', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.addToComponentElementList]: ({ commit }, payload) => {
@@ -46,11 +45,13 @@ const actions = {
     commit(types.DELETE_SELECTED_ELEMENT, payload);
   },
   [types.setState]: ({ commit }, payload) => {
-    // console.log('COMMITTING PAYLOAD: ', payload);
     commit(types.SET_STATE, payload);
   },
   [types.addProject]: ({ commit }, payload) => {
     commit(types.ADD_PROJECT, payload);
+  },
+  [types.deleteFromComponentHtmlList]: ({ commit }, payload) => {
+    commit(types.DELETE_FROM_COMPONENT_HTML_LIST, payload);
   },
   [types.changeActiveTab]: ({ commit }, payload) => {
     commit(types.CHANGE_ACTIVE_TAB, payload);
@@ -76,6 +77,9 @@ const actions = {
   },
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);
+  },
+  [types.deleteProjectTab]: ({ commit }, payload) => {
+    commit(types.DELETE_PROJECT_TAB, payload);
   },
   [types.updateComponentChildrenMultiselectValue]: ({ commit }, payload) => {
     commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, payload);

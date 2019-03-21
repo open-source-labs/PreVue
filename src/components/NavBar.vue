@@ -35,12 +35,24 @@
 </template>
 
 <script>
-// import { addProject } from '../store/types';
-// import localforage from 'localforage';
+import { mapState } from 'vuex';
+import fs from 'fs-extra';
+import path from 'path';
+import { addProject, changeTabName } from '../store/types';
+import localforage from 'localforage';
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+
+const ipc = require('electron').ipcRenderer;
+const Mousetrap = require('mousetrap');
+
+// hot key commands
+// add save as
+// add new tab
+// import { addProject } from '../store/types';
+// import localforage from 'localforage';
 
 export default {
   name: 'NavBar',
@@ -62,5 +74,15 @@ export default {
 
 .save-icon:hover {
   cursor: pointer;
+}
+
+button {
+  margin: 5px;
+  font-size: 15px;
+  background: none;
+  border: none;
+}
+button:hover {
+  color: #00c4a7;
 }
 </style>

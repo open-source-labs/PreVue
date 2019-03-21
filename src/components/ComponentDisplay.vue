@@ -24,7 +24,6 @@ import { mapState, mapActions } from 'vuex';
 import VueDraggableResizable from 'vue-draggable-resizable';
 import ModalView from '@/views/ModalView';
 import { ModalProgrammatic } from 'buefy/dist/components/modal';
-
 export default {
   name: 'ComponentDisplay',
   components: {
@@ -73,7 +72,6 @@ export default {
     },
     onDeactivated() {
       this.activeComponentData.isActive = false;
-      this.setActiveComponent('');
     },
     onDoubleClick() {
       ModalProgrammatic.open({

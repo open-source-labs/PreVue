@@ -1,17 +1,25 @@
 <template>
   <div class="home-sidebar">
     <p class="panel-heading">Create a component</p>
+    <div class="icon-container">
+      <Icons @getClickedIcon="addToSelectedElementList" />
+    </div>
 
-    <b-input v-model="componentNameInputValue" placeholder="Component name"></b-input>
-
-    <Icons @getClickedIcon="addToSelectedElementList"/>
+    <form v-on:submit.prevent="handleClick">
+      <b-input
+        v-model="componentNameInputValue"
+        placeholder="Component name"
+      ></b-input>
+    </form>
 
     <button
       class="button is-primary"
       @click="handleClick"
       :disabled="!componentNameInputValue"
-    >Add Component</button>
-    <ChildrenMultiselect/>
+    >
+      Add Component
+    </button>
+    <ChildrenMultiselect />
   </div>
 </template>
 
@@ -70,3 +78,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+.is-primary {
+  height: 45px;
+}
+form {
+  margin-bottom: 2em;
+}
+.icon-container {
+  padding: 2em 0 2em 0;
+}
+</style>
