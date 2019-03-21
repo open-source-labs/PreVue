@@ -27,7 +27,6 @@
           <SaveProjectComponent />
           <OpenProjectComponent />
           <NewProjectComponent />
-          <!-- <i class="fas fa-save fa-lg"></i> -->
           <ExportProjectComponent />
         </div>
       </div>

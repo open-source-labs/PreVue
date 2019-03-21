@@ -1,6 +1,6 @@
 <template>
   <div class="home-sidebar">
-    <p class="panel-heading">Edit {{ clickedComponent }}</p>
+    <p class="panel-heading">Edit {{ activeComponent }}</p>
 
     <Icons @getClickedIcon="addToComponentElementList" />
   </div>
@@ -18,13 +18,13 @@ export default {
     Icons
   },
   computed: {
-    ...mapState(['clickedComponent', 'componentMap']),
+    ...mapState(['activeComponent', 'componentMap']),
     selectedChildren: {
       get() {
-        return this.$store.state.componentMap[this.clickedComponent].children;
+        return this.$store.state.componentMap[this.activeComponent].children;
       },
       set(newArray) {
-        const payload = { name: this.clickedComponent, newArray };
+        const payload = { name: this.activeComponent, newArray };
         this.$store.commit(types.UPDATE_CHILDREN, payload);
       }
     }

@@ -1,4 +1,4 @@
-# vue-boiler-plate-with-router
+# vue-boiler-plate-routes
 
 ## Project setup
 ```

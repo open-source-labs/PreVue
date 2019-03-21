@@ -11,31 +11,31 @@ export default {
   name: 'ExportProjectComponent',
   methods: {
     exportProject: function() {
-      // console.log(path.join('vue-boiler-plate'));
       ipc.send('show-export-dialog');
     },
     createRouter(location) {
       fs.writeFileSync(
-        path.join(location, 'src'),
+        path.join(location, 'src', 'router.js'),
         this.createRouterImports(this.componentMap['App'].children) +
+          '\nVue.use(Router);\n' +
           this.createExport(this.componentMap['App'].children)
       );
     },
     createRouterImports(appChildren) {
       let str = "import Vue from 'vue'\nimport Router from 'vue-router'\n";
       appChildren.forEach(child => {
-        str += `import ${child} from './views/${child}.vue`;
+        str += `import ${child} from './views/${child}.vue'\n`;
       });
       return str;
     },
     createExport(appChildren) {
       let str =
-        "export default new Router({\n\tmode: 'history',\n\tbase: process.env.BASE_URL,\n\t\routes: [\n";
+        "export default new Router({\n\tmode: 'history',\n\tbase: process.env.BASE_URL,\n\troutes: [\n";
       appChildren.forEach(child => {
         if (child === 'HomeView')
-          str += `\t\t{\n\t\t\tpath: '/',\n\t\t\tname:'${child}',\n\t\t\tcomponent:${child}\n\t\t},`;
+          str += `\t\t{\n\t\t\tpath: '/',\n\t\t\tname:'${child}',\n\t\t\tcomponent:${child}\n\t\t},\n`;
         else
-          str += `\t\t{\n\t\t\tpath: '/${child}',\n\t\t\tname:'${child}',\n\t\t\tcomponent: () => import('./views/${child}.vue')\n\t\t},`;
+          str += `\t\t{\n\t\t\tpath: '/${child}',\n\t\t\tname:'${child}',\n\t\t\tcomponent: () => import('./views/${child}.vue')\n\t\t},\n`;
       });
       str += `\t]\n})\n`;
       return str;
@@ -59,7 +59,7 @@ export default {
     writeTemplate(compName, children) {
       let str = '';
       if (compName === 'App') {
-        str += `<div id="app">\n\t\t<div id="nav">\n\t\t\t`;
+        str += `<div id="app">\n\t\t<div id="nav">\n`;
         children.forEach(name => {
           if (name === 'HomeView')
             str += `\t\t\t<router-link to="/">${name}</router-link>\n`;
@@ -69,7 +69,7 @@ export default {
       } else {
         str += `<div>\n`;
         children.forEach(name => {
-          str += `\t\t<${name}>\n\t\t</${name}>\n`;
+          str += `\t\t<${name.componentName}>\n\t\t</${name.componentName}>\n`;
         });
       }
       return `<template>\n\t${str}\t</div>\n</template>`;
@@ -77,14 +77,13 @@ export default {
     writeScript(componentName, children) {
       let str = '';
       children.forEach(name => {
-        str +=
-          componentName === 'App'
-            ? `import ${name} from '@/components/${name}.vue';\n`
-            : `import ${name} from './${name}.vue';\n`;
+        str += `import ${name.componentName} from '@/components/${
+          name.componentName
+        }.vue';\n`;
       });
       let childrenComponentNames = '';
       children.forEach(name => {
-        childrenComponentNames += `\t\t${name},\n`;
+        childrenComponentNames += `\t\t${name.componentName},\n`;
       });
       return `\n\n<script>\n${str}\nexport default {\n\tname: '${componentName}',\n\tcomponents: {\n${childrenComponentNames}\t}\n};\n<\/script>`;
     },
@@ -105,7 +104,7 @@ export default {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
       }
-      fs.copySync('./../vue-boiler-plate-with-router', data);
+      fs.copySync('@/components/vue-boiler-plate-routes', data);
       this.createRouter(data);
       for (let componentName in this.componentMap) {
         if (componentName !== 'App') {

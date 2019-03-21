@@ -6,10 +6,7 @@
       </div>
     </div>
     <div class="columns">
-      <aside
-        id="left-side-container"
-        class="column is-2 aside hero is-fullheight"
-      >
+      <aside id="left-side-container" class="column is-2 aside hero">
         <div id="route-display-container" class="column is-fullheight">
           <p class="panel-heading">Routes</p>
           <RouteDisplay />

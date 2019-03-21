@@ -46,10 +46,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['clickedComponent', 'componentMap']),
+    ...mapState(['activeComponent', 'componentMap']),
     renderList: {
       get() {
-        return this.componentMap[this.clickedComponent].htmlList;
+        return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
         this.setClickedElementList(newArr);

@@ -61,6 +61,6 @@ export default {
 
 <style lang="scss" scoped>
 #project-tabs {
-  height: 20px;
+  height: 30px;
 }
 </style>
