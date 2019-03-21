@@ -5,7 +5,7 @@
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
-      <v-icon>{{ iconString }}</v-icon>
+      <i :class="iconString"></i>
       <br />
       <span class="white--text">{{ elementName }}</span>
     </button>

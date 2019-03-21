@@ -1,137 +1,99 @@
 <template>
   <div class="component-display">
-    <!-- <LoadingBar :duration="2000"/> -->
-    <div
-      style="height: 500px; width: 500px; border: 1px solid red; position: relative;"
+    <VueDraggableResizable
+      class-name="component-box"
+      v-for="componentData in activeRouteArray"
+      :key="componentData.componentName"
+      :x="componentData.x"
+      :y="componentData.y"
+      :w="componentData.w"
+      :h="componentData.h"
+      :parent="true"
+      @activated="onActivated(componentData)"
+      @deactivated="onDeactivated(componentData)"
+      @dragging="onDrag"
+      @resizing="onResize"
+      @dblclick.native="onDoubleClick"
     >
-      <button @click="showMap">SEE COMPONENT MAP</button>
-
-      <VueDraggableResizable
-        class-name="component-box"
-        v-for="[componentName, componentData] in Object.entries(
-          computedComponentMap
-        )"
-        :key="componentName"
-        :x="componentData.x"
-        :y="componentData.y"
-        :w="componentData.w"
-        :h="componentData.h"
-        @activated="handleClick(componentName)"
-        @dragging="onDrag"
-        @resizing="onResize"
-        :parent="true"
-      >
-        <h3>{{ componentName }}</h3>
-        <br />
-        X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
-        {{ componentData.w }} / Height: {{ componentData.h }}
-      </VueDraggableResizable>
-      <modals-container></modals-container>
-      <ComponentModal :modalWidth="800" :modalHeight="900" />
-    </div>
+      <h3>{{ componentData.componentName }}</h3>
+    </VueDraggableResizable>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
-import LoadingBar from './LoadingBar.vue';
-import ComponentModal from './ComponentModal.vue';
-import { setComponentMap, getPrevState } from '../store/types';
-import localforage from 'localforage';
+import { mapState, mapActions } from 'vuex';
 import VueDraggableResizable from 'vue-draggable-resizable';
+import ModalView from '@/views/ModalView';
+import { ModalProgrammatic } from 'buefy/dist/components/modal';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDraggableResizable,
-    // LoadingBar,
-    ComponentModal
+    VueDraggableResizable
   },
   data() {
     return {
-      lastTimeClicked: Date.now(),
-      dialog: false,
-      showModal: false
+      abilityToDelete: false
     };
   },
-
-  created() {
-    // localforage
-    //   .getItem('state')
-    //   .then(data => {
-    //     this.$store.dispatch(getPrevState, data);
-    //   })
-    //   .then(data => console.log('retrieved previous data'));
+  mounted() {
+    window.addEventListener('keyup', event => {
+      if (event.key === 'Backspace') {
+        if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('deleteActiveComponent');
+        }
+      }
+    });
   },
   computed: {
-    ...mapState(['componentMap', 'clickedComponent']),
-    computedComponentMap: {
-      get() {
-        return this.componentMap;
-      },
-      set(value) {
-        this.$store.dispatch(setComponentMap, value);
-      }
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
+    activeRouteArray() {
+      return this.routes[this.activeRoute];
+    },
+    activeComponentData() {
+      return this.activeRouteArray.filter(componentData => {
+        return componentData.componentName === this.activeComponent;
+      })[0];
     }
   },
   methods: {
+    ...mapActions(['setActiveComponent']),
     onResize: function(x, y, width, height) {
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
-      this.componentMap[this.clickedComponent].w = width;
-      this.componentMap[this.clickedComponent].h = height;
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
+      this.activeComponentData.w = width;
+      this.activeComponentData.h = height;
     },
     onDrag: function(x, y) {
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
+      this.activeComponentData.x = x;
+      this.activeComponentData.y = y;
     },
-
-    onDragStop: function(x, y) {
-      // console.log('called');
-      // console.log(x, y);
-      this.componentMap[this.clickedComponent].x = x;
-      this.componentMap[this.clickedComponent].y = y;
+    onActivated(componentData) {
+      this.setActiveComponent(componentData.componentName);
+      this.activeComponentData.isActive = true;
     },
-
-    getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+    onDeactivated() {
+      this.activeComponentData.isActive = false;
+      this.setActiveComponent('');
     },
-    showMap() {
-      console.log(this.componentMap);
-    },
-    handleClick(componentName) {
-      console.log('CLICKED');
-      this.$store.dispatch('setClickedComponent', componentName);
-      if (Date.now() - this.lastTimeClicked < 200)
-        this.doubleClick(componentName);
-      else {
-        this.lastTimeClicked = Date.now();
-      }
-    },
-    doubleClick() {
-      console.log('DOUBLE CLICKED');
-      this.$modal.show('demo-login');
+    onDoubleClick() {
+      ModalProgrammatic.open({
+        parent: this,
+        component: ModalView
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-/* .component-display {
-  grid-area: component-display;
-} */
+.component-display {
+  border: 1px solid plum;
+  height: 100%;
+  position: relative;
+}
 
 .component-box {
-  border: 1px solid white;
-}
-.component-display {
-  border: 1px solid palegreen;
-}
-.vdr.active:before {
-  outline-style: solid !important;
+  color: white;
+  border: 1px solid salmon;
 }
 </style>

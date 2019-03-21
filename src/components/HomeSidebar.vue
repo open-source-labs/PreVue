@@ -1,108 +1,72 @@
 <template>
   <div class="home-sidebar">
-    <!-- <header class="green--text text--accent-2 pa-2">Create a Component</header> -->
-    <RouteDisplay></RouteDisplay>
-    <section class="add-component-display">
-      <BaseTextfield
-        v-model="componentName"
-        label="Component Name"
-        :value="componentName"
-      />
-      <section>
-        <Icons @getClickedIcon="addToSelectedElementList" />
-      </section>
+    <p class="panel-heading">Create a component</p>
 
-      <section>
-        <v-select
-          v-model="selectedChildren"
-          :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
-          label="Select child components"
-          multiple
-          chips
-          hint
-          persistent-hint
-        ></v-select>
-        <header class="purple--text text--accent-2">Selected Elements</header>
-        <hr />
-        <!-- <HomeQueue :listToRender="selectedElementList"/> -->
-      </section>
+    <b-input v-model="componentNameInputValue" placeholder="Component name"></b-input>
 
-      <BaseButton
-        :componentName="componentName"
-        name="add component"
-        icon="add_circle"
-        @click="addComponent"
-      ></BaseButton>
-    </section>
+    <Icons @getClickedIcon="addToSelectedElementList"/>
+
+    <button
+      class="button is-primary"
+      @click="handleClick"
+      :disabled="!componentNameInputValue"
+    >Add Component</button>
+    <ChildrenMultiselect/>
   </div>
 </template>
 
 <script>
-import RouteDisplay from './RouteDisplay';
-import BaseTextfield from './BaseTextfield';
-import BaseButton from './BaseButton';
 import Icons from './Icons';
-import HomeQueue from './HomeQueue';
-import { mapState } from 'vuex';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect';
+import { mapState, mapActions } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
   name: 'HomeSidebar',
   data: function() {
     return {
-      componentName: '',
-      selectedChildren: []
+      children: []
     };
   },
-
   components: {
-    BaseTextfield,
-    BaseButton,
-    Icons,
-    HomeQueue,
-    RouteDisplay
+    ChildrenMultiselect,
+    Icons
   },
   computed: {
-    ...mapState(['componentMap', 'selectedElementList'])
+    ...mapState(['componentMap', 'selectedElementList']),
+    componentNameInputValue: {
+      get() {
+        return this.$store.state.componentNameInputValue;
+      },
+      set(value) {
+        this.updateComponentNameInputValue(value);
+      }
+    }
   },
   methods: {
-    addComponent() {
-      const payload = {
-        componentName: this.componentName,
+    ...mapActions([
+      'registerComponent',
+      'addToSelectedElementList',
+      'updateComponentNameInputValue'
+    ]),
+    handleClick() {
+      const component = {
+        componentName: this.componentNameInputValue,
         x: 0,
         y: 0,
         w: 200,
         h: 200,
         htmlList: this.selectedElementList,
-        children: this.selectedChildren
+        children: this.children,
+        isActive: false
       };
 
-      this.$store
-        .dispatch(types.registerComponent, payload)
+      this.registerComponent(component)
         .then(() => {
-          this.componentName = '';
-          this.selectedChildren = [];
+          this.children = [];
         })
         .catch(err => console.log(err));
-    },
-
-    addToSelectedElementList(elementName) {
-      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };
 </script>
-
-<style scoped>
-.home-sidebar {
-  grid-area: home-sidebar;
-  width: 250px;
-  border: 1px solid;
-  padding: 10px;
-  border-color: white;
-}
-
-.add-component-display {
-  background-color: red;
-}
-</style>

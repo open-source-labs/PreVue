@@ -14,23 +14,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
-function showDialog(event) {
-  // var dir = './tmp';
-  dialog.showSaveDialog(
-    {
-      title: 'Choose location to save folder in',
-      defaultPath: app.getPath('desktop'),
-      message: 'Choose location to save folder in',
-      nameFieldLabel: 'Application Name'
-    },
-    result => {
-      // console.log(result);
-      event.sender.send('project-location', result);
-    }
-  );
-  // console.log(val);
-}
-
 // Standard scheme must be registered before the app is ready
 protocol.registerStandardSchemes(['app'], { secure: true });
 function createWindow() {
@@ -99,6 +82,64 @@ if (isDevelopment) {
   }
 }
 
-ipc.on('show-dialog', event => {
-  showDialog(event);
+function showExportDialog(event) {
+  dialog.showSaveDialog(
+    {
+      title: 'Choose location to save folder in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save folder in',
+      nameFieldLabel: 'Application Name'
+    },
+    result => {
+      // console.log(result);
+      // if (nameLabel === 'JSON Name') event.sender.send('json-location', result);
+      event.sender.send('export-project-location', result);
+    }
+  );
+}
+
+function showSaveJsonDialog(event) {
+  dialog.showSaveDialog(
+    {
+      title: 'Choose location to save JSON object in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save JSON object in',
+      nameFieldLabel: 'Application State Name',
+      filters: [
+        {
+          name: 'JSON Files',
+          extensions: ['json']
+        }
+      ]
+    },
+    result => {
+      event.sender.send('save-json-location', result);
+    }
+  );
+}
+
+ipc.on('show-open-dialog', event => {
+  dialog.showOpenDialog(
+    {
+      properties: ['openFile'],
+      filters: [
+        {
+          name: 'JSON Files',
+          extensions: ['json']
+        }
+        // { name: 'Text Files', extensions: ['txt', 'text'] },
+      ]
+    },
+    result => {
+      event.sender.send('open-json-location', result);
+    }
+  );
+});
+
+ipc.on('show-save-json-dialog', event => {
+  showSaveJsonDialog(event);
+});
+
+ipc.on('show-export-dialog', event => {
+  showExportDialog(event);
 });
