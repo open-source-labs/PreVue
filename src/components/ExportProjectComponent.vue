@@ -67,12 +67,14 @@ export default {
           else
             str += `\t\t\t<router-link to="/${name}">${name}</router-link>\n`;
         });
+        str += '\t\t\t<router-view></router-view>\n\t\t</div>\n';
       } else {
         str += `<div>\n`;
         children.forEach(name => {
           str += `\t\t<${name.componentName}>\n\t\t</${name.componentName}>\n`;
         });
       }
+
       return `<template>\n\t${str}\t</div>\n</template>`;
     },
     writeScript(componentName, children) {
