@@ -4,6 +4,7 @@
 
 <script>
 import { mapState } from 'vuex';
+const { remote } = require('electron');
 import fs from 'fs-extra';
 import path from 'path';
 const ipc = require('electron').ipcRenderer;
@@ -104,7 +105,12 @@ export default {
         fs.mkdirSync(data);
         console.log('FOLDER CREATED!');
       }
-      fs.copySync('@/components/vue-boiler-plate-routes', data);
+      // console.log(__dirname);
+      console.log(remote.app.getAppPath());
+      fs.copySync(
+        path.join(remote.app.getAppPath(), '../vue-boiler-plate-routes'),
+        data
+      );
       this.createRouter(data);
       for (let componentName in this.componentMap) {
         if (componentName !== 'App') {
