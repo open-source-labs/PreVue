@@ -25,7 +25,9 @@ export default {
     createRouterImports(appChildren) {
       let str = "import Vue from 'vue'\nimport Router from 'vue-router'\n";
       appChildren.forEach(child => {
-        str += `import ${child} from './views/${child}.vue'\n`;
+        str += `import ${child.componentName} from './views/${
+          child.componentName
+        }.vue'\n`;
       });
       return str;
     },
@@ -33,10 +35,14 @@ export default {
       let str =
         "export default new Router({\n\tmode: 'history',\n\tbase: process.env.BASE_URL,\n\troutes: [\n";
       appChildren.forEach(child => {
-        if (child === 'HomeView')
-          str += `\t\t{\n\t\t\tpath: '/',\n\t\t\tname:'${child}',\n\t\t\tcomponent:${child}\n\t\t},\n`;
+        if (child.componentName === 'HomeView')
+          str += `\t\t{\n\t\t\tpath: '/',\n\t\t\tname:'${
+            child.componentName
+          }',\n\t\t\tcomponent:${child.componentName}\n\t\t},\n`;
         else
-          str += `\t\t{\n\t\t\tpath: '/${child}',\n\t\t\tname:'${child}',\n\t\t\tcomponent: () => import('./views/${child}.vue')\n\t\t},\n`;
+          str += `\t\t{\n\t\t\tpath: '/${child.componentName}',\n\t\t\tname:'${
+            child.componentName
+          }',\n\t\t\tcomponent: ${child.componentName}\n\t\t},\n`;
       });
       str += `\t]\n})\n`;
       return str;
@@ -63,9 +69,13 @@ export default {
         str += `<div id="app">\n\t\t<div id="nav">\n`;
         children.forEach(name => {
           if (name === 'HomeView')
-            str += `\t\t\t<router-link to="/">${name}</router-link>\n`;
+            str += `\t\t\t<router-link to="/">${
+              name.componentName
+            }</router-link>\n`;
           else
-            str += `\t\t\t<router-link to="/${name}">${name}</router-link>\n`;
+            str += `\t\t\t<router-link to="/${name.componentName}">${
+              name.componentName
+            }</router-link>\n`;
         });
         str += '\t\t\t<router-view></router-view>\n\t\t</div>\n';
       } else {

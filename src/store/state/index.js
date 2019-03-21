@@ -7,7 +7,7 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
-      children: [{ componentName: 'homeView', children: [] }],
+      children: [{ componentName: 'HomeView', children: [] }],
       htmlList: []
     },
     HomeView: {
