@@ -27,9 +27,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['addRoute']),
+    ...mapActions(['addRouteToRouteMap']),
     handleEnterKeyPress() {
-      this.addRoute(this.newRoute)
+      this.addRouteToRouteMap(this.newRoute)
         .then(() => {
           this.newRoute = '';
         })

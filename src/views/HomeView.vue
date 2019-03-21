@@ -12,7 +12,7 @@
           <RouteDisplay />
         </div>
 
-        <div id="create-component-container" class="column">
+        <div id="create-component-container" class="column is-fullheight">
           <HomeSidebar />
         </div>
       </aside>

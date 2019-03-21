@@ -16,15 +16,11 @@
       @dblclick.native="onDoubleClick"
     >
       <h3>{{ componentData.componentName }}</h3>
-      <br>
-      X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
-      {{ componentData.w }} / Height: {{ componentData.h }}
     </VueDraggableResizable>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
 import ModalView from '@/views/ModalView';
 import { ModalProgrammatic } from 'buefy/dist/components/modal';

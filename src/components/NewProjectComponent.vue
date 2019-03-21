@@ -5,7 +5,6 @@
 <script>
 import { addProject } from '../store/types';
 
-const ipc = require('electron').ipcRenderer;
 export default {
   name: 'NewProjectComponent',
   created() {
