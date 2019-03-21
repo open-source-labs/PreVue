@@ -24,7 +24,7 @@ const newState = {
   },
 
   componentNameInputValue: '',
-  projects: ['Untitled-1'],
+  projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],

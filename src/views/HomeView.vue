@@ -2,27 +2,30 @@
   <div>
     <div class="columns">
       <div id="project-tabs-container" class="column is-8 is-offset-2">
-        <ProjectTabs/>
+        <ProjectTabs />
       </div>
     </div>
     <div class="columns">
-      <aside id="left-side-container" class="column is-2 aside hero is-fullheight">
+      <aside id="left-side-container" class="column is-2 aside hero">
         <div id="route-display-container" class="column is-fullheight">
           <p class="panel-heading">Routes</p>
-          <RouteDisplay/>
+          <RouteDisplay />
         </div>
 
         <div id="create-component-container" class="column is-fullheight">
-          <HomeSidebar/>
+          <HomeSidebar />
         </div>
       </aside>
 
       <div id="center-container" class="column is-8 hero is-fullheight">
-        <ComponentDisplay/>
+        <ComponentDisplay />
       </div>
 
-      <div id="right-side-container" class="column is-2 aside hero is-fullheight">
-        <HomeQueue/>
+      <div
+        id="right-side-container"
+        class="column is-2 aside hero is-fullheight"
+      >
+        <HomeQueue />
       </div>
     </div>
   </div>

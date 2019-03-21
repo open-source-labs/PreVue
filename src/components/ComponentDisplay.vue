@@ -1,6 +1,5 @@
 <template>
   <div class="component-display">
-    <!-- <ProjectTabs /> -->
     <VueDraggableResizable
       class-name="component-box"
       v-for="componentData in activeRouteArray"
@@ -17,25 +16,19 @@
       @dblclick.native="onDoubleClick"
     >
       <h3>{{ componentData.componentName }}</h3>
-      <br>
-      X: {{ componentData.x }} / Y: {{ componentData.y }} - Width:
-      {{ componentData.w }} / Height: {{ componentData.h }}
     </VueDraggableResizable>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import localforage from 'localforage';
 import VueDraggableResizable from 'vue-draggable-resizable';
 import ModalView from '@/views/ModalView';
 import { ModalProgrammatic } from 'buefy/dist/components/modal';
-import ProjectTabs from '@/components/ProjectTabs';
 
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDraggableResizable,
-    ProjectTabs
+    VueDraggableResizable
   },
   data() {
     return {
