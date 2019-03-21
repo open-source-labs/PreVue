@@ -52,6 +52,15 @@ const mutations = {
   },
   [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
+    // let route = state.routes[state.activeRoute];
+    // route.forEach(component => {
+    //   if (component.componentName === componentName) {
+    //     console.log('componentName', componentName);
+    //     console.log('component.componentName', component.componentName);
+    //     component.htmlList.push({ text: elementName, children: [] });
+    //   }
+    // });
+
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: []
@@ -79,7 +88,7 @@ const mutations = {
   },
 
   [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
-    const componentName = state.clickedComponent;
+    const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList = payload;
   },
   [DELETE_CLICKED_COMPONENT]: state => {

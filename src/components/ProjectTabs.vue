@@ -4,7 +4,7 @@
       <b-tab-item
         class="has-background-white tab-item"
         v-for="(label, idx) in projects"
-        :label="label"
+        :label="label.filename"
         :key="idx"
         icon="times-circle"
       ></b-tab-item>
@@ -16,29 +16,20 @@
 import { mapState } from 'vuex';
 import { setComponentMap, changeActiveTab, setRoutes } from '../store/types';
 import localforage from 'localforage';
+
 export default {
   name: 'ProjectTabs',
   computed: mapState(['projects']),
-  mounted() {
-    this.handleIconClick();
-  },
   methods: {
-    handleIconClick() {
-      let icon = document.querySelector('.fa-times-circle');
-      console.log('icon', icon);
-      icon.addEventListener('click', () => {
-        console.log('clicked');
-      });
-    },
     changeTab(idx) {
       let currTab = this.$store.state.activeTab;
       //STORE PREV TAb IN LOCAL FORAGE IF NOT EXIST
-      this.saveProjectToSession(this.projects[currTab]);
+      this.saveProjectToSession(this.projects[currTab].filename);
 
       this.$store.dispatch(changeActiveTab, idx);
       //RESET COMPONENT MAP IF NEW TAB PROJECT DOESN'T EXIST IN LOCALFORAGE
       localforage
-        .getItem(this.projects[idx])
+        .getItem(this.projects[idx].filename)
         .then(value => {
           if (!value) {
             this.$store.dispatch(setComponentMap, {

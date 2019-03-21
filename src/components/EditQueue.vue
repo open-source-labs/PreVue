@@ -18,7 +18,7 @@
       </li>
     </draggable>-->
     <p class="panel-heading">Selected Elements</p>
-    <Tree :data="renderList" draggable="draggable" cross-tree="cross-tree">
+    <Tree :data="renderList" draggable="draggable" @change="convert">
       <div slot-scope="{ data }" class="white --text">
         <template v-if="!data.isDragPlaceHolder">
           <span>{{ data.text }}</span>
@@ -35,7 +35,9 @@ import { DraggableTree } from 'vue-draggable-nested-tree';
 import { mapState, mapActions } from 'vuex';
 import {
   setClickedElementList,
-  deleteFromComponentHtmlList
+  deleteFromComponentHtmlList,
+  setComponentHtmlList,
+  addToComponentElementList
 } from '../store/types';
 
 export default {
@@ -43,30 +45,54 @@ export default {
   props: {
     name: {
       type: String
-    },
-    listToRender: {
-      type: Array
     }
   },
+  data: function() {
+    return {
+      listToRender: null
+    };
+  },
   computed: {
-    ...mapState(['clickedComponent', 'componentMap', 'activeComponent']),
+    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
     renderList: {
       get() {
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
+        console.log('SET', newArr);
         this.setClickedElementList(newArr);
       }
     }
   },
   methods: {
     ...mapActions([setClickedElementList]),
-    getIndex() {
-      this.index++;
-    },
     deleteElement(id) {
       //console.log(element);
       this.$store.dispatch(deleteFromComponentHtmlList, id);
+    },
+    convert() {
+      console.log('CONVERT CALLED');
+      let list = this.componentMap[this.activeComponent].htmlList;
+      console.log(list);
+      this.parseAndDelete(list);
+    },
+    parseAndDelete(htmlList) {
+      htmlList.forEach(element => {
+        if (element.children.length > 0) {
+          console.log('in recurse');
+          this.parseAndDelete(element.children);
+        }
+        delete element._vm;
+        delete element.parent;
+        delete element.open;
+        delete element.active;
+        delete element.style;
+        delete element.class;
+        delete element.innerStyle;
+        delete element.innerClass;
+        delete element.innerBackStyle;
+        delete element.innerBackClass;
+      });
     }
   },
   components: {

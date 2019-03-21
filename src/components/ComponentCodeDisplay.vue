@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="panel-heading">{{ clickedComponent }} Code Display</p>
+    <p class="panel-heading">{{ activeComponent }} Code Display</p>
     <div id="codeDisplay"></div>
   </div>
 </template>

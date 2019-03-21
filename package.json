@@ -1,6 +1,8 @@
 {
   "name": "prevue",
   "version": "0.1.0",
+  "author": "team-prevue",
+  "description": "Prototyping",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +15,6 @@
   },
   "dependencies": {
     "buefy": "^0.7.3",
-    "electron-compile": "^6.4.4",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
     "lodash.throttle": "^4.1.1",
@@ -38,6 +39,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
     "electron": "^3.0.0",
+    "electron-compile": "^6.4.4",
     "electron-compilers": "^5.9.0",
     "electron-prebuilt-compile": "^4.0.0",
     "eslint": "^5.8.0",

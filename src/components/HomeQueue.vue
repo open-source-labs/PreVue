@@ -9,10 +9,14 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <li class="list-group-item" v-for="(element, index) in renderList" :key="index + Date.now()">
+      <li
+        class="list-group-item"
+        v-for="(element, index) in renderList"
+        :key="index + Date.now()"
+      >
         <span>{{ element.text }}</span>
-        
-        <i class="fas fa-save fa-lg" @click="deleteElement(index)"></i>
+
+        <i class="fas fa fa-trash fa-lg" @click="deleteElement(index)"></i>
       </li>
     </draggable>
   </section>
@@ -70,9 +74,15 @@ li {
   border: 1px solid black;
   border-radius: 0.5cm;
   background-color: #d1bfa7;
+  height: 35px;
+}
+span {
+  margin-top: 10px;
+  margin: 2em;
 }
 
-.delete-icon:hover {
+.fa-trash:hover {
   cursor: pointer;
+  color: red;
 }
 </style>

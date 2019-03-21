@@ -2,15 +2,15 @@
   <div class="columns">
     <aside class="column is-3 aside hero is-fullheight" id="aside">
       <!-- <div class="column is-fullheight" id="add-component"> -->
-      <EditSidebar class="home-sidebar"/>
+      <EditSidebar class="home-sidebar" />
       <!-- </div> -->
     </aside>
 
     <div class="column is-6 hero is-fullheight">
-      <ComponentCodeDisplay class="component-code-display"/>
+      <ComponentCodeDisplay class="component-code-display" />
     </div>
     <div class="column is-3 aside hero is-fullheight">
-      <EditQueue class="home-queue"/>
+      <EditQueue class="home-queue" />
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@
 import ComponentCodeDisplay from '@/components/ComponentCodeDisplay.vue';
 import EditSidebar from '@/components/EditSidebar';
 import EditQueue from '@/components/EditQueue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Home',
@@ -26,6 +27,43 @@ export default {
     ComponentCodeDisplay,
     EditSidebar,
     EditQueue
+  },
+  mounted() {
+    this.convert();
+  },
+  computed: {
+    ...mapState([
+      'clickedComponent',
+      'componentMap',
+      'activeComponent',
+      'routes'
+    ])
+  },
+  methods: {
+    convert() {
+      console.log('CONVERT CALLED');
+      let list = this.componentMap[this.activeComponent].htmlList;
+      console.log(list);
+      this.parseAndDelete(list);
+    },
+    parseAndDelete(htmlList) {
+      htmlList.forEach(element => {
+        if (element.children.length > 0) {
+          console.log('in recurse');
+          this.parseAndDelete(element.children);
+        }
+        delete element._vm;
+        delete element.parent;
+        delete element.open;
+        delete element.active;
+        delete element.style;
+        delete element.class;
+        delete element.innerStyle;
+        delete element.innerClass;
+        delete element.innerBackStyle;
+        delete element.innerBackClass;
+      });
+    }
   }
 };
 </script>

@@ -6,7 +6,7 @@
       :key="idx + Date.now()"
     >
       <i :class="iconString"></i>
-      <br />
+      <br>
       <span class="white--text">{{ elementName }}</span>
     </button>
   </section>
@@ -36,5 +36,6 @@ export default {
 
 button:hover {
   cursor: pointer;
+  color: #00d1b2;
 }
 </style>

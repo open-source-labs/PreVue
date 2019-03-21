@@ -23,6 +23,7 @@ export const SET_ACTIVE_PROJECT = 'SET_ACTIVE_PROJECT';
 export const SET_ACTIVE_ROUTE = 'SET_ACTIVE_ROUTE';
 export const INCREMENT_PROJECT_ID = 'INCREMENT_PROJECT_ID';
 export const SET_ROUTES = 'SET_ROUTES';
+export const SET_COMPONENT_HTML_LIST = 'SET_COMPONENT_HTML_LIST';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -45,3 +46,4 @@ export const setActiveComponent = 'setActiveComponent';
 export const setActiveRoute = 'setActiveRoute';
 export const incrementProjectId = 'incrementProjectId';
 export const setRoutes = 'setRoutes';
+export const setComponentHtmlList = 'setComponentHtmlList';

@@ -3,16 +3,11 @@
     <p class="panel-heading">Create a component</p>
 
     <b-input v-model="componentName" placeholder="Component name"></b-input>
+    <div class="icon-container">
+      <Icons @getClickedIcon="addToSelectedElementList"/>
+    </div>
 
-    <Icons @getClickedIcon="addToSelectedElementList" />
-
-    <button
-      class="button is-primary"
-      @click="handleClick"
-      :disabled="!componentName"
-    >
-      Add Component
-    </button>
+    <button class="button is-primary" @click="handleClick" :disabled="!componentName">Add Component</button>
   </div>
 </template>
 
@@ -59,3 +54,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+.is-primary {
+  height: 45px;
+}
+.icon-container {
+  padding: 2em 0 2em 0;
+}
+</style>
