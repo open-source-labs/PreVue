@@ -1,96 +1,90 @@
 <template>
   <div class="home-sidebar">
-    <header class="headline green--text text--accent-2 pa-2">Create a Component</header>
+    <p class="panel-heading">Create a component</p>
+    <br>
+    <form v-on:submit.prevent="handleClick">
+      <b-input v-model="componentNameInputValue" placeholder="Component name"></b-input>
+    </form>
 
-    <BaseTextfield v-model="componentName" label="Component Name" :value="componentName"/>
-    <section>
+    <div class="icon-container">
       <Icons @getClickedIcon="addToSelectedElementList"/>
-    </section>
-
-    <section>
-      <v-select
-        v-model="selectedChildren"
-        :items="Object.keys(componentMap).filter(comp => comp !== 'App')"
-        label="Select child components"
-        multiple
-        chips
-        hint
-        persistent-hint
-      ></v-select>
-      <h1 class="headline purple--text text--accent-2">Selected Elements</h1>
-      <hr>
-      <HomeQueue :listToRender="selectedElementList"/>
-    </section>
-
-    <BaseButton
-      :componentName="componentName"
-      name="add component"
-      icon="add_circle"
-      @click="addComponent"
-    ></BaseButton>
+    </div>
+    <ChildrenMultiselect/>
+    <br>
+    <button
+      class="button is-primary"
+      id="add-component-btn"
+      @click="handleClick"
+      :disabled="!componentNameInputValue"
+    >Add Component</button>
   </div>
 </template>
 
 <script>
-import BaseTextfield from './BaseTextfield';
-import BaseButton from './BaseButton';
 import Icons from './Icons';
-import HomeQueue from './HomeQueue';
-import { mapState } from 'vuex';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect';
+import { mapState, mapActions } from 'vuex';
 import * as types from '../store/types.js';
 
 export default {
   name: 'HomeSidebar',
   data: function() {
     return {
-      componentName: '',
-      selectedChildren: []
+      children: []
     };
   },
-
   components: {
-    BaseTextfield,
-    BaseButton,
-    Icons,
-    HomeQueue
+    ChildrenMultiselect,
+    Icons
   },
   computed: {
-    ...mapState(['componentMap', 'selectedElementList'])
+    ...mapState(['componentMap', 'selectedElementList']),
+    componentNameInputValue: {
+      get() {
+        return this.$store.state.componentNameInputValue;
+      },
+      set(value) {
+        this.updateComponentNameInputValue(value);
+      }
+    }
   },
   methods: {
-    addComponent() {
-      const {
-        componentName,
-        selectedElementList: htmlList,
-        selectedChildren: children
-      } = this;
-      const payload = {
-        componentName,
-        htmlList,
-        children
+    ...mapActions([
+      'registerComponent',
+      'addToSelectedElementList',
+      'updateComponentNameInputValue'
+    ]),
+    handleClick() {
+      const component = {
+        componentName: this.componentNameInputValue,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
+        htmlList: this.selectedElementList,
+        children: this.children,
+        isActive: false
       };
-      this.$store
-        .dispatch(types.registerComponent, payload)
+
+      this.registerComponent(component)
         .then(() => {
-          this.componentName = '';
-          this.selectedChildren = [];
+          this.children = [];
         })
         .catch(err => console.log(err));
-    },
-
-    addToSelectedElementList(elementName) {
-      this.$store.dispatch(types.addToSelectedElementList, elementName);
     }
   }
 };
 </script>
-
 <style scoped>
-.home-sidebar {
-  grid-area: home-sidebar;
-  /* background-color: white; */
-  border: 1px solid;
-  padding: 10px;
-  border-color: white;
+.is-primary {
+  height: 45px;
+}
+form {
+  margin-bottom: 2em;
+}
+#add-component-btn {
+  height: 25px;
+
+  width: 100%;
 }
 </style>

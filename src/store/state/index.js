@@ -7,13 +7,27 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
-      htmlList: [],
-      children: []
+      children: [{ componentName: 'HomeView', children: [] }],
+      htmlList: []
     },
+    HomeView: {
+      componentName: 'HomeView',
+      children: [],
+      htmlList: []
+    }
   },
+  routes: {
+    HomeView: []
+  },
+
+  componentNameInputValue: '',
+  projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
+  activeRoute: 'HomeView',
+  activeComponent: '',
   selectedElementList: [],
-  clickedComponent: '',
-  clickedComponentToDelete: ''
+  projectNumber: 2,
+  activeTab: 0,
+  componentChildrenMultiselectValue: []
 };
 
 export default newState;

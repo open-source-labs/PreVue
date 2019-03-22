@@ -1,54 +1,114 @@
 <template>
-  <v-toolbar flat app>
-    <v-toolbar-title id="nav" class="nav">
-      <router-link :to="{ name: 'home' }" class="prevue">
-        <span class="white--text">Pre</span>
-        <span class="green--text text--accent-2">Vue</span>
-      </router-link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <router-link :to="{ name: 'tree' }">
-        <span id="tree-link" class="purple--text text--accent-2">View Component Tree</span>
-      </router-link>
-    </v-toolbar-title>
-  </v-toolbar>
+  <nav
+    class="navbar is-mobile is-fixed-top"
+    id="navbar"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
+
+    <div id="navbarBasicExample" class="navbar-menu is-mobile">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <div>
+            <h1 id="prevue">PreVue</h1>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <button @click="routeTree">
+            <i class="fas fa-tree fa-lg"></i>
+
+            <br />
+            <span class="white--text">Tree</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <SaveProjectComponent />
+          <OpenProjectComponent />
+          <NewProjectComponent />
+          <ExportProjectComponent />
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import fs from 'fs-extra';
+import path from 'path';
+import { addProject, changeTabName } from '../store/types';
+import localforage from 'localforage';
+import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
+import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
+import NewProjectComponent from '@/components/NewProjectComponent.vue';
+import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+
+const ipc = require('electron').ipcRenderer;
+const Mousetrap = require('mousetrap');
+
+// hot key commands
+// add save as
+// add new tab
+
 export default {
   name: 'NavBar',
-  props: ['route']
+  props: ['route', 'imageURL'],
+
+  components: {
+    SaveProjectComponent,
+    OpenProjectComponent,
+    NewProjectComponent,
+    ExportProjectComponent
+  },
+  methods: {
+    routeHome() {
+      this.$router.push({ path: '/' });
+    },
+    routeTree() {
+      this.$router.push({ path: '/tree' });
+    }
+  }
 };
 </script>
 
 <style scoped>
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-}
-.nav > .prevue {
+#prevue {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 2.5em;
   color: #39b982;
   text-decoration: none;
 }
-.nav .nav-item {
-  box-sizing: border-box;
-  margin: 0 5px;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-}
-.nav .nav-item.router-link-exact-active {
-  color: #39b982;
-  border-bottom: solid 2px #39b982;
+#prevue-logo {
+  height: 80px;
+  width: 70px;
+  padding-left: 2em;
+  padding-bottom: 2.75em;
 }
 
-.tree-link {
-  float: right;
+#prevue-logo:hover {
+  cursor: pointer;
+}
+#navbar {
+  background-color: #d4d4dc;
+  height: 50px;
 }
 
-a {
-  text-decoration: none;
+.save-icon:hover {
+  cursor: pointer;
+}
+
+button {
+  margin: 5px;
+  font-size: 12px;
+  background: none;
+  border: none;
+}
+button:hover {
+  color: #00c4a7;
 }
 </style>

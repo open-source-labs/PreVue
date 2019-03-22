@@ -1,0 +1,32 @@
+{
+  "appId": "com.electron.PreVue",
+  "mac": {
+    "category": "public.app-category.developer-tools",
+    "icon": "dist/icon.icns"
+  },
+  "files": ["out"],
+  "nsis": {
+    "createDesktopShortcut": "always"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 110,
+        "y": 150
+      },
+      {
+        "x": 240,
+        "y": 150,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+
+  "publish": [
+    {
+      "provider": "s3",
+      "bucket": "prevue-app"
+    }
+  ]
+}

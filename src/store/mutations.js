@@ -1,67 +1,153 @@
-import {
-  ADD_TO_COMPONENT_MAP,
-  UPDATE_CHILDREN,
-  ADD_TO_SELECTED_ELEMENT_LIST,
-  SET_SELECTED_ELEMENT_LIST,
-  SET_CLICKED_COMPONENT,
-  ADD_TO_COMPONENT_HTML_LIST,
-  ADD_TO_COMPONENT_HTML_CODE_LIST,
-  SET_CLICKED_ELEMENT_LIST,
-  DELETE_CLICKED_COMPONENT,
-  SET_COMPONENT_MAP
-} from './types';
+import * as types from './types';
+
+import localforage from 'localforage';
 
 const mutations = {
-  [ADD_TO_COMPONENT_MAP]: (state, payload) => {
-    const { componentName, htmlList, children } = payload;
+  [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state, payload) => {
+    const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {
       ...state.componentMap,
       [componentName]: {
         componentName,
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 200,
         children,
-        htmlList
+        htmlList,
+        isActive
       }
     };
   },
-  [UPDATE_CHILDREN]: function(state, payload) {
-    const { name, newArray } = payload;
-    state.componentMap[name].children = newArray;
+  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
+    state.selectedElementList.push({ text: payload, children: [] });
   },
-  [ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
-    state.selectedElementList.push(payload);
-  },
-  [SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
+  [types.SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
   },
-  [SET_CLICKED_COMPONENT]: (state, payload) => {
-    state.clickedComponent = payload;
-    state.clickedComponentToDelete = payload;
-    setTimeout(() => {
-      state.clickedComponentToDelete = '';
-      console.log('clickedComponentToDelete has been reset');
-    }, 1600);
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
+    const componentName = state.activeComponent;
+    state.componentMap[componentName].htmlList.push({
+      text: elementName,
+      children: []
+    });
   },
-  [ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
-    const componentName = state.clickedComponent;
-    state.componentMap[componentName].htmlList.push(elementName);
+  [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
+    const componentName = state.activeComponent;
+    const htmlList = state.componentMap[componentName].htmlList;
+
+    function parseAndDelete(htmlList) {
+      htmlList.forEach((element, index) => {
+        if (element.children.length > 0) {
+          parseAndDelete(element.children);
+        }
+        if (id === element._id) {
+          htmlList.splice(index, 1);
+        }
+      });
+
+      let copied = htmlList.slice(0);
+      state.componentMap[componentName].htmlList = copied;
+    }
+    parseAndDelete(htmlList);
   },
-  [SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
-    const componentName = state.clickedComponent;
+
+  [types.SET_CLICKED_ELEMENT_LIST]: (state, payload) => {
+    const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList = payload;
   },
-  [DELETE_CLICKED_COMPONENT]: state => {
-    const { componentMap, clickedComponentToDelete: componentName } = state;
-    delete componentMap[componentName];
-    console.log(componentMap);
-    for (let compKey in componentMap) {
-      let children = componentMap[compKey].children;
+  [types.DELETE_ACTIVE_COMPONENT]: state => {
+    const { componentMap, activeComponent } = state;
+
+    let newObj = Object.assign({}, componentMap);
+
+    delete newObj[activeComponent];
+
+    for (let compKey in newObj) {
+      let children = newObj[compKey].children;
       children.forEach((child, index) => {
-        if (componentName === child) children.splice(index, 1);
+        if (activeComponent === child) children.splice(index, 1);
       });
     }
+    state.componentMap = newObj;
   },
-  [SET_COMPONENT_MAP]: (state, payload) => {
+  [types.SET_COMPONENT_MAP]: (state, payload) => {
+    console.log(payload);
     state.componentMap = payload;
+  },
+  [types.DELETE_SELECTED_ELEMENT]: (state, payload) => {
+    state.selectedElementList.splice(payload, 1);
+  },
+  [types.SET_STATE]: (state, payload) => {
+    console.log('SETTING STATE');
+    console.log(payload);
+    Object.assign(state, payload);
+  },
+  [types.ADD_PROJECT]: (state, payload) => {
+    console.log('PUSHING ', payload);
+    state.projects.push(payload);
+    state.projectNumber++;
+  },
+  [types.CHANGE_ACTIVE_TAB]: (state, payload) => {
+    state.activeTab = payload;
+  },
+  [types.ADD_ROUTE]: (state, payload) => {
+    state.routes = {
+      ...state.routes,
+      [payload]: []
+    };
+  },
+  [types.ADD_ROUTE_TO_COMPONENT_MAP]: (state, payload) => {
+    const { route, children } = payload;
+    state.componentMap = {
+      ...state.componentMap,
+      [route]: {
+        componentName: route,
+        children
+      }
+    };
+  },
+  [types.SET_ACTIVE_ROUTE]: (state, payload) => {
+    state.activeRoute = payload;
+  },
+  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_IN_ROUTE_MAP]: (state, payload) => {
+    state.routes[state.activeRoute].push(payload);
+  },
+  [types.SET_ACTIVE_COMPONENT]: (state, payload) => {
+    state.activeComponent = payload;
+  },
+  [types.SET_ROUTES]: (state, payload) => {
+    state.routes = Object.assign({}, payload);
+  },
+  [types.SET_ACTIVE_ROUTE_ARRAY]: (state, payload) => {
+    state.routes[state.activeRoute] = payload;
+  },
+  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN]: (state, payload) => {
+    state.componentMap[state.activeRoute].children.push(payload);
+  },
+  [types.DELETE_PROJECT_TAB]: (state, payload) => {
+    state.projects.splice(payload, 1);
+    localforage.getItem(state.projects[payload - 1].filename).then(data => {
+      state = data;
+    });
+    state.activeTab = state.activeTab - 1;
+  },
+  [types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE]: (state, payload) => {
+    state.componentChildrenMultiselectValue = payload;
+  },
+  [types.UPDATE_COMPONENT_CHILDREN_VALUE]: (state, payload) => {
+    const { component, value } = payload;
+    state.componentMap[component].children = value;
+  },
+  [types.UPDATE_ACTIVE_COMPONENT_CHILDREN_VALUE]: (state, payload) => {
+    state.componentMap[state.activeComponent].children = payload;
+  },
+  [types.UPDATE_COMPONENT_NAME_INPUT_VALUE]: (state, payload) => {
+    state.componentNameInputValue = payload;
+  },
+  [types.ADD_COMPONENT_TO_COMPONENT_CHILDREN]: (state, payload) => {
+    const { component, value } = payload;
+    state.componentMap[component].children.push(value);
   }
 };
 

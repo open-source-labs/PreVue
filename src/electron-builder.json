@@ -1,0 +1,24 @@
+{
+  "appId": "com.electron.prevue",
+  "mac": {
+    "category": "public.app-category.developer-tools"
+  },
+  "files": ["out"],
+  "nsis": {
+    "createDesktopShortcut": "always"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 110,
+        "y": 150
+      },
+      {
+        "x": 240,
+        "y": 150,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  }
+}
