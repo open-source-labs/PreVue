@@ -33,7 +33,7 @@ git clone https://github.com/teamprevue/PreVue.git
 Install dependencies
 
 ```
-npm i
+npm install
 ```
 
 Run electron app
@@ -41,6 +41,20 @@ Run electron app
 ```
 npm run electron:serve
 ```
+
+After prototyping your application the way you want, just click export project to your local machine.
+
+Just install dependencies 
+```
+npm install
+```
+and run your server
+
+```
+npm start
+```
+
+Then navigate to localhost:8080 in your browser.
 
 ## Features
 
@@ -81,7 +95,7 @@ src/
 - cmd/ctrl + s: save
 - cmd/ctrl + o: open
 - cmd/ctrl + n: new project tab
-- cmd/ctrl + t: close project tab
+- cmd/ctrl + w: close project tab
 
 ## Built With
 

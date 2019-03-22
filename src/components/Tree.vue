@@ -42,7 +42,6 @@ export default {
           children: compData.children
         });
       });
-      console.log(result);
       return result;
     },
     transformToTree(data) {
