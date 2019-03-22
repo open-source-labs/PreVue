@@ -1,54 +1,113 @@
-
 <p align="center">
-  <img width="350" src="src/assets/prevue-large.png?raw=true">
-  <h1 align="center">PreVue</h1>
+  <img width="350" src="src/assets/prevue-large-green.png?raw=true">
+  <h1 align="center">PreVue </h1>
 </p>
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE LINK GOES HERE)
 
-## WHAT IS PREVUE
-PreVue aims to streamline the development process by making it easy to visualize the architecture of a Vue application. PreVue makes Vue more accessible by allowing users to prototype components. With PreVue, users can easily set up their Vue component architecture with ease and export Vue.js code.
+<h3 align="center">
+An open source Vue application prototyping tool for developers and designers.
+</h3>
 
-## USING PREVUE
-| Install from our website| Running Your Own Version |
-| ------------- | ------------- |
-| 1. Install <a href="https://www.prevue.io/">PreVue</a>. | 1. Clone the repo and ```npm install``` |
-| 2. Access from downloaded programs and run | 2. ```run electron:serve ```
+PreVue allows the user to design/visualize their component architecture - previewing component template HTML structure, setting up views/routes, establishing parent-child component relationships - and then export their component architecture as a Vue application created with the default Vue CLi settings.
 
-## CORE FEATURES:
-  - Component creation: Insert a name and select desired HTML elements. The created component will render as a box on the main canvas. Child relationships can be established during component creation. Note that at least two components need to be created to be able to view selectable components in the select child dropdown 
-  - Routes creation: Create different routes as needed for different application views
-  - Editable popup modal: Once a component is created, it is editable by double clicking 
-  - Draggable HTML elements: In Edit Mode, additional HTML element can be selected. HTML elements can be nested by dragging accordingly.
-  - Live HTML code display: As selected HTML elements are dragged, the code display will change accordingly. It will be a live preview of the Vue template code
-  - Tree view: Toggling over the tree view renders a tree visualization of the DOM with created components and their heirarchy depending on parent and child relationships established
-  - When saving projects, projects are saved as json files
-  - Exportable code: When you are happy with your work, you can export the entire project. The exported directory structure includes:
-    ```
-    src/
-      assets/
-      App.vue
-      components/
-        YourCreatedComponent.vue
-      views/
-        HomeView.vue
-        YourCreatedRoute
-     ```
-  
-      ### Navigating the Editor:
-         cmd/ctrl + s: save
-         cmd/ctrl + o: open
-         cmd/ctrl + n: new project tab
-         cmd/ctrl + t: close project tab
-  
-## FEATURES TO COME
-- Support for React
-- Prop passing
+## Getting Started
 
-## CREDITS
-- Hubert Lin https://www.linkedin.com/in/lin-huberth/
-- Franklin Pinnock https://www.linkedin.com/in/pinnockf/
-- Annette Lin https://www.linkedin.com/in/alin10/
-- Daniel Shu https://www.linkedin.com/in/danielshu/
+If you are looking for the executable version of PreVue, you can download it at [prevue.io](https://www.prevue.io/)
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+PreVue was developed using node runtime @ v10.15.0. You should make sure you at least have that version installed to ensure full compatibility. You can download the latest version of node [here](https://nodejs.org/en/)
+
+### Setup
+
+Clone this repo
+
+```
+git clone https://github.com/teamprevue/PreVue.git
+```
+
+Install dependencies
+
+```
+npm i
+```
+
+Run electron app
+
+```
+npm run electron:serve
+```
+
+## Features
+
+- Create components using 'Create a Component' form
+- Edit components by double clicking on them
+- Add standard html elements to template of a component that is created or being edited
+- Draggable editing of component HTML template code structure
+- Live updating of component HTML template code structure display
+- Establish parent-child component relationships via dropdown menu when creating or editng components
+- Create route components using 'Routes' form that allows for designing of multiple views of a SPA at once.
+- Components will automatically save to the route that they are created in
+- Display tree view of entire Vue application component architecture when tree icon on navbar is clicked
+- Project Open/Save
+- Hotkeys for opening and saving projects, and opening and closing tabs
+- Export project as Vue application!
+
+### Code Exporting
+
+Below is the generated directory structure of the Vue application that is created when you export your design.
+
+```
+src/
+  assets/
+  App.vue
+  components/
+    UserCreatedComponent1.vue
+    UserCreatedComponent2.vue
+    ...
+  views/
+    HomeView.vue
+    UserCreatedRouteComponent1.vue
+    UserCreatedRouteComponent2.vue
+    ...
+```
+
+### Editor Hotkeys:
+
+- cmd/ctrl + s: save
+- cmd/ctrl + o: open
+- cmd/ctrl + n: new project tab
+- cmd/ctrl + t: close project tab
+
+## Built With
+
+- [Vue.js](https://vuejs.org/)
+- [Vue Router](https://router.vuejs.org/guide/#html)
+- [Vuex](https://vuex.vuejs.org/)
+- [Electron](https://electronjs.org/)
+- [Vue-Electron CLI](https://github.com/nklayman/vue-cli-plugin-electron-builder)
+- [Buefy](https://buefy.org/)
+- [Babel](https://babeljs.io/)
+- [Jest](https://jestjs.io/)
+- [Travis](https://travis-ci.org/)
+- [localForage](https://localforage.github.io/localForage/)
+- [Vue D3 Tree](https://github.com/David-Desmaisons/Vue.D3.tree)
+
+## Contributing
+
+PreVue is currently in beta release. We encourage you to submit issues for any bugs or ideas for enhancements. Also feel free to fork this repo and submit pull requests to contribute as well.
+
+## Authors
+
+- **Hubert Lin** [@hubelin](https://github.com/hubelin)
+- **Franklin Pinnock** [@pinnockf](https://github.com/pinnockf)
+- **Annette Lin** [@al2613](https://github.com/al2613)
+- **Daniel Shu** [@danshuu](https://github.com/danshuu)
 
 ## License
-MIT
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
