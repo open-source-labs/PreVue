@@ -100,7 +100,7 @@ src/
 - cmd/ctrl + s: save
 - cmd/ctrl + o: open
 - cmd/ctrl + n: new project tab
-- cmd/ctrl + t: close project tab
+- cmd/ctrl + w: close project tab
 
 ## Running your own local version
 
