@@ -1,5 +1,10 @@
 <template>
-  <button class="white--text" @click="openProjectJSON">OPEN PROJECT</button>
+  <button @click="openProjectJSON">
+    <i class="fas fa-folder-open fa-lg"></i>
+
+    <br />
+    <span class="white--text">Open Project</span>
+  </button>
 </template>
 
 <script>

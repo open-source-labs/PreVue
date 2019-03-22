@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <label class="typo__label">Vuex example.</label>
+  <div id="child-select">
+    <br />
     <multiselect
       placeholder="Select child components"
       :multiple="true"
@@ -8,6 +8,8 @@
       :options="options"
       :value="componentChildrenMultiselectValue"
       @input="updateComponentChildrenMultiselectValue"
+      :max-height="150"
+      :option-height="20"
     ></multiselect>
   </div>
 </template>
@@ -45,7 +47,6 @@ export default {
 <!-- New step!
      Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-
-<style>
+<style scoped>
 /* your styles */
 </style>

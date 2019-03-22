@@ -1,5 +1,11 @@
 <template>
-  <i class="fas fa-file-export fa-lg" @click="exportProject"></i>
+  <!-- <i class="fas fa-file-export fa-lg" @click="exportProject"></i> -->
+  <button @click="exportProject">
+    <i class="fas fa-file-export fa-lg"></i>
+
+    <br />
+    <span class="white--text">Export Project</span>
+  </button>
 </template>
 
 <script>

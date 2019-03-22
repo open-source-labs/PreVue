@@ -1,5 +1,11 @@
 <template>
-  <button class="white--text" @click="addProject">NEW PROJECT</button>
+  <!-- <button class="white--text" @click="addProject">NEW PROJECT</button> -->
+  <button @click="addProject">
+    <i class="fas fa-folder-plus fa-lg"></i>
+
+    <br />
+    <span class="white--text">Add Project</span>
+  </button>
 </template>
 
 <script>
