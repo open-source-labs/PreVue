@@ -31,8 +31,18 @@ export default {
 <style scoped>
 .icon-grid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 33% 33% 33%;
   grid-row-gap: 1em;
+  padding-top: 10px;
+}
+
+@media (max-width: 680px) {
+  .icon-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-row-gap: 1em;
+    width: 100%;
+  }
 }
 
 button {

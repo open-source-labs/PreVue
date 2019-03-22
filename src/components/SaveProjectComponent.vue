@@ -1,5 +1,11 @@
 <template>
-  <button class="save-icon" @click="saveProjectJSON">SAVE PROJECT</button>
+  <!-- <button class="save-icon" >SAVE PROJECT</button> -->
+  <button @click="saveProjectJSON">
+    <i class="fas fa-save fa-lg"></i>
+
+    <br />
+    <span class="white--text">Save Project</span>
+  </button>
 </template>
 
 <script>

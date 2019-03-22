@@ -25,7 +25,6 @@ export default {
   methods: {
     ...mapActions(['setActiveRoute']),
     handleClick(route) {
-      console.log('ok');
       this.setActiveRoute(route);
     }
   }

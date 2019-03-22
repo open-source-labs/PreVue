@@ -78,6 +78,7 @@ export default {
 }
 
 #codeDisplay {
-  background-color: aqua;
+  background: #00d1b2;
+  /* background: linear-gradient(120deg, #5c258d, #4389a2); */
 }
 </style>

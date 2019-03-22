@@ -1,7 +1,8 @@
 {
-  "appId": "com.electron.prevue",
+  "appId": "com.electron.PreVue",
   "mac": {
-    "category": "public.app-category.developer-tools"
+    "category": "public.app-category.developer-tools",
+    "icon": "dist/icon.icns"
   },
   "files": ["out"],
   "nsis": {
@@ -21,6 +22,7 @@
       }
     ]
   },
+
   "publish": [
     {
       "provider": "s3",

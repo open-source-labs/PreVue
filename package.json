@@ -1,5 +1,5 @@
 {
-  "name": "prevue",
+  "name": "PreVue",
   "version": "1.0.0",
   "description": "Developer prototyping app built with Vue on Electron",
   "scripts": {
