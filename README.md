@@ -12,7 +12,7 @@ PreVue aims to streamline the development process by making it easy to visualize
 | Install from our website| Running Your Own Version |
 | ------------- | ------------- |
 | 1. Install <a href="https://www.prevue.io/">PreVue</a>. | 1. Clone the repo and ```npm install``` |
-| 2. Access from donwloaded programs and run | 2. ```run electron:serve ```
+| 2. Access from downloaded programs and run | 2. ```run electron:serve ```
 
 ## CORE FEATURES:
   - Component creation: Insert a name and select desired HTML elements. The created component will render as a box on the main canvas. Child relationships can be established during component creation. Note that at least two components need to be created to be able to view selectable components in the select child dropdown 
