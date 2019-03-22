@@ -10,15 +10,25 @@
 An open source Vue application prototyping tool for developers and designers.
 </h3>
 
-PreVue allows the user to design/visualize their component architecture - previewing their components' HTML, setting up views/routes, establishing parent-child component relationships - and then export their component architecture as a Vue application created with the default Vue CLI settings.
+PreVue allows the user to design/visualize their component architecture by allowing users to :
+
+1. Create components and preview their code
+
+2. Set up different views/routes
+
+3. Establish parent-child component relationships
+
+4. See their application architecture in tree format
+
+and then optionally export the component architecture as a Vue application created with the default Vue CLI settings.
 
 ## Getting Started
 
 ---
 
-Download for [MacOS](https://s3.amazonaws.com/prevue-app/prevue-1.0.0.dmg)
+Download for [MacOS](https://s3.amazonaws.com/prevue-app/prevue-1.0.0.dmg) & [Linux](https://s3.amazonaws.com/prevue-app/PreVue_1.0.0_amd64.deb)
 
-Support for Window and Linux coming soon
+Support for Windows coming soon
 
 - Mac users only: for now you might need to go to your security settings to allow the app run on your system as we do not have an Apple license yet.
 
@@ -38,31 +48,33 @@ If you find any issues, [file issue](https://github.com/teamprevue/PreVue/issues
 
 - Once you're satisfied, click the button to add a component and it will show up in the center stage, with the ability to resize!
 
-<img src='http://g.recordit.co/A6rOQRJVOc.gif'/>
+<img src='http://g.recordit.co/fyQ6LKvwlt.gif'/>
 
 #### Editing Components
 
 - Edit components by double clicking for the edit modal to show
-- Add additional elements to a component with live preview of the component code
-- Drag elements on the right side bar to nest
+- Add additional elements to a component with a live preview of the component code
+- Drag elements on the right side bar to nest elements
 - Establish parent-child component relationships via a dropdown menu when creating or editing components
 
 <img src='http://g.recordit.co/A6rOQRJVOc.gif'/>
 
 #### Adding Routes/Projects
 
-- Create different routes for your application by entering a new name and pressing enter
-- Any components created on a certain route will automatically save to that route
-- Play with multiple projects by clicking the add project icon
-- Display a tree view of entire Vue application component architecture when the tree icon on navbar is clicked
+- Create different routes for your application by entering a new route name and pressing enter
+- Any components created on a certain route will be automatically saved to that route
+- Play with multiple projects by clicking the add project icon!
+- Display a tree view of entire application component architecture when the tree icon on navbar is clicked
 
 <img src='http://g.recordit.co/bfYwX1sdtl.gif'/>
 
 #### Saving/Opening/Exporting Projects
 
-- If you ever need to save your current project, click the save project icon to save a json to your local directory.
+- If you ever need to save your current project, click the save project icon to save a json to your local directory
 - Next time the application is started, open the project again by clicking the open project icon!
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
+
+<img src='http://g.recordit.co/uFLqyjAnMm.gif'/>
 
 ##### Code Exporting
 
