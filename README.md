@@ -54,7 +54,7 @@ and run your server
 npm start
 ```
 
-Then navigate to localhost:8080 in your browser.
+Then navigate to localhost:8080 in your browser and your application is now running!
 
 ## Features
 

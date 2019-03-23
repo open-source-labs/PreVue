@@ -7,7 +7,7 @@ const newState = {
   componentMap: {
     App: {
       componentName: 'App',
-      children: [{ componentName: 'HomeView', children: [] }],
+      children: ['HomeView'],
       htmlList: []
     },
     HomeView: {
@@ -27,7 +27,8 @@ const newState = {
   selectedElementList: [],
   projectNumber: 2,
   activeTab: 0,
-  componentChildrenMultiselectValue: []
+  componentChildrenMultiselectValue: [],
+  modalOpen: false
 };
 
 export default newState;
