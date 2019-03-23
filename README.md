@@ -30,7 +30,7 @@ PreVue allows the user to design/visualize their component architecture by allow
 
 <p align="center">
   <img width="1000" src="src/assets/prevue.png?raw=true">
-  <h1 align="center">PreVue </h1>
+
 </p>
 
 ## Getting Started
