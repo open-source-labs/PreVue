@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" src="src/assets/prevue-large-green.png?raw=true">
+  <img width="350" src="src/assets/prevue-logo.png?raw=true">
   <h1 align="center">PreVue </h1>
 </p>
 
@@ -7,8 +7,14 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <h3 align="center">
-An open source Vue application prototyping tool for developers and designers.
+All in One Prototyping Tool 
+For Vue Developers
+
 </h3>
+
+<h4 align="center">
+From Component Architecture to Code Exporting
+</h4>
 
 PreVue allows the user to design/visualize their component architecture by allowing users to :
 
@@ -20,7 +26,12 @@ PreVue allows the user to design/visualize their component architecture by allow
 
 4. See their application architecture in tree format
 
-and then optionally export the component architecture as a Vue application created with the default Vue CLI settings.
+5. export the component architecture as a Vue application created with the default Vue CLI settings.
+
+<p align="center">
+  <img width="1000" src="src/assets/prevue.png?raw=true">
+  <h1 align="center">PreVue </h1>
+</p>
 
 ## Getting Started
 
@@ -43,8 +54,8 @@ If you find any issues, [file issue](https://github.com/teamprevue/PreVue/issues
 - Double click on the application icon
 - Create components by entering a name and clicking the html elements you need
 
-  - _clicked elements will be shown on the right sidebar_
-  - _drag them around to change the order!_
+- clicked elements will be shown on the right sidebar
+- drag them around to change the order!
 
 - Once you're satisfied, click the button to add a component and it will show up in the center stage, with the ability to resize!
 
