@@ -2,9 +2,9 @@
   <div class="home-sidebar">
     <p class="panel-heading">Edit {{ activeComponent }}</p>
     <div class="icon-row">
-      <Icons @getClickedIcon="addToComponentElementList" />
+      <Icons @getClickedIcon="addToComponentElementList"/>
     </div>
-    <ChildrenMultiselect />
+    <ChildrenMultiselect/>
   </div>
 </template>
 
@@ -22,16 +22,7 @@ export default {
     ChildrenMultiselect
   },
   computed: {
-    ...mapState(['activeComponent', 'componentMap']),
-    selectedChildren: {
-      get() {
-        return this.$store.state.componentMap[this.activeComponent].children;
-      },
-      set(newArray) {
-        const payload = { name: this.activeComponent, newArray };
-        this.$store.commit(types.UPDATE_CHILDREN, payload);
-      }
-    }
+    ...mapState(['activeComponent'])
   },
   methods: {
     addToComponentElementList(elementName) {

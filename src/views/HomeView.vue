@@ -64,7 +64,7 @@ export default {
 
 #left-side-container,
 #empty-left {
-  max-width: 200px;
+  max-width: 250px;
 }
 #right-side-container,
 #empty-right {
