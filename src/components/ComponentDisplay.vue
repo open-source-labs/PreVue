@@ -13,7 +13,7 @@
       @deactivated="onDeactivated(componentData)"
       @dragging="onDrag"
       @resizing="onResize"
-      @dblclick.native="onDoubleClick"
+      @dblclick.native="onDoubleClick(componentData)"
     >
       <h3>{{ componentData.componentName }}</h3>
     </VueDraggableResizable>
@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setActiveComponent']),
+    ...mapActions(['setActiveComponent', 'updateOpenModal']),
     onResize: function(x, y, width, height) {
       this.activeComponentData.x = x;
       this.activeComponentData.y = y;
@@ -73,10 +73,16 @@ export default {
     onDeactivated() {
       this.activeComponentData.isActive = false;
     },
-    onDoubleClick() {
+    onDoubleClick(compData) {
+      this.setActiveComponent(compData.componentName);
+      this.activeComponentData.isActive = true;
       ModalProgrammatic.open({
         parent: this,
-        component: ModalView
+        component: ModalView,
+        onCancel: () => {
+          this.updateOpenModal(false);
+          this.setActiveComponent('');
+        }
       });
     }
   }

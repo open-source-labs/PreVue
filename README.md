@@ -1,77 +1,100 @@
 <p align="center">
-  <img width="350" src="src/assets/prevue-large-green.png?raw=true">
+  <img width="350" src="src/assets/prevue-logo.png?raw=true">
   <h1 align="center">PreVue </h1>
 </p>
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE LINK GOES HERE)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <h3 align="center">
-An open source Vue application prototyping tool for developers and designers.
+All in One Prototyping Tool 
+For Vue Developers
+
 </h3>
 
-PreVue allows the user to design/visualize their component architecture - previewing component template HTML structure, setting up views/routes, establishing parent-child component relationships - and then export their component architecture as a Vue application created with the default Vue CLi settings.
+<h4 align="center">
+From Component Architecture to Code Exporting
+</h4>
+
+PreVue allows the user to design/visualize their component architecture by allowing users to :
+
+1. Create components and preview their code
+
+2. Set up different views/routes
+
+3. Establish parent-child component relationships
+
+4. See their application architecture in tree format
+
+5. export the component architecture as a Vue application created with the default Vue CLI settings.
+
+<p align="center">
+  <img width="1000" src="src/assets/prevue.png?raw=true">
+
+</p>
 
 ## Getting Started
 
-If you are looking for the executable version of PreVue, you can download it at [prevue.io](https://www.prevue.io/)
+---
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Download for [MacOS](https://s3.amazonaws.com/prevue-app/prevue-1.0.0.dmg) & [Linux](https://s3.amazonaws.com/prevue-app/PreVue_1.0.0_amd64.deb)
 
-### Prerequisites
+Support for Windows coming soon
 
-PreVue was developed using node runtime @ v10.15.0. You should make sure you at least have that version installed to ensure full compatibility. You can download the latest version of node [here](https://nodejs.org/en/)
+- Mac users only: for now you might need to go to your security settings to allow the app run on your system as we do not have an Apple license yet.
 
-### Setup
+If you find any issues, [file issue](https://github.com/teamprevue/PreVue/issues)
 
-Clone this repo
+## How to use
 
-```
-git clone https://github.com/teamprevue/PreVue.git
-```
+---
 
-Install dependencies
+#### Adding Components
 
-```
-npm install
-```
+- Double click on the application icon
+- Create components by entering a name and clicking the html elements you need
 
-Run electron app
+- clicked elements will be shown on the right sidebar
+- drag them around to change the order!
 
-```
-npm run electron:serve
-```
+- Once you're satisfied, click the button to add a component and it will show up in the center stage, with the ability to resize!
 
-After prototyping your application the way you want, just click export project to your local machine.
+<img src='http://g.recordit.co/fyQ6LKvwlt.gif'/>
 
-Just install dependencies 
-```
-npm install
-```
-and run your server
+#### Editing Components
 
-```
-npm start
-```
+- Edit components by double clicking for the edit modal to show
+- Add additional elements to a component with a live preview of the component code
+- Drag elements on the right side bar to nest elements
+- Establish parent-child component relationships via a dropdown menu when creating or editing components
 
-Then navigate to localhost:8080 in your browser.
+<img src='http://g.recordit.co/A6rOQRJVOc.gif'/>
 
-## Features
+#### Adding Routes/Projects
 
-- Create components using 'Create a Component' form
-- Edit components by double clicking on them
-- Add standard html elements to template of a component that is created or being edited
-- Draggable editing of component HTML template code structure
-- Live updating of component HTML template code structure display
-- Establish parent-child component relationships via dropdown menu when creating or editng components
-- Create route components using 'Routes' form that allows for designing of multiple views of a SPA at once.
-- Components will automatically save to the route that they are created in
-- Display tree view of entire Vue application component architecture when tree icon on navbar is clicked
-- Project Open/Save
-- Hotkeys for opening and saving projects, and opening and closing tabs
-- Export project as Vue application!
+- Create different routes for your application by entering a new route name and pressing enter
+- Any components created on a certain route will be automatically saved to that route
+- Play with multiple projects by clicking the add project icon!
+- Display a tree view of entire application component architecture when the tree icon on navbar is clicked
 
-### Code Exporting
+<img src='http://g.recordit.co/bfYwX1sdtl.gif'/>
+
+#### Tree View of Application Architecture
+
+<p align="center">
+  <img width="1000" src="src/assets/tree-demo.png?raw=true">
+
+</p>
+
+#### Saving/Opening/Exporting Projects
+
+- If you ever need to save your current project, click the save project icon to save a json to your local directory
+- Next time the application is started, open the project again by clicking the open project icon!
+- Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
+
+<img src='http://g.recordit.co/uFLqyjAnMm.gif'/>
+
+##### Code Exporting
 
 Below is the generated directory structure of the Vue application that is created when you export your design.
 
@@ -97,7 +120,35 @@ src/
 - cmd/ctrl + n: new project tab
 - cmd/ctrl + w: close project tab
 
+## Running your own local version
+
+---
+
+PreVue was developed using node runtime @ v10.15.0. You should make sure you at least have that version installed to ensure full compatibility. You can download the latest version of node [here](https://nodejs.org/en/)
+
+### Setup
+
+Clone this repo
+
+```
+git clone https://github.com/teamprevue/PreVue.git
+```
+
+Install dependencies
+
+```
+npm i
+```
+
+Run electron app
+
+```
+npm run electron:serve
+```
+
 ## Built With
+
+---
 
 - [Vue.js](https://vuejs.org/)
 - [Vue Router](https://router.vuejs.org/guide/#html)
@@ -113,9 +164,13 @@ src/
 
 ## Contributing
 
+---
+
 PreVue is currently in beta release. We encourage you to submit issues for any bugs or ideas for enhancements. Also feel free to fork this repo and submit pull requests to contribute as well.
 
 ## Authors
+
+---
 
 - **Hubert Lin** [@hubelin](https://github.com/hubelin)
 - **Franklin Pinnock** [@pinnockf](https://github.com/pinnockf)
@@ -123,5 +178,7 @@ PreVue is currently in beta release. We encourage you to submit issues for any b
 - **Daniel Shu** [@danshuu](https://github.com/danshuu)
 
 ## License
+
+---
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

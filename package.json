@@ -1,20 +1,24 @@
 {
   "name": "PreVue",
+  "author": {
+    "name": "teamprevue",
+    "email": "teamprevue@gmail.com",
+    "url": "www.prevue.io"
+  },
   "version": "1.0.0",
   "description": "Developer prototyping app built with Vue on Electron",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build --publish never",
-    "electron:release": "vue-cli-service electron:build --publish always",
+    "electron:build": "vue-cli-service electron:build -ml --publish never",
+    "electron:release": "vue-cli-service electron:build -ml --publish always",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "test:unit": "vue-cli-service test:unit"
   },
-  "author": "team prevue",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "buefy": "^0.7.3",
     "fs-extra": "^7.0.1",
@@ -27,6 +31,7 @@
     "vue-multiselect": "^2.1.4",
     "vue-router": "^3.0.1",
     "vued3tree": "^3.6.4",
+    "vuedraggable": "^2.19.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -40,6 +45,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "electron": "^3.0.0",
+    "electron-builder-squirrel-windows": "^20.39.0",
     "electron-compile": "^6.4.4",
     "electron-compilers": "^5.9.0",
     "electron-prebuilt-compile": "^4.0.0",
