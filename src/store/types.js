@@ -37,6 +37,7 @@ export const UPDATE_ACTIVE_COMPONENT_CHILDREN_VALUE =
   'UPDATE_ACTIVE_COMPONENT_CHILDREN_VALUE';
 export const ADD_COMPONENT_TO_COMPONENT_CHILDREN =
   'ADD_COMPONENT_TO_COMPONENT_CHILDREN';
+export const UPDATE_OPEN_MODAL = 'UPDATE_OPEN_MODAL';
 
 //Actions
 export const registerComponent = 'registerComponent';
@@ -65,3 +66,4 @@ export const updateActiveComponentChildrenValue =
   'updateActiveComponentChildrenValue';
 export const updateComponentChildrenValue = 'updateComponentChildrenValue';
 export const updateComponentNameInputValue = 'updateComponentNameInputValue';
+export const updateOpenModal = 'updateOpenModal';

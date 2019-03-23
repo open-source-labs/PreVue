@@ -19,7 +19,7 @@
 import ComponentCodeDisplay from '@/components/ComponentCodeDisplay.vue';
 import EditSidebar from '@/components/EditSidebar';
 import EditQueue from '@/components/EditQueue';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -28,18 +28,34 @@ export default {
     EditSidebar,
     EditQueue
   },
-  // mounted() {
-  //   this.convert();
-  // },
+  mounted() {
+    console.log('CHILDREN', this.children);
+    this.updateComponentChildrenMultiselectValue(this.children);
+    console.log('MODAL IS OPEN');
+    this.updateOpenModal(true);
+  },
   computed: {
     ...mapState([
       'clickedComponent',
       'componentMap',
       'activeComponent',
       'routes'
-    ])
+    ]),
+    children() {
+      console.log('activeComponent', this.activeComponent);
+      return this.componentMap[this.activeComponent].children.reduce(
+        (acc, curr) => {
+          return acc.concat(curr);
+        },
+        []
+      );
+    }
   },
   methods: {
+    ...mapActions([
+      'updateComponentChildrenMultiselectValue',
+      'updateOpenModal'
+    ])
     //   convert() {
     //     console.log('CONVERT CALLED');
     //     let list = this.componentMap[this.activeComponent].htmlList;

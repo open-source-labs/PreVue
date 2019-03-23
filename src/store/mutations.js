@@ -148,6 +148,9 @@ const mutations = {
   [types.ADD_COMPONENT_TO_COMPONENT_CHILDREN]: (state, payload) => {
     const { component, value } = payload;
     state.componentMap[component].children.push(value);
+  },
+  [types.UPDATE_OPEN_MODAL]: (state, payload) => {
+    state.modalOpen = payload;
   }
 };
 

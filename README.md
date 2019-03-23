@@ -79,6 +79,13 @@ If you find any issues, [file issue](https://github.com/teamprevue/PreVue/issues
 
 <img src='http://g.recordit.co/bfYwX1sdtl.gif'/>
 
+#### Tree View of Application Architecture
+
+<p align="center">
+  <img width="1000" src="src/assets/tree-demo.png?raw=true">
+
+</p>
+
 #### Saving/Opening/Exporting Projects
 
 - If you ever need to save your current project, click the save project icon to save a json to your local directory
