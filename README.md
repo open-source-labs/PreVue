@@ -37,9 +37,9 @@ PreVue allows the user to design/visualize their component architecture by allow
 
 ---
 
-Download for [MacOS](https://s3.amazonaws.com/prevue-app/PreVue-1.0.0.dmg) & [Linux](https://s3.amazonaws.com/prevue-app/PreVue_1.0.0_amd64.deb)
+Download for [MacOS](https://s3.amazonaws.com/prevue-app/PreVue-1.0.0.dmg), [Linux](https://s3.amazonaws.com/prevue-app/PreVue_1.0.0_amd64.deb), or [Windows](https://s3.amazonaws.com/prevue-app/PreVue+Setup+1.0.0.exe)
 
-Support for Windows coming soon
+###### Support for Windows now here!
 
 - Mac users only: for now you might need to go to your security settings to allow the app run on your system as we do not have an Apple license yet.
 
