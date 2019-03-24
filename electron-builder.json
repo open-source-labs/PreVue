@@ -26,6 +26,10 @@
   "linux": {
     "target": ["deb"]
   },
+  "win": {
+    "target": "NSIS",
+    "icon": "build/icon.ico"
+  },
 
   "publish": [
     {
