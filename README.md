@@ -26,7 +26,7 @@ PreVue allows the user to design/visualize their component architecture by allow
 
 4. See their application architecture in tree format
 
-5. export the component architecture as a Vue application created with the default Vue CLI settings.
+5. Export the component architecture as a Vue application created with the default Vue CLI settings.
 
 <p align="center">
   <img width="1000" src="src/assets/prevue.png?raw=true">
@@ -54,8 +54,8 @@ If you find any issues, [file issue](https://github.com/teamprevue/PreVue/issues
 - Double click on the application icon
 - Create components by entering a name and clicking the html elements you need
 
-- clicked elements will be shown on the right sidebar
-- drag them around to change the order!
+- Clicked elements will be shown on the right sidebar
+- Drag them around to change the order!
 
 - Once you're satisfied, click the button to add a component and it will show up in the center stage, with the ability to resize!
 
