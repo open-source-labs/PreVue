@@ -3,7 +3,7 @@
   <button @click="exportProject">
     <i class="fas fa-file-export fa-lg"></i>
 
-    <br>
+    <br />
     <span class="white--text">Export Project</span>
   </button>
 </template>
@@ -151,32 +151,56 @@ export default {
       str += `\n}`;
       fs.writeFileSync(path.join(location, 'babel.config.js'), str);
     },
-  //   createPackage(location) {
-  //     let str = `{`;
-  //     str += `\n\t"name": "vue-boiler-plate-routes",`;
-  //     str += `\n\t"version": "0.1.0",`;
-  //     str += `\n\t"private": true,`;
-  //     str += `\n\t"scripts": {`;
-  //     str += `\n\t\t"start": "vue-cli-service serve",`;
-  //     str += `\n\t\t"build": "vue-cli-service build",`;
-  //     str += `\n\t\t"lint": "vue-cli-service lint"`;
-  //     str += `\n\t},`;
-  //     str += `\n\t"dependencies": {`;
-  //     str += `\n\t\t"vue": "^2.6.6",`;
-  //     str += `\n\t\t"vue-router": "^3.0.1"`;
-  //     str += `\n\t},`;
-  //     str += `\n\t"devDependencies": {`;
-  //     str += `\n\t\t"@vue/cli-plugin-babel": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
-  //     str += `\n\t},`;
-
-  //   }
-  // },
+    createPackage(location) {
+      let str = `{`;
+      str += `\n\t"name": "vue-boiler-plate-routes",`;
+      str += `\n\t"version": "0.1.0",`;
+      str += `\n\t"private": true,`;
+      str += `\n\t"scripts": {`;
+      str += `\n\t\t"start": "vue-cli-service serve",`;
+      str += `\n\t\t"build": "vue-cli-service build",`;
+      str += `\n\t\t"lint": "vue-cli-service lint"`;
+      str += `\n\t},`;
+      str += `\n\t"dependencies": {`;
+      str += `\n\t\t"vue": "^2.6.6",`;
+      str += `\n\t\t"vue-router": "^3.0.1"`;
+      str += `\n\t},`;
+      str += `\n\t"devDependencies": {`;
+      str += `\n\t\t"@vue/cli-plugin-babel": "^3.5.0",`;
+      str += `\n\t\t"@vue/cli-plugin-eslint": "^3.5.0",`;
+      str += `\n\t\t"@vue/cli-service": "^3.5.0",`;
+      str += `\n\t\t"babel-eslint": "^10.0.1",`;
+      str += `\n\t\t"eslint": "^5.8.0",`;
+      str += `\n\t\t"eslint-plugin-vue": "^5.0.0",`;
+      str += `\n\t\t"vue-template-compiler": "^2.5.21"`;
+      str += `\n\t},`;
+      str += `\n\t"eslintConfig": {`;
+      str += `\n\t\t"root": true,`;
+      str += `\n\t\t"env": {`;
+      str += `\n\t\t\t"node": true`;
+      str += `\n\t\t},`;
+      str += `\n\t\t"extends": [`;
+      str += `\n\t\t\t"plugin:vue/essential",`;
+      str += `\n\t\t\t"eslint:recommended"`;
+      str += `\n\t\t],`;
+      str += `\n\t\t"rules": {},`;
+      str += `\n\t\t"parserOptions": {`;
+      str += `\n\t\t\t"parser": "babel-eslint"`;
+      str += `\n\t\t}`;
+      str += `\n\t},`;
+      str += `\n\t"postcss": {`;
+      str += `\n\t\t"plugins": {`;
+      str += `\n\t\t\t"autoprefixer": {}`;
+      str += `\n\t\t}`;
+      str += `\n\t},`;
+      str += `\n\t"browserslist": [`;
+      str += `\n\t\t"> 1%",`;
+      str += `\n\t\t"last 2 versions",`;
+      str += `\n\t\t"not ie <= 8"`;
+      str += `\n\t]`;
+      str += `\n}`;
+    }
+  },
   computed: {
     ...mapState(['componentMap'])
   },
@@ -200,7 +224,7 @@ export default {
       this.createIndexFile(data);
       this.createMainFile(data);
       this.createBabel(data);
-      // this.createPackage(data);
+      this.createPackage(data);
 
       this.createRouter(data);
       for (let componentName in this.componentMap) {
