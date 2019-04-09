@@ -143,14 +143,14 @@ export default {
       str += `\n}).$mount('#app')`;
       fs.writeFileSync(path.join(location, 'src', 'main.js'), str);
     },
-  //   createBabel(location) {
-  //     let str = `module.exports = {`;
-  //     str += `\n\tpresets: [`;
-  //     str += `\n\t\t'@vue/app'`;
-  //     str += `\n\t]`;
-  //     str += `\n}`;
-  //     fs.writeFileSync(path.join(location, 'babel.config.js'), str);
-  //   },
+    createBabel(location) {
+      let str = `module.exports = {`;
+      str += `\n\tpresets: [`;
+      str += `\n\t\t'@vue/app'`;
+      str += `\n\t]`;
+      str += `\n}`;
+      fs.writeFileSync(path.join(location, 'babel.config.js'), str);
+    },
   //   createPackage(location) {
   //     let str = `{`;
   //     str += `\n\t"name": "vue-boiler-plate-routes",`;
@@ -199,7 +199,7 @@ export default {
       // .catch(err => console.err(err));
       this.createIndexFile(data);
       this.createMainFile(data);
-      // this.createBabel(data);
+      this.createBabel(data);
       // this.createPackage(data);
 
       this.createRouter(data);
