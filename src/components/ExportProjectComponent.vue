@@ -132,17 +132,17 @@ export default {
       str += `</html>\n`;
       fs.writeFileSync(path.join(location, 'public', 'index.html'), str);
     },
-  //   createMainFile(location) {
-  //     let str = `import Vue from 'vue'`;
-  //     str += `\nimport App from './App.vue'`;
-  //     str += `\nimport router from './router'`;
-  //     str += `\n\nVue.config.productionTip = false`;
-  //     str += `\n\nnew Vue({`;
-  //     str += `\n\trouter,`;
-  //     str += `\n\trender: h => h(App)`;
-  //     str += `\n}).$mount('#app')`;
-  //     fs.writeFileSync(path.join(location, 'src', 'main.js'), str);
-  //   },
+    createMainFile(location) {
+      let str = `import Vue from 'vue'`;
+      str += `\nimport App from './App.vue'`;
+      str += `\nimport router from './router'`;
+      str += `\n\nVue.config.productionTip = false`;
+      str += `\n\nnew Vue({`;
+      str += `\n\trouter,`;
+      str += `\n\trender: h => h(App)`;
+      str += `\n}).$mount('#app')`;
+      fs.writeFileSync(path.join(location, 'src', 'main.js'), str);
+    },
   //   createBabel(location) {
   //     let str = `module.exports = {`;
   //     str += `\n\tpresets: [`;
@@ -198,7 +198,7 @@ export default {
       // .then(() => console.log('success!'))
       // .catch(err => console.err(err));
       this.createIndexFile(data);
-      // this.createMainFile(data);
+      this.createMainFile(data);
       // this.createBabel(data);
       // this.createPackage(data);
 
