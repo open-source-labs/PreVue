@@ -3,7 +3,7 @@
   <button @click="exportProject">
     <i class="fas fa-file-export fa-lg"></i>
 
-    <br />
+    <br>
     <span class="white--text">Export Project</span>
   </button>
 </template>
@@ -199,6 +199,7 @@ export default {
       str += `\n\t\t"not ie <= 8"`;
       str += `\n\t]`;
       str += `\n}`;
+      fs.writeFileSync(path.join(location, 'package.json'), str);
     }
   },
   computed: {
