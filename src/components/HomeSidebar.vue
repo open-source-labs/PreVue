@@ -1,22 +1,27 @@
 <template>
   <div class="home-sidebar">
     <p class="panel-heading">Create a component</p>
-    <br>
+    <br />
     <form v-on:submit.prevent="handleClick">
-      <b-input v-model="componentNameInputValue" placeholder="Component name"></b-input>
+      <b-input
+        v-model="componentNameInputValue"
+        placeholder="Component name"
+      ></b-input>
     </form>
 
     <div class="icon-container">
-      <Icons @getClickedIcon="addToSelectedElementList"/>
+      <Icons @getClickedIcon="addToSelectedElementList" />
     </div>
-    <ChildrenMultiselect/>
-    <br>
+    <ChildrenMultiselect />
+    <br />
     <button
       class="button is-primary"
       id="add-component-btn"
       @click="handleClick"
       :disabled="!componentNameInputValue"
-    >Add Component</button>
+    >
+      Add Component
+    </button>
   </div>
 </template>
 
@@ -28,11 +33,6 @@ import * as types from '../store/types.js';
 
 export default {
   name: 'HomeSidebar',
-  data: function() {
-    return {
-      children: []
-    };
-  },
   components: {
     ChildrenMultiselect,
     Icons
@@ -62,15 +62,11 @@ export default {
         w: 200,
         h: 200,
         htmlList: this.selectedElementList,
-        children: this.children,
+        children: [],
         isActive: false
       };
 
-      this.registerComponent(component)
-        .then(() => {
-          this.children = [];
-        })
-        .catch(err => console.log(err));
+      this.registerComponent(component);
     }
   }
 };
