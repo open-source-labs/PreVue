@@ -26,10 +26,10 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <SaveProjectComponent />
-          <OpenProjectComponent />
-          <NewProjectComponent />
-          <ExportProjectComponent />
+          <!-- <SaveProjectComponent /> -->
+          <!-- <OpenProjectComponent /> -->
+          <!-- <NewProjectComponent />
+          <ExportProjectComponent /> -->
         </div>
       </div>
     </div>
@@ -37,18 +37,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import fs from 'fs-extra';
-import path from 'path';
-import { addProject, changeTabName } from '../store/types';
-import localforage from 'localforage';
-import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
-import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
-import NewProjectComponent from '@/components/NewProjectComponent.vue';
-import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+// import { mapState } from 'vuex';
+// import fs from 'fs-extra';
+// import path from 'path';
+// import { addProject, changeTabName } from '../store/types';
+// import localforage from 'localforage';
+// import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
+// import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
+// import NewProjectComponent from '@/components/NewProjectComponent.vue';
+// import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
 
-const ipc = require('electron').ipcRenderer;
-const Mousetrap = require('mousetrap');
+// const ipc = require('electron').ipcRenderer;
+// const Mousetrap = require('mousetrap');
 
 // hot key commands
 // add save as
@@ -59,10 +59,10 @@ export default {
   props: ['route', 'imageURL'],
 
   components: {
-    SaveProjectComponent,
-    OpenProjectComponent,
-    NewProjectComponent,
-    ExportProjectComponent
+    // SaveProjectComponent,
+    // OpenProjectComponent,
+    // NewProjectComponent,
+    // ExportProjectComponent,
   },
   methods: {
     routeHome() {
@@ -70,8 +70,8 @@ export default {
     },
     routeTree() {
       this.$router.push({ path: '/tree' });
-    }
-  }
+    },
+  },
 };
 </script>
 

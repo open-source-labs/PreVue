@@ -13,7 +13,7 @@ import localforage from 'localforage';
 import fs from 'fs-extra';
 const Mousetrap = require('mousetrap');
 
-const ipc = require('electron').ipcRenderer;
+const { ipcRender } = require('electron');
 
 export default {
   name: 'SaveProjectComponent',
@@ -28,7 +28,7 @@ export default {
       return file.split('/').pop();
     },
     parseAndDelete(htmlList) {
-      htmlList.forEach(element => {
+      htmlList.forEach((element) => {
         if (element.children.length > 0) {
           console.log('in recurse');
           this.parseAndDelete(element.children);
@@ -47,15 +47,15 @@ export default {
     },
     saveProjectJSON() {
       console.log('THIS ONE');
-      let projectLocation = this.$store.state.projects[
-        this.$store.state.activeTab
-      ].lastSavedLocation;
+      let projectLocation =
+        this.$store.state.projects[this.$store.state.activeTab]
+          .lastSavedLocation;
       if (projectLocation) {
         console.log('IN SAVE LOCATION', this.$store.state);
         let state = this.$store.state;
         let routes = state.routes;
         for (let view in routes) {
-          routes[view].forEach(component => {
+          routes[view].forEach((component) => {
             let htmlList = component.htmlList;
             this.parseAndDelete(htmlList);
           });
@@ -74,21 +74,21 @@ export default {
 
         console.log('PROJECT SAVED TO LAST SAVED LOCATION');
       } else {
-        ipc.send('show-save-json-dialog');
+        ipcRender.send('show-save-json-dialog');
       }
-    }
+    },
   },
   mounted() {
-    ipc.on('save-json-location', (event, data) => {
+    ipcRender.on('save-json-location', (event, data) => {
       //delete original key from local forage
-      let deleteKey = this.$store.state.projects[this.$store.state.activeTab]
-        .filename;
+      let deleteKey =
+        this.$store.state.projects[this.$store.state.activeTab].filename;
       localforage
         .removeItem(deleteKey)
-        .then(function() {
+        .then(function () {
           console.log(deleteKey, 'Key is cleared!');
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err);
         });
 
@@ -96,12 +96,12 @@ export default {
 
       this.$set(this.$store.state.projects, this.$store.state.activeTab, {
         filename: fileName,
-        lastSavedLocation: data
+        lastSavedLocation: data,
       });
       let state = this.$store.state;
       let routes = state.routes;
       for (let view in routes) {
-        routes[view].forEach(component => {
+        routes[view].forEach((component) => {
           let htmlList = component.htmlList;
           this.parseAndDelete(htmlList);
         });
@@ -117,13 +117,13 @@ export default {
       fs.writeFileSync(data, JSON.stringify(state));
       localforage
         .setItem(fileName, JSON.parse(fs.readFileSync(data, 'utf8')))
-        .then(result => {
+        .then((result) => {
           console.log('saved ', fileName, 'to local forage');
           console.log('result is', result);
         });
       console.log('PROJECT SAVED AS A JSON OBJECT!');
     });
-  }
+  },
 };
 </script>
 
