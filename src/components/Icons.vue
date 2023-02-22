@@ -18,13 +18,13 @@ import { mapState } from 'vuex';
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons'])
+    ...mapState(['icons']),
   },
   methods: {
     changeState(elementName) {
-      this.$emit('getClickedIcon', elementName);
-    }
-  }
+      this.$emit('getClickedIcon', elementName); // emit prop necessary?
+    },
+  },
 };
 </script>
 

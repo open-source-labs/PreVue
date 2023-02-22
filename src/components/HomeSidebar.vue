@@ -3,10 +3,7 @@
     <p class="panel-heading">Create a component</p>
     <br />
     <form v-on:submit.prevent="handleClick">
-      <b-input
-        v-model="componentNameInputValue"
-        placeholder="Component name"
-      ></b-input>
+      <input v-model="componentNameInputValue" placeholder="Component name" />
     </form>
 
     <div class="icon-container">
@@ -26,8 +23,8 @@
 </template>
 
 <script>
-import Icons from './Icons';
-import ChildrenMultiselect from '@/components/ChildrenMultiselect';
+import Icons from './Icons.vue';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 import { mapState, mapActions } from 'vuex';
 import * as types from '../store/types.js';
 
@@ -35,7 +32,7 @@ export default {
   name: 'HomeSidebar',
   components: {
     ChildrenMultiselect,
-    Icons
+    Icons,
   },
   computed: {
     ...mapState(['componentMap', 'selectedElementList']),
@@ -45,14 +42,14 @@ export default {
       },
       set(value) {
         this.updateComponentNameInputValue(value);
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapActions([
       'registerComponent',
       'addToSelectedElementList',
-      'updateComponentNameInputValue'
+      'updateComponentNameInputValue',
     ]),
     handleClick() {
       const component = {
@@ -63,12 +60,12 @@ export default {
         h: 200,
         htmlList: this.selectedElementList,
         children: [],
-        isActive: false
+        isActive: false,
       };
 
       this.registerComponent(component);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

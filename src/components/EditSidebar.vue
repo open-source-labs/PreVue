@@ -2,33 +2,33 @@
   <div class="home-sidebar">
     <p class="panel-heading">Edit {{ activeComponent }}</p>
     <div class="icon-row">
-      <Icons @getClickedIcon="addToComponentElementList"/>
+      <Icons @getClickedIcon="addToComponentElementList" />
     </div>
-    <ChildrenMultiselect/>
+    <ChildrenMultiselect />
   </div>
 </template>
 
 <script>
-import Icons from './Icons';
+import Icons from './Icons.vue';
 import { mapState } from 'vuex';
 import * as types from '../store/types.js';
-import ChildrenMultiselect from '@/components/ChildrenMultiselect';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 
 export default {
   name: 'EditSidebar',
 
   components: {
     Icons,
-    ChildrenMultiselect
+    ChildrenMultiselect,
   },
   computed: {
-    ...mapState(['activeComponent'])
+    ...mapState(['activeComponent']),
   },
   methods: {
     addToComponentElementList(elementName) {
       this.$store.dispatch(types.addToComponentElementList, elementName);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

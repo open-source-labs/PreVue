@@ -17,8 +17,8 @@
 
 <script>
 import ComponentCodeDisplay from '@/components/ComponentCodeDisplay.vue';
-import EditSidebar from '@/components/EditSidebar';
-import EditQueue from '@/components/EditQueue';
+import EditSidebar from '@/components/EditSidebar.vue';
+import EditQueue from '@/components/EditQueue.vue';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -26,7 +26,7 @@ export default {
   components: {
     ComponentCodeDisplay,
     EditSidebar,
-    EditQueue
+    EditQueue,
   },
   mounted() {
     console.log('CHILDREN', this.children);
@@ -39,7 +39,7 @@ export default {
       'clickedComponent',
       'componentMap',
       'activeComponent',
-      'routes'
+      'routes',
     ]),
     children() {
       console.log('activeComponent', this.activeComponent);
@@ -49,13 +49,13 @@ export default {
         },
         []
       );
-    }
+    },
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateOpenModal'
-    ])
+      'updateOpenModal',
+    ]),
     //   convert() {
     //     console.log('CONVERT CALLED');
     //     let list = this.componentMap[this.activeComponent].htmlList;
@@ -80,7 +80,7 @@ export default {
     //       delete element.innerBackClass;
     //     });
     //   }
-  }
+  },
 };
 </script>
 

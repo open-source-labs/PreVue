@@ -32,10 +32,10 @@
 
 <script>
 import ComponentDisplay from '@/components/ComponentDisplay.vue';
-import HomeSidebar from '@/components/HomeSidebar';
-import HomeQueue from '@/components/HomeQueue';
-import RouteDisplay from '@/components/RouteDisplay';
-import ProjectTabs from '@/components/ProjectTabs';
+import HomeSidebar from '@/components/HomeSidebar.vue';
+import HomeQueue from '@/components/HomeQueue.vue';
+import RouteDisplay from '@/components/RouteDisplay.vue';
+import ProjectTabs from '@/components/ProjectTabs.vue';
 
 export default {
   name: 'Home',
@@ -44,8 +44,8 @@ export default {
     HomeSidebar,
     HomeQueue,
     RouteDisplay,
-    ProjectTabs
-  }
+    ProjectTabs,
+  },
 };
 </script>
 

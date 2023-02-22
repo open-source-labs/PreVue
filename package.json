@@ -1,59 +1,47 @@
 {
-  "name": "PreVue",
-  "author": {
-    "name": "teamprevue",
-    "email": "teamprevue@gmail.com",
-    "url": "www.prevue.io"
-  },
-  "version": "1.0.0",
-  "description": "Developer prototyping app built with Vue on Electron",
+  "name": "prevue",
+  "author": "teamprevue <teamprevue@gmail.com> (www.prevue.io)",
+  "version": "2.0.0",
+  "description": "Developer prototyping app built with Vue",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build -mlw --publish never",
-    "electron:release": "vue-cli-service electron:build -mlw --publish always",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "test:unit": "vue-cli-service test:unit"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "license": "MIT",
   "dependencies": {
-    "buefy": "^0.7.3",
+    "@vitejs/plugin-vue": "^1.6.1",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
     "mousetrap": "^1.6.3",
-    "vue": "^2.6.6",
+    "vite": "^2.5.4",
+    "vite-plugin-vue2": "1.9.0",
+    "vue": "^3.2.47",
     "vue-draggable-nested-tree": "^2.2.8",
     "vue-draggable-resizable": "^2.0.0-rc1",
     "vue-multiselect": "^2.1.4",
-    "vue-router": "^3.0.1",
+    "vue-router": "^4.1.6",
+    "vue-template-compiler": "^2.6.11",
     "vued3tree": "^3.6.4",
-    "vuedraggable": "^2.19.3",
-    "vuex": "^3.0.1"
+    "vuedraggable": "^2.19.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.1",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-plugin-unit-jest": "^3.5.1",
-    "@vue/cli-service": "^3.5.1",
     "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "electron": "^3.0.0",
-    "electron-builder-squirrel-windows": "^20.39.0",
-    "electron-compile": "^6.4.4",
-    "electron-compilers": "^5.9.0",
-    "electron-prebuilt-compile": "^4.0.0",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "sass": "^1.58.2",
-    "sass-loader": "^7.1.0",
-    "vue-cli-plugin-electron-builder": "^1.0.4",
-    "vue-template-compiler": "^2.5.21"
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^8.7.1",
+    "vue-template-compiler": "^2.5.21",
+    "vuex": "^4.1.0"
   },
-  "main": "background.js"
+  "main": "background.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/PreVue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/PreVue/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/PreVue#readme"
 }

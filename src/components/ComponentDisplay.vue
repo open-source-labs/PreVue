@@ -22,20 +22,20 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import VueDraggableResizable from 'vue-draggable-resizable';
-import ModalView from '@/views/ModalView';
-import { ModalProgrammatic } from 'buefy/dist/components/modal';
+// import ModalView from '@/views/ModalView';
+// import { ModalProgrammatic } from 'buefy/dist/components/modal';
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDraggableResizable
+    VueDraggableResizable,
   },
   data() {
     return {
-      abilityToDelete: false
+      abilityToDelete: false,
     };
   },
   mounted() {
-    window.addEventListener('keyup', event => {
+    window.addEventListener('keyup', (event) => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -49,20 +49,20 @@ export default {
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
-      return this.activeRouteArray.filter(componentData => {
+      return this.activeRouteArray.filter((componentData) => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    }
+    },
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function(x, y, width, height) {
+    onResize: function (x, y, width, height) {
       this.activeComponentData.x = x;
       this.activeComponentData.y = y;
       this.activeComponentData.w = width;
       this.activeComponentData.h = height;
     },
-    onDrag: function(x, y) {
+    onDrag: function (x, y) {
       this.activeComponentData.x = x;
       this.activeComponentData.y = y;
     },
@@ -73,19 +73,19 @@ export default {
     onDeactivated() {
       this.activeComponentData.isActive = false;
     },
-    onDoubleClick(compData) {
-      this.setActiveComponent(compData.componentName);
-      this.activeComponentData.isActive = true;
-      ModalProgrammatic.open({
-        parent: this,
-        component: ModalView,
-        onCancel: () => {
-          this.updateOpenModal(false);
-          this.setActiveComponent('');
-        }
-      });
-    }
-  }
+    // onDoubleClick(compData) { // uses Buefy
+    //   this.setActiveComponent(compData.componentName);
+    //   this.activeComponentData.isActive = true;
+    //   ModalProgrammatic.open({
+    //     parent: this,
+    //     component: ModalView,
+    //     onCancel: () => {
+    //       this.updateOpenModal(false);
+    //       this.setActiveComponent('');
+    //     }
+    //   });
+    // }
+  },
 };
 </script>
 

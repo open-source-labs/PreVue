@@ -13,12 +13,12 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 };
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 @import '~bulma/sass/utilities/_all';
 $tabs-link-color: #d4d4dc;
 
@@ -115,4 +115,4 @@ i:hover {
   padding-top: 60px;
   height: 100%;
 }
-</style>
+</style> -->
