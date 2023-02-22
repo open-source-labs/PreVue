@@ -1,33 +1,41 @@
 <template>
   <div class="component-display">
-    <VueDraggableResizable
-      class-name="component-box"
+    <Vue3DraggableResizable
+      classNameDraggable="draggable"
+      class="component-box"
       v-for="componentData in activeRouteArray"
+      :draggable="true"
+      :resizable="true"
+      :disabledX="false"
+      :disabledY="false"
       :key="componentData.componentName"
       :x="componentData.x"
       :y="componentData.y"
       :w="componentData.w"
       :h="componentData.h"
-      :parent="true"
       @activated="onActivated(componentData)"
       @deactivated="onDeactivated(componentData)"
       @dragging="onDrag"
-      @resizing="onResize"
-      @dblclick.native="onDoubleClick(componentData)"
+      @drag-start="print('drag-start')"
+      @resize-start="onResize"
+      @resizing="print('resizing')"
+      @drag-end="print('drag-end')"
+      @resize-end="print('resize-end')"
     >
       <h3>{{ componentData.componentName }}</h3>
-    </VueDraggableResizable>
+    </Vue3DraggableResizable>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import VueDraggableResizable from 'vue-draggable-resizable';
+import Vue3DraggableResizable from 'vue3-draggable-resizable';
+// import { toRaw } from 'vue';
 // import ModalView from '@/views/ModalView';
 // import { ModalProgrammatic } from 'buefy/dist/components/modal';
 export default {
   name: 'ComponentDisplay',
   components: {
-    VueDraggableResizable,
+    Vue3DraggableResizable,
   },
   data() {
     return {
@@ -35,20 +43,29 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('keyup', (event) => {
-      if (event.key === 'Backspace') {
-        if (this.activeComponent && this.activeComponentData.isActive) {
-          this.$store.dispatch('deleteActiveComponent');
-        }
-      }
-    });
+    console.log('success');
+    // window.addEventListener('keyup', (event) => {
+    //   if (event.key === 'Backspace') {
+    //     if (this.activeComponent && this.activeComponentData.isActive) {
+    //       this.$store.dispatch('deleteActiveComponent');
+    //     }
+    //   }
+    // });
   },
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
+      console.log(
+        'array – this.routes[this.activeRoute], within activeRouteArray',
+        this.routes[this.activeRoute]
+      );
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
+      console.log(
+        'this.activeRouteArray (within activeComponentData)',
+        this.activeRouteArray
+      );
       return this.activeRouteArray.filter((componentData) => {
         return componentData.componentName === this.activeComponent;
       })[0];
@@ -57,17 +74,29 @@ export default {
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
     onResize: function (x, y, width, height) {
-      this.activeComponentData.x = x;
-      this.activeComponentData.y = y;
-      this.activeComponentData.w = width;
-      this.activeComponentData.h = height;
+      console.log('on resiZe x', x);
+      console.log('on resiZe y', y);
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+      this.activeComponentData.w = x.w;
+      this.activeComponentData.h = x.h;
     },
     onDrag: function (x, y) {
-      this.activeComponentData.x = x;
-      this.activeComponentData.y = y;
+      console.log(
+        'this.activeComponentData (componentDisplay.vue)',
+        this.activeComponentData
+      );
+      // console.log(
+      //   'this.activeComponentData.x (componentDisplay.vue)',
+      //   this.activeComponentData.x
+      // );
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+      console.log('--------------------');
     },
     onActivated(componentData) {
       this.setActiveComponent(componentData.componentName);
+      console.log('active', componentData.componentName);
       this.activeComponentData.isActive = true;
     },
     onDeactivated() {
@@ -92,8 +121,7 @@ export default {
 <style scoped>
 .component-display {
   border: 1px solid plum;
-  height: 100%;
-  position: relative;
+  height: 400px;
 }
 
 .component-box {

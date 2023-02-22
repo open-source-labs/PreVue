@@ -42,7 +42,7 @@ export default {
       'routes',
     ]),
     children() {
-      console.log('activeComponent', this.activeComponent);
+      console.log('activeComponent in modalView', this.activeComponent);
       return this.componentMap[this.activeComponent].children.reduce(
         (acc, curr) => {
           return acc.concat(curr);

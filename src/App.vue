@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="hero">
-    <NavBar imageUrl="../src/assets/logo.png"></NavBar>
+    <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
     <section class="section">
       <router-view />
@@ -18,10 +18,7 @@ export default {
 };
 </script>
 
-<!-- <style lang="scss">
-@import '~bulma/sass/utilities/_all';
-$tabs-link-color: #d4d4dc;
-
+<style lang="scss">
 $navbar-breakpoint: 414px;
 
 @mixin my-touch {
@@ -35,9 +32,6 @@ $navbar-breakpoint: 414px;
     @content;
   }
 }
-
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
 
 html,
 body,
@@ -105,6 +99,11 @@ i:hover {
   cursor: pointer;
 }
 
+#nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 #app {
   box-sizing: border-box;
 
@@ -115,4 +114,4 @@ i:hover {
   padding-top: 60px;
   height: 100%;
 }
-</style> -->
+</style>

@@ -1,7 +1,7 @@
 <template>
   <section class="home-queue">
     <p class="panel-heading">Selected Elements</p>
-    <draggable
+    <!-- <draggable
       v-model="renderList"
       group="people"
       class="list-group"
@@ -13,7 +13,7 @@
         {{ element.text }}
         <i class="fas fa fa-trash fa-md" @click="deleteElement(index)"></i>
       </div>
-    </draggable>
+    </draggable> -->
   </section>
 </template>
 
@@ -26,11 +26,11 @@ export default {
   name: 'HomeQueue',
   props: {
     name: {
-      type: String
+      type: String,
     },
     listToRender: {
-      type: Array
-    }
+      type: Array,
+    },
   },
 
   computed: {
@@ -41,17 +41,17 @@ export default {
       },
       set(value) {
         this.$store.dispatch(setSelectedElementList, value);
-      }
-    }
+      },
+    },
   },
   methods: {
     deleteElement(index) {
       this.$store.dispatch(deleteSelectedElement, index);
-    }
+    },
   },
   components: {
-    draggable
-  }
+    draggable,
+  },
 };
 </script>
 

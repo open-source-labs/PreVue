@@ -1,13 +1,13 @@
 <template>
   <div id="project-tabs">
-    <b-tabs type="is-boxed" @change="changeTab">
-      <b-tab-item
+    <div class="is-boxed" @change="changeTab">
+      <div
         class="has-background-white tab-item"
         v-for="(label, idx) in projects"
         :label="label.filename"
         :key="idx"
-      ></b-tab-item>
-    </b-tabs>
+      ></div>
+    </div>
     <div></div>
   </div>
 </template>

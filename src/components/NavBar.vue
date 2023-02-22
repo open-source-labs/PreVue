@@ -93,6 +93,7 @@ export default {
 #prevue-logo:hover {
   cursor: pointer;
 }
+
 #navbar {
   background-color: #d4d4dc;
   height: 50px;

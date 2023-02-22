@@ -1,10 +1,10 @@
 <template>
   <div class="route-display">
-    <b-input
+    <input
       v-model="newRoute"
       placeholder="Enter new route, then press Enter"
       @keyup.enter.native="handleEnterKeyPress"
-    ></b-input>
+    />
     <Routes></Routes>
   </div>
 </template>

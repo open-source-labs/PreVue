@@ -26,6 +26,7 @@
 import Icons from './Icons.vue';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 import { mapState, mapActions } from 'vuex';
+import { toRaw } from 'vue';
 import * as types from '../store/types.js';
 
 export default {
@@ -35,12 +36,22 @@ export default {
     Icons,
   },
   computed: {
-    ...mapState(['componentMap', 'selectedElementList']),
+    ...mapState([
+      'componentMap',
+      'selectedElementList',
+      'routes',
+      'activeRoute',
+    ]),
     componentNameInputValue: {
       get() {
+        // console.log(
+        //   'componentInput',
+        //   this.$store.state.componentNameInputValue
+        // );
         return this.$store.state.componentNameInputValue;
       },
       set(value) {
+        // console.log('value', value);
         this.updateComponentNameInputValue(value);
       },
     },
@@ -51,7 +62,9 @@ export default {
       'addToSelectedElementList',
       'updateComponentNameInputValue',
     ]),
+    // invoked when click "add component" button
     handleClick() {
+      console.log('active routes', this.routes[this.activeRoute]); // toRaw?
       const component = {
         componentName: this.componentNameInputValue,
         x: 0,
@@ -63,6 +76,8 @@ export default {
         isActive: false,
       };
 
+      // console.log('component', component);
+      console.log('component (HomeSidebar handleClick)', component);
       this.registerComponent(component);
     },
   },

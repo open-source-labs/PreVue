@@ -4,8 +4,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store/';
 
-import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
-
 // Vue.config.productionTip = false;
 
 // Vue.createApp({
