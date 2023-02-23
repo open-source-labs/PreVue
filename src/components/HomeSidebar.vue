@@ -1,16 +1,17 @@
 <template>
   <v-card>
-    <v-card-title class="text-wrap text-h6"
-      >Create a custom component</v-card-title
-    >
-    <v-card-actions>
-      <form id="form1" v-on:submit.prevent="handleClick">
+    <v-card-title class="text-wrap text-h6">
+      Create a custom component
+    </v-card-title>
+    <v-card-actions class="d-block">
+      <v-form id="form1" v-on:submit.prevent="handleClick">
         <v-text-field
           v-model="componentNameInputValue"
-          label="Name your component"
           variant="solo"
-        ></v-text-field>
-      </form>
+          label="Name your component"
+        >
+        </v-text-field>
+      </v-form>
     </v-card-actions>
     <v-card-actions class="center">
       <Icons @getClickedIcon="addToSelectedElementList" />
@@ -24,27 +25,6 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-  <!-- <div class="home-sidebar">
-    <p class="panel-heading">Create a component</p>
-    <br />
-    <form id="form1" v-on:submit.prevent="handleClick">
-      <input v-model="componentNameInputValue" placeholder="Component name" />
-    </form>
-
-    <div class="icon-container">
-      <Icons @getClickedIcon="addToSelectedElementList" />
-    </div>
-    <ChildrenMultiselect />
-    <br />
-    <button
-      class="button is-primary"
-      id="add-component-btn"
-      @click="handleClick"
-      :disabled="!componentNameInputValue"
-    >
-      Add Component
-    </button>
-  </div> -->
 </template>
 
 <script>
@@ -108,7 +88,10 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
+.v-label.v-field-label {
+  font-size: 0.86rem;
+}
 .is-primary {
   height: 45px;
 }

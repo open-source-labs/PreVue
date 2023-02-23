@@ -13,13 +13,14 @@
       :y="componentData.y"
       :w="componentData.w"
       :h="componentData.h"
-      @activated="onActivated(componentData)"
+      @click="onClick(componentData)"
+      @activated="activeComponentData()"
       @deactivated="onDeactivated(componentData)"
       @dragging="onDrag"
-      @drag-start="print('drag-start')"
+      @drag-start="print('drag-end')"
+      @drag-end="print('drag-end')"
       @resize-start="onResize"
       @resizing="print('resizing')"
-      @drag-end="print('drag-end')"
       @resize-end="print('resize-end')"
     >
       <h3>{{ componentData.componentName }}</h3>
@@ -56,7 +57,7 @@ export default {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
       console.log(
-        'array – this.routes[this.activeRoute], within activeRouteArray',
+        'activeRouteArray: this.routes[this.activeRoute]',
         this.routes[this.activeRoute]
       );
       return this.routes[this.activeRoute];
@@ -73,9 +74,10 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x, y, width, height) {
+    onResize: function (x, y) {
       console.log('on resiZe x', x);
       console.log('on resiZe y', y);
+      // const { x, y, w, h} = payload;
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
@@ -102,18 +104,20 @@ export default {
     onDeactivated() {
       this.activeComponentData.isActive = false;
     },
-    // onDoubleClick(compData) { // uses Buefy
-    //   this.setActiveComponent(compData.componentName);
-    //   this.activeComponentData.isActive = true;
-    //   ModalProgrammatic.open({
-    //     parent: this,
-    //     component: ModalView,
-    //     onCancel: () => {
-    //       this.updateOpenModal(false);
-    //       this.setActiveComponent('');
-    //     }
-    //   });
-    // }
+    onClick(compData) {
+      console.log('onClick compdata', compData.componentName);
+      // uses Buefy
+      this.setActiveComponent(compData.componentName);
+      this.activeComponentData.isActive = true;
+      // ModalProgrammatic.open({
+      //   parent: this,
+      //   component: ModalView,
+      //   onCancel: () => {
+      //     this.updateOpenModal(false);
+      //     this.setActiveComponent('');
+      //   }
+      // });
+    },
   },
 };
 </script>
@@ -125,7 +129,7 @@ export default {
 }
 
 .component-box {
-  color: white;
+  color: #3ab982;
   border: 1px solid salmon;
 }
 </style>
