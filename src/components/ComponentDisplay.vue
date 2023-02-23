@@ -121,7 +121,7 @@ export default {
 <style scoped>
 .component-display {
   border: 1px solid plum;
-  height: 400px;
+  height: 84vh;
 }
 
 .component-box {

@@ -1,8 +1,33 @@
 <template>
-  <div class="home-sidebar">
+  <v-card>
+    <v-card-title class="text-wrap text-h6"
+      >Create a custom component</v-card-title
+    >
+    <v-card-actions>
+      <form id="form1" v-on:submit.prevent="handleClick">
+        <v-text-field
+          v-model="componentNameInputValue"
+          label="Name your component"
+          variant="solo"
+        ></v-text-field>
+      </form>
+    </v-card-actions>
+    <v-card-actions class="center">
+      <Icons @getClickedIcon="addToSelectedElementList" />
+    </v-card-actions>
+    <v-card-actions>
+      <ChildrenMultiselect />
+    </v-card-actions>
+    <v-card-actions class="center">
+      <v-btn class="bg-success" id="add-component-btn" @click="handleClick">
+        Add Component
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  <!-- <div class="home-sidebar">
     <p class="panel-heading">Create a component</p>
     <br />
-    <form v-on:submit.prevent="handleClick">
+    <form id="form1" v-on:submit.prevent="handleClick">
       <input v-model="componentNameInputValue" placeholder="Component name" />
     </form>
 
@@ -19,7 +44,7 @@
     >
       Add Component
     </button>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -87,12 +112,23 @@ export default {
 .is-primary {
   height: 45px;
 }
+.center {
+  justify-content: center;
+}
 form {
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
 }
 #add-component-btn {
-  height: 25px;
+  /* height: 25px;
 
-  width: 100%;
+  width: 100%; */
+}
+
+#form1 {
+  /* background-color: white; */
+}
+
+.home-sidebar {
+  /* background-color: #c8c8c8; */
 }
 </style>

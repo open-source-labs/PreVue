@@ -1,11 +1,13 @@
 <template>
-  <div id="app" class="hero">
-    <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
+  <v-app>
+    <div id="app" class="hero">
+      <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
-    <section class="section">
-      <router-view />
-    </section>
-  </div>
+      <section>
+        <router-view />
+      </section>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -18,20 +20,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$navbar-breakpoint: 414px;
+<style scoped lang="scss">
+// $navbar-breakpoint: 414px;
 
-@mixin my-touch {
-  @media screen and (max-width: $navbar-breakpoint - 1px) {
-    @content;
-  }
-}
+// @mixin my-touch {
+//   @media screen and (max-width: $navbar-breakpoint - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin my-desktop {
-  @media screen and (min-width: $navbar-breakpoint) {
-    @content;
-  }
-}
+// @mixin my-desktop {
+//   @media screen and (min-width: $navbar-breakpoint) {
+//     @content;
+//   }
+// }
 
 html,
 body,
@@ -110,8 +112,7 @@ i:hover {
   background-color: #393f4d;
 }
 
-.section {
+section {
   padding-top: 60px;
-  height: 100%;
 }
 </style>

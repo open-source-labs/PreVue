@@ -1,39 +1,18 @@
 <template>
-  <nav
-    class="navbar is-mobile is-fixed-top"
+  <v-app-bar
     id="navbar"
+    color="blue-grey-lighten-4"
     role="navigation"
     aria-label="main navigation"
   >
     <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
-
-    <div id="navbarBasicExample" class="navbar-menu is-mobile">
-      <div class="navbar-start">
-        <div class="navbar-item">
-          <div>
-            <h1 id="prevue">PreVue</h1>
-          </div>
-        </div>
-        <div class="navbar-item">
-          <button @click="routeTree">
-            <i class="fas fa-tree fa-lg"></i>
-
-            <br />
-            <span class="white--text">Tree</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <!-- <SaveProjectComponent /> -->
-          <!-- <OpenProjectComponent /> -->
-          <!-- <NewProjectComponent />
-          <ExportProjectComponent /> -->
-        </div>
-      </div>
-    </div>
-  </nav>
+    <h1 id="prevue">PreVue</h1>
+    <button @click="routeTree">
+      <i class="fas fa-tree fa-lg"></i>
+      <br />
+      <span class="white--text">Tree</span>
+    </button>
+  </v-app-bar>
 </template>
 
 <script>
@@ -82,21 +61,24 @@ export default {
   font-size: 2.5em;
   color: #39b982;
   text-decoration: none;
+  margin-right: 10px;
 }
 #prevue-logo {
   height: 80px;
   width: 70px;
-  padding-left: 2em;
-  padding-bottom: 2.75em;
+  transform: scale(0.7);
 }
 
 #prevue-logo:hover {
   cursor: pointer;
 }
 
-#navbar {
+.v-toolbar__content {
   background-color: #d4d4dc;
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .save-icon:hover {

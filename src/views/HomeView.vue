@@ -1,5 +1,36 @@
 <template>
-  <div>
+  <v-container class="bg-surface-variant" fluid="true">
+    <v-row>
+      <v-col>
+        <v-sheet><ProjectTabs /></v-sheet>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="2">
+        <v-row>
+          <v-col>
+            <v-sheet>
+              <p>Routes</p>
+              <RouteDisplay />
+            </v-sheet>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-sheet class="rounded-xl"><HomeSidebar /></v-sheet>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col>
+        <v-sheet><ComponentDisplay /></v-sheet>
+      </v-col>
+      <v-col cols="2">
+        <v-sheet><HomeQueue /></v-sheet>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <!-- <div>
     <div class="columns is-mobile">
       <div id="empty-left" class="column"></div>
       <div id="project-tabs-container" class="column">
@@ -27,7 +58,7 @@
         <HomeQueue />
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -50,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
-#route-display-container {
+/* #route-display-container {
   background-color: #393f4d;
   height: 100%;
   padding: 0;
@@ -69,5 +100,5 @@ export default {
 #right-side-container,
 #empty-right {
   max-width: 150px;
-}
+} */
 </style>

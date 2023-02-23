@@ -1,15 +1,12 @@
 <template>
-  <div id="project-tabs">
-    <div class="is-boxed" @change="changeTab">
-      <div
-        class="has-background-white tab-item"
-        v-for="(label, idx) in projects"
-        :label="label.filename"
-        :key="idx"
-      ></div>
-    </div>
-    <div></div>
-  </div>
+  <v-tabs @change="changeTab">
+    <v-tab
+      class="has-background-white tab-item"
+      v-for="(label, idx) in projects"
+      :value="label.filename"
+      :key="idx"
+    ></v-tab>
+  </v-tabs>
 </template>
 
 <script>
@@ -69,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#project-tabs {
-  height: 30px;
-}
+// #project-tabs {
+//   height: 30px;
+// }
 </style>

@@ -23,7 +23,8 @@
     "vue-template-compiler": "^2.6.11",
     "vue3-draggable-resizable": "^1.6.5",
     "vued3tree": "^3.6.4",
-    "vuedraggable": "^2.19.3"
+    "vuedraggable": "^2.19.3",
+    "vuetify": "^3.1.6"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^4.0.1",

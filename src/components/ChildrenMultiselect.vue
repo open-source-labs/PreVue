@@ -1,6 +1,5 @@
 <template>
   <div id="child-select">
-    <br />
     <VueMultiselect
       placeholder="Select child components"
       v-model="multiValue"
