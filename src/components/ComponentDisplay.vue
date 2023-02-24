@@ -1,27 +1,23 @@
 <template>
   <div class="component-display">
     <Vue3DraggableResizable
-      classNameDraggable="draggable"
       class="component-box"
       v-for="componentData in activeRouteArray"
       :draggable="true"
       :resizable="true"
       :disabledX="false"
       :disabledY="false"
+      :parent = "true"
       :key="componentData.componentName"
       :x="componentData.x"
       :y="componentData.y"
       :w="componentData.w"
       :h="componentData.h"
+      :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
       @click="onClick(componentData)"
-      @activated="activeComponentData()"
+      @activated="activeComponentData"
       @deactivated="onDeactivated(componentData)"
-      @dragging="onDrag"
-      @drag-start="print('drag-end')"
-      @drag-end="print('drag-end')"
-      @resize-start="onResize"
-      @resizing="print('resizing')"
-      @resize-end="print('resize-end')"
+      
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
@@ -45,13 +41,13 @@ export default {
   },
   mounted() {
     console.log('success');
-    // window.addEventListener('keyup', (event) => {
-    //   if (event.key === 'Backspace') {
-    //     if (this.activeComponent && this.activeComponentData.isActive) {
-    //       this.$store.dispatch('deleteActiveComponent');
-    //     }
-    //   }
-    // });
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'Backspace') {
+        if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('deleteActiveComponent');
+        }
+      }
+    });
   },
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
@@ -85,13 +81,11 @@ export default {
     },
     onDrag: function (x, y) {
       console.log(
+        
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-      // console.log(
-      //   'this.activeComponentData.x (componentDisplay.vue)',
-      //   this.activeComponentData.x
-      // );
+  
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
@@ -126,6 +120,12 @@ export default {
 .component-display {
   border: 1px solid plum;
   height: 84vh;
+}
+
+.component-display {
+  color: #3ab982;
+  border: 1px solid salmon;
+  position: relative;
 }
 
 .component-box {
