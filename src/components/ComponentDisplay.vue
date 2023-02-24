@@ -36,11 +36,11 @@ import Vue3DraggableResizable from 'vue3-draggable-resizable';
 export default {
   name: 'ComponentDisplay',
   components: {
-    Vue3DraggableResizable,
+    Vue3DraggableResizable
   },
   data() {
     return {
-      abilityToDelete: false,
+      abilityToDelete: false
     };
   },
   mounted() {
@@ -67,14 +67,14 @@ export default {
         'this.activeRouteArray (within activeComponentData)',
         this.activeRouteArray
       );
-      return this.activeRouteArray.filter((componentData) => {
+      return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    },
+    }
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x, y) {
+    onResize: function(x, y) {
       console.log('on resiZe x', x);
       console.log('on resiZe y', y);
       // const { x, y, w, h} = payload;
@@ -83,7 +83,7 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x, y) {
+    onDrag: function(x, y) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
@@ -117,8 +117,8 @@ export default {
       //     this.setActiveComponent('');
       //   }
       // });
-    },
-  },
+    }
+  }
 };
 </script>
 

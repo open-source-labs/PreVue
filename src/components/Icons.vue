@@ -1,7 +1,7 @@
 <template>
   <section class="icon-grid">
     <button
-      @click.prevent="changeState(elementName)"
+      @click="handleClick(elementName)"
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
@@ -14,17 +14,23 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import * as types from '../store/types.js';
 
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons']),
+    ...mapState(['icons'])
   },
   methods: {
-    changeState(elementName) {
-      this.$emit('getClickedIcon', elementName); // emit prop necessary?
-    },
-  },
+    handleClick(htmlElement) {
+      console.log(htmlElement);
+      this.$store.dispatch(types.addToSelectedElementList, htmlElement);
+      console.log(this.$store.state.selectedElementList);
+    }
+    // changeState(elementName) {
+    //   this.$emit('getClickedIcon', elementName); // emit prop necessary?
+    // }
+  }
 };
 </script>
 

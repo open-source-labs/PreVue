@@ -1,5 +1,5 @@
 <template>
-  <v-container class="bg-surface-variant" fluid="true">
+  <v-container class="bg-surface-variant" fluid>
     <v-row>
       <v-col>
         <v-sheet><ProjectTabs /></v-sheet>
@@ -25,7 +25,7 @@
         <v-sheet><ComponentDisplay /></v-sheet>
       </v-col>
       <v-col cols="2">
-        <v-sheet><HomeQueue /></v-sheet>
+        <v-sheet class="rounded-xl"><HomeQueue /></v-sheet>
       </v-col>
     </v-row>
   </v-container>
@@ -75,8 +75,8 @@ export default {
     HomeSidebar,
     HomeQueue,
     RouteDisplay,
-    ProjectTabs,
-  },
+    ProjectTabs
+  }
 };
 </script>
 

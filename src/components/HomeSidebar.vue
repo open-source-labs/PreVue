@@ -14,7 +14,7 @@
       </v-form>
     </v-card-actions>
     <v-card-actions class="center">
-      <Icons @getClickedIcon="addToSelectedElementList" />
+      <Icons />
     </v-card-actions>
     <v-card-actions>
       <ChildrenMultiselect />
@@ -38,14 +38,14 @@ export default {
   name: 'HomeSidebar',
   components: {
     ChildrenMultiselect,
-    Icons,
+    Icons
   },
   computed: {
     ...mapState([
       'componentMap',
       'selectedElementList',
       'routes',
-      'activeRoute',
+      'activeRoute'
     ]),
     componentNameInputValue: {
       get() {
@@ -58,14 +58,14 @@ export default {
       set(value) {
         // console.log('value', value);
         this.updateComponentNameInputValue(value);
-      },
-    },
+      }
+    }
   },
   methods: {
     ...mapActions([
       'registerComponent',
       'addToSelectedElementList',
-      'updateComponentNameInputValue',
+      'updateComponentNameInputValue'
     ]),
     // invoked when click "add component" button
     handleClick() {
@@ -78,14 +78,14 @@ export default {
         h: 200,
         htmlList: this.selectedElementList,
         children: [],
-        isActive: false,
+        isActive: false
       };
 
       // console.log('component', component);
       console.log('component (HomeSidebar handleClick)', component);
       this.registerComponent(component);
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
