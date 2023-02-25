@@ -7,7 +7,7 @@
       :resizable="true"
       :disabledX="false"
       :disabledY="false"
-      :parent = "true"
+      :parent="true"
       :key="componentData.componentName"
       :x="componentData.x"
       :y="componentData.y"
@@ -15,9 +15,16 @@
       :h="componentData.h"
       :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
       @click="onClick(componentData)"
-      @activated="activeComponentData"
-      @deactivated="onDeactivated(componentData)"
+      @activated="onActivated(componentData)"
+      @deactivated="onDeactivated()"
+      @drag-start="activeComponentData, onDrag"
+      @drag-end="onDrag"
+      @resize-start="onResize"
+      @resize-end="onResize"
       
+
+
+
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
@@ -79,7 +86,7 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x, y) {
+    onDrag: function (x) {
       console.log(
         
         'this.activeComponentData (componentDisplay.vue)',
