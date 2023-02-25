@@ -1,17 +1,15 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+// import Vue from 'vue'; // not being read
+import * as VueRouter from 'vue-router';
 import Home from './views/HomeView.vue';
 
-Vue.use(Router);
-
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
+  base: import.meta.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/tree',
@@ -19,12 +17,13 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ './views/TreeView.vue')
+      component: () => import('./views/TreeView.vue'),
     },
-    {
-      path: '*',
-      redirect: '/'
-    }
-  ]
+    // {
+    //   path: '*',
+    //   redirect: '/',
+    // },
+  ],
 });
+
+export default router;

@@ -1,29 +1,29 @@
 <template>
   <div class="route-display">
-    <b-input
+    <input
       v-model="newRoute"
       placeholder="Enter new route, then press Enter"
       @keyup.enter.native="handleEnterKeyPress"
-    ></b-input>
+    />
     <Routes></Routes>
   </div>
 </template>
 
 <script>
-import Routes from '@/components/Routes';
+import Routes from '@/components/Routes.vue';
 import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'RouteDisplay',
   components: {
-    Routes
+    Routes,
   },
   computed: {
-    ...mapState(['routes'])
+    ...mapState(['routes']),
   },
   data() {
     return {
-      newRoute: ''
+      newRoute: '',
     };
   },
   methods: {
@@ -33,9 +33,9 @@ export default {
         .then(() => {
           this.newRoute = '';
         })
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>
 

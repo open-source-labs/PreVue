@@ -7,6 +7,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { toRaw } from 'vue';
 export default {
   name: 'ComponentCodeDisplay',
 
@@ -14,21 +15,21 @@ export default {
     ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
     activeComponentHtmlList: {
       get() {
-        return this.componentMap[this.activeComponent].htmlList;
-      }
-    }
+        return toRaw(this.componentMap[this.activeComponent].htmlList);
+      },
+    },
   },
   watch: {
     activeComponentHtmlList(oldList, newList) {
       this.displayHtmlList(newList);
-    }
+    },
   },
   mounted() {
     this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
     traverseElement(list, codeDisplay, level = 0) {
-      list.forEach(htmlElementTagObj => {
+      list.forEach((htmlElementTagObj) => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
         let openingTagNode = document.createElement('p');
@@ -64,8 +65,8 @@ export default {
       codeDisplay.innerText = '';
 
       this.traverseElement(list, codeDisplay);
-    }
-  }
+    },
+  },
 };
 </script>
 

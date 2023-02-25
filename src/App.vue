@@ -1,11 +1,13 @@
 <template>
-  <div id="app" class="hero">
-    <NavBar imageUrl="../src/assets/logo.png"></NavBar>
+  <v-app>
+    <div id="app" class="hero">
+      <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
-    <section class="section">
-      <router-view />
-    </section>
-  </div>
+      <section>
+        <router-view />
+      </section>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -13,31 +15,25 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 };
 </script>
 
-<style lang="scss">
-@import '~bulma/sass/utilities/_all';
-$tabs-link-color: #d4d4dc;
+<style scoped lang="scss">
+// $navbar-breakpoint: 414px;
 
-$navbar-breakpoint: 414px;
+// @mixin my-touch {
+//   @media screen and (max-width: $navbar-breakpoint - 1px) {
+//     @content;
+//   }
+// }
 
-@mixin my-touch {
-  @media screen and (max-width: $navbar-breakpoint - 1px) {
-    @content;
-  }
-}
-
-@mixin my-desktop {
-  @media screen and (min-width: $navbar-breakpoint) {
-    @content;
-  }
-}
-
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
+// @mixin my-desktop {
+//   @media screen and (min-width: $navbar-breakpoint) {
+//     @content;
+//   }
+// }
 
 html,
 body,
@@ -87,7 +83,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
+  // margin: 0;
 }
 
 // Box sizing
@@ -105,14 +101,18 @@ i:hover {
   cursor: pointer;
 }
 
+#nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 #app {
   box-sizing: border-box;
 
   background-color: #393f4d;
 }
 
-.section {
+section {
   padding-top: 60px;
-  height: 100%;
 }
 </style>

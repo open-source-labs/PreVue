@@ -31,7 +31,7 @@ export default {
       type: String
     }
   },
-  data: function() {
+  data() {
     return {
       listToRender: null
     };

@@ -1,19 +1,25 @@
-import Vue from 'vue';
+// import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store/';
-import Buefy from 'buefy';
 
-import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
+//vuetify imports
+import 'vuetify/styles';
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 
-Vue.config.productionTip = false;
-
-Vue.use(Buefy, {
-  defaultIconPack: 'fas'
+//vuetify config
+const vuetify = createVuetify({
+  components,
+  directives,
 });
+// Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app');
+// Creation and mounting of the app
+const app = createApp(App);
+app.use(vuetify);
+app.use(router);
+app.use(store);
+app.mount('#app');
