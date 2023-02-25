@@ -12,6 +12,7 @@
       <br />
       <span class="white--text">Tree</span>
     </button>
+    <SaveProjectComponent></SaveProjectComponent>
   </v-app-bar>
 </template>
 
@@ -21,7 +22,7 @@
 // import path from 'path';
 // import { addProject, changeTabName } from '../store/types';
 // import localforage from 'localforage';
-// import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
+import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 // import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 // import NewProjectComponent from '@/components/NewProjectComponent.vue';
 // import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
@@ -38,7 +39,7 @@ export default {
   props: ['route', 'imageURL'],
 
   components: {
-    // SaveProjectComponent,
+    SaveProjectComponent
     // OpenProjectComponent,
     // NewProjectComponent,
     // ExportProjectComponent,
@@ -49,8 +50,8 @@ export default {
     },
     routeTree() {
       this.$router.push({ path: '/tree' });
-    },
-  },
+    }
+  }
 };
 </script>
 

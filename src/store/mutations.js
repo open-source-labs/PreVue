@@ -3,6 +3,20 @@ import * as types from './types';
 import localforage from 'localforage';
 
 const mutations = {
+  initializeStore(state) {
+    if (localStorage.getItem('store')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(localStorage.getItem('store')))
+      );
+    }
+  },
+  // [types.INITIALISESTORE]: (state) => {
+  //   if (localStorage.getItem('store')) {
+  //     .replaceState(
+  //       Object.assign(state, JSON.parse(localStorage.getItem('store')))
+  //     );
+  //   }
+  // },
   [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {

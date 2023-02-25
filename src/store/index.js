@@ -7,8 +7,16 @@ import mutations from './mutations.js';
 
 // Vue.use(Vuex);
 
-export default createStore({
-  state,
-  mutations,
-  actions,
+const store = createStore({ state, mutations, actions });
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('store', JSON.stringify(state));
 });
+
+export default store;
+
+// export default createStore({
+//   state,
+//   mutations,
+//   actions,
+// });
