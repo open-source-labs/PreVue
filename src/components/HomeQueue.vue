@@ -1,62 +1,59 @@
 <template>
-  <section class="home-queue">
-    <p class="panel-heading">Selected Elements</p>
-    <!-- <draggable
+  <v-card class="home-queue">
+    <v-card-title>Selected Elements</v-card-title>
+    <draggable
       v-model="renderList"
-      group="people"
-      class="list-group"
-      ghost-class="ghost"
+      item-key="index"
+      class="d-flex flex-column"
+      v-bind="dragOptions"
       @start="drag = true"
       @end="drag = false"
     >
-      <div class="list-group-item" v-for="(element, index) in renderList" :key="index + Date.now()">
-        {{ element.text }}
-        <i class="fas fa fa-trash fa-md" @click="deleteElement(index)"></i>
-      </div>
-    </draggable> -->
-  </section>
+      <template #item="{element}">
+        <v-chip closable color="cyan" class="ma-2">
+          {{ element.text }}
+        </v-chip>
+      </template>
+    </draggable>
+  </v-card>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
-import { mapState } from 'vuex';
 import { setSelectedElementList, deleteSelectedElement } from '../store/types';
 
 export default {
   name: 'HomeQueue',
-  props: {
-    name: {
-      type: String,
-    },
-    listToRender: {
-      type: Array,
-    },
+  components: {
+    draggable
   },
-
   computed: {
-    ...mapState(['selectedElementList']),
     renderList: {
       get() {
-        return this.selectedElementList;
+        return this.$store.state.selectedElementList;
       },
       set(value) {
         this.$store.dispatch(setSelectedElementList, value);
-      },
+      }
     },
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false
+      };
+    }
   },
   methods: {
     deleteElement(index) {
       this.$store.dispatch(deleteSelectedElement, index);
-    },
-  },
-  components: {
-    draggable,
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.home-queue {
+/* .home-queue {
   border: 1px solid white;
   background-color: hsl(222, 15%, 26%);
   height: 100%;
@@ -77,5 +74,5 @@ li {
 .fa-trash:hover {
   cursor: pointer;
   color: red;
-}
+} */
 </style>

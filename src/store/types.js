@@ -1,4 +1,5 @@
 //Mutations
+export const INITIALISESTORE = 'INITIALISESTORE';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const ADD_COMPONENT_TO_COMPONENT_MAP = 'ADD_COMPONENT_TO_COMPONENT_MAP';
 export const SET_SELECTED_ELEMENT_LIST = 'SET_SELECTED_ELEMENT_LIST';
@@ -69,3 +70,4 @@ export const updateComponentChildrenValue = 'updateComponentChildrenValue';
 export const updateComponentNameInputValue = 'updateComponentNameInputValue';
 export const updateOpenModal = 'updateOpenModal';
 export const addElement = 'addElement';
+export const initialiseStore = 'initialiseStore';

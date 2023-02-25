@@ -16,20 +16,20 @@ export default {
     activeComponentHtmlList: {
       get() {
         return toRaw(this.componentMap[this.activeComponent].htmlList);
-      },
-    },
+      }
+    }
   },
   watch: {
     activeComponentHtmlList(oldList, newList) {
       this.displayHtmlList(newList);
-    },
+    }
   },
   mounted() {
     this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
     traverseElement(list, codeDisplay, level = 0) {
-      list.forEach((htmlElementTagObj) => {
+      list.forEach(htmlElementTagObj => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
         let openingTagNode = document.createElement('p');
@@ -65,8 +65,8 @@ export default {
       codeDisplay.innerText = '';
 
       this.traverseElement(list, codeDisplay);
-    },
-  },
+    }
+  }
 };
 </script>
 

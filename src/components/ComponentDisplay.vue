@@ -1,27 +1,30 @@
 <template>
   <div class="component-display">
     <Vue3DraggableResizable
-      classNameDraggable="draggable"
       class="component-box"
       v-for="componentData in activeRouteArray"
       :draggable="true"
       :resizable="true"
       :disabledX="false"
       :disabledY="false"
+      :parent="true"
       :key="componentData.componentName"
       :x="componentData.x"
       :y="componentData.y"
       :w="componentData.w"
       :h="componentData.h"
+      :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
       @click="onClick(componentData)"
-      @activated="activeComponentData()"
-      @deactivated="onDeactivated(componentData)"
-      @dragging="onDrag"
-      @drag-start="print('drag-end')"
-      @drag-end="print('drag-end')"
+      @activated="onActivated(componentData)"
+      @deactivated="onDeactivated()"
+      @drag-start="activeComponentData, onDrag"
+      @drag-end="onDrag"
       @resize-start="onResize"
-      @resizing="print('resizing')"
-      @resize-end="print('resize-end')"
+      @resize-end="onResize"
+      
+
+
+
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
@@ -36,22 +39,22 @@ import Vue3DraggableResizable from 'vue3-draggable-resizable';
 export default {
   name: 'ComponentDisplay',
   components: {
-    Vue3DraggableResizable,
+    Vue3DraggableResizable
   },
   data() {
     return {
-      abilityToDelete: false,
+      abilityToDelete: false
     };
   },
   mounted() {
     console.log('success');
-    // window.addEventListener('keyup', (event) => {
-    //   if (event.key === 'Backspace') {
-    //     if (this.activeComponent && this.activeComponentData.isActive) {
-    //       this.$store.dispatch('deleteActiveComponent');
-    //     }
-    //   }
-    // });
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'Backspace') {
+        if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('deleteActiveComponent');
+        }
+      }
+    });
   },
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
@@ -67,14 +70,14 @@ export default {
         'this.activeRouteArray (within activeComponentData)',
         this.activeRouteArray
       );
-      return this.activeRouteArray.filter((componentData) => {
+      return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    },
+    }
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x, y) {
+    onResize: function(x, y) {
       console.log('on resiZe x', x);
       console.log('on resiZe y', y);
       // const { x, y, w, h} = payload;
@@ -83,15 +86,13 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x, y) {
+    onDrag: function (x) {
       console.log(
+        
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-      // console.log(
-      //   'this.activeComponentData.x (componentDisplay.vue)',
-      //   this.activeComponentData.x
-      // );
+  
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
@@ -117,8 +118,8 @@ export default {
       //     this.setActiveComponent('');
       //   }
       // });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -126,6 +127,12 @@ export default {
 .component-display {
   border: 1px solid plum;
   height: 84vh;
+}
+
+.component-display {
+  color: #3ab982;
+  border: 1px solid salmon;
+  position: relative;
 }
 
 .component-box {
