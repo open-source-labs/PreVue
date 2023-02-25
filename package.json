@@ -13,6 +13,7 @@
     "@vitejs/plugin-vue": "^1.6.1",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
+    "mongodb": "^5.1.0",
     "mousetrap": "^1.6.3",
     "vite": "^2.5.4",
     "vite-plugin-vue2": "1.9.0",
