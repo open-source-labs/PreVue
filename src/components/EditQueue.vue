@@ -22,7 +22,6 @@ import {
   setComponentHtmlList,
   addToComponentElementList
 } from '../store/types';
-import { setInterval } from 'timers';
 
 export default {
   name: 'EditQueue',

@@ -1,6 +1,9 @@
 import * as types from './types';
 
 const actions = {
+  [types.initialiseStore]: ({ commit }) => {
+    commit(types.INITIALISESTORE);
+  },
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
     if (!state.componentMap[componentName]) {
@@ -12,7 +15,7 @@ const actions = {
       commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE_IN_ROUTE_MAP, payload);
 
       let component = state.componentNameInputValue;
-      let value = state.componentChildrenMultiselectValue.map((component) => {
+      let value = state.componentChildrenMultiselectValue.map(component => {
         return state.componentMap[component];
       });
       commit(types.UPDATE_COMPONENT_CHILDREN_VALUE, { component, value });
@@ -38,7 +41,7 @@ const actions = {
   [types.deleteActiveComponent]: ({ state, commit }) => {
     commit(types.DELETE_ACTIVE_COMPONENT);
     let activeRouteArray = [...state.routes[state.activeRoute]];
-    let newActiveRouteArray = activeRouteArray.filter((componentData) => {
+    let newActiveRouteArray = activeRouteArray.filter(componentData => {
       return state.activeComponent !== componentData.componentName;
     });
     commit(types.SET_ACTIVE_ROUTE_ARRAY, newActiveRouteArray);
@@ -97,7 +100,7 @@ const actions = {
   },
   [types.updateOpenModal]: ({ commit }, payload) => {
     commit(types.UPDATE_OPEN_MODAL, payload);
-  },
+  }
 };
 
 export default actions;
