@@ -47,7 +47,6 @@ export default {
     };
   },
   mounted() {
-    console.log('success');
     window.addEventListener('keyup', (event) => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
@@ -59,17 +58,17 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
-      console.log(
-        'activeRouteArray: this.routes[this.activeRoute]',
-        this.routes[this.activeRoute]
-      );
+      // console.log(
+      //   'activeRouteArray: this.routes[this.activeRoute]',
+      //   this.routes[this.activeRoute]
+      // );
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
-      console.log(
-        'this.activeRouteArray (within activeComponentData)',
-        this.activeRouteArray
-      );
+      // console.log(
+      //   'this.activeRouteArray (within activeComponentData)',
+      //   this.activeRouteArray
+      // );
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
