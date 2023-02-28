@@ -6,6 +6,9 @@
       :config="treeConfig"
     >
     </vue-tree>
+    <div @click="backToWorkspace">
+      <h2>Back to workspace</h2>
+    </div>
   </div>
 </template>
 
@@ -17,7 +20,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'TreeView',
   components: {
-    VueTree,
+    VueTree
   },
   computed: {
     ...mapState(['componentMap']),
@@ -28,17 +31,19 @@ export default {
     // },
     componentMap() {
       return this.$store.state.componentMap;
-    },
+    }
   },
   data() {
     let childMap = [];
-    const components = JSON.parse(JSON.stringify(Object.entries(this.$store.state.componentMap)));
+    const components = JSON.parse(
+      JSON.stringify(Object.entries(this.$store.state.componentMap))
+    );
 
     console.log('components', components);
 
     for (let component of components) {
       if (component[1].children.length) {
-        const obj = { value: component[1].componentName, children: [] }
+        const obj = { value: component[1].componentName, children: [] };
         for (let i = 0; i < component[1].children.length; i++) {
           const newObj = { value: component[1].children[i] };
           obj.children.push(newObj);
@@ -59,7 +64,7 @@ export default {
 
     // finds Routes
     // for (let component of components) {
-    //   if (component[1].htmlList) {   
+    //   if (component[1].htmlList) {
     //     component[1].children.forEach((child) => {
     //       const obj = { value: child }
     //       childMap.push(obj);
@@ -67,17 +72,21 @@ export default {
     //   }
     // }
 
-    
     // console.log('childMap', childMap)
 
     return {
       data: {
         value: 'App',
-        children: childMap, 
+        children: childMap
       },
-      treeConfig: { nodeWidth: 120, nodeHeight: 80, levelHeight: 200 },
+      treeConfig: { nodeWidth: 120, nodeHeight: 80, levelHeight: 200 }
     };
   },
+  methods: {
+    backToWorkspace() {
+      this.$router.back();
+    }
+  }
 };
 </script>
 
@@ -88,6 +97,8 @@ export default {
   align-items: center;
 }
 
-
-
+h2:hover {
+  color: green;
+  cursor: pointer;
+}
 </style>

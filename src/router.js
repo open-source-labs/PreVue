@@ -11,6 +11,9 @@ const router = VueRouter.createRouter({
       path: '/',
       name: 'login',
       component: Splash,
+      meta: {
+      hideNavbar: true,
+    }
     },
     {
       path: '/tree',

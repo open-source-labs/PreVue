@@ -11,8 +11,8 @@
 
         <v-text-field
           v-model="password"
+          :type="'password'"
           label="Password"
-          required
         ></v-text-field>
 
         <div class="buttons">
@@ -21,18 +21,17 @@
           </v-btn>
           <v-btn color="success" class="mt-4" block @click="signup">
             Sign Up
-          </v-btn>      
+          </v-btn>
         </div>
-      </v-form>      
+      </v-form>
     </v-sheet>
     <div @click="toHome">
-    <h2>Or click here to go work on something!</h2>
+      <h2>Or click here to go work on something!</h2>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Splash',
   data() {
@@ -71,7 +70,7 @@ export default {
     },
 
     toHome() {
-        this.$router.push('/home');
+      this.$router.push('/home');
     }
   }
 };
@@ -95,11 +94,11 @@ export default {
 }
 
 h2 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 h2:hover {
-    color: green;
-    cursor: pointer;
+  color: green;
+  cursor: pointer;
 }
 </style>

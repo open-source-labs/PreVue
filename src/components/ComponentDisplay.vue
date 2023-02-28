@@ -16,14 +16,11 @@
       :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
       @click="onClick(componentData)"
       @activated="onActivated(componentData)"
-      @deactivated="onDeactivated()"
+      @deactivated="onDeactivated"
       @drag-start="activeComponentData, onDrag"
-      @drag-end="onDrag"
+      @drag-end="onDrag, onClick(componentData)"
       @resize-start="onResize"
-      @resize-end="onResize"
-      
-
-
+      @resize-end="onResize, onClick(componentData)"
 
     >
       <h3>{{ componentData.componentName }}</h3>
@@ -85,7 +82,7 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x) {
+    onDrag: function(x) {
       console.log(
         
         'this.activeComponentData (componentDisplay.vue)',
@@ -103,6 +100,7 @@ export default {
     },
     onDeactivated() {
       this.activeComponentData.isActive = false;
+
     },
     onClick(compData) {
       console.log('onClick compdata', compData.componentName);
