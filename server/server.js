@@ -3,6 +3,12 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 8080;
+const cors = require('cors')
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            
+  optionSuccessStatus:200,
+}
 const accountRouter = require('./routes/accountRouter');
 // const accountController = require('./controllers/accountController');
 const projectRouter = require('./routes/projectRouter');
@@ -27,6 +33,7 @@ mongoose
 // Global Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
 // Routers

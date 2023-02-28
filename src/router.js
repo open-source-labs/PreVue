@@ -1,6 +1,7 @@
 // import Vue from 'vue'; // not being read
 import * as VueRouter from 'vue-router';
 import Home from './views/HomeView.vue';
+import Splash from './views/SplashView.vue';
 
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
@@ -8,8 +9,8 @@ const router = VueRouter.createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'login',
+      component: Splash,
     },
     {
       path: '/tree',
@@ -19,10 +20,11 @@ const router = VueRouter.createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('./views/TreeView.vue'),
     },
-    // {
-    //   path: '*',
-    //   redirect: '/',
-    // },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
+    },
   ],
 });
 
