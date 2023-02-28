@@ -1,6 +1,6 @@
 {
   "name": "prevue",
-  "author": "teamprevue <teamprevue@gmail.com> (www.prevue.io)",
+  "author": "teamprevue <prevueoslabs@gmail.com> (www.prevue.io)",
   "version": "2.0.0",
   "description": "Developer prototyping app built with Vue",
   "scripts": {
@@ -10,15 +10,16 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@he-tree/vue": "^2.2.7",
     "@vitejs/plugin-vue": "^1.6.1",
     "fs-extra": "^7.0.1",
+    "handlebars": "^4.7.7",
     "localforage": "^1.7.3",
     "mousetrap": "^1.6.3",
     "sass": "^1.58.3",
     "vite": "^2.5.4",
     "vite-plugin-vue2": "1.9.0",
     "vue": "^3.2.47",
-    "vue-draggable-nested-tree": "^2.2.8",
     "vue-multiselect": "^3.0.0-alpha.2",
     "vue-router": "^4.1.6",
     "vue-template-compiler": "^2.6.11",

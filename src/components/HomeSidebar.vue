@@ -1,28 +1,63 @@
 <template>
-  <v-card>
-    <v-card-title class="text-wrap text-h6">
-      Create a custom component
+  <v-card
+    id="sidebar"
+    class="rounded-0"
+    :style="{
+      'background-color': 'inherit',
+      'border-bottom': '0.5px solid #6a696a',
+      padding: '16px 0px 24px 0px'
+    }"
+  >
+    <v-card-title
+      :style="{
+        'font-size': '14px',
+        color: '#f5f4f3',
+        'font-weight': '550',
+        padding: '0 24px 0 24px'
+      }"
+    >
+      Component Creator
     </v-card-title>
     <v-card-actions class="d-block">
-      <v-form id="form1" v-on:submit.prevent="handleClick">
+      <v-form
+        id="form1"
+        v-on:submit.prevent="handleClick"
+        :style="{
+          padding: '0 24px 0 24px'
+        }"
+      >
         <v-text-field
           v-model="componentNameInputValue"
-          variant="solo"
-          label="Name your component"
+          variant="underlined"
+          label="Component name"
+          placeholder="myCustomComponent"
+          required
+          :style="{ color: '#f5f4f3' }"
         >
         </v-text-field>
       </v-form>
-    </v-card-actions>
-    <v-card-actions class="center">
       <Icons />
-    </v-card-actions>
-    <v-card-actions>
       <ChildrenMultiselect />
-    </v-card-actions>
-    <v-card-actions class="center">
-      <v-btn class="bg-success" id="add-component-btn" @click="handleClick">
-        Add Component
-      </v-btn>
+      <div
+        :style="{
+          'margin-left': '24px'
+        }"
+      >
+        <v-btn
+          v-ripple.center
+          variant="outlined"
+          rounded="pill"
+          @click="handleClick"
+          :disabled="validateInput"
+          :style="{
+            border: '.5px solid #f5f4f3',
+            color: '#f5f4f3',
+            'text-transform': 'unset !important'
+          }"
+        >
+          Add Component
+        </v-btn>
+      </div>
     </v-card-actions>
   </v-card>
 </template>
@@ -49,16 +84,14 @@ export default {
     ]),
     componentNameInputValue: {
       get() {
-        // console.log(
-        //   'componentInput',
-        //   this.$store.state.componentNameInputValue
-        // );
         return this.$store.state.componentNameInputValue;
       },
       set(value) {
-        // console.log('value', value);
         this.updateComponentNameInputValue(value);
       }
+    },
+    validateInput() {
+      return this.componentNameInputValue.length < 1;
     }
   },
   methods: {
@@ -89,29 +122,11 @@ export default {
 };
 </script>
 <style>
-.v-label.v-field-label {
-  font-size: 0.86rem;
+#sidebar > div {
+  padding: 0;
 }
-.is-primary {
-  height: 45px;
-}
-.center {
-  justify-content: center;
-}
-form {
-  /* margin-bottom: 2em; */
-}
-#add-component-btn {
-  /* height: 25px;
-
-  width: 100%; */
-}
-
-#form1 {
-  /* background-color: white; */
-}
-
-.home-sidebar {
-  /* background-color: #c8c8c8; */
+.v-label.v-field-label,
+.v-text-field input {
+  font-size: 14px;
 }
 </style>

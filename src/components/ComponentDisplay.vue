@@ -14,41 +14,42 @@
       :w="componentData.w"
       :h="componentData.h"
       :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
-      @click="onClick(componentData)"
       @activated="onActivated(componentData)"
       @deactivated="onDeactivated()"
       @drag-start="activeComponentData, onDrag"
       @drag-end="onDrag"
       @resize-start="onResize"
       @resize-end="onResize"
-      
-
-
-
+      @dblclick="onDoubleClick(componentData)"
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
+    <v-dialog v-model="modalOpen" width="auto">
+      <v-card> <Modal /> </v-card
+    ></v-dialog>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 // import { toRaw } from 'vue';
-// import ModalView from '@/views/ModalView';
+import Modal from './Modal.vue';
 // import { ModalProgrammatic } from 'buefy/dist/components/modal';
 export default {
   name: 'ComponentDisplay',
   components: {
-    Vue3DraggableResizable
+    Vue3DraggableResizable,
+    Modal
   },
   data() {
     return {
+      modalOpen: false,
       abilityToDelete: false
     };
   },
   mounted() {
     console.log('success');
-    window.addEventListener('keyup', (event) => {
+    window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -86,13 +87,12 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x) {
+    onDrag: function(x) {
       console.log(
-        
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-  
+
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
@@ -105,11 +105,13 @@ export default {
     onDeactivated() {
       this.activeComponentData.isActive = false;
     },
-    onClick(compData) {
-      console.log('onClick compdata', compData.componentName);
+    onDoubleClick(compData) {
+      // console.log('testing', this.$store.state.activeComponent);
+      // console.log('onClick compdata', compData.componentName);
       // uses Buefy
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
+      this.modalOpen = true;
       // ModalProgrammatic.open({
       //   parent: this,
       //   component: ModalView,

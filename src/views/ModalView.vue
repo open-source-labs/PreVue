@@ -1,16 +1,17 @@
 <template>
   <div class="columns">
-    <aside class="column is-3 aside hero is-fullheight" id="aside">
+    <div>test</div>
+    <aside>
       <!-- <div class="column is-fullheight" id="add-component"> -->
-      <EditSidebar class="home-sidebar" />
+      <EditSidebar />
       <!-- </div> -->
     </aside>
 
-    <div class="column is-6 hero is-fullheight">
-      <ComponentCodeDisplay class="component-code-display" />
+    <div>
+      <!-- <ComponentCodeDisplay /> -->
     </div>
-    <div class="column is-3 aside hero is-fullheight">
-      <EditQueue class="home-queue" />
+    <div>
+      <!-- <EditQueue /> -->
     </div>
   </div>
 </template>
@@ -22,40 +23,40 @@ import EditQueue from '@/components/EditQueue.vue';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  name: 'Home',
+  name: 'ModalView',
   components: {
     ComponentCodeDisplay,
     EditSidebar,
-    EditQueue,
+    EditQueue
   },
   mounted() {
-    console.log('CHILDREN', this.children);
-    this.updateComponentChildrenMultiselectValue(this.children);
-    console.log('MODAL IS OPEN');
-    this.updateOpenModal(true);
+    // console.log('CHILDREN', this.children);
+    // this.updateComponentChildrenMultiselectValue(this.children);
+    // console.log('MODAL IS OPEN');
+    // this.updateOpenModal(true);
   },
   computed: {
     ...mapState([
       'clickedComponent',
       'componentMap',
       'activeComponent',
-      'routes',
-    ]),
-    children() {
-      console.log('activeComponent in modalView', this.activeComponent);
-      return this.componentMap[this.activeComponent].children.reduce(
-        (acc, curr) => {
-          return acc.concat(curr);
-        },
-        []
-      );
-    },
+      'routes'
+    ])
+    // children() {
+    //   console.log('activeComponent in modalView', this.activeComponent);
+    //   return this.componentMap[this.activeComponent].children.reduce(
+    //     (acc, curr) => {
+    //       return acc.concat(curr);
+    //     },
+    //     []
+    //   );
+    // }
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateOpenModal',
-    ]),
+      'updateOpenModal'
+    ])
     //   convert() {
     //     console.log('CONVERT CALLED');
     //     let list = this.componentMap[this.activeComponent].htmlList;
@@ -80,7 +81,7 @@ export default {
     //       delete element.innerBackClass;
     //     });
     //   }
-  },
+  }
 };
 </script>
 

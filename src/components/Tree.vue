@@ -18,28 +18,28 @@ import { mapState } from 'vuex';
 export default {
   name: 'Tree',
   components: {
-    tree,
+    tree
   },
   computed: {
     ...mapState(['componentMap']),
     componentMap: {
       get() {
         return this.$store.state.componentMap;
-      },
-    },
+      }
+    }
   },
   data() {
     return {
-      tree: null,
+      tree: null
     };
   },
   methods: {
     formatComponentMap(compMap) {
       let result = [];
-      Object.values(compMap).forEach((compData) => {
+      Object.values(compMap).forEach(compData => {
         result.push({
           name: compData.componentName,
-          children: compData.children,
+          children: compData.children
         });
       });
       return result;
@@ -48,13 +48,13 @@ export default {
       let result = {};
       const nodes = {};
       const formattedData = this.formatComponentMap(data);
-      formattedData.forEach((component) => {
+      formattedData.forEach(component => {
         if (!nodes[component.name]) {
           nodes[component.name] = { name: component.name, children: [] };
           result = nodes;
         }
 
-        component.children.forEach((child) => {
+        component.children.forEach(child => {
           nodes[child] = { name: child, children: [] };
           nodes[component.name].children.push(nodes[child]);
         });
@@ -65,11 +65,11 @@ export default {
     buildTree() {
       let build = this.transformToTree(this.componentMap);
       this.tree = build['App'];
-    },
+    }
   },
   created() {
     this.buildTree();
-  },
+  }
 };
 </script>
 <style>
