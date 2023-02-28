@@ -33,7 +33,7 @@
 import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 // import { toRaw } from 'vue';
-import Modal from './Modal.vue';
+import Modal from './Modal/Modal.vue';
 // import { ModalProgrammatic } from 'buefy/dist/components/modal';
 export default {
   name: 'ComponentDisplay',

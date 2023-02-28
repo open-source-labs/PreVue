@@ -15,12 +15,15 @@ import path from 'path';
 export default {
   name: 'ExportProjectComponent',
   methods: {
-    createRouter(location) {
-      fs.writeFileSync(
-        path.join(location, 'src', 'router.js'),
-        this.createRouterImports(this.componentMap['App'].children) +
-          this.createExport(this.componentMap['App'].children)
+    createRouter() {
+      const imports = this.createRouterImports(
+        this.componentMap['App'].children
       );
+      const initRouter = this.initRouter(this.componentMap['App'].children);
+      const exports = 'export default router;';
+
+      const routerFileStr = imports + initRouter + exports;
+      return routerFileStr;
     },
     createRouterImports(appChildren) {
       let str = "import * as VueRouter from 'vue-router'\n";
@@ -29,13 +32,8 @@ export default {
       });
       return str;
     },
-    createExport(appChildren) {
-      function CreateRoutes(path, name, component) {
-        (this.path = `/${path}`),
-          (this.name = name),
-          (this.component = component);
-      }
-      let str = `const router = VueRouter.createRouter({history: VueRouter.createWebHashHistory(), base: import.meta.env.BASE_URL, routes: [${routes}] })`;
+    initRouter(appChildren) {
+      let str = `const router = VueRouter.createRouter({history: VueRouter.createWebHashHistory(), base: import.meta.env.BASE_URL, routes: [\n`;
       appChildren.forEach(child => {
         if (child.componentName === 'HomeView')
           str += `\t\t{\n\t\t\tpath: '/',\n\t\t\tname:'${child.componentName}',\n\t\t\tcomponent:${child.componentName}\n\t\t},\n`;
@@ -91,13 +89,6 @@ export default {
         childrenComponentNames += `\t\t${name.componentName},\n`;
       });
       return `\n\n<script>\n${str}\nexport default {\n\tname: '${componentName}',\n\tcomponents: {\n${childrenComponentNames}\t}\n};\n<\/script>`;
-    },
-    writeStyle(componentName) {
-      let style =
-        componentName !== 'App'
-          ? ''
-          : `#app {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\ttext-align: center;\n\tcolor: #2c3e50;\n\tmargin-top: 60px;\n}\n`;
-      return `\n\n<style scoped>\n${style}</style>`;
     }
   },
   computed: {
@@ -114,17 +105,6 @@ export default {
         fs.mkdirSync(path.join(data, 'src', 'components'));
         fs.mkdirSync(path.join(data, 'src', 'views'));
       }
-      // fs.copySync(
-      //   path.join(remote.app.getAppPath(), '../vue-boiler-plate-routes/'),
-      //   data
-      // );
-      // .then(() => console.log('success!'))
-      // .catch(err => console.err(err));
-
-      // this.createIndexFile(data);
-      // this.createMainFile(data);
-      // this.createBabel(data);
-      // this.createPackage(data);
 
       this.createRouter(data);
 

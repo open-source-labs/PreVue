@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card id="app">
     <v-layout>
       <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
