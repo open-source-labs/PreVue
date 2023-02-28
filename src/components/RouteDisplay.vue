@@ -1,5 +1,8 @@
 <template>
-  <div class="route-display">
+  <div
+    class="route-display"
+    :style="{ 'border-bottom': '0.5px solid #6a696a' }"
+  >
     <input
       v-model="newRoute"
       placeholder="Enter new route, then press Enter"
@@ -16,14 +19,14 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'RouteDisplay',
   components: {
-    Routes,
+    Routes
   },
   computed: {
-    ...mapState(['routes']),
+    ...mapState(['routes'])
   },
   data() {
     return {
-      newRoute: '',
+      newRoute: ''
     };
   },
   methods: {
@@ -33,19 +36,19 @@ export default {
         .then(() => {
           this.newRoute = '';
         })
-        .catch((err) => console.log(err));
-    },
-  },
+        .catch(err => console.log(err));
+    }
+  }
 };
 </script>
 
 <style scoped>
-.route-display {
+/* .route-display {
   border: 1px solid white;
   overflow: auto;
   height: 60%;
   padding: 0;
-}
+} */
 
 i:hover {
   cursor: pointer;

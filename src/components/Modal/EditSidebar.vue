@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Icons from './Icons.vue';
+import Icons from '../Icons.vue';
 import { mapState } from 'vuex';
-import * as types from '../store/types.js';
+import * as types from '../../store/types.js';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 
 export default {

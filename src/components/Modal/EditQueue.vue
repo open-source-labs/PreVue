@@ -16,7 +16,7 @@ import {
   deleteFromComponentHtmlList,
   // setComponentHtmlList,
   addToComponentElementList
-} from '../store/types';
+} from '../../store/types';
 
 export default {
   mounted() {

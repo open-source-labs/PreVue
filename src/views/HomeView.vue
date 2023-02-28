@@ -1,64 +1,32 @@
 <template>
-  <v-container class="bg-surface-variant" fluid>
-    <v-row>
-      <v-col>
-        <v-sheet><ProjectTabs /></v-sheet>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="2">
-        <v-row>
-          <v-col>
-            <v-sheet>
-              <p>Routes</p>
-              <RouteDisplay />
-            </v-sheet>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-sheet class="rounded-xl"><HomeSidebar /></v-sheet>
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col>
-        <v-sheet><ComponentDisplay /></v-sheet>
-      </v-col>
-      <v-col cols="2">
-        <v-sheet class="rounded-xl"><HomeQueue /></v-sheet>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer
+        id="side-nav"
+        :style="{ 'background-color': 'rgb(30, 31, 33)' }"
+        width="240"
+        permanent
+      >
+        <RouteDisplay /><HomeSidebar />
+      </v-navigation-drawer>
 
-  <!-- <div>
-    <div class="columns is-mobile">
-      <div id="empty-left" class="column"></div>
-      <div id="project-tabs-container" class="column">
-        <ProjectTabs />
-      </div>
-    </div>
-    <div id="empty-right" class="column"></div>
-    <div class="columns is-mobile" id="home-section">
-      <aside id="left-side-container" class="column aside hero">
-        <div id="route-display-container" class="column is-fullheight">
-          <p class="panel-heading">Routes</p>
-          <RouteDisplay />
-        </div>
+      <v-app-bar color="grey" height="48" flat><ProjectTabs /></v-app-bar>
 
-        <div id="create-component-container" class="column is-fullheight">
-          <HomeSidebar />
-        </div>
-      </aside>
+      <v-navigation-drawer
+        color="grey-lighten-1"
+        location="right"
+        width="150"
+        permanent
+        ><HomeQueue
+      /></v-navigation-drawer>
 
-      <div id="center-container" class="column hero is-fullheight">
-        <ComponentDisplay />
-      </div>
-
-      <div id="right-side-container" class="column aside hero is-fullheight">
-        <HomeQueue />
-      </div>
-    </div>
-  </div> -->
+      <v-main>
+        <v-container style="min-height: 300px;"
+          ><ComponentDisplay />
+        </v-container>
+      </v-main>
+    </v-layout>
+  </v-card>
 </template>
 
 <script>
@@ -76,29 +44,13 @@ export default {
     HomeQueue,
     RouteDisplay,
     ProjectTabs
-  }
+  },
+  data() {}
 };
 </script>
 
-<style scoped>
-/* #route-display-container {
-  background-color: #393f4d;
-  height: 100%;
-  padding: 0;
+<style>
+#side-nav > * {
+  font-size: 14px;
 }
-
-#create-component-container {
-  border: 1px solid #d1bfa7;
-  height: 100%;
-  background-color: #d4d4dc;
-}
-
-#left-side-container,
-#empty-left {
-  max-width: 250px;
-}
-#right-side-container,
-#empty-right {
-  max-width: 150px;
-} */
 </style>

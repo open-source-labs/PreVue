@@ -18,10 +18,9 @@
       @activated="onActivated(componentData)"
       @deactivated="onDeactivated"
       @drag-start="activeComponentData, onDrag"
-      @drag-end="onDrag, onClick(componentData)"
-      @resize-start="onResize"
-      @resize-end="onResize, onClick(componentData)"
-
+      @drag-end="onDragEnd"
+      @resize-start="activeComponentData, onResize"
+      @resize-end="onResizeEnd"
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
@@ -44,7 +43,7 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('keyup', (event) => {
+    window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -73,37 +72,49 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function(x, y) {
-      console.log('on resiZe x', x);
-      console.log('on resiZe y', y);
-      // const { x, y, w, h} = payload;
+    onResize: function(x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
+    onResizeEnd: function(x) {
+      this.activeComponentData.isActive = true;
+      console.log('on resizeend invoked');
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+      this.activeComponentData.w = x.w;
+      this.activeComponentData.h = x.h;
+    },
+
     onDrag: function(x) {
       console.log(
-        
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-  
+
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
     },
+    onDragEnd: function(x) {
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+    },
+
     onActivated(componentData) {
       this.setActiveComponent(componentData.componentName);
       console.log('active', componentData.componentName);
       this.activeComponentData.isActive = true;
     },
     onDeactivated() {
-      this.activeComponentData.isActive = false;
+      console.log('deactivated', this.activeComponentData);
 
+      this.activeComponentData.isActive = false;
     },
+
     onClick(compData) {
-      console.log('onClick compdata', compData.componentName);
+      console.log('onClick invoked', compData.componentName);
       // uses Buefy
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;

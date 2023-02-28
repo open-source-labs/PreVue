@@ -1,5 +1,10 @@
 <template>
-  <section class="icon-grid">
+  <section
+    class="icon-grid"
+    :style="{
+      padding: '0 24px 0 24px'
+    }"
+  >
     <button
       @click="handleClick(elementName)"
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
@@ -38,10 +43,11 @@ export default {
 .icon-grid {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-row-gap: 1em;
+  grid-row-gap: 0.5em;
 }
 
 button {
+  color: #f5f4f3;
   background: none;
   border: none;
 }
