@@ -6,11 +6,13 @@
     <v-card-actions class="d-block">
       <v-form id="form1" v-on:submit.prevent="handleClick">
         <v-text-field
+          required
           v-model="componentNameInputValue"
           variant="solo"
           label="Name your component"
         >
         </v-text-field>
+
       </v-form>
     </v-card-actions>
     <v-card-actions class="center">
@@ -67,7 +69,7 @@ export default {
       'addToSelectedElementList',
       'updateComponentNameInputValue'
     ]),
-    // invoked when click "add component" button
+    // invoked when clicking "add component" button
     handleClick() {
       console.log('active routes', this.routes[this.activeRoute]); // toRaw?
       const component = {
@@ -83,6 +85,7 @@ export default {
 
       // console.log('component', component);
       console.log('component (HomeSidebar handleClick)', component);
+
       this.registerComponent(component);
     }
   }

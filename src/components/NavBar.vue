@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     routeHome() {
-      this.$router.push({ path: '/' });
+      this.$router.push({ path: '/home' });
     },
     routeTree() {
       this.$router.push({ path: '/tree' });
