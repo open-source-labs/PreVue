@@ -1,4 +1,7 @@
 {
+  "module": {
+    "type": "commonjs"
+  },
   "name": "prevue",
   "author": "teamprevue <prevueoslabs@gmail.com> (www.prevue.io)",
   "version": "2.0.0",
@@ -14,9 +17,16 @@
     "@progress/jszip-esm": "^1.0.3",
     "@vitejs/plugin-vue": "^1.6.1",
     "file-saver": "^2.0.5",
+    "@ssthouse/vue3-tree-chart": "^0.2.6",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "fs-extra": "^7.0.1",
     "handlebars": "^4.7.7",
     "localforage": "^1.7.3",
+    "mongodb": "^5.1.0",
+    "mongodb-connection-string-url": "^2.6.0",
+    "mongoose": "^6.10.0",
     "mousetrap": "^1.6.3",
     "sass": "^1.58.3",
     "vite": "^2.5.4",

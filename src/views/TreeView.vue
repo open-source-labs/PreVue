@@ -1,16 +1,16 @@
 <template>
   <div class="tree">
-    <Tree></Tree>
+    <TreeGraph></TreeGraph>
   </div>
 </template>
 
 <script>
-import Tree from '../components/Tree.vue';
+import TreeGraph from '../components/TreeGraph.vue';
 
 export default {
   name: 'TreeView',
   components: {
-    Tree
+    TreeGraph
   }
 };
 </script>

@@ -8,7 +8,7 @@
   </v-card>
   <!-- <v-app>
     <div id="app" class="hero">
-      <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
+      <NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
       <section>
         <router-view />
