@@ -1,4 +1,7 @@
 {
+  "module": {
+    "type": "commonjs"
+  },
   "name": "prevue",
   "author": "teamprevue <teamprevue@gmail.com> (www.prevue.io)",
   "version": "2.0.0",
@@ -11,8 +14,13 @@
   "license": "MIT",
   "dependencies": {
     "@vitejs/plugin-vue": "^1.6.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
     "fs-extra": "^7.0.1",
     "localforage": "^1.7.3",
+    "mongodb": "^5.1.0",
+    "mongodb-connection-string-url": "^2.6.0",
+    "mongoose": "^6.10.0",
     "mousetrap": "^1.6.3",
     "sass": "^1.58.3",
     "vite": "^2.5.4",
