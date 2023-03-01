@@ -41,6 +41,8 @@ const mutations = {
   },
   [types.ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
+    // state.componentMap[componentName].htmlList = elementName;
+    // console.log('elementName:', elementName);
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: [],

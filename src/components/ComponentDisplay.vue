@@ -14,12 +14,13 @@
       :w="componentData.w"
       :h="componentData.h"
       :handles="['tl', 'tm', 'tr', 'ml', 'mr', 'bl', 'bm', 'br']"
+      @click="onClick(componentData)"
       @activated="onActivated(componentData)"
-      @deactivated="onDeactivated()"
+      @deactivated="onDeactivated"
       @drag-start="activeComponentData, onDrag"
-      @drag-end="onDrag"
-      @resize-start="onResize"
-      @resize-end="onResize"
+      @drag-end="onDragEnd"
+      @resize-start="activeComponentData, onResize"
+      @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
       <h3>{{ componentData.componentName }}</h3>
@@ -48,7 +49,6 @@ export default {
     };
   },
   mounted() {
-    console.log('success');
     window.addEventListener('keyup', (event) => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
@@ -60,17 +60,17 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
-      console.log(
-        'activeRouteArray: this.routes[this.activeRoute]',
-        this.routes[this.activeRoute]
-      );
+      // console.log(
+      //   'activeRouteArray: this.routes[this.activeRoute]',
+      //   this.routes[this.activeRoute]
+      // );
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
-      console.log(
-        'this.activeRouteArray (within activeComponentData)',
-        this.activeRouteArray
-      );
+      // console.log(
+      //   'this.activeRouteArray (within activeComponentData)',
+      //   this.activeRouteArray
+      // );
       return this.activeRouteArray.filter((componentData) => {
         return componentData.componentName === this.activeComponent;
       })[0];
@@ -78,41 +78,61 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x, y) {
-      console.log('on resiZe x', x);
-      console.log('on resiZe y', y);
-      // const { x, y, w, h} = payload;
+    onResize: function (x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
+
+    onResizeEnd: function (x) {
+      this.activeComponentData.isActive = true;
+      console.log('on resizeend invoked');
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+      this.activeComponentData.w = x.w;
+      this.activeComponentData.h = x.h;
+    },
+
     onDrag: function (x) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
     },
+
+    onDragEnd: function (x) {
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+    },
+
     onActivated(componentData) {
       this.setActiveComponent(componentData.componentName);
       console.log('active', componentData.componentName);
       this.activeComponentData.isActive = true;
     },
     onDeactivated() {
+      console.log('deactivated', this.activeComponentData);
+
       this.activeComponentData.isActive = false;
+    },
+
+    onClick(compData) {
+      console.log('onClick invoked', compData.componentName);
+      this.setActiveComponent(compData.componentName);
+      this.activeComponentData.isActive = true;
     },
     onDoubleClick(compData) {
       // console.log('testing', this.$store.state.activeComponent);
-      // console.log('onClick compdata', compData.componentName);
-      // uses Buefy
+      // console.log('onDoubleClick invoked', compData.componentName);
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
       console.log('this,modalOpen', this.modalOpen);
+      // uses Buefy
       // ModalProgrammatic.open({
       //   parent: this,
       //   component: ModalView,
