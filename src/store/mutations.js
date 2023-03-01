@@ -39,10 +39,12 @@ const mutations = {
   [types.SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state, payload) => {
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
-    console.log('payload', payload);
-    state.componentMap[componentName].htmlList.push(payload);
+    state.componentMap[componentName].htmlList.push({
+      text: elementName,
+      children: [],
+    });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
     const componentName = state.activeComponent;
