@@ -41,6 +41,9 @@ export default {
 
     console.log('components', components);
 
+    // iterate through components and check if components have children; if so,
+    // add them as children to their respective parent
+    // the format of the objects is necessary for the tree to render properly
     for (let component of components) {
       if (component[1].children.length) {
         const obj = { value: component[1].componentName, children: [] };
@@ -83,6 +86,7 @@ export default {
     };
   },
   methods: {
+    // routes back to main page
     backToWorkspace() {
       this.$router.back();
     }

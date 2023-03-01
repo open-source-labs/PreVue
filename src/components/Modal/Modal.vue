@@ -22,7 +22,7 @@ export default {
   components: {
     ComponentCodeDisplay,
     EditSidebar,
-    EditQueue
-  }
+    EditQueue,
+  },
 };
 </script>

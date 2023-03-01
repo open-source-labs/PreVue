@@ -23,7 +23,7 @@ export default {
   },
   name: 'ChildrenMultiselect',
   components: {
-    VueMultiselect
+    VueMultiselect,
   },
   // data() {
   //   return {
@@ -36,39 +36,40 @@ export default {
       'routes',
       'activeComponent',
       'componentChildrenMultiselectValue',
-      'modalOpen'
+      'modalOpen',
     ]),
     selectedChildren: {
       get() {
         return this.componentChildrenMultiselectValue;
       },
       set(value) {
-        // if (this.modalOpen) this.updateActiveComponentChildrenValue(value);
+        console.log('this.modalOpen', this.modalOpen);
+        if (this.modalOpen) this.updateActiveComponentChildrenValue(value);
         this.updateComponentChildrenMultiselectValue(value);
-      }
+      },
     },
     options() {
       const routes = Object.keys(this.routes);
       // console.log('routes', routes);
       const exceptions = new Set(['App', this.activeComponent, ...routes]);
       // console.log('exceptions', exceptions);
-      return Object.keys(this.componentMap).filter(component => {
+      return Object.keys(this.componentMap).filter((component) => {
         if (!exceptions.has(component)) return component;
       });
       // return ['test'];
-    }
+    },
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateActiveComponentChildrenValue'
-    ])
+      'updateActiveComponentChildrenValue',
+    ]),
     // handleSelect(value) {
     //   console.log('VALUE', value);
     //   // if (this.modalOpen) this.updateActiveComponentChildrenValue(value);
     //   // this.updateComponentChildrenMultiselectValue(value);
     // }
-  }
+  },
 };
 </script>
 
