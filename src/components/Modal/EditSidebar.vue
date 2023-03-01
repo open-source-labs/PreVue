@@ -23,12 +23,12 @@ export default {
   },
   computed: {
     ...mapState(['activeComponent'])
+  },
+  methods: {
+    addToComponentElementList(elementName) {
+      this.$store.dispatch(types.addToComponentElementList, elementName);
+    }
   }
-  // methods: {
-  //   addToComponentElementList(elementName) {
-  //     this.$store.dispatch(types.addToComponentElementList, elementName);
-  //   },
-  // },
 };
 </script>
 <style scoped>

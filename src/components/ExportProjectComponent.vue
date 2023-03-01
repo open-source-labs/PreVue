@@ -101,7 +101,7 @@ export default {
         console.log('FOLDER CREATED!');
         fs.mkdirSync(path.join(data, 'public'));
         fs.mkdirSync(path.join(data, 'src'));
-        fs.mkdirSync(path.join(data, 'src', 'assets'));
+
         fs.mkdirSync(path.join(data, 'src', 'components'));
         fs.mkdirSync(path.join(data, 'src', 'views'));
       }

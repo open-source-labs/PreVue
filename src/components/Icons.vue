@@ -6,7 +6,7 @@
     }"
   >
     <button
-      @click="handleClick(elementName)"
+      @click="changeState(elementName)"
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
@@ -27,14 +27,14 @@ export default {
     ...mapState(['icons'])
   },
   methods: {
-    handleClick(htmlElement) {
-      console.log(htmlElement);
-      this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-      console.log(this.$store.state.selectedElementList);
+    // handleClick(htmlElement) {
+    //   console.log(htmlElement);
+    //   this.$store.dispatch(types.addToSelectedElementList, htmlElement);
+    //   console.log(this.$store.state.selectedElementList);
+    // },
+    changeState(elementName) {
+      this.$emit('getClickedIcon', elementName); // emit prop necessary?
     }
-    // changeState(elementName) {
-    //   this.$emit('getClickedIcon', elementName); // emit prop necessary?
-    // }
   }
 };
 </script>

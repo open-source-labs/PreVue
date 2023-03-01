@@ -24,22 +24,27 @@
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
+    <v-dialog v-model="modalOpen" width="auto">
+      <v-card> <Modal /> </v-card
+    ></v-dialog>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 // import { toRaw } from 'vue';
-// import ModalView from '@/views/ModalView';
+import Modal from './Modal/Modal.vue';
 // import { ModalProgrammatic } from 'buefy/dist/components/modal';
 export default {
   name: 'ComponentDisplay',
   components: {
-    Vue3DraggableResizable
+    Vue3DraggableResizable,
+    Modal
   },
   data() {
     return {
-      abilityToDelete: false
+      abilityToDelete: false,
+      modalOpen: false
     };
   },
   mounted() {
@@ -118,6 +123,7 @@ export default {
       // uses Buefy
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
+      this.modalOpen = true;
       // ModalProgrammatic.open({
       //   parent: this,
       //   component: ModalView,

@@ -10,13 +10,6 @@ const mutations = {
       );
     }
   },
-  // [types.INITIALISESTORE]: (state) => {
-  //   if (localStorage.getItem('store')) {
-  //     .replaceState(
-  //       Object.assign(state, JSON.parse(localStorage.getItem('store')))
-  //     );
-  //   }
-  // },
   [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {
@@ -39,9 +32,14 @@ const mutations = {
   [types.SET_SELECTED_ELEMENT_LIST]: (state, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state, payload) => {
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state, elementName) => {
     const componentName = state.activeComponent;
-    state.componentMap[componentName].htmlList = payload;
+    // state.componentMap[componentName].htmlList = elementName;
+    // console.log('elementName:', elementName);
+    state.componentMap[componentName].htmlList.push({
+      text: elementName,
+      children: []
+    });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
     const componentName = state.activeComponent;

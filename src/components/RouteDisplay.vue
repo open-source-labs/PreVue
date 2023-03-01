@@ -1,5 +1,44 @@
 <template>
-  <div
+  <v-card
+    id="sidebar1"
+    class="rounded-0"
+    :style="{
+      'background-color': 'inherit',
+      'border-bottom': '0.5px solid #6a696a',
+      padding: '16px 0px 24px 0px'
+    }"
+  >
+    <v-card-title
+      :style="{
+        'font-size': '14px',
+        color: '#f5f4f3',
+        'font-weight': '550',
+        padding: '0 24px 0 24px'
+      }"
+    >
+      Route Creator
+    </v-card-title>
+    <v-card-actions class="d-block">
+      <v-form
+        :style="{
+          padding: '0 24px 0 24px'
+        }"
+      >
+        <v-text-field
+          v-model="newRoute"
+          variant="underlined"
+          label="Route name"
+          placeholder="myCustomRoute"
+          required
+          :style="{ color: '#f5f4f3' }"
+          @keyup.enter.native="handleEnterKeyPress"
+        >
+        </v-text-field>
+      </v-form>
+    </v-card-actions>
+    <Routes></Routes>
+  </v-card>
+  <!-- <div
     class="route-display"
     :style="{ 'border-bottom': '0.5px solid #6a696a' }"
   >
@@ -8,8 +47,8 @@
       placeholder="Enter new route, then press Enter"
       @keyup.enter.native="handleEnterKeyPress"
     />
-    <Routes></Routes>
-  </div>
+
+  </div> -->
 </template>
 
 <script>
@@ -49,6 +88,14 @@ export default {
   height: 60%;
   padding: 0;
 } */
+#sidebar1 > div {
+  padding: 0;
+}
+
+.v-label.v-field-label,
+.v-text-field input {
+  font-size: 14px;
+}
 
 i:hover {
   cursor: pointer;

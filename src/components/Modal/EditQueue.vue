@@ -2,7 +2,16 @@
   <div>
     <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements</p>
-    <Draggable v-model="renderList" />
+    <Draggable v-model="renderList">
+      <template #default="{ node, stat }">
+        <span v-if="stat.children.length" @click="stat.open = !stat.open">
+          {{ stat.open ? '-' : '+' }}
+        </span>
+        <!-- <span v-else>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="checkbox" v-model="stat.checked" /> -->
+        {{ node.text }}
+      </template></Draggable
+    >
   </div>
 </template>
 
@@ -19,14 +28,6 @@ import {
 } from '../../store/types';
 
 export default {
-  mounted() {
-    console.log('componentmap', this.$store.state.componentMap);
-    console.log('active component', this.activeComponent);
-    console.log('htmlList;', this.componentMap[this.activeComponent].htmlList);
-  },
-  updated() {
-    console.log('test', this.componentMap[this.activeComponent].htmlList);
-  },
   name: 'EditQueue',
   props: {
     name: {
@@ -35,36 +36,27 @@ export default {
   },
   data() {
     return {
-      listToRender: ['test']
+      listToRender: null
     };
   },
   computed: {
+    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
     renderList: {
       get() {
-        return this.$store.state.componentMap[this.$store.state.activeComponent]
-          .htmlList;
+        return this.componentMap[this.activeComponent].htmlList;
       },
-      set(value) {
-        this.$store.dispatch(addToComponentElementList, value);
+      set(newArr) {
+        this.setClickedElementList(newArr);
       }
-    },
-
-    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
-    // set(newArr) {
-    //   this.setClickedElementList(newArr);
-    // }
-    ...mapGetters({
-      htmlList: 'htmlListFromActiveComponent'
-    })
+    }
   },
   methods: {
-    // ...mapActions([setClickedElementList]),
-    // deleteElement(id) {
-    //   this.$store.dispatch(deleteFromComponentHtmlList, id);
-    // }
+    ...mapActions([setClickedElementList]),
+    deleteElement(id) {
+      this.$store.dispatch(deleteFromComponentHtmlList, id);
+    }
   },
   components: {
-    draggable,
     Draggable
   }
 };

@@ -36,7 +36,7 @@
         >
         </v-text-field>
       </v-form>
-      <Icons />
+      <Icons @getClickedIcon="addToSelectedElementList" />
       <ChildrenMultiselect />
       <div
         :style="{
@@ -117,6 +117,9 @@ export default {
       // console.log('component', component);
       console.log('component (HomeSidebar handleClick)', component);
       this.registerComponent(component);
+    },
+    addToSelectedElementList(htmlElement) {
+      this.$store.dispatch(types.addToSelectedElementList, htmlElement);
     }
   }
 };
