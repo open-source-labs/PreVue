@@ -1,35 +1,33 @@
 <template>
   <div>
-    <p class="panel-heading">{{ activeComponent }} Code Display</p>
+    <p class="panel-heading">Code Display {{ htmlList }}</p>
     <div id="codeDisplay"></div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import { toRaw } from 'vue';
 export default {
   name: 'ComponentCodeDisplay',
-
   computed: {
     ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
-    activeComponentHtmlList: {
-      get() {
-        return toRaw(this.componentMap[this.activeComponent].htmlList);
-      }
-    }
+    ...mapGetters({
+      htmlList: 'htmlListFromActiveComponent',
+    }),
   },
-  watch: {
-    activeComponentHtmlList(oldList, newList) {
-      this.displayHtmlList(newList);
-    }
-  },
+  // watch: {
+  //   activeComponentHtmlList(oldList, newList) {
+  //     this.displayHtmlList(newList);
+  //   }
+  // },
   mounted() {
-    this.displayHtmlList(this.activeComponentHtmlList);
+    console.log(this.htmlList);
+    // this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
     traverseElement(list, codeDisplay, level = 0) {
-      list.forEach(htmlElementTagObj => {
+      list.forEach((htmlElementTagObj) => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
         let openingTagNode = document.createElement('p');
@@ -63,10 +61,9 @@ export default {
     displayHtmlList(list) {
       let codeDisplay = document.querySelector('#codeDisplay');
       codeDisplay.innerText = '';
-
       this.traverseElement(list, codeDisplay);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -77,7 +74,6 @@ export default {
 .nested {
   white-space: pre;
 }
-
 #codeDisplay {
   background: #00d1b2;
   /* background: linear-gradient(120deg, #5c258d, #4389a2); */

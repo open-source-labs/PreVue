@@ -1,38 +1,41 @@
 <template>
   <div>
+    <hr />
+    <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements</p>
-    <Tree :data="renderList" draggable="draggable">
-      <div slot-scope="{ data }" class="drag">
-        <template v-if="!data.isDragPlaceHolder">
-          <span class="drag-text">{{ data.text }}</span>
-          <i class="fas fa-trash fa-md" @click="deleteElement(data._id)"></i>
-        </template>
-      </div>
-    </Tree>
+    <Draggable v-model="renderList" />
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
-import { DraggableTree } from 'vue-draggable-nested-tree';
-import { mapState, mapActions } from 'vuex';
+import { BaseTree, Draggable } from '@he-tree/vue';
+import '@he-tree/vue/style/default.css';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import {
   setClickedElementList,
   deleteFromComponentHtmlList,
-  setComponentHtmlList,
-  addToComponentElementList
-} from '../store/types';
-
+  // setComponentHtmlList,
+  addToComponentElementList,
+} from '../../store/types';
 export default {
+  mounted() {
+    console.log('componentmap', this.$store.state.componentMap);
+    console.log('active component', this.activeComponent);
+    console.log('htmlList;', this.componentMap[this.activeComponent].htmlList);
+  },
+  updated() {
+    console.log('test', this.componentMap[this.activeComponent].htmlList);
+  },
   name: 'EditQueue',
   props: {
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      listToRender: null
+      listToRender: ['test'],
     };
   },
   computed: {
@@ -43,21 +46,25 @@ export default {
       },
       set(newArr) {
         this.setClickedElementList(newArr);
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapActions([setClickedElementList]),
     deleteElement(id) {
       this.$store.dispatch(deleteFromComponentHtmlList, id);
-    }
+    },
   },
   components: {
     draggable,
-    Tree: DraggableTree
-  }
+    Draggable,
+  },
 };
 </script>
+
+<!-- <style src="@he-tree/vue/style/default.css">
+/* your styles */
+</style> -->
 
 <style scoped>
 .delete-icon:hover {
