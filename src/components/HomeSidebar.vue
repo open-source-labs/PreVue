@@ -27,6 +27,7 @@
         }"
       >
         <v-text-field
+          required
           v-model="componentNameInputValue"
           variant="underlined"
           label="Component name"
@@ -35,6 +36,7 @@
           :style="{ color: '#f5f4f3' }"
         >
         </v-text-field>
+
       </v-form>
       <Icons @getClickedIcon="addToSelectedElementList" />
       <ChildrenMultiselect />
@@ -100,7 +102,7 @@ export default {
       'addToSelectedElementList',
       'updateComponentNameInputValue',
     ]),
-    // invoked when click "add component" button
+    // invoked when clicking "add component" button
     handleClick() {
       console.log('active routes', this.routes[this.activeRoute]); // toRaw?
       const component = {
@@ -116,6 +118,7 @@ export default {
 
       // console.log('component', component);
       console.log('component (HomeSidebar handleClick)', component);
+
       this.registerComponent(component);
     },
     addToSelectedElementList(htmlElement) {

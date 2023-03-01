@@ -10,7 +10,6 @@ import { mapState, mapGetters } from 'vuex';
 import { toRaw } from 'vue';
 export default {
   name: 'ComponentCodeDisplay',
-
   computed: {
     ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
     ...mapGetters({
@@ -75,7 +74,6 @@ export default {
 .nested {
   white-space: pre;
 }
-
 #codeDisplay {
   background: #00d1b2;
   /* background: linear-gradient(120deg, #5c258d, #4389a2); */

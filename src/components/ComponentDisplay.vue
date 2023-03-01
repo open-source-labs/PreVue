@@ -78,22 +78,15 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x) {
+    onResize: function (x, y) {
+      console.log('on resiZe x', x);
+      console.log('on resiZe y', y);
+      // const { x, y, w, h} = payload;
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-
-    onResizeEnd: function (x) {
-      this.activeComponentData.isActive = true;
-      console.log('on resizeend invoked');
-      this.activeComponentData.x = x.x;
-      this.activeComponentData.y = x.y;
-      this.activeComponentData.w = x.w;
-      this.activeComponentData.h = x.h;
-    },
-
     onDrag: function (x) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
@@ -127,12 +120,12 @@ export default {
     },
     onDoubleClick(compData) {
       // console.log('testing', this.$store.state.activeComponent);
-      // console.log('onDoubleClick invoked', compData.componentName);
+      // console.log('onClick compdata', compData.componentName);
+      // uses Buefy
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
       console.log('this,modalOpen', this.modalOpen);
-      // uses Buefy
       // ModalProgrammatic.open({
       //   parent: this,
       //   component: ModalView,
