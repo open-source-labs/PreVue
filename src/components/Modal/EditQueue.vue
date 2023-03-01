@@ -1,9 +1,17 @@
 <template>
   <div>
-    <hr />
     <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements</p>
-    <Draggable v-model="renderList" />
+    <Draggable v-model="renderList">
+      <template #default="{ node, stat }">
+        <span v-if="stat.children.length" @click="stat.open = !stat.open">
+          {{ stat.open ? '-' : '+' }}
+        </span>
+        <!-- <span v-else>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="checkbox" v-model="stat.checked" /> -->
+        {{ node.text }}
+      </template></Draggable
+    >
   </div>
 </template>
 
@@ -16,60 +24,40 @@ import {
   setClickedElementList,
   deleteFromComponentHtmlList,
   // setComponentHtmlList,
-  addToComponentElementList,
+  addToComponentElementList
 } from '../../store/types';
-
 export default {
-  mounted() {
-    console.log('componentmap', this.$store.state.componentMap);
-    console.log('active component', this.activeComponent);
-    this.componentMap[this.activeComponent].htmlList;
-  },
-  updated() {
-    console.log('test', this.componentMap[this.activeComponent].htmlList);
-    this.componentMap[this.activeComponent].htmlList;
-  },
   name: 'EditQueue',
   props: {
     name: {
-      type: String,
-    },
+      type: String
+    }
   },
-  // data() {
-  //   return {
-  //     listToRender: ['test'],
-  //   };
-  // },
+  data() {
+    return {
+      listToRender: null
+    };
+  },
   computed: {
+    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
     renderList: {
       get() {
-        // return this.htmlListFromActiveComponent;
-        // return this.$store.state.componentMap[this.$store.state.activeComponent]
-        //   .htmlList;
         return this.componentMap[this.activeComponent].htmlList;
       },
-      set(value) {
-        this.$store.dispatch(addToComponentElementList, value);
-      },
-    },
-    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
-    // set(newArr) {
-    //   this.setClickedElementList(newArr);
-    // }
-    ...mapGetters({
-      htmlList: 'htmlListFromActiveComponent',
-    }),
+      set(newArr) {
+        this.setClickedElementList(newArr);
+      }
+    }
   },
   methods: {
-    // ...mapActions([setClickedElementList]),
-    // deleteElement(id) {
-    //   this.$store.dispatch(deleteFromComponentHtmlList, id);
-    // },
+    ...mapActions([setClickedElementList]),
+    deleteElement(id) {
+      this.$store.dispatch(deleteFromComponentHtmlList, id);
+    }
   },
   components: {
-    draggable,
-    Draggable,
-  },
+    Draggable
+  }
 };
 </script>
 

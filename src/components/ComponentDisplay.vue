@@ -40,16 +40,16 @@ export default {
   name: 'ComponentDisplay',
   components: {
     Vue3DraggableResizable,
-    Modal,
+    Modal
   },
   data() {
     return {
       modalOpen: false,
-      abilityToDelete: false,
+      abilityToDelete: false
     };
   },
   mounted() {
-    window.addEventListener('keyup', (event) => {
+    window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -71,23 +71,28 @@ export default {
       //   'this.activeRouteArray (within activeComponentData)',
       //   this.activeRouteArray
       // );
-      return this.activeRouteArray.filter((componentData) => {
+      return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    },
+    }
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x, y) {
-      console.log('on resiZe x', x);
-      console.log('on resiZe y', y);
-      // const { x, y, w, h} = payload;
+    onResize: function(x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x) {
+    onResizeEnd: function(x) {
+      this.activeComponentData.isActive = true;
+      console.log('on resizeend invoked');
+      this.activeComponentData.x = x.x;
+      this.activeComponentData.y = x.y;
+      this.activeComponentData.w = x.w;
+      this.activeComponentData.h = x.h;
+    },
+    onDrag: function(x) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
@@ -96,12 +101,10 @@ export default {
       this.activeComponentData.y = x.y;
       console.log('--------------------');
     },
-
-    onDragEnd: function (x) {
+    onDragEnd: function(x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
     },
-
     onActivated(componentData) {
       this.setActiveComponent(componentData.componentName);
       console.log('active', componentData.componentName);
@@ -109,10 +112,8 @@ export default {
     },
     onDeactivated() {
       console.log('deactivated', this.activeComponentData);
-
       this.activeComponentData.isActive = false;
     },
-
     onClick(compData) {
       console.log('onClick invoked', compData.componentName);
       this.setActiveComponent(compData.componentName);
@@ -135,7 +136,7 @@ export default {
       //   }
       // });
     },
-  },
+  }
 };
 </script>
 
@@ -144,13 +145,11 @@ export default {
   border: 1px solid plum;
   height: 84vh;
 }
-
 .component-display {
   color: #3ab982;
   border: 1px solid salmon;
   position: relative;
 }
-
 .component-box {
   color: #3ab982;
   border: 1px solid salmon;

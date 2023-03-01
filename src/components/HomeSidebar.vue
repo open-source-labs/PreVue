@@ -32,7 +32,6 @@
           variant="underlined"
           label="Component name"
           placeholder="myCustomComponent"
-          required
           :style="{ color: '#f5f4f3' }"
         >
         </v-text-field>
