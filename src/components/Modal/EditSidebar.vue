@@ -1,6 +1,7 @@
 <template>
   <div class="home-sidebar">
-    <p class="panel-heading">Edit {{ activeComponent }}</p>
+    <p>Edit Sidebar</p>
+    <p class="panel-heading">{{ activeComponent }}</p>
     <div class="icon-row">
       <Icons @getClickedIcon="addToComponentElementList" />
     </div>
@@ -19,16 +20,20 @@ export default {
 
   components: {
     Icons,
-    ChildrenMultiselect
+    ChildrenMultiselect,
   },
   computed: {
-    ...mapState(['activeComponent'])
-  }
-  // methods: {
-  //   addToComponentElementList(elementName) {
-  //     this.$store.dispatch(types.addToComponentElementList, elementName);
-  //   },
-  // },
+    ...mapState(['activeComponent', 'modalOpen']),
+  },
+  methods: {
+    addToComponentElementList(elementName) {
+      this.$store.dispatch(types.addToComponentElementList, elementName);
+    },
+    // checkModalOpen() {
+    //   console.log(this.modalOpen);
+    //   console.log('icon  click with modal open');
+    // },
+  },
 };
 </script>
 <style scoped>

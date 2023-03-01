@@ -2,11 +2,11 @@
   <section
     class="icon-grid"
     :style="{
-      padding: '0 24px 0 24px'
+      padding: '0 24px 0 24px',
     }"
   >
     <button
-      @click="handleClick(elementName)"
+      @click="changeState(elementName)"
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
@@ -24,18 +24,19 @@ import * as types from '../store/types.js';
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons'])
+    ...mapState(['icons', 'modalOpen']),
   },
   methods: {
     handleClick(htmlElement) {
+      // console.log('modal', this.$store.state.modalOpen);
       console.log(htmlElement);
       this.$store.dispatch(types.addToSelectedElementList, htmlElement);
       console.log(this.$store.state.selectedElementList);
-    }
-    // changeState(elementName) {
-    //   this.$emit('getClickedIcon', elementName); // emit prop necessary?
-    // }
-  }
+    },
+    changeState(elementName) {
+      this.$emit('getClickedIcon', elementName); // emit prop necessary?
+    },
+  },
 };
 </script>
 

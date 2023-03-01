@@ -3,7 +3,7 @@
     <v-layout>
       <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
-      <v-main style="min-height: 300px;"><router-view /></v-main>
+      <v-main style="min-height: 300px"><router-view /></v-main>
     </v-layout>
   </v-card>
   <!-- <v-app>
@@ -22,8 +22,8 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 };
 </script>
 

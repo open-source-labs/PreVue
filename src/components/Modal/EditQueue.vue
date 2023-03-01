@@ -1,5 +1,6 @@
 <template>
   <div>
+    <hr />
     <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements</p>
     <Draggable v-model="renderList" />
@@ -15,7 +16,7 @@ import {
   setClickedElementList,
   deleteFromComponentHtmlList,
   // setComponentHtmlList,
-  addToComponentElementList
+  addToComponentElementList,
 } from '../../store/types';
 
 export default {
@@ -30,43 +31,35 @@ export default {
   name: 'EditQueue',
   props: {
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      listToRender: ['test']
+      listToRender: ['test'],
     };
   },
   computed: {
+    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
     renderList: {
       get() {
-        return this.$store.state.componentMap[this.$store.state.activeComponent]
-          .htmlList;
+        return this.componentMap[this.activeComponent].htmlList;
       },
-      set(value) {
-        this.$store.dispatch(addToComponentElementList, value);
-      }
+      set(newArr) {
+        this.setClickedElementList(newArr);
+      },
     },
-
-    ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
-    // set(newArr) {
-    //   this.setClickedElementList(newArr);
-    // }
-    ...mapGetters({
-      htmlList: 'htmlListFromActiveComponent'
-    })
   },
   methods: {
-    // ...mapActions([setClickedElementList]),
-    // deleteElement(id) {
-    //   this.$store.dispatch(deleteFromComponentHtmlList, id);
-    // }
+    ...mapActions([setClickedElementList]),
+    deleteElement(id) {
+      this.$store.dispatch(deleteFromComponentHtmlList, id);
+    },
   },
   components: {
     draggable,
-    Draggable
-  }
+    Draggable,
+  },
 };
 </script>
 

@@ -29,8 +29,8 @@ const mutations = {
         h: 200,
         children,
         htmlList,
-        isActive
-      }
+        isActive,
+      },
     };
   },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state, payload) => {
@@ -41,7 +41,8 @@ const mutations = {
   },
   [types.ADD_TO_COMPONENT_HTML_LIST]: (state, payload) => {
     const componentName = state.activeComponent;
-    state.componentMap[componentName].htmlList = payload;
+    console.log('payload', payload);
+    state.componentMap[componentName].htmlList.push(payload);
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state, id) => {
     const componentName = state.activeComponent;
@@ -67,7 +68,7 @@ const mutations = {
     const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList = payload;
   },
-  [types.DELETE_ACTIVE_COMPONENT]: state => {
+  [types.DELETE_ACTIVE_COMPONENT]: (state) => {
     const { componentMap, activeComponent } = state;
 
     let newObj = Object.assign({}, componentMap);
@@ -105,7 +106,7 @@ const mutations = {
   [types.ADD_ROUTE]: (state, payload) => {
     state.routes = {
       ...state.routes,
-      [payload]: []
+      [payload]: [],
     };
   },
   [types.ADD_ROUTE_TO_COMPONENT_MAP]: (state, payload) => {
@@ -114,8 +115,8 @@ const mutations = {
       ...state.componentMap,
       [route]: {
         componentName: route,
-        children
-      }
+        children,
+      },
     };
   },
   [types.SET_ACTIVE_ROUTE]: (state, payload) => {
@@ -138,7 +139,7 @@ const mutations = {
   },
   [types.DELETE_PROJECT_TAB]: (state, payload) => {
     state.projects.splice(payload, 1);
-    localforage.getItem(state.projects[payload - 1].filename).then(data => {
+    localforage.getItem(state.projects[payload - 1].filename).then((data) => {
       state = data;
     });
     state.activeTab = state.activeTab - 1;
@@ -162,7 +163,7 @@ const mutations = {
   },
   [types.UPDATE_OPEN_MODAL]: (state, payload) => {
     state.modalOpen = payload;
-  }
+  },
 };
 
 export default mutations;
