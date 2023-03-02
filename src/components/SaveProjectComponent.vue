@@ -1,6 +1,11 @@
 <template>
   <!-- <button class="save-icon" >SAVE PROJECT</button> -->
-  <button @click="test">
+  <button
+    @click="test"
+    :style="{
+      margin: '0px 50px 0px auto'
+    }"
+  >
     <i class="fas fa-save fa-lg"></i>
 
     <br />
@@ -54,10 +59,10 @@ export default {
     test() {
       const zip = new JSZip();
 
-      fetch('/src/components/templates/package.json')
+      fetch(location)
         .then(res => res.arrayBuffer())
         .then(data => {
-          zip.file('test.txt', data);
+          return zip.file(fileName, data);
         })
         .then(() => {
           zip.generateAsync({ type: 'blob' }).then(function(content) {

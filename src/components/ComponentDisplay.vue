@@ -21,6 +21,7 @@
       @drag-end="onDragEnd"
       @resize-start="activeComponentData, onResize"
       @resize-end="onResizeEnd"
+      @dblclick.native="onDoubleClick(componentData)"
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
@@ -43,8 +44,8 @@ export default {
   },
   data() {
     return {
-      abilityToDelete: false,
-      modalOpen: false
+      modalOpen: false,
+      abilityToDelete: false
     };
   },
   mounted() {
@@ -91,13 +92,11 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-
     onDrag: function(x) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
       );
-
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       console.log('--------------------');
@@ -106,7 +105,6 @@ export default {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
     },
-
     onActivated(componentData) {
       this.setActiveComponent(componentData.componentName);
       console.log('active', componentData.componentName);
@@ -114,16 +112,21 @@ export default {
     },
     onDeactivated() {
       console.log('deactivated', this.activeComponentData);
-
       this.activeComponentData.isActive = false;
     },
-
     onClick(compData) {
       console.log('onClick invoked', compData.componentName);
+      this.setActiveComponent(compData.componentName);
+      this.activeComponentData.isActive = true;
+    },
+    onDoubleClick(compData) {
+      // console.log('testing', this.$store.state.activeComponent);
+      // console.log('onClick compdata', compData.componentName);
       // uses Buefy
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
+      console.log('this,modalOpen', this.modalOpen);
       // ModalProgrammatic.open({
       //   parent: this,
       //   component: ModalView,
@@ -142,13 +145,11 @@ export default {
   border: 1px solid plum;
   height: 84vh;
 }
-
 .component-display {
   color: #3ab982;
   border: 1px solid salmon;
   position: relative;
 }
-
 .component-box {
   color: #3ab982;
   border: 1px solid salmon;

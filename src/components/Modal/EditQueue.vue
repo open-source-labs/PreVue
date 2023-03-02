@@ -1,23 +1,14 @@
 <template>
   <div>
     <p>Edit Queue</p>
-    <p class="panel-heading">Selected Elements</p>
-    <Draggable v-model="renderList">
-      <template #default="{ node, stat }">
-        <span v-if="stat.children.length" @click="stat.open = !stat.open">
-          {{ stat.open ? '-' : '+' }}
-        </span>
-        <!-- <span v-else>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <input type="checkbox" v-model="stat.checked" /> -->
-        {{ node.text }}
-      </template></Draggable
-    >
+    <p class="panel-heading">Selected Elements:</p>
+    <Tree id="tree" :value="renderList" :indent="30"> </Tree>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable';
-import { BaseTree, Draggable } from '@he-tree/vue';
+import { Tree, Draggable } from 'he-tree-vue';
 import '@he-tree/vue/style/default.css';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import {
@@ -46,6 +37,7 @@ export default {
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
+        console.log('in set');
         this.setClickedElementList(newArr);
       }
     }
@@ -56,9 +48,7 @@ export default {
       this.$store.dispatch(deleteFromComponentHtmlList, id);
     }
   },
-  components: {
-    Draggable
-  }
+  components: { Tree: Tree.mixPlugins([Draggable]) }
 };
 </script>
 
@@ -67,15 +57,15 @@ export default {
 </style> -->
 
 <style scoped>
-.delete-icon:hover {
-  cursor: pointer;
+.panel-heading {
+  padding: 10px;
 }
-.drag {
-  background-color: white;
-  margin: 0.5em;
-  border-radius: 5px;
+
+p {
+  padding-left: 10px;
 }
-.drag-text {
-  padding-left: 5px;
+#tree {
+  padding: 10px;
+  backgrolund-color: darkgray;
 }
 </style>

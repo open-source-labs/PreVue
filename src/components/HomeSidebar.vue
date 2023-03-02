@@ -40,7 +40,9 @@
       <ChildrenMultiselect />
       <div
         :style="{
-          'margin-left': '24px'
+          display: 'flex',
+          'padding-top': '10px',
+          'justify-content': 'center'
         }"
       >
         <v-btn
@@ -50,6 +52,7 @@
           @click="handleClick"
           :disabled="validateInput"
           :style="{
+            'align-self': 'center',
             border: '.5px solid #f5f4f3',
             color: '#f5f4f3',
             'text-transform': 'unset !important'

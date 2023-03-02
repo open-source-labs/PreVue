@@ -1,6 +1,13 @@
 <template>
   <div id="child-select">
     <VueMultiselect
+      :style="{
+        width: 'auto',
+        'font-size': '14px',
+        color: '#3ab982',
+        'font-weight': '550',
+        margin: '10px 10px 10px 10px'
+      }"
       v-model="selectedChildren"
       placeholder="Select child components"
       :multiple="true"

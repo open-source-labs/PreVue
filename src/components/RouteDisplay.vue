@@ -13,7 +13,7 @@
         'font-size': '14px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '0 24px 0 24px'
+        padding: '24px 24px 0 24px'
       }"
     >
       Route Creator

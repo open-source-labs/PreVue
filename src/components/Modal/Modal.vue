@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="modal">
     <div>
       <EditSidebar />
     </div>
@@ -23,6 +23,41 @@ export default {
     ComponentCodeDisplay,
     EditSidebar,
     EditQueue
+  },
+  mounted() {
+    console.log('CHILDREN', this.children);
+    this.updateComponentChildrenMultiselectValue(this.children);
+    console.log('MODAL IS OPEN');
+    this.updateOpenModal(true);
+  },
+  computed: {
+    ...mapState([
+      'clickedComponent',
+      'componentMap',
+      'activeComponent',
+      'routes'
+    ]),
+    children() {
+      console.log('activeComponent', this.activeComponent);
+      return this.componentMap[this.activeComponent].children.reduce(
+        (acc, curr) => {
+          return acc.concat(curr);
+        },
+        []
+      );
+    }
+  },
+  methods: {
+    ...mapActions([
+      'updateComponentChildrenMultiselectValue',
+      'updateOpenModal'
+    ])
   }
 };
 </script>
+
+<style>
+#modal {
+  width: 500px;
+}
+</style>
