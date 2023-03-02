@@ -38,31 +38,57 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
     };
   },
 
   methods: {
+    // login() {
+    //   const username = this.username;
+    //   const password = this.password;
+    //   fetch('http://localhost:8080/users/createUser', {
+    //     method: 'POST',
+    //     credentials: 'include',
+    //     body: JSON.stringify({
+    //       username,
+    //       password
+    //     }),
+    //     headers: { 'Content-Type': 'application/json' }
+    //   })
+    //     .then(res => {
+    //       return res.json();
+    //     })
+    //     .then(data => {
+    //       console.log(data);
+    //       this.$router.push('/home');
+    //     })
+    //     .catch(err => console.log(err));
+    // },
+
     login() {
       const username = this.username;
       const password = this.password;
-      fetch('http://localhost:8080/users/createUser', {
+      fetch('http://localhost:8080/users/loginWithoutCookie', {
         method: 'POST',
-        credentials: 'include',
+        // credentials: 'include',
         body: JSON.stringify({
           username,
-          password
+          password,
         }),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       })
-        .then(res => {
+        .then((res) => {
+          console.log(res);
           return res.json();
         })
-        .then(data => {
-          console.log(data);
-          this.$router.push('/home');
+        .then((data) => {
+          if (data != 'could not log in') {
+            this.$router.push('/home');
+          } else {
+            alert('Wrong credentials. Please try again');
+          }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     },
 
     signup() {
@@ -72,8 +98,8 @@ export default {
 
     toHome() {
       this.$router.push('/home');
-    }
-  }
+    },
+  },
 };
 </script>
 

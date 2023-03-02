@@ -1,16 +1,21 @@
 <template>
-  <div id="modal">
-    <div>
-      <EditSidebar />
-    </div>
-    <div>
-      <ComponentCodeDisplay />
-    </div>
-    <div>
-      <EditQueue />
-    </div>
-  </div>
+  <v-container id="modal">
+    <v-row>
+      <v-col cols="4" class="editSidebar">
+        <EditSidebar />
+      </v-col>
+
+      <v-col cols="4" class="componentCodeDisplay">
+        <ComponentCodeDisplay />
+      </v-col>
+
+      <v-col cols="4" class="editQueue">
+        <EditQueue />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
 <script>
 import ComponentCodeDisplay from './ComponentCodeDisplay.vue';
 import EditSidebar from './EditSidebar.vue';
@@ -21,7 +26,7 @@ export default {
   components: {
     ComponentCodeDisplay,
     EditSidebar,
-    EditQueue
+    EditQueue,
   },
   mounted() {
     console.log('CHILDREN', this.children);
@@ -34,7 +39,7 @@ export default {
       'clickedComponent',
       'componentMap',
       'activeComponent',
-      'routes'
+      'routes',
     ]),
     children() {
       console.log('activeComponent', this.activeComponent);
@@ -44,19 +49,23 @@ export default {
         },
         []
       );
-    }
+    },
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateOpenModal'
-    ])
-  }
+      'updateOpenModal',
+    ]),
+  },
 };
 </script>
 
 <style>
 #modal {
-  width: 500px;
+  width: 70vw;
+  height: 40vw;
 }
+/* .editSidebar {
+  background-color: #d4d4dc;
+} */
 </style>

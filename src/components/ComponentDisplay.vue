@@ -25,9 +25,11 @@
     >
       <h3>{{ componentData.componentName }}</h3>
     </Vue3DraggableResizable>
-    <v-dialog v-model="modalOpen" width="auto">
-      <v-card> <Modal /> </v-card
-    ></v-dialog>
+
+    <v-overlay v-model="modalOpen" class="overlay">
+      <v-dialog v-model="modalOpen" class="modal" width="auto">
+        <v-card> <Modal /> </v-card></v-dialog
+    ></v-overlay>
   </div>
 </template>
 <script>
@@ -40,16 +42,17 @@ export default {
   name: 'ComponentDisplay',
   components: {
     Vue3DraggableResizable,
-    Modal
+    Modal,
   },
   data() {
     return {
       modalOpen: false,
-      abilityToDelete: false
+      abilityToDelete: false,
+      // overlay: false,
     };
   },
   mounted() {
-    window.addEventListener('keyup', event => {
+    window.addEventListener('keyup', (event) => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -71,20 +74,20 @@ export default {
       //   'this.activeRouteArray (within activeComponentData)',
       //   this.activeRouteArray
       // );
-      return this.activeRouteArray.filter(componentData => {
+      return this.activeRouteArray.filter((componentData) => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    }
+    },
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function(x) {
+    onResize: function (x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onResizeEnd: function(x) {
+    onResizeEnd: function (x) {
       this.activeComponentData.isActive = true;
       console.log('on resizeend invoked');
       this.activeComponentData.x = x.x;
@@ -92,7 +95,7 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function(x) {
+    onDrag: function (x) {
       console.log(
         'this.activeComponentData (componentDisplay.vue)',
         this.activeComponentData
@@ -101,7 +104,7 @@ export default {
       this.activeComponentData.y = x.y;
       console.log('--------------------');
     },
-    onDragEnd: function(x) {
+    onDragEnd: function (x) {
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
     },
@@ -126,6 +129,7 @@ export default {
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
+      // this.overlay = !this.overlay;
       console.log('this,modalOpen', this.modalOpen);
       // ModalProgrammatic.open({
       //   parent: this,
@@ -136,7 +140,7 @@ export default {
       //   }
       // });
     },
-  }
+  },
 };
 </script>
 
@@ -154,4 +158,10 @@ export default {
   color: #3ab982;
   border: 1px solid salmon;
 }
+/* .modal {
+  z-index: 501;
+}
+.overlay {
+  z-index: 500;
+} */
 </style>
