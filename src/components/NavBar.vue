@@ -13,6 +13,7 @@
       <span class="white--text">Tree</span>
     </button>
     <SaveProjectComponent></SaveProjectComponent>
+    <ExportProjectComponent></ExportProjectComponent>
   </v-app-bar>
 </template>
 
@@ -25,7 +26,8 @@
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 // import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 // import NewProjectComponent from '@/components/NewProjectComponent.vue';
-// import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+// import ExportProjectComponent from './ExportProjectComponent.vue';
 
 // const ipc = require('electron').ipcRenderer;
 // const Mousetrap = require('mousetrap');
@@ -39,10 +41,11 @@ export default {
   props: ['route', 'imageURL'],
 
   components: {
-    SaveProjectComponent
+    SaveProjectComponent,
     // OpenProjectComponent,
     // NewProjectComponent,
-    // ExportProjectComponent,
+    ExportProjectComponent,
+    ExportProjectComponent
   },
   methods: {
     routeHome() {
