@@ -2,7 +2,8 @@
   <div>
     <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements:</p>
-    <Tree id="tree" :value="renderList" :indent="30"> </Tree>
+    <Tree id="tree" :value="renderList" :indent="30" :style="$nodeStyle">
+    </Tree>
   </div>
 </template>
 
@@ -23,6 +24,12 @@ export default {
   props: {
     name: {
       type: String
+    },
+    $nodeStyle: {
+      // type: [Object, String],
+      // default: () => {
+      //   return { 'background-color': 'red' };
+      // }
     }
   },
   data() {
