@@ -135,7 +135,7 @@ export default {
       //     this.setActiveComponent('');
       //   }
       // });
-    }
+    },
   }
 };
 </script>

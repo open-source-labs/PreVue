@@ -23,7 +23,7 @@
       /></v-navigation-drawer>
 
       <v-main>
-        <v-container style="min-height: 300px;"
+        <v-container style="min-height: 300px"
           ><ComponentDisplay />
         </v-container>
       </v-main>
@@ -45,9 +45,9 @@ export default {
     HomeSidebar,
     HomeQueue,
     RouteDisplay,
-    ProjectTabs
+    ProjectTabs,
   },
-  data() {}
+  data() {},
 };
 </script>
 

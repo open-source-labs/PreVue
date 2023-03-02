@@ -58,14 +58,14 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'RouteDisplay',
   components: {
-    Routes
+    Routes,
   },
   computed: {
-    ...mapState(['routes'])
+    ...mapState(['routes']),
   },
   data() {
     return {
-      newRoute: ''
+      newRoute: '',
     };
   },
   methods: {
@@ -75,9 +75,9 @@ export default {
         .then(() => {
           this.newRoute = '';
         })
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>
 

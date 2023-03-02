@@ -18,7 +18,6 @@ import {
   // setComponentHtmlList,
   addToComponentElementList
 } from '../../store/types';
-
 export default {
   name: 'EditQueue',
   props: {
@@ -44,7 +43,6 @@ export default {
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
-        console.log('in set');
         this.setClickedElementList(newArr);
       }
     }

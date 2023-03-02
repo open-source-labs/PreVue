@@ -13,6 +13,7 @@
           v-model="password"
           :type="'password'"
           label="Password"
+          required
         ></v-text-field>
 
         <div class="buttons">

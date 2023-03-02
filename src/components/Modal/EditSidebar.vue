@@ -13,10 +13,8 @@ import Icons from '../Icons.vue';
 import { mapState } from 'vuex';
 import * as types from '../../store/types.js';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
-
 export default {
   name: 'EditSidebar',
-
   components: {
     Icons,
     ChildrenMultiselect
@@ -35,7 +33,6 @@ export default {
 .icon-row {
   margin-top: 10px;
 }
-
 .panel-heading {
   padding: 10px;
   background-color: darkgray;

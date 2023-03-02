@@ -10,7 +10,6 @@ import { mapState, mapGetters } from 'vuex';
 import { toRaw } from 'vue';
 export default {
   name: 'ComponentCodeDisplay',
-
   computed: {
     ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
     activeComponentHtmlList: {
@@ -34,8 +33,8 @@ export default {
   },
   methods: {
     traverseElement(list, codeDisplay, level = 0) {
-      list.forEach(htmlElementTagObj => {
-        console.log('traverseElement');
+
+      list.forEach((htmlElementTagObj) => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
         let openingTagNode = document.createElement('p');
@@ -67,12 +66,11 @@ export default {
       });
     },
     displayHtmlList(list) {
-      console.log('displayHtmlList');
       let codeDisplay = document.querySelector('#codeDisplay');
       codeDisplay.innerText = '';
       this.traverseElement(list, codeDisplay);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -85,7 +83,6 @@ export default {
   background-color: darkgray;
   padding: 10px;
 }
-
 #codeDisplay {
   padding: 10px;
   background: #00d1b2;

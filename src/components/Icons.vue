@@ -2,7 +2,7 @@
   <section
     class="icon-grid"
     :style="{
-      padding: '0 24px 0 24px'
+      padding: '0 24px 0 24px',
     }"
   >
     <button
@@ -24,7 +24,7 @@ import * as types from '../store/types.js';
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons'])
+    ...mapState(['icons', 'modalOpen']),
   },
   methods: {
     // handleClick(htmlElement) {
