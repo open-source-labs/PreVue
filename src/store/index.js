@@ -5,8 +5,6 @@ import state from './state';
 import actions from './actions.js';
 import mutations from './mutations.js';
 
-// Vue.use(Vuex);
-
 const store = createStore({ state, mutations, actions });
 
 store.subscribe((mutation, state) => {
@@ -14,9 +12,3 @@ store.subscribe((mutation, state) => {
 });
 
 export default store;
-
-// export default createStore({
-//   state,
-//   mutations,
-//   actions,
-// });

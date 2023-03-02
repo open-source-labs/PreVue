@@ -2,21 +2,17 @@
   <div>
     <p>Edit Queue</p>
     <p class="panel-heading">Selected Elements:</p>
-    <Tree id="tree" :value="renderList" :indent="30" :style="$nodeStyle">
-    </Tree>
+    <Tree id="tree" :value="renderList" :indent="30"> </Tree>
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable';
 import { Tree, Draggable } from 'he-tree-vue';
 import '@he-tree/vue/style/default.css';
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import {
   setClickedElementList,
-  deleteFromComponentHtmlList,
-  // setComponentHtmlList,
-  addToComponentElementList
+  deleteFromComponentHtmlList
 } from '../../store/types';
 export default {
   name: 'EditQueue',
@@ -71,6 +67,6 @@ p {
 }
 #tree {
   padding: 10px;
-  backgrolund-color: darkgray;
+  background-color: darkgray;
 }
 </style>
