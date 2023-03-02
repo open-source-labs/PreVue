@@ -33,4 +33,8 @@ export default {
 .icon-row {
   margin-top: 10px;
 }
+.panel-heading {
+  padding: 10px;
+  background-color: darkgray;
+}
 </style>

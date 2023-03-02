@@ -1,6 +1,21 @@
 <template>
-  <v-card class="home-queue">
-    <v-card-title>Selected Elements</v-card-title>
+  <v-card
+    class="home-queue"
+    :style="{
+      'background-color': 'inherit',
+      'border-bottom': '0.5px solid #6a696a',
+      padding: '16px 0px 24px 0px'
+    }"
+  >
+    <v-card-title
+      :style="{
+        'font-size': '14px',
+        color: '#f5f4f3',
+        'font-weight': '550',
+        padding: '0 24px 0 24px'
+      }"
+      >Selected Elements</v-card-title
+    >
     <draggable
       v-model="renderList"
       item-key="index"
@@ -10,8 +25,13 @@
       @end="drag = false"
     >
       <template #item="{element}">
-        <v-chip closable color="cyan" class="ma-2">
+        <v-chip class="ma-2 list-group-item">
           {{ element.text }}
+          <i
+            class="fas fa fa-trash fa-md"
+            @click="deleteElement(index)"
+            :style="{ 'margin-left': 'auto' }"
+          ></i>
         </v-chip>
       </template>
     </draggable>
@@ -53,6 +73,22 @@ export default {
 </script>
 
 <style scoped>
+.fa-trash:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.list-group-item {
+  margin: 2px;
+  background-color: #00d1b2;
+  height: 35px;
+  padding-top: 2px;
+  text-align: center;
+}
+
+.list-group-item:hover {
+  background-color: #3ab982;
+}
 /* .home-queue {
   border: 1px solid white;
   background-color: hsl(222, 15%, 26%);

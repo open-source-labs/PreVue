@@ -3,7 +3,9 @@
     <v-layout>
       <v-navigation-drawer
         id="side-nav"
-        :style="{ 'background-color': 'rgb(30, 31, 33)' }"
+        :style="{
+          'background-color': 'rgb(30, 31, 33)'
+        }"
         width="240"
         permanent
       >
@@ -13,9 +15,9 @@
       <v-app-bar color="grey" height="48" flat><ProjectTabs /></v-app-bar>
 
       <v-navigation-drawer
-        color="grey-lighten-1"
+        :style="{ 'background-color': 'rgb(30, 31, 33)' }"
         location="right"
-        width="150"
+        width="180"
         permanent
         ><HomeQueue
       /></v-navigation-drawer>

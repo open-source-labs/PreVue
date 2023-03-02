@@ -41,7 +41,9 @@
       <ChildrenMultiselect />
       <div
         :style="{
-          'margin-left': '24px',
+          display: 'flex',
+          'padding-top': '10px',
+          'justify-content': 'center'
         }"
       >
         <v-btn
@@ -51,6 +53,7 @@
           @click="handleClick"
           :disabled="validateInput"
           :style="{
+            'align-self': 'center',
             border: '.5px solid #f5f4f3',
             color: '#f5f4f3',
             'text-transform': 'unset !important',
@@ -121,12 +124,9 @@ export default {
       this.registerComponent(component);
     },
     addToSelectedElementList(htmlElement) {
-      // console.log('modal', this.$store.state.modalOpen);
-      console.log(htmlElement);
       this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-      console.log(this.$store.state.selectedElementList);
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

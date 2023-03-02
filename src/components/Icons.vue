@@ -27,16 +27,15 @@ export default {
     ...mapState(['icons', 'modalOpen']),
   },
   methods: {
-    handleClick(htmlElement) {
-      // console.log('modal', this.$store.state.modalOpen);
-      console.log(htmlElement);
-      this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-      console.log(this.$store.state.selectedElementList);
-    },
+    // handleClick(htmlElement) {
+    //   console.log(htmlElement);
+    //   this.$store.dispatch(types.addToSelectedElementList, htmlElement);
+    //   console.log(this.$store.state.selectedElementList);
+    // },
     changeState(elementName) {
       this.$emit('getClickedIcon', elementName); // emit prop necessary?
-    },
-  },
+    }
+  }
 };
 </script>
 
