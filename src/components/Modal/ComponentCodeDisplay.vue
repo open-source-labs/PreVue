@@ -15,8 +15,8 @@ export default {
     activeComponentHtmlList: {
       get() {
         return this.componentMap[this.activeComponent].htmlList;
-      }
-    }
+      },
+    },
   },
   watch: {
     activeComponentHtmlList: {
@@ -24,8 +24,8 @@ export default {
         this.displayHtmlList(newList);
       },
       // dealing with nested objects, hence need deep property
-      deep: true
-    }
+      deep: true,
+    },
   },
   mounted() {
     console.log(this.htmlList);
@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     traverseElement(list, codeDisplay, level = 0) {
-
       list.forEach((htmlElementTagObj) => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
