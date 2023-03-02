@@ -9,7 +9,8 @@ accountController.createUser = (req, res, next) => {
   Users.findOne({ username })
     .then((data) => {
       if (!data) {
-        Users.create({ username, password }).then((data) => { //data here is full entry, includes _id key
+        Users.create({ username, password }).then((data) => {
+          //data here is full entry, includes _id key
           res.locals.id = data._id; // sending ID for cookie auth
           return next();
         });
@@ -44,6 +45,25 @@ accountController.login = (req, res, next) => {
     });
 };
 
+accountController.loginWithoutCookie = (req, res, next) => {
+  const { username, password } = req.body;
+  Users.findOne({ username, password })
+    .then((data) => {
+      if (data) {
+        res.locals.id = data._id; // sending ID for cookie auth
+        return next();
+      } else {
+        return next(err);
+      }
+    })
+    .catch((err) => {
+      next({
+        log: 'accountcontroller login failed',
+        message: `could not log in`,
+      });
+    });
+};
+
 // accountController.verifyUser = (req, res, next) => {
 //   // write code here
 //   const { username, password } = req.body;
@@ -60,7 +80,5 @@ accountController.login = (req, res, next) => {
 //       });
 //     });
 // };
-
-
 
 module.exports = accountController;

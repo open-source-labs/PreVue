@@ -17,16 +17,16 @@ export default {
   name: 'EditSidebar',
   components: {
     Icons,
-    ChildrenMultiselect
+    ChildrenMultiselect,
   },
   computed: {
-    ...mapState(['activeComponent'])
+    ...mapState(['activeComponent']),
   },
   methods: {
     addToComponentElementList(elementName) {
       this.$store.dispatch(types.addToComponentElementList, elementName);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

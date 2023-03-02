@@ -27,4 +27,13 @@ accountRouter.post(
   }
 );
 
+accountRouter.post(
+  '/loginWithoutCookie',
+  accountController.loginWithoutCookie,
+  (req, res) => {
+    console.log('hello from accountRouter');
+    return res.status(201).json(res.locals.id);
+  }
+);
+
 module.exports = accountRouter;
