@@ -22,7 +22,5 @@ yarn-error.log*
 *.sln
 *.sw*
 
-#Electron-builder output
-/dist_electron
 
 package-lock.json
