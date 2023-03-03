@@ -1,4 +1,5 @@
 <template>
+  <!--where you can retrieve past projects from the database-->
   <button @click="openProjectJSON">
     <i class="fas fa-folder-open fa-lg"></i>
 

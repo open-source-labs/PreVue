@@ -23,6 +23,9 @@
           <v-btn color="success" class="mt-4" block @click="signup">
             Sign Up
           </v-btn>
+          <v-btn color="success" class="mt-4" block @click="oauth">
+            Sign in with GitHub
+          </v-btn>
         </div>
       </v-form>
     </v-sheet>
@@ -38,8 +41,14 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
+      password: ''
     };
+  },
+  mounted() {
+    let code =
+      window.location.href.match(/\?code=(.*)/) &&
+      window.location.href.match(/\?code=(.*)/)[1];
+    console.log(code);
   },
 
   methods: {
@@ -73,22 +82,22 @@ export default {
         // credentials: 'include',
         body: JSON.stringify({
           username,
-          password,
+          password
         }),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
-        .then((res) => {
+        .then(res => {
           console.log(res);
           return res.json();
         })
-        .then((data) => {
+        .then(data => {
           if (data != 'could not log in') {
             this.$router.push('/home');
           } else {
             alert('Wrong credentials. Please try again');
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
 
     signup() {
@@ -96,10 +105,15 @@ export default {
         this.$router.push('/home');
     },
 
+    oauth() {
+      window.location.href =
+        'https://github.com/login/oauth/authorize?client_id=2f0260d8014e87506756&redirect_uri=http://localhost:3000/home';
+    },
+
     toHome() {
       this.$router.push('/home');
-    },
-  },
+    }
+  }
 };
 </script>
 

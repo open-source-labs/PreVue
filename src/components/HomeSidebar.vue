@@ -1,4 +1,5 @@
 <template>
+  <!--the section in the left side that houses the HTML element icons-->
   <v-card
     id="sidebar"
     class="rounded-0"

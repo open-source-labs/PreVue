@@ -1,4 +1,5 @@
 <template>
+  <!--the collection of HTML element icons in the left sidebar-->
   <section
     class="icon-grid"
     :style="{

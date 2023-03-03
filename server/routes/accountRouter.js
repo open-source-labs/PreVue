@@ -33,7 +33,12 @@ accountRouter.post(
   (req, res) => {
     console.log('hello from accountRouter');
     return res.status(201).json(res.locals.id);
-  }
+  },
+
+  accountRouter.post('/oauth', sessionController.oauthVerify, (req, res) => {
+    console.log('in oauth router');
+    return res.status(201);
+  })
 );
 
 module.exports = accountRouter;

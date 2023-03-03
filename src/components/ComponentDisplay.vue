@@ -1,4 +1,5 @@
 <template>
+  <!--the sandbox area where the component boxes are rendered-->
   <div class="component-display">
     <Vue3DraggableResizable
       class="component-box"
