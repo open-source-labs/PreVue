@@ -1,7 +1,8 @@
 import icons from './icons';
 import htmlElementMap from './htmlElementMap';
+import { State } from '../../types';
 
-const newState = {
+const newState: State = {
   icons,
   htmlElementMap,
   componentMap: {

@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 
 import state from './state';
 import actions from './actions.js';
-import mutations from './mutations.js';
+import mutations from './mutations';
 
 const store = createStore({ state, mutations, actions });
 

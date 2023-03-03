@@ -16,7 +16,6 @@
     "@he-tree/vue": "^2.2.7",
     "@progress/jszip-esm": "^1.0.3",
     "@ssthouse/vue3-tree-chart": "^0.2.6",
-    "@vitejs/plugin-vue": "^1.6.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -30,7 +29,7 @@
     "mongoose": "^6.10.0",
     "mousetrap": "^1.6.3",
     "sass": "^1.58.3",
-    "vite": "^2.5.4",
+    "vite-plugin-checker": "^0.5.6",
     "vite-plugin-vue2": "1.9.0",
     "vue": "^3.2.47",
     "vue-multiselect": "^3.0.0-alpha.2",
@@ -42,10 +41,15 @@
     "vuetify": "^3.1.6"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^1.6.1",
     "@vue/eslint-config-prettier": "^4.0.1",
     "eslint": "^8.34.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^8.7.1",
+    "typescript": "^4.9.5",
+    "vite": "^2.5.4",
     "vue-template-compiler": "^2.5.21",
+    "vue-tsc": "^1.0.24",
     "vuex": "^4.1.0"
   },
   "main": "background.js",

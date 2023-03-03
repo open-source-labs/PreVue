@@ -1,4 +1,6 @@
-const htmlElementMap = {
+import { HtmlElementMap } from '../../types';
+
+const htmlElementMap: HtmlElementMap = {
   div: ['<div>', '</div>'],
   button: ['<button>', '</button>'],
   form: ['<form>', '</form>'],
