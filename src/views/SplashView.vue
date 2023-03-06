@@ -44,35 +44,7 @@ export default {
       password: ''
     };
   },
-  mounted() {
-    let code =
-      window.location.href.match(/\?code=(.*)/) &&
-      window.location.href.match(/\?code=(.*)/)[1];
-    console.log(code);
-  },
-
   methods: {
-    // login() {
-    //   const username = this.username;
-    //   const password = this.password;
-    //   fetch('http://localhost:8080/users/createUser', {
-    //     method: 'POST',
-    //     credentials: 'include',
-    //     body: JSON.stringify({
-    //       username,
-    //       password
-    //     }),
-    //     headers: { 'Content-Type': 'application/json' }
-    //   })
-    //     .then(res => {
-    //       return res.json();
-    //     })
-    //     .then(data => {
-    //       console.log(data);
-    //       this.$router.push('/home');
-    //     })
-    //     .catch(err => console.log(err));
-    // },
 
     login() {
       const username = this.username;
@@ -106,8 +78,42 @@ export default {
     },
 
     oauth() {
-      window.location.href =
-        'https://github.com/login/oauth/authorize?client_id=2f0260d8014e87506756&redirect_uri=http://localhost:3000/home';
+      // make request to endpoint; in server, redirect
+      fetch('http://localhost:8080/users/oauth', {
+        method: 'GET',
+        redirect: 'follow',
+        // mode: 'no-cors',
+        headers: {'Access-Control-Allow-Origin':'*'}
+      })
+        .then(res => {
+          console.log("we're here")
+          // console.log(res.json())
+          return res.json()
+        })
+        .then(data => window.location.replace(data));
+
+    //     const GITHUB_REDIRECT_URI = 'http://localhost:3000/home';
+    //   let redirect = GITHUB_REDIRECT_URI.toString();
+    //   let redirectStr =
+    //     `https://github.com/login/oauth/authorize?` +
+    //     'client_id=' +
+    //     '2f0260d8014e87506756' +
+    //     '&redirect_uri=' +
+    //     redirect;
+    //     console.log(redirectStr);
+    //   // make request to endpoint; in server, redirect
+    //   fetch(redirectStr, {
+    //     method: 'GET',
+    //     redirect: 'follow',
+    //     mode:'no-cors',
+    //     headers: {'Access-Control-Allow-Origin':'*'}
+    //   })
+    //     .then(res => { if (res.redirected) {
+    //         window.location.href = res.url;
+    //     }
+    //     })
+    //     .then(data => console.log(data))
+    // },
     },
 
     toHome() {

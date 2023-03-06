@@ -46,7 +46,6 @@ export default {
     // OpenProjectComponent,
     // NewProjectComponent,
     ExportProjectComponent,
-    ExportProjectComponent
   },
   methods: {
     // routing to homepage and tree view

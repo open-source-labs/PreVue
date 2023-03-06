@@ -7,9 +7,11 @@
   "version": "2.0.0",
   "description": "Developer prototyping app built with Vue",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run vite\" \"npm run server\"",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "vite": "vite",
+    "server": "node server/server.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -17,6 +19,8 @@
     "@progress/jszip-esm": "^1.0.3",
     "@ssthouse/vue3-tree-chart": "^0.2.6",
     "@vitejs/plugin-vue": "^1.6.1",
+    "axios": "^1.3.4",
+    "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -43,6 +47,7 @@
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^4.0.1",
+    "dotenv": "^16.0.3",
     "eslint": "^8.34.0",
     "eslint-plugin-vue": "^8.7.1",
     "vue-template-compiler": "^2.5.21",
