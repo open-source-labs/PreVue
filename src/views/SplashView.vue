@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
+      password: ''
     };
   },
 
@@ -73,22 +73,22 @@ export default {
         // credentials: 'include',
         body: JSON.stringify({
           username,
-          password,
+          password
         }),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
-        .then((res) => {
+        .then(res => {
           console.log(res);
           return res.json();
         })
-        .then((data) => {
+        .then(data => {
           if (data != 'could not log in') {
             this.$router.push('/home');
           } else {
             alert('Wrong credentials. Please try again');
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
 
     signup() {
@@ -98,8 +98,8 @@ export default {
 
     toHome() {
       this.$router.push('/home');
-    },
-  },
+    }
+  }
 };
 </script>
 

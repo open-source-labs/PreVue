@@ -1,13 +1,16 @@
-import * as types from './types';
-import { State } from '../../types';
+import * as types from './storeTypes';
+import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
 import localforage from 'localforage';
 
-const mutations = {
+const mutations: Mutations<State> = {
   initializeStore(state: State) {
     if (localStorage.getItem('store')) {
       this.replaceState(
-        Object.assign(state, JSON.parse(localStorage.getItem('store')))
+        Object.assign(
+          state,
+          JSON.parse(localStorage.getItem('store') || `${state}`)
+        )
       );
     }
   },
@@ -23,8 +26,8 @@ const mutations = {
         h: 200,
         children,
         htmlList,
-        isActive,
-      },
+        isActive
+      }
     };
   },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
@@ -34,19 +37,24 @@ const mutations = {
     state.selectedElementList = payload;
   },
   [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {
-    const componentName = state.activeComponent;
+    const componentName: string = state.activeComponent;
     // state.componentMap[componentName].htmlList = elementName;
     // console.log('elementName:', elementName);
     state.componentMap[componentName].htmlList.push({
       text: elementName,
-      children: [],
+      children: []
     });
+    // const test: HtmlList[] = state.componentMap[componentName].htmlList;
+    // test.push({
+    //   text: elementName,
+    //   children: []
+    // });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
     const componentName = state.activeComponent;
     const htmlList = state.componentMap[componentName].htmlList;
 
-    function parseAndDelete(htmlList) {
+    function parseAndDelete(htmlList: HtmlList) {
       htmlList.forEach((element, index) => {
         if (element.children.length > 0) {
           parseAndDelete(element.children);
@@ -56,7 +64,7 @@ const mutations = {
         }
       });
 
-      let copied = htmlList.slice(0);
+      const copied = htmlList.slice(0);
       state.componentMap[componentName].htmlList = copied;
     }
     parseAndDelete(htmlList);
@@ -69,12 +77,12 @@ const mutations = {
   [types.DELETE_ACTIVE_COMPONENT]: (state: State) => {
     const { componentMap, activeComponent } = state;
 
-    let newObj = Object.assign({}, componentMap);
+    const newObj = Object.assign({}, componentMap);
 
     delete newObj[activeComponent];
 
-    for (let compKey in newObj) {
-      let children = newObj[compKey].children;
+    for (const compKey in newObj) {
+      const children = newObj[compKey].children;
       children.forEach((child, index) => {
         if (activeComponent === child) children.splice(index, 1);
       });
@@ -104,7 +112,7 @@ const mutations = {
   [types.ADD_ROUTE]: (state: State, payload) => {
     state.routes = {
       ...state.routes,
-      [payload]: [],
+      [payload]: []
     };
   },
   [types.ADD_ROUTE_TO_COMPONENT_MAP]: (state: State, payload) => {
@@ -113,8 +121,8 @@ const mutations = {
       ...state.componentMap,
       [route]: {
         componentName: route,
-        children,
-      },
+        children
+      }
     };
   },
   [types.SET_ACTIVE_ROUTE]: (state: State, payload) => {
@@ -135,15 +143,18 @@ const mutations = {
   [types.SET_ACTIVE_ROUTE_ARRAY]: (state: State, payload) => {
     state.routes[state.activeRoute] = payload;
   },
-  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN]: (state: State, payload) => {
+  [types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN]: (
+    state: State,
+    payload: string
+  ) => {
     state.componentMap[state.activeRoute].children.push(payload);
   },
   [types.DELETE_PROJECT_TAB]: (state: State, payload) => {
-    state.projects.splice(payload, 1);
-    localforage.getItem(state.projects[payload - 1].filename).then((data) => {
-      state = data;
-    });
-    state.activeTab = state.activeTab - 1;
+    // state.projects.splice(payload, 1);
+    // localforage.getItem(state.projects[payload - 1].filename).then(data => {
+    //   state = data;
+    // });
+    // state.activeTab = state.activeTab - 1;
   },
   [types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE]: (
     state: State,
@@ -167,7 +178,7 @@ const mutations = {
   },
   [types.UPDATE_OPEN_MODAL]: (state: State, payload) => {
     state.modalOpen = payload;
-  },
+  }
 };
 
 export default mutations;

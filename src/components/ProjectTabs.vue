@@ -11,9 +11,14 @@
 
 <script>
 import { mapState } from 'vuex';
-import { setComponentMap, changeActiveTab, setRoutes } from '../store/types';
+import {
+  setComponentMap,
+  changeActiveTab,
+  setRoutes,
+  deleteProjectTab
+} from '../store/storeTypes';
 import localforage from 'localforage';
-import { deleteProjectTab } from '../store/types';
+
 // const Mousetrap = require('mousetrap');
 
 export default {
@@ -35,15 +40,15 @@ export default {
       //RESET COMPONENT MAP IF NEW TAB PROJECT DOESN'T EXIST IN LOCALFORAGE
       localforage
         .getItem(this.projects[idx].filename)
-        .then((value) => {
+        .then(value => {
           if (!value) {
             this.$store.dispatch(setComponentMap, {
               App: {
-                children: [],
-              },
+                children: []
+              }
             });
             this.$store.dispatch(setRoutes, {
-              HomeView: [],
+              HomeView: []
             });
           } else {
             console.log(value);
@@ -51,7 +56,7 @@ export default {
             this.$store.dispatch(setRoutes, value.routes);
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -60,8 +65,8 @@ export default {
       localforage
         .setItem(projectName, currentState)
         .then(() => console.log('saved ', projectName, 'to local forage'));
-    },
-  },
+    }
+  }
 };
 </script>
 

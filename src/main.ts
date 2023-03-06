@@ -14,7 +14,7 @@ import * as directives from 'vuetify/directives';
 //vuetify config
 const vuetify = createVuetify({
   components,
-  directives,
+  directives
 });
 // Vue.config.productionTip = false;
 
@@ -23,7 +23,7 @@ const app = createApp({
   extends: App,
   beforeCreate() {
     store.commit('initializeStore');
-  },
+  }
 });
 app.use(vuetify);
 app.use(router);

@@ -29,8 +29,8 @@ export type HtmlElementMap = {
 
 export type Component = {
   componentName: string;
-  children: string | Object[];
-  htmlList: string | Object[];
+  children: string[];
+  htmlList: HtmlList;
   isActive?: boolean;
   x?: number;
   y?: number;
@@ -49,6 +49,7 @@ export type Project = {
   filename: string;
   lastSavedLocation: string;
 };
+export type Type = string;
 
 export type State = {
   icons: Icons;
@@ -59,10 +60,30 @@ export type State = {
   projects: Project[];
   activeRoute: string;
   activeComponent: string;
-  selectedElementList: string[];
+  selectedElementList: object[];
   projectNumber: number;
   activeTab: number;
   componentChildrenMultiselectValue: string[];
   modalOpen: boolean;
   htmlElements: any[];
 };
+
+export type Mutations<State> = {
+  [k: Type]: (
+    state: State,
+    payload?: any,
+    elementName?: string,
+    id?: number
+  ) => void;
+};
+export type Actions = {
+  [k: Type]: (context: any, payload?: any) => void;
+};
+
+export type HtmlChild = {
+  text: string;
+  children: HtmlChild[];
+  _id?: number;
+};
+
+export type HtmlList = HtmlChild[];

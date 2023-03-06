@@ -9,16 +9,16 @@ const newState: State = {
     App: {
       componentName: 'App',
       children: ['HomeView'],
-      htmlList: [],
+      htmlList: []
     },
     HomeView: {
       componentName: 'HomeView',
       children: [],
-      htmlList: [],
-    },
+      htmlList: []
+    }
   },
   routes: {
-    HomeView: [],
+    HomeView: []
   },
 
   componentNameInputValue: '',
@@ -30,7 +30,7 @@ const newState: State = {
   activeTab: 0,
   componentChildrenMultiselectValue: [],
   modalOpen: false,
-  htmlElements: [],
+  htmlElements: []
 };
 
 export default newState;
