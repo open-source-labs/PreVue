@@ -1,4 +1,5 @@
 <template>
+  <!--the 'selected elements' that show HTML elements in the right sidebar-->
   <v-card
     class="home-queue"
     :style="{

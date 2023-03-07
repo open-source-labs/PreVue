@@ -23,6 +23,9 @@
           <v-btn color="success" class="mt-4" block @click="signup">
             Sign Up
           </v-btn>
+          <v-btn color="success" class="mt-4" block @click="oauth">
+            Sign in with GitHub
+          </v-btn>
         </div>
       </v-form>
     </v-sheet>
@@ -38,32 +41,22 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
+      password: ''
     };
   },
-
+  beforeCreate() {
+    fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Origin': ['localhost:5173']
+      }
+    }).then(res =>{
+      if (res.status === 200) {
+        this.toHome();
+      }
+    })
+    
+  },
   methods: {
-    // login() {
-    //   const username = this.username;
-    //   const password = this.password;
-    //   fetch('http://localhost:8080/users/createUser', {
-    //     method: 'POST',
-    //     credentials: 'include',
-    //     body: JSON.stringify({
-    //       username,
-    //       password
-    //     }),
-    //     headers: { 'Content-Type': 'application/json' }
-    //   })
-    //     .then(res => {
-    //       return res.json();
-    //     })
-    //     .then(data => {
-    //       console.log(data);
-    //       this.$router.push('/home');
-    //     })
-    //     .catch(err => console.log(err));
-    // },
 
     login() {
       const username = this.username;
@@ -73,22 +66,22 @@ export default {
         // credentials: 'include',
         body: JSON.stringify({
           username,
-          password,
+          password
         }),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
-        .then((res) => {
+        .then(res => {
           console.log(res);
           return res.json();
         })
-        .then((data) => {
+        .then(data => {
           if (data != 'could not log in') {
             this.$router.push('/home');
           } else {
             alert('Wrong credentials. Please try again');
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
 
     signup() {
@@ -96,10 +89,38 @@ export default {
         this.$router.push('/home');
     },
 
+    oauth() {
+      // make request to endpoint; in server, redirect
+      fetch('http://localhost:8080/users/oauth', {
+        method: 'GET',
+        redirect: 'follow',
+        // mode: 'no-cors',
+        headers: {'Access-Control-Allow-Origin':'*'}
+      })
+        .then(res => {
+          console.log("we're here")
+          // console.log(res.json())
+          return res.json()
+        })
+        .then(data => window.location.replace(data));
+    },
+
     toHome() {
       this.$router.push('/home');
     },
-  },
+
+    // auth() {
+    //   fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
+    //   headers: {
+    //     'Access-Control-Allow-Origin': ['localhost:5173']
+    //   }
+    // }).then(res =>{
+    //   if (res.status === 200) {
+    //     this.toHome();
+    //   }
+    // })
+    // }
+  }
 };
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+  <!--exports the project as a zip file that includes your project code-->
   <!-- <i class="fas fa-file-export fa-lg" @click="exportProject"></i> -->
   <button @click="onClick">
     <i class="fas fa-file-export fa-lg"></i>

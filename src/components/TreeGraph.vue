@@ -1,4 +1,5 @@
 <template>
+  <!--the tree; where the hierarchy of your project's components is displayed-->
   <div class="container">
     <vue-tree
       style="width: 1000px; height: 600px; border: 1px solid gray"
