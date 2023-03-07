@@ -1,15 +1,15 @@
-const path = require('path');
+// const path = require('path');
+// const ViteExpress = require('vite-express')
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 8080;
 const cors = require('cors');
 const corsOptions = {
-  origin: '*',
+  origin: 'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  // origin: 'http://localhost:3000',
   credentials: true,
-  optionSuccessStatus: 200
+  // optionSuccessStatus: 200
 };
 const accountRouter = require('./routes/accountRouter');
 // const accountController = require('./controllers/accountController');

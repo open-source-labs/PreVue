@@ -44,6 +44,18 @@ export default {
       password: ''
     };
   },
+  beforeCreate() {
+    fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
+      headers: {
+        'Access-Control-Allow-Origin': ['localhost:5173']
+      }
+    }).then(res =>{
+      if (res.status === 200) {
+        this.toHome();
+      }
+    })
+    
+  },
   methods: {
 
     login() {
@@ -91,34 +103,23 @@ export default {
           return res.json()
         })
         .then(data => window.location.replace(data));
-
-    //     const GITHUB_REDIRECT_URI = 'http://localhost:3000/home';
-    //   let redirect = GITHUB_REDIRECT_URI.toString();
-    //   let redirectStr =
-    //     `https://github.com/login/oauth/authorize?` +
-    //     'client_id=' +
-    //     '2f0260d8014e87506756' +
-    //     '&redirect_uri=' +
-    //     redirect;
-    //     console.log(redirectStr);
-    //   // make request to endpoint; in server, redirect
-    //   fetch(redirectStr, {
-    //     method: 'GET',
-    //     redirect: 'follow',
-    //     mode:'no-cors',
-    //     headers: {'Access-Control-Allow-Origin':'*'}
-    //   })
-    //     .then(res => { if (res.redirected) {
-    //         window.location.href = res.url;
-    //     }
-    //     })
-    //     .then(data => console.log(data))
-    // },
     },
 
     toHome() {
       this.$router.push('/home');
-    }
+    },
+
+    // auth() {
+    //   fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
+    //   headers: {
+    //     'Access-Control-Allow-Origin': ['localhost:5173']
+    //   }
+    // }).then(res =>{
+    //   if (res.status === 200) {
+    //     this.toHome();
+    //   }
+    // })
+    // }
   }
 };
 </script>
