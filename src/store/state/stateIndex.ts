@@ -1,23 +1,24 @@
 import icons from './icons';
 import htmlElementMap from './htmlElementMap';
+import { State } from '../../types';
 
-const newState = {
+const newState: State = {
   icons,
   htmlElementMap,
   componentMap: {
     App: {
       componentName: 'App',
       children: ['HomeView'],
-      htmlList: [],
+      htmlList: []
     },
     HomeView: {
       componentName: 'HomeView',
       children: [],
-      htmlList: [],
-    },
+      htmlList: []
+    }
   },
   routes: {
-    HomeView: [],
+    HomeView: []
   },
 
   componentNameInputValue: '',
@@ -29,7 +30,7 @@ const newState = {
   activeTab: 0,
   componentChildrenMultiselectValue: [],
   modalOpen: false,
-  htmlElements: [],
+  htmlElements: []
 };
 
 export default newState;
