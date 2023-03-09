@@ -6,7 +6,7 @@
     :style="{
       'background-color': 'inherit',
       'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px',
+      padding: '16px 0px 24px 0px'
     }"
   >
     <v-card-title
@@ -14,7 +14,7 @@
         'font-size': '14px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '0 24px 0 24px',
+        padding: '0 24px 0 24px'
       }"
     >
       Component Creator
@@ -24,7 +24,7 @@
         id="form1"
         v-on:submit.prevent="handleClick"
         :style="{
-          padding: '0 24px 0 24px',
+          padding: '0 24px 0 24px'
         }"
       >
         <v-text-field
@@ -36,7 +36,6 @@
           :style="{ color: '#f5f4f3' }"
         >
         </v-text-field>
-
       </v-form>
       <Icons @getClickedIcon="addToSelectedElementList" />
       <ChildrenMultiselect />
@@ -57,7 +56,7 @@
             'align-self': 'center',
             border: '.5px solid #f5f4f3',
             color: '#f5f4f3',
-            'text-transform': 'unset !important',
+            'text-transform': 'unset !important'
           }"
         >
           Add Component
@@ -72,20 +71,20 @@ import Icons from './Icons.vue';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 import { mapState, mapActions } from 'vuex';
 import { toRaw } from 'vue';
-import * as types from '../store/types.js';
+import * as types from '../store/storeTypes';
 
 export default {
   name: 'HomeSidebar',
   components: {
     ChildrenMultiselect,
-    Icons,
+    Icons
   },
   computed: {
     ...mapState([
       'componentMap',
       'selectedElementList',
       'routes',
-      'activeRoute',
+      'activeRoute'
     ]),
     componentNameInputValue: {
       get() {
@@ -93,17 +92,17 @@ export default {
       },
       set(value) {
         this.updateComponentNameInputValue(value);
-      },
+      }
     },
     validateInput() {
       return this.componentNameInputValue.length < 1;
-    },
+    }
   },
   methods: {
     ...mapActions([
       'registerComponent',
       'addToSelectedElementList',
-      'updateComponentNameInputValue',
+      'updateComponentNameInputValue'
     ]),
     // invoked when clicking "add component" button
     handleClick() {
@@ -116,7 +115,7 @@ export default {
         h: 200,
         htmlList: this.selectedElementList,
         children: [],
-        isActive: false,
+        isActive: false
       };
 
       // console.log('component', component);

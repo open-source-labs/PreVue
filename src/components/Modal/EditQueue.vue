@@ -13,24 +13,24 @@ import {
   setClickedElementList,
   deleteFromComponentHtmlList,
   // setComponentHtmlList,
-  addToComponentElementList,
-} from '../../store/types';
+  addToComponentElementList
+} from '../../store/storeTypes';
 export default {
   name: 'EditQueue',
   props: {
     name: {
-      type: String,
+      type: String
     },
     $nodeStyle: {
       // type: [Object, String],
       // default: () => {
       //   return { 'background-color': 'red' };
       // }
-    },
+    }
   },
   data() {
     return {
-      listToRender: null,
+      listToRender: null
     };
   },
   computed: {
@@ -41,16 +41,16 @@ export default {
       },
       set(newArr) {
         this.setClickedElementList(newArr);
-      },
-    },
+      }
+    }
   },
   methods: {
     ...mapActions([setClickedElementList]),
     deleteElement(id) {
       this.$store.dispatch(deleteFromComponentHtmlList, id);
-    },
+    }
   },
-  components: { Tree: Tree.mixPlugins([Draggable]) },
+  components: { Tree: Tree.mixPlugins([Draggable]) }
 };
 </script>
 

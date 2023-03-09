@@ -11,22 +11,22 @@
 <script>
 import Icons from '../Icons.vue';
 import { mapState } from 'vuex';
-import * as types from '../../store/types.js';
+import * as types from '../../store/storeTypes';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 export default {
   name: 'EditSidebar',
   components: {
     Icons,
-    ChildrenMultiselect,
+    ChildrenMultiselect
   },
   computed: {
-    ...mapState(['activeComponent']),
+    ...mapState(['activeComponent'])
   },
   methods: {
     addToComponentElementList(elementName) {
       this.$store.dispatch(types.addToComponentElementList, elementName);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

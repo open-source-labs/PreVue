@@ -41,7 +41,10 @@
 
 <script>
 import draggable from 'vuedraggable';
-import { setSelectedElementList, deleteSelectedElement } from '../store/types';
+import {
+  setSelectedElementList,
+  deleteSelectedElement
+} from '../store/storeTypes';
 
 export default {
   name: 'HomeQueue',
