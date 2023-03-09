@@ -18,16 +18,6 @@ accountRouter.post(
   }
 );
 
-accountRouter.post(
-  '/login',
-  accountController.login,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
-  (req, res) => {
-    console.log('hello from accountRouter');
-    return res.status(201).json(res.locals.id);
-  }
-);
 
 accountRouter.post(
   '/loginWithoutCookie',
@@ -48,11 +38,24 @@ accountRouter.get(
     }
   );
 
+  // just trying to check for users; can be deleted later
+  accountRouter.get(
+    '/find',
+    accountController.findUser,
+    // oAuthController.requestGitHubIdentity,
+    (req, res) => {
+      console.log('in find');
+      return res.status(200).json(res.locals.username);
+    }
+  );
+
 accountRouter.get('/oauth/access_token/redirect',
   oAuthController.requestGitHubIdentity, 
   oAuthController.queryGitHubAPIWithAccessToken,
+  accountController.createUser,
   authController.sign,
   cookieController.setSSIDCookie,
+  
   // jwtofity,
   // setCookie
   // session?

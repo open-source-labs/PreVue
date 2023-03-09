@@ -17,12 +17,6 @@
         ></v-text-field>
 
         <div class="buttons">
-          <v-btn color="success" class="mt-4" block @click="login">
-            Login
-          </v-btn>
-          <v-btn color="success" class="mt-4" block @click="signup">
-            Sign Up
-          </v-btn>
           <v-btn color="success" class="mt-4" block @click="oauth">
             Sign in with GitHub
           </v-btn>
@@ -38,12 +32,7 @@
 <script>
 export default {
   name: 'Splash',
-  data() {
-    return {
-      username: '',
-      password: ''
-    };
-  },
+
   beforeCreate() {
     fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
       headers: {
@@ -57,37 +46,6 @@ export default {
     
   },
   methods: {
-
-    login() {
-      const username = this.username;
-      const password = this.password;
-      fetch('http://localhost:8080/users/loginWithoutCookie', {
-        method: 'POST',
-        // credentials: 'include',
-        body: JSON.stringify({
-          username,
-          password
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      })
-        .then(res => {
-          console.log(res);
-          return res.json();
-        })
-        .then(data => {
-          if (data != 'could not log in') {
-            this.$router.push('/home');
-          } else {
-            alert('Wrong credentials. Please try again');
-          }
-        })
-        .catch(err => console.log(err));
-    },
-
-    signup() {
-      if (this.username === 'nico' && this.password === 'zhou')
-        this.$router.push('/home');
-    },
 
     oauth() {
       // make request to endpoint; in server, redirect
@@ -109,17 +67,7 @@ export default {
       this.$router.push('/home');
     },
 
-    // auth() {
-    //   fetch('http://localhost:8080/users/validateSession', {credentials: 'include',
-    //   headers: {
-    //     'Access-Control-Allow-Origin': ['localhost:5173']
-    //   }
-    // }).then(res =>{
-    //   if (res.status === 200) {
-    //     this.toHome();
-    //   }
-    // })
-    // }
+
   }
 };
 </script>
