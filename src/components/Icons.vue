@@ -3,7 +3,7 @@
   <section
     class="icon-grid"
     :style="{
-      padding: '0 24px 0 24px',
+      padding: '0 24px 0 24px'
     }"
   >
     <button
@@ -20,12 +20,12 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import * as types from '../store/types.js';
+import * as types from '../store/storeTypes';
 
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons', 'modalOpen']),
+    ...mapState(['icons', 'modalOpen'])
   },
   methods: {
     // handleClick(htmlElement) {
