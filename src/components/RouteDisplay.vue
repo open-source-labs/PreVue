@@ -1,4 +1,5 @@
 <template>
+  <!--where a user can create a new route in the left sidebar-->
   <v-card
     id="sidebar1"
     class="rounded-0"

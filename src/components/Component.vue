@@ -1,4 +1,5 @@
 <template>
+  <!--the individual boxes that are made with the component creator-->
   <div>
     <Vue3DraggableResizable
       classNameDraggable="draggable"

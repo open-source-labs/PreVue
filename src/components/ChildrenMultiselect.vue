@@ -1,4 +1,5 @@
 <template>
+  <!--the 'select child components' dropdown in the left sidebar-->
   <div id="child-select">
     <VueMultiselect
       :style="{

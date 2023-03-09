@@ -1,4 +1,5 @@
 <template>
+  <!--the navbar on the main and tree views-->
   <v-app-bar
     id="navbar"
     color="blue-grey-lighten-4"
@@ -45,9 +46,9 @@ export default {
     // OpenProjectComponent,
     // NewProjectComponent,
     ExportProjectComponent,
-    ExportProjectComponent
   },
   methods: {
+    // routing to homepage and tree view
     routeHome() {
       this.$router.push({ path: '/home' });
     },

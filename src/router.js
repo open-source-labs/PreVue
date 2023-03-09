@@ -4,7 +4,7 @@ import Home from './views/HomeView.vue';
 import Splash from './views/SplashView.vue';
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
+  history: VueRouter.createWebHistory(),
   base: import.meta.env.BASE_URL,
   routes: [
     {
