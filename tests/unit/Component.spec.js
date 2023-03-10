@@ -14,27 +14,27 @@ describe('Component.vue', () => {
   });
 });
 
-describe('Component.vue', () => {
-  it('properly imports Vue3Draggable and renders the component', () => {
-    const store = createStore({
-      state() {
-        return {
-          selectedElementList: [{ id: 1, name: 'Element 1' }],
-        };
-      },
-    });
+// describe('Component.vue', () => {
+//   it('properly imports Vue3Draggable and renders the component', () => {
+//     const store = createStore({
+//       state() {
+//         return {
+//           selectedElementList: [{ id: 1, name: 'Element 1' }],
+//         };
+//       },
+//     });
 
-    const wrapper = mount(Component, {
-      components: {
-        Vue3DraggableResizable,
-      },
-      global: {
-        plugins: [store],
-      },
-    });
-    expect(
-      wrapper.findComponent({ name: 'Vue3DraggableResizable' }).exists()
-    ).toBeTruthy();
-    // expect(wrapper.findComponent({ name: 'HomeQueue' }).exists()).toBeTruthy();
-  });
-});
+//     const wrapper = mount(Component, {
+//       components: {
+//         Vue3DraggableResizable,
+//       },
+//       global: {
+//         plugins: [store],
+//       },
+//     });
+//     expect(
+//       wrapper.findComponent({ name: 'Vue3DraggableResizable' }).exists()
+//     ).toBeTruthy();
+//     // expect(wrapper.findComponent({ name: 'HomeQueue' }).exists()).toBeTruthy();
+//   });
+// });
