@@ -14,6 +14,12 @@ const mutations: Mutations<State> = {
       );
     }
   },
+  replaceState(state: State, payload) {
+    this.replaceState(payload)
+  },
+  [types.NAME_PROJECT]: (state: State, payload) => {
+    state.projectName = payload;
+  },
   [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state: State, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {

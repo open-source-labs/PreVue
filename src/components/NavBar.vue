@@ -15,6 +15,7 @@
     </button>
     <SaveProjectComponent></SaveProjectComponent>
     <ExportProjectComponent></ExportProjectComponent>
+    <OpenProjectComponent></OpenProjectComponent>
   </v-app-bar>
 </template>
 
@@ -25,7 +26,7 @@
 // import { addProject, changeTabName } from '../store/types';
 // import localforage from 'localforage';
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
-// import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
+import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 // import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
 // import ExportProjectComponent from './ExportProjectComponent.vue';
@@ -43,7 +44,7 @@ export default {
 
   components: {
     SaveProjectComponent,
-    // OpenProjectComponent,
+    OpenProjectComponent,
     // NewProjectComponent,
     ExportProjectComponent,
   },

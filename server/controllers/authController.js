@@ -6,14 +6,13 @@ const privateKey = process.env.SECRET_KEY;
 const authController = {};
 
 authController.authenticate = (req, res, next) => {
-    console.log('inside authenticate')
   try {
-    console.log('req cookies', req.cookies)
     const { ssid } = req.cookies;
     //decoded becomes {id,username}
     const decoded = jwt.verify(ssid, privateKey);
-    console.log('decoded', decoded)
     res.locals.username = decoded.username;
+    res.locals.id = decoded.id;
+    console.log('res.locals.username from decoded', res.locals.username)
     // res.append('Access-Control-Allow-Origin', ['localhost:5173'])
     // res.locals.userInfo = decoded;
     return next();
@@ -33,7 +32,7 @@ authController.sign = (req, res, next) => {
         id
       },
       privateKey,
-      { expiresIn: '1h' }
+      { expiresIn: '6h' }
     );
     console.log(token)
     res.locals.token = token;
