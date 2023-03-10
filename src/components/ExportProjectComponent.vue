@@ -16,6 +16,7 @@ import { saveAs } from 'file-saver';
 export default {
   name: 'ExportProjectComponent',
   methods: {
+    testing(){console.log(this.projectName)},
     buildDir() {
       const zip = new JSZip();
 
@@ -61,15 +62,16 @@ export default {
       return str;
     },
     parseHtmlList(array){
-            let string = '';
-            array.forEach(element => {
-              //get stuff from test prop
-              string += `\t\t<${element.text}>\n`;
-              if (element.children.length > 0) {
-                string += this.parseHtmlList(element.children, string);
-              }
-              string += `\t\t</${element.text}>\n`;
-            });
+      let string = '';
+        array.forEach(element => {
+        //get stuff from test prop
+          string += `\t\t<${element.text}>\n`;
+          if (element.children.length > 0) {
+            string += this.parseHtmlList(element.children, string);
+            }
+          string += `\t\t</${element.text}>\n`;
+        });
+        return string;
 
     },
     createComponentCode(componentName, children, htmlList) {
@@ -165,7 +167,7 @@ export default {
     },
     onClick() {
       const zip = new JSZip();
-
+      const project = this.projectName;
       zip.folder('project');
       zip.folder('project/public');
       zip.folder('project/src');
@@ -220,12 +222,17 @@ export default {
       }
 
       zip.generateAsync({ type: 'blob' }).then(function(content) {
-        saveAs(content, 'example5.zip');
+        saveAs(content, `${project}.zip`);
       });
     }
   },
   computed: {
-    ...mapState(['componentMap'])
+    ...mapState(['componentMap']),
+    projectName: {
+      get(){
+        return this.$store.state.projectName
+      }
+    }
   }
 };
 </script>

@@ -1,8 +1,8 @@
 const Users = require('../models/accountModels');
 const accountController = {};
 
-//createUser
-
+// enters a user into the database after GitHub OAuth if an entry
+// does not already exist
 accountController.createUser = (req, res, next) => {
   const { username, id } = res.locals;
   //Making sure username does not exist
@@ -44,6 +44,22 @@ accountController.loginWithoutCookie = (req, res, next) => {
       });
     });
 };
+
+// showing the logged in user's projects before the mounting
+// of the home page
+accountController.userProjects = (req, res, next) => {
+  Users.findOne({username: res.locals.username})
+    .then(data => {
+      res.locals.userProjects = data.project_ids;
+      return next();
+    })
+    .catch((err) => {
+      next({
+        log: 'accountController.userProjects failed',
+        message: `could not find projects for user`,
+      });
+    });
+}
 
 // accountController.verifyUser = (req, res, next) => {
 //   // write code here

@@ -1,4 +1,5 @@
 //Mutations
+export const REPLACE_STATE = 'REPLACE_STATE';
 export const NAME_PROJECT = 'NAME_PROJECT';
 export const INITIALISESTORE = 'INITIALISESTORE';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
@@ -73,3 +74,4 @@ export const updateOpenModal = 'updateOpenModal';
 export const addElement = 'addElement';
 export const initialiseStore = 'initialiseStore';
 export const nameProject = 'nameProject';
+export const replaceState = 'replaceState';

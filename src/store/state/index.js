@@ -21,12 +21,9 @@ const newState = {
   },
 
   componentNameInputValue: '',
-  // projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
-  // projectNumber: 2,
-  // activeTab: 0,
   projectName: 'Unititled-1',
   componentChildrenMultiselectValue: [],
   modalOpen: false,

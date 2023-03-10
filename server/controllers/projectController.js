@@ -50,13 +50,16 @@ projectController.saveProject = (req, res, next) => {
   });
 };
 
+// updates project_ids of of User who is saving a project
+// if it already exists in their projects array, it is not added
 projectController.userQuery = (req, res, next) => {
   User.findOneAndUpdate(
     { username: res.locals.username },
-    { project_ids: [res.locals.projectName] }
+    { $addToSet: { project_ids: res.locals.projectName } },
+    { new: true }
   )
     .then(data => {
-      console.log('project in userQuery', res.locals.projectName);
+      console.log('user projects', data.project_ids)
       res.locals.user = data;
       return next();
     })
@@ -68,13 +71,18 @@ projectController.userQuery = (req, res, next) => {
     });
 };
 
+// for retrieving projects ('open project' on frontend)
 projectController.getProject = (req, res, next) => {
+  console.log('In getProject controller')
+  console.log('Project Name',req.body.project_name )
+  console.log('Username',res.locals.username )
   Project.findOne({
     project_name: req.body.project_name,
     projectOwner: res.locals.username
   })
     .then(data => {
-      res.locals.project = data;
+      
+      res.locals.project = data.projectObject;
       return next();
     })
     .catch(err => {

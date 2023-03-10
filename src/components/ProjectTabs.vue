@@ -2,9 +2,7 @@
   <v-tabs @change="changeTab">
     <v-tab
       class="has-background-white tab-item"
-      v-for="(label, idx) in projects"
-      :value="label.filename"
-      :key="idx"
+
     >{{ this.project }}</v-tab>
   </v-tabs>
 </template>

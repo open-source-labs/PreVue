@@ -16,12 +16,13 @@ projectRouter.post(
   }
 );
 
-projectRouter.get(
-  'getProject',
+projectRouter.post(
+  '/getProject',
   authController.authenticate,
   projectController.getProject,
   (req, res) => {
-    return res.status(200).json(res.locals.project)
+    console.log('testing route')
+    return res.status(201).json(res.locals.project);
   }
 )
 

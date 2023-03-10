@@ -10,6 +10,15 @@ const mutations = {
       );
     }
   },
+  replaceState(state, payload) {
+    this.replaceState(payload)
+  },
+  // [types.REPLACE_STATE]: (state, payload) => {
+  //   // console.log('payload', payload)
+  //   // state = JSON.parse(payload)
+  //   this.replaceState(payload)
+  //   // this.replaceState(Object.assign(state, JSON.parse(payload)))
+  // },
   [types.NAME_PROJECT]: (state, payload) => {
     state.projectName = payload;
   },
