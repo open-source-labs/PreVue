@@ -25,6 +25,7 @@ const app = createApp({
     store.commit('initializeStore');
   }
 });
+// const app = createApp({extends: App});
 app.use(vuetify);
 app.use(router);
 app.use(store);

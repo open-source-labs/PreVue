@@ -16,6 +16,7 @@ import { saveAs } from 'file-saver';
 export default {
   name: 'ExportProjectComponent',
   methods: {
+    testing(){console.log(this.projectName)},
     buildDir() {
       const zip = new JSZip();
 
@@ -60,32 +61,24 @@ export default {
       str += `\t]\n})\n`;
       return str;
     },
+    parseHtmlList(array){
+      let string = '';
+        array.forEach(element => {
+        //get stuff from test prop
+          string += `\t\t<${element.text}>\n`;
+          if (element.children.length > 0) {
+            string += this.parseHtmlList(element.children, string);
+            }
+          string += `\t\t</${element.text}>\n`;
+        });
+        return string;
+
+    },
     createComponentCode(componentName, children, htmlList) {
       let component;
       if (componentName === 'App') {
-        // fs.writeFileSync(
-        //   componentLocation + '.vue',
-        //   this.writeTemplate(componentName, children) +
-        //     this.writeStyle(componentName)
-        // );
-        console.log(
-          'template',
-          this.writeTemplate(componentName, children, htmlList)
-        );
         component = this.writeTemplate(componentName, children, htmlList);
       } else {
-        // fs.writeFileSync(
-        //   componentLocation + '.vue',
-        //   this.writeTemplate(componentName, children) +
-        //     this.writeScript(componentName, children) +
-        //     this.writeStyle(componentName)
-        // );
-        console.log(
-          'template',
-          this.writeTemplate(componentName, children, htmlList)
-        );
-        console.log('script', this.writeScript(componentName, children));
-
         component =
           this.writeTemplate(componentName, children, htmlList) +
           this.writeScript(componentName, children);
@@ -93,7 +86,6 @@ export default {
       return component;
     },
     writeTemplate(compName, children, htmlList) {
-      console.log('children', children);
       let str = '';
       if (compName === 'App') {
         str += `<div id="app">\n\t\t<div id="nav">\n`;
@@ -111,26 +103,26 @@ export default {
         });
         if (htmlList !== undefined) {
           // accounts for nesting of html elements in a component
-          function helper(array) {
-            let string = '';
-            array.forEach(element => {
-              //get stuff from test prop
-              string += `\t\t<${element.text}>\n`;
-              if (element.children.length > 0) {
-                string += helper(element.children, string);
-              }
-              string += `\t\t</${element.text}>\n`;
-            });
+          // function helper(array) {
+          //   let string = '';
+          //   array.forEach(element => {
+          //     //get stuff from test prop
+          //     string += `\t\t<${element.text}>\n`;
+          //     if (element.children.length > 0) {
+          //       string += helper(element.children, string);
+          //     }
+          //     string += `\t\t</${element.text}>\n`;
+          //   });
 
-            return string;
-          }
+          //   return string;
+          // }
           // console.log('htmlList', htmlList);
           // htmlList.forEach(element => {
 
           //   str += `\t\t<${element.text}>\n\t\t</${element.text}>\n`;
           // });
           // console.log('helper', helper(htmlList));
-          str += helper(htmlList);
+          str += this.parseHtmlList(htmlList);
         }
       }
 
@@ -175,7 +167,7 @@ export default {
     },
     onClick() {
       const zip = new JSZip();
-
+      const project = this.projectName;
       zip.folder('project');
       zip.folder('project/public');
       zip.folder('project/src');
@@ -195,17 +187,11 @@ export default {
       const router = this.createRouter();
       zip.file('project/src/router.js', router);
 
-      // zip.generateAsync({ type: 'blob' }).then(function(content) {
-      //   saveAs(content, 'example5.zip');
-      // });
-
       for (let componentName in this.componentMap) {
         let component;
-        console.log('compMapObj', this.componentMap[componentName]);
         if (componentName !== 'App') {
           if (this.$store.state.routes[componentName]) {
             component = this.createComponentCode(
-              // path.join(data, 'src', 'views', componentName),
               componentName,
               this.componentMap[componentName].children,
               this.componentMap[componentName].htmlList
@@ -216,7 +202,6 @@ export default {
             );
           } else {
             component = this.createComponentCode(
-              // path.join(data, 'src', 'components', componentName),
               componentName,
               this.componentMap[componentName].children,
               this.componentMap[componentName].htmlList
@@ -228,7 +213,6 @@ export default {
           }
         } else {
           component = this.createComponentCode(
-            // path.join(data, 'src', componentName),
             componentName,
             this.componentMap[componentName].children,
             this.componentMap[componentName].htmlList
@@ -237,59 +221,18 @@ export default {
         }
       }
 
-      // fetch('http://localhost:3000/templates/index.html')
-      //   .then(res => res.arrayBuffer())
-      //   .then(data => {
-      //     return zip.file('project/public/index.html', data);
-      //   })
-      //   .then(() => {
-      //     zip.generateAsync({ type: 'blob' }).then(function(content) {
-      //       saveAs(content, 'example.zip');
-      //     });
-      //   });
-
       zip.generateAsync({ type: 'blob' }).then(function(content) {
-        saveAs(content, 'example5.zip');
+        saveAs(content, `${project}.zip`);
       });
     }
   },
   computed: {
-    ...mapState(['componentMap'])
-  },
-  mounted() {
-    // ipc.on('export-project-location', (event, data) => {
-    //   if (!fs.existsSync(data)) {
-    //     fs.mkdirSync(data);
-    //     console.log('FOLDER CREATED!');
-    //     fs.mkdirSync(path.join(data, 'public'));
-    //     fs.mkdirSync(path.join(data, 'src'));
-    //     fs.mkdirSync(path.join(data, 'src', 'components'));
-    //     fs.mkdirSync(path.join(data, 'src', 'views'));
-    //   }
-    // this.createRouter(data);
-    // for (let componentName in this.componentMap) {
-    //   if (componentName !== 'App') {
-    //     if (this.$store.state.routes[componentName]) {
-    //       this.createComponentCode(
-    //         // path.join(data, 'src', 'views', componentName),
-    //         componentName,
-    //         this.componentMap[componentName].children
-    //       );
-    //     } else {
-    //       this.createComponentCode(
-    //         // path.join(data, 'src', 'components', componentName),
-    //         componentName,
-    //         this.componentMap[componentName].children
-    //       );
-    //     }
-    //   } else {
-    //     this.createComponentCode(
-    //       // path.join(data, 'src', componentName),
-    //       componentName,
-    //       this.componentMap[componentName].children
-    //     );
-    //   }
-    // }
+    ...mapState(['componentMap']),
+    projectName: {
+      get(){
+        return this.$store.state.projectName
+      }
+    }
   }
 };
 </script>
