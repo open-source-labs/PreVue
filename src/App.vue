@@ -1,11 +1,7 @@
 <template>
   <v-card id="app">
     <v-layout>
-      <NavBar
-        v-if="!$route.meta.hideNavbar"
-        id="nav"
-        imageUrl="../src/assets/logo.png"
-      ></NavBar>
+      <NavBar id="nav" imageUrl="../src/assets/logo.png"></NavBar>
 
       <v-main style="min-height: 300px"><router-view /></v-main>
     </v-layout>
@@ -26,8 +22,8 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 };
 </script>
 

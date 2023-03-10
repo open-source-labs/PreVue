@@ -3,16 +3,10 @@ import { createStore } from 'vuex';
 import { describe, it, expect, vi } from 'vitest';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 import Component from '@/components/Component.vue';
-import HomeSidebar from '@/components/HomeSidebar.vue';
-import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 
-describe('Testing for elements', () => {
-  it('should render', () => {
-    const wrapper = mount(Component, {
-      components: {
-        Vue3DraggableResizable,
-      },
-    });
+describe('Component.vue', () => {
+  it('properly renders the htlm element of children', () => {
+    const wrapper = mount(Component);
     expect(wrapper.find('h3').exists()).toBeTruthy();
     expect(wrapper.find('h1').exists()).toBeFalsy();
     expect(wrapper.find('div').exists()).toBeTruthy();
@@ -20,8 +14,8 @@ describe('Testing for elements', () => {
   });
 });
 
-describe('Component.vue properly renders children', () => {
-  it('should render', () => {
+describe('Component.vue', () => {
+  it('properly imports Vue3Draggable and renders the component', () => {
     const store = createStore({
       state() {
         return {
@@ -44,26 +38,3 @@ describe('Component.vue properly renders children', () => {
     // expect(wrapper.findComponent({ name: 'HomeQueue' }).exists()).toBeTruthy();
   });
 });
-
-// describe('HomeSidebar.vue properly renders children', () => {
-//   it('should render', () => {
-//     const store = createStore({
-//       state() {
-//         return {
-//           selectedElementList: [{ id: 1, name: 'Element 1' }],
-//           componentNameInputValue: '',
-//         };
-//       },
-//     });
-
-//     const wrapper = mount(HomeSidebar, {
-//       components: {
-//         ChildrenMultiselect,
-//       },
-//       global: {
-//         plugins: [store],
-//       },
-//     });
-//     expect(wrapper.find('.children-multiselect').exists()).toBeTruthy();
-//   });
-// });
