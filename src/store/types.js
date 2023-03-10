@@ -1,4 +1,5 @@
 //Mutations
+export const NAME_PROJECT = 'NAME_PROJECT';
 export const INITIALISESTORE = 'INITIALISESTORE';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const ADD_COMPONENT_TO_COMPONENT_MAP = 'ADD_COMPONENT_TO_COMPONENT_MAP';
@@ -71,3 +72,4 @@ export const updateComponentNameInputValue = 'updateComponentNameInputValue';
 export const updateOpenModal = 'updateOpenModal';
 export const addElement = 'addElement';
 export const initialiseStore = 'initialiseStore';
+export const nameProject = 'nameProject';

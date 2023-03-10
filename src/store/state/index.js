@@ -8,28 +8,30 @@ const newState = {
     App: {
       componentName: 'App',
       children: ['HomeView'],
-      htmlList: [],
+      htmlList: []
     },
     HomeView: {
       componentName: 'HomeView',
       children: [],
-      htmlList: [],
-    },
+      htmlList: []
+    }
   },
   routes: {
-    HomeView: [],
+    HomeView: []
   },
 
   componentNameInputValue: '',
-  projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
+  // projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
-  projectNumber: 2,
-  activeTab: 0,
+  // projectNumber: 2,
+  // activeTab: 0,
+  projectName: 'Unititled-1',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
   htmlElements: [],
+  saved: false,
 };
 
 export default newState;

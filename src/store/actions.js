@@ -1,6 +1,9 @@
 import * as types from './types';
 
 const actions = {
+  [types.nameProject]: ({ commit }, payload) => {
+    commit(types.NAME_PROJECT, payload);
+  },
   [types.initialiseStore]: ({ commit }) => {
     commit(types.INITIALISESTORE);
   },

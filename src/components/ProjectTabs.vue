@@ -5,7 +5,7 @@
       v-for="(label, idx) in projects"
       :value="label.filename"
       :key="idx"
-    ></v-tab>
+    >{{ this.project }}</v-tab>
   </v-tabs>
 </template>
 
@@ -18,7 +18,12 @@ import { deleteProjectTab } from '../store/types';
 
 export default {
   name: 'ProjectTabs',
-  computed: mapState(['projects', 'activeTab']),
+  computed: {...mapState(['projects', 'activeTab']),
+  project: {
+      get() {
+        return this.$store.state.projectName;
+      }
+    }},
   created() {
     // Mousetrap.bind(['command+t', 'command+t'], () => {
     //   console.log('triggered');

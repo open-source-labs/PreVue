@@ -10,6 +10,9 @@ const mutations = {
       );
     }
   },
+  [types.NAME_PROJECT]: (state, payload) => {
+    state.projectName = payload;
+  },
   [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
     state.componentMap = {

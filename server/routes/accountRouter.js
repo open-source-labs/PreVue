@@ -9,9 +9,9 @@ const accountRouter = express.Router();
 //signup route
 accountRouter.post(
   '/createUser',
-  accountController.createUser,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  // accountController.createUser,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
     console.log('hello from createUser in accountRouter');
     return res.status(201).json(res.locals.id);
@@ -21,7 +21,7 @@ accountRouter.post(
 
 accountRouter.post(
   '/loginWithoutCookie',
-  accountController.loginWithoutCookie,
+  // accountController.loginWithoutCookie,
   (req, res) => {
     console.log('hello from accountRouter');
     return res.status(201).json(res.locals.id);
@@ -50,15 +50,11 @@ accountRouter.get(
   );
 
 accountRouter.get('/oauth/access_token/redirect',
-  oAuthController.requestGitHubIdentity, 
+  oAuthController.requestGitHubIdentity,
   oAuthController.queryGitHubAPIWithAccessToken,
   accountController.createUser,
   authController.sign,
   cookieController.setSSIDCookie,
-  
-  // jwtofity,
-  // setCookie
-  // session?
   (req, res) => {
     console.log('after requestGitHUbIdentity'),
     console.log('res.locals.access_token', res.locals.access_token),
