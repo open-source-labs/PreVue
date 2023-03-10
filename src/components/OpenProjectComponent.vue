@@ -10,7 +10,7 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card>
-        <v-toolbar color="primary" title="Save your prototype"></v-toolbar>
+        <v-toolbar color="primary" title="Get a project"></v-toolbar>
         <v-card-text>
           <v-form
             >  <v-select
@@ -20,7 +20,7 @@
   ></v-select></v-form>
         </v-card-text>
         <v-card-actions class="justify-end">
-          <button @click="isActive.value = false; selectProject()">Click me</button>
+          <button @click="isActive.value = false; selectProject()">Get Project</button>
           <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
         </v-card-actions>
       </v-card>
