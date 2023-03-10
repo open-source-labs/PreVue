@@ -1,6 +1,8 @@
-import * as types from './types';
+import * as types from './storeTypes';
+import { Actions } from '../types';
 
-const actions = {
+
+const actions: Actions = {
   [types.replaceState]: ({commit}, payload) => {
     commit('replaceState', payload);
   },
@@ -20,10 +22,12 @@ const actions = {
       );
       commit(types.ADD_COMPONENT_TO_ACTIVE_ROUTE_IN_ROUTE_MAP, payload);
 
-      let component = state.componentNameInputValue;
-      let value = state.componentChildrenMultiselectValue.map((component) => {
-        return state.componentMap[component];
-      });
+      const component = state.componentNameInputValue;
+      const value = state.componentChildrenMultiselectValue.map(
+        (component: string) => {
+          return state.componentMap[component];
+        }
+      );
       commit(types.UPDATE_COMPONENT_CHILDREN_VALUE, { component, value });
       commit(types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE, []);
       commit(types.UPDATE_COMPONENT_NAME_INPUT_VALUE, '');
@@ -46,8 +50,8 @@ const actions = {
   },
   [types.deleteActiveComponent]: ({ state, commit }) => {
     commit(types.DELETE_ACTIVE_COMPONENT);
-    let activeRouteArray = [...state.routes[state.activeRoute]];
-    let newActiveRouteArray = activeRouteArray.filter((componentData) => {
+    const activeRouteArray = [...state.routes[state.activeRoute]];
+    const newActiveRouteArray = activeRouteArray.filter(componentData => {
       return state.activeComponent !== componentData.componentName;
     });
     commit(types.SET_ACTIVE_ROUTE_ARRAY, newActiveRouteArray);
@@ -74,11 +78,11 @@ const actions = {
   [types.addRouteToRouteMap]: ({ state, commit }, payload) => {
     commit(types.ADD_ROUTE, payload);
     commit(types.SET_ACTIVE_ROUTE, payload);
-    let route = state.activeRoute;
-    let children = [];
+    const route = state.activeRoute;
+    const children: string[] = [];
     commit(types.ADD_ROUTE_TO_COMPONENT_MAP, { route, children });
-    let component = 'App';
-    let value = state.componentMap[state.activeRoute].componentName;
+    const component = 'App';
+    const value = state.componentMap[state.activeRoute].componentName;
     commit(types.ADD_COMPONENT_TO_COMPONENT_CHILDREN, { component, value });
   },
   [types.setActiveRoute]: ({ commit }, payload) => {
@@ -106,7 +110,7 @@ const actions = {
   },
   [types.updateOpenModal]: ({ commit }, payload) => {
     commit(types.UPDATE_OPEN_MODAL, payload);
-  },
+  }
 };
 
 export default actions;
