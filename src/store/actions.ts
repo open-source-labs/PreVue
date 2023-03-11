@@ -1,7 +1,17 @@
 import * as types from './storeTypes';
 import { Actions } from '../types';
 
+
 const actions: Actions = {
+  [types.setLogin]: ({commit}, payload) => {
+    commit(types.SET_LOGIN, payload)
+  },
+  [types.replaceState]: ({commit}, payload) => {
+    commit('replaceState', payload);
+  },
+  [types.nameProject]: ({ commit }, payload) => {
+    commit(types.NAME_PROJECT, payload);
+  },
   [types.initialiseStore]: ({ commit }) => {
     commit(types.INITIALISESTORE);
   },

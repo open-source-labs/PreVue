@@ -111,6 +111,8 @@ oAuthController.queryGitHubAPIWithAccessToken = async (req, res, next) => {
       ...processGitHubData(data),
     };
 
+    console.log('res locals in last github step', res.locals)
+
     return next();
   } catch (error) {
     return next({

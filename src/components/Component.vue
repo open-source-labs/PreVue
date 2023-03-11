@@ -51,4 +51,7 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.component-box{
+  color: green
+}</style>

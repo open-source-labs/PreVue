@@ -6,15 +6,6 @@
       <v-main style="min-height: 300px"><router-view /></v-main>
     </v-layout>
   </v-card>
-  <!-- <v-app>
-    <div id="app" class="hero">
-      <NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"></NavBar>
-
-      <section>
-        <router-view />
-      </section>
-    </div>
-  </v-app> -->
 </template>
 
 <script>
@@ -28,6 +19,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+#app {
+  height: 105vh;
+  font-family: 'Nunito', sans-serif;
+}
 #nav {
   display: flex;
   justify-content: space-between;

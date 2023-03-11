@@ -57,15 +57,15 @@ export type State = {
   componentMap: ComponentMap;
   routes: Routes;
   componentNameInputValue: string;
-  projects: Project[];
   activeRoute: string;
   activeComponent: string;
+  projectName: string;
   selectedElementList: object[];
-  projectNumber: number;
-  activeTab: number;
   componentChildrenMultiselectValue: string[];
   modalOpen: boolean;
   htmlElements: any[];
+  saved: boolean;
+  loggedIn: boolean,
 };
 
 export type Mutations<State> = {

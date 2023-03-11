@@ -1,8 +1,6 @@
 import * as types from './storeTypes';
 import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
-import localforage from 'localforage';
-
 const mutations: Mutations<State> = {
   initializeStore(state: State) {
     if (localStorage.getItem('store')) {
@@ -13,6 +11,16 @@ const mutations: Mutations<State> = {
         )
       );
     }
+  },
+  replaceState(state: State, payload) {
+    this.replaceState(payload)
+  },
+  [types.SET_LOGIN] : (state: State, payload) => {
+    console.log('payload', payload)
+    state.loggedIn = payload;
+  },
+  [types.NAME_PROJECT]: (state: State, payload) => {
+    state.projectName = payload;
   },
   [types.ADD_COMPONENT_TO_COMPONENT_MAP]: (state: State, payload) => {
     const { componentName, htmlList, children, isActive } = payload;
@@ -101,14 +109,14 @@ const mutations: Mutations<State> = {
     console.log(payload);
     Object.assign(state, payload);
   },
-  [types.ADD_PROJECT]: (state: State, payload) => {
-    console.log('PUSHING ', payload);
-    state.projects.push(payload);
-    state.projectNumber++;
-  },
-  [types.CHANGE_ACTIVE_TAB]: (state: State, payload) => {
-    state.activeTab = payload;
-  },
+  // [types.ADD_PROJECT]: (state: State, payload) => {
+  //   console.log('PUSHING ', payload);
+  //   state.projects.push(payload);
+  //   state.projectNumber++;
+  // },
+  // [types.CHANGE_ACTIVE_TAB]: (state: State, payload) => {
+  //   state.activeTab = payload;
+  // },
   [types.ADD_ROUTE]: (state: State, payload) => {
     state.routes = {
       ...state.routes,

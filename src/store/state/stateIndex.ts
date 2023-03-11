@@ -22,15 +22,15 @@ const newState: State = {
   },
 
   componentNameInputValue: '',
-  projects: [{ filename: 'Untitled-1', lastSavedLocation: '' }],
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
-  projectNumber: 2,
-  activeTab: 0,
+  projectName: 'Unititled-1',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
-  htmlElements: []
+  htmlElements: [],
+  saved: false,
+  loggedIn: false,
 };
 
 export default newState;
