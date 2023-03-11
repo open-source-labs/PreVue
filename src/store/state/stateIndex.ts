@@ -30,6 +30,7 @@ const newState: State = {
   modalOpen: false,
   htmlElements: [],
   saved: false,
+  loggedIn: false,
 };
 
 export default newState;

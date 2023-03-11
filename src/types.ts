@@ -65,6 +65,7 @@ export type State = {
   modalOpen: boolean;
   htmlElements: any[];
   saved: boolean;
+  loggedIn: boolean,
 };
 
 export type Mutations<State> = {

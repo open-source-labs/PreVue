@@ -13,9 +13,10 @@
       <br />
       <span class="white--text">Tree</span>
     </button>
-    <SaveProjectComponent></SaveProjectComponent>
+    <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
     <ExportProjectComponent></ExportProjectComponent>
-    <OpenProjectComponent></OpenProjectComponent>
+    <OpenProjectComponent v-if="validUser"></OpenProjectComponent>
+    <LogOutComponent v-if="validUser" ></LogOutComponent>
   </v-app-bar>
 </template>
 
@@ -29,6 +30,7 @@ import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 // import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+import LogOutComponent from './LogOutComponent.vue';
 // import ExportProjectComponent from './ExportProjectComponent.vue';
 
 // const ipc = require('electron').ipcRenderer;
@@ -46,6 +48,7 @@ export default {
     SaveProjectComponent,
     OpenProjectComponent,
     // NewProjectComponent,
+    LogOutComponent,
     ExportProjectComponent,
   },
   methods: {
@@ -55,6 +58,11 @@ export default {
     },
     routeTree() {
       this.$router.push({ path: '/tree' });
+    }
+  },
+  computed: {
+    validUser(){
+      return this.$store.state.loggedIn;
     }
   }
 };
