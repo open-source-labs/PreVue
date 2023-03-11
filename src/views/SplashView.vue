@@ -29,9 +29,9 @@
     </ul>
     <br/>
     <div id="use-prevue">
-    <p>
+    <p><strong>
       Use PreVue to create projects in single sessions or sign in with GitHub to
-      save projects and update them anytime.     
+      save projects and update them anytime.</strong>
     </p>
   </div>
   <br/>

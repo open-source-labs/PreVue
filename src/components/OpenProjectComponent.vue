@@ -10,7 +10,7 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card>
-        <v-toolbar color="primary" title="Get a project"></v-toolbar>
+        <v-toolbar id='toolbar' style="{color: white }" color="#39b982" title="Get a project"></v-toolbar>
         <v-card-text>
           <v-form
             >  <v-select
@@ -96,5 +96,9 @@ export default {
 
 .white--text:hover {
   color: #39b982;
+}
+
+#toolbar {
+  color: white;
 }
 </style>
