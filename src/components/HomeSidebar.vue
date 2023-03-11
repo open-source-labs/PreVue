@@ -17,7 +17,7 @@
         padding: '0 24px 0 24px',
       }"
     >
-     <strong>Component Creator</strong> 
+      <strong>Component Creator</strong>
     </v-card-title>
     <v-card-actions class="d-block">
       <v-form
@@ -89,8 +89,8 @@ export default {
     ]),
     componentNameInputValue: {
       get() {
-        // return this.$store.state.componentNameInputValue;
-        return this.componentNameInputValue;
+        return this.$store.state.componentNameInputValue;
+        // return this.componentNameInputValue;
       },
       set(value) {
         this.updateComponentNameInputValue(value);
