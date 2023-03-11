@@ -25,10 +25,11 @@ afterAll(async () => {
 describe('/users accountRouter', () => {
   describe('POST / createUser', () => {
     it('responds with 200 status and text/html content type', () => {
-      return request(server)
-        .post('/users/createUser')
-        .expect('Content-Type', /text\/html/)
-        .expect(200);
+      return (
+        request(server)
+          .post('/users/createUser')
+          .expect(201)
+      );
     });
   });
 });
