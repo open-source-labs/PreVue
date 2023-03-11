@@ -1,16 +1,17 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" width="300">
     <template v-slot:activator="{ props }">
-      <v-btn color="primary" v-bind="props"
-        ><i class="fas fa-save fa-lg"></i>
+      <v-btn color="white" v-bind="props"
+        >
+        <!-- <i class="fas fa-save fa-lg"></i> -->
 
         <br />
         <span class="white--text">Save Project</span></v-btn
       >
     </template>
     <template v-slot:default="{ isActive }">
-      <v-card>
-        <v-toolbar color="primary" title="Save your prototype"></v-toolbar>
+      <v-card >
+        <v-toolbar color="#39b982" title="Save your prototype"></v-toolbar>
         <v-card-text>
           <v-form
             ><v-text-field
@@ -181,4 +182,12 @@ export default {
 // };
 </script>
 
-<style></style>
+<style scoped>
+.white--text {
+  font-weight: 700;
+}
+
+.white--text:hover {
+  color: #39b982;
+}
+</style>

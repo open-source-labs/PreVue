@@ -1,8 +1,8 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" width="300">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" id="button">
-        <i class="fas fa-folder-open fa-lg"></i>
+      <v-btn v-bind="props" class='open-btn' id="button">
+        <!-- <i class="fas fa-folder-open fa-lg"></i> -->
 
         <br />
         <span class="white--text">Open Project</span></v-btn
@@ -84,4 +84,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+.open-btn {
+  font-family: 'Nunito', sans-serif;
+}
+
+.white--text {
+  font-weight: 700;
+}
+
+.white--text:hover {
+  color: #39b982;
+}
+</style>

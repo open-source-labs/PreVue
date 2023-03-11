@@ -23,8 +23,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 #app {
   height: 105vh;
+  font-family: 'Nunito', sans-serif;
 }
 #nav {
   display: flex;

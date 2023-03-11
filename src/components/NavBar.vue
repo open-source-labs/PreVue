@@ -1,22 +1,25 @@
 <template>
   <!--the navbar on the main and tree views-->
-  <v-app-bar
+  <v-app-bar class="border-bottom"
     id="navbar"
-    color="blue-grey-lighten-4"
+    color="black"
     role="navigation"
     aria-label="main navigation"
   >
     <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
     <h1 id="prevue">PreVue</h1>
-    <button @click="routeTree">
-      <i class="fas fa-tree fa-lg"></i>
+    <div class="buttons">
+    <v-btn id='tree-btn' @click="routeTree">
+      <!-- <i class="fas fa-tree fa-lg"></i> -->
       <br />
       <span class="white--text">Tree</span>
-    </button>
+    </v-btn>
+    
     <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
     <ExportProjectComponent></ExportProjectComponent>
     <OpenProjectComponent v-if="validUser"></OpenProjectComponent>
     <LogOutComponent v-if="validUser" ></LogOutComponent>
+  </div>
   </v-app-bar>
 </template>
 
@@ -69,8 +72,23 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+.border-bottom{
+  border-bottom: 1px solid #ccc;
+  border-color: #39b982;
+  align-items: right;
+}
+.buttons {
+  width: 100vw;
+  padding-right: 1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  vertical-align: middle;
+}
+
 #prevue {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 2.5em;
   color: #39b982;
@@ -87,21 +105,15 @@ export default {
   cursor: pointer;
 }
 
-.v-toolbar__content {
-  background-color: #d4d4dc;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.save-icon:hover {
-  cursor: pointer;
+#tree-btn {
+  font-weight: 700;
+  font-size: 14px;
 }
 
 button {
   margin: 5px;
-  font-size: 12px;
+  font-size: 14px;
   background: none;
   border: none;
 }
