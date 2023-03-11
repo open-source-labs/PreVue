@@ -23,7 +23,6 @@
       @resize-end="print('resize-end')"
     >
       <h3>{{ compName }}</h3>
-      <p>example text</p>
     </Vue3DraggableResizable>
   </div>
 </template>
