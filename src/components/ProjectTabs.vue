@@ -2,7 +2,6 @@
   <v-tabs @change="changeTab">
     <v-tab
       class="has-background-white tab-item"
-
     >{{ this.project }}</v-tab>
   </v-tabs>
 </template>
@@ -74,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// #project-tabs {
-//   height: 30px;
-// }
+.has-background-white {
+  font-weight: 700;
+}
 </style>

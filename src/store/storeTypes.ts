@@ -1,6 +1,7 @@
 import { Type } from '../types';
 
 //Mutations
+export const SET_LOGIN: Type = 'SET_LOGIN';
 export const REPLACE_STATE: Type = 'REPLACE_STATE';
 export const NAME_PROJECT: Type = 'NAME_PROJECT';
 export const INITIALISESTORE: Type = 'INITIALISESTORE';
@@ -81,3 +82,4 @@ export const addElement: Type = 'addElement';
 export const initialiseStore: Type = 'initialiseStore';
 export const nameProject: Type = 'nameProject';
 export const replaceState: Type = 'replaceState';
+export const setLogin: Type = 'setLogin';

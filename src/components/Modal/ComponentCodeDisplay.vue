@@ -84,7 +84,7 @@ export default {
 }
 #codeDisplay {
   padding: 10px;
-  background: #00d1b2;
+  background: #3ab982
   /* background: linear-gradient(120deg, #5c258d, #4389a2); */
 }
 </style>

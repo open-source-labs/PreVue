@@ -1,8 +1,8 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" width="300">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" id="button">
-        <i class="fas fa-folder-open fa-lg"></i>
+      <v-btn v-bind="props" class='open-btn' id="button">
+        <!-- <i class="fas fa-folder-open fa-lg"></i> -->
 
         <br />
         <span class="white--text">Open Project</span></v-btn
@@ -10,7 +10,7 @@
     </template>
     <template v-slot:default="{ isActive }">
       <v-card>
-        <v-toolbar color="primary" title="Get a project"></v-toolbar>
+        <v-toolbar id='toolbar' style="{color: white }" color="#39b982" title="Get a project"></v-toolbar>
         <v-card-text>
           <v-form
             >  <v-select
@@ -84,4 +84,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+.open-btn {
+  font-family: 'Nunito', sans-serif;
+}
+
+.white--text {
+  font-weight: 700;
+}
+
+.white--text:hover {
+  color: #39b982;
+}
+
+#toolbar {
+  color: white;
+}
+</style>

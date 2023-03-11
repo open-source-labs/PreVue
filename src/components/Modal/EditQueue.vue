@@ -81,7 +81,7 @@ p {
 #tree .tree-node {
   align-items: padding-left;
   appearance: none;
-  background-color: #00d1b2;
+  background-color: #3ab982;
   /*background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%); */
   background-size: calc(100% + 20px) calc(100% + 20px);
   border-radius: 100px;

@@ -3,6 +3,9 @@ import { Actions } from '../types';
 
 
 const actions: Actions = {
+  [types.setLogin]: ({commit}, payload) => {
+    commit(types.SET_LOGIN, payload)
+  },
   [types.replaceState]: ({commit}, payload) => {
     commit('replaceState', payload);
   },

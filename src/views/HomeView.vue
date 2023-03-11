@@ -6,7 +6,7 @@
         :style="{
           'background-color': 'rgb(30, 31, 33)'
         }"
-        width="240"
+        width="250"
         permanent
       >
         <RouteDisplay /><HomeSidebar />
@@ -37,6 +37,7 @@ import HomeSidebar from '@/components/HomeSidebar.vue';
 import HomeQueue from '@/components/HomeQueue.vue';
 import RouteDisplay from '@/components/RouteDisplay.vue';
 import ProjectTabs from '@/components/ProjectTabs.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -47,7 +48,27 @@ export default {
     RouteDisplay,
     ProjectTabs,
   },
+  beforeMount(){
+    this.isLoggedIn();
+    console.log(this.$store.state.loggedIn)
+  },
   data() {},
+  methods: {
+    ...mapActions(['setLogin']),
+    async isLoggedIn(){
+      const res = await fetch('http://localhost:8080/users/validateSession', {method: 'GET', credentials: 'include', headers: {
+        'Access-Control-Allow-Origin': ['localhost:5173']
+      }})
+      console.log(res)
+      if (res.status === 200) {
+        console.log('validating', res.status)
+        this.setLogin(true);
+        console.log(this.$store.state.loggedIn)
+      } else {
+        this.setLogin(false);
+      }
+    }
+  }
 };
 </script>
 

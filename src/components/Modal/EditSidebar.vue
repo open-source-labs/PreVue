@@ -33,6 +33,10 @@ export default {
 .icon-row {
   margin-top: 10px;
 }
+
+button:hover {
+  color: red !important
+}
 .panel-heading {
   padding: 10px;
   background-color: darkgray;

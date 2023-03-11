@@ -1,4 +1,5 @@
 <template>
+  <div class="scroll">
   <div id="splash">
     <div id="top-elements">
       <div @click="toHome">
@@ -26,13 +27,17 @@
         default Vite settings.
       </li>
     </ul>
-    <p>
+    <br/>
+    <div id="use-prevue">
+    <p><strong>
       Use PreVue to create projects in single sessions or sign in with GitHub to
-      save projects and update them anytime.
+      save projects and update them anytime.</strong>
     </p>
+  </div>
+  <br/>
     <h2>How to use:</h2>
     <h4>Adding Components</h4>
-    <ul id="adding-components">
+    <ul id="list">
       <li>Double click on the application icon</li>
       <li>
         Create components by entering a name and clicking the HTML elements you
@@ -46,7 +51,36 @@
         design you have in mind.
       </li>
     </ul>
+    <br/>
+    <h4>Editing Components</h4>
+    <ul id="list">
+      <li>Double click elements to bring up the modal view</li>
+      <li>
+        Add additional elements to a component with a live preview of the component code
+      </li>
+      <li>Drag elements on the right side bar to nest elements</li>
+      <li>Establish parent-child component relationships via the dropdown menu when creating or editing components</li>
+    </ul>
+    <br/>
+    <h4>Adding Routes</h4>
+    <ul id="list">
+      <li>Create different routes that represent different Views for your app.</li>
+      <li>
+        Any components created on a given route will be automatically saved to that route
+      </li>
+      <li>See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar</li>
+    </ul>
+    <br/>
+    <h4>Saving/Opening/Exporting Projects</h4>
+    <ul id="list">
+      <li>If you ever need to save your current project, click the ‘Save Project’ icon to save it to PreVue’s database</li>
+      <li>
+        Click ‘Open Project’ to retrieve past projects
+      </li>
+      <li>Once you're satisfied, click the export project icon to export your awesome project as new Vue application!</li>
+    </ul>
   </div>
+</div>
 </template>
 
 <script>
@@ -90,17 +124,27 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+html {
+  height: 140vh;
+  overflow-y: auto;
+}
+.scroll {
+  height: 140vh;
+  overflow-y: auto;
+}
+
 #splash {
-  font-family: Trebuchet MS;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 29%,
-    rgba(0, 255, 126, 0.40242034313725494) 100%
-  );
-  padding: 10px;
+  /* font-weight: 700; */
+  background-image: url('../assets/background.jpg');
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-family: 'Nunito', sans-serif;
+  overflow: visible;
+  padding: 3em 10em 10em 10em;
+  margin-bottom: 20vh;
   display: flex;
-  /* height: 50em; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -108,12 +152,22 @@ export default {
 
 #prevue {
   font-size: xx-large;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  margin-bottom: 1em;
   font-weight: 700;
   font-size: 2.5em;
   color: #39b982;
   text-decoration: none;
 }
+
+#use-prevue {
+  text-align: center;
+  padding: 1em;
+  color: white;
+  background-color:#39b982;
+  width: 100vw;
+}
+
 #top-elements {
   margin-left: auto;
   display: flex;
@@ -121,8 +175,8 @@ export default {
   align-items: center;
 }
 
-#adding-components {
-  margin: 0 10em 0 10em;
+#list {
+  margin: 0 10em 0em 10em;
 }
 
 #prevue-link {
