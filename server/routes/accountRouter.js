@@ -70,12 +70,8 @@ accountRouter.get(
   }
 );
 
-accountRouter.get(
-  '/logout',
-  cookieController.deleteCookie,
-  (req, res) => {
-    return res.sendStatus(200);
-  }
-);
+accountRouter.get('/logout', cookieController.deleteCookie, (req, res) => {
+  return res.sendStatus(200);
+});
 
 module.exports = accountRouter;

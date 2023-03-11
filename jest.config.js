@@ -17,4 +17,5 @@ module.exports = {
   testEnvironmentOptions: {
     url: 'http://localhost:5174', // replace with your test URL
   },
+  testEnvironment: 'node',
 };

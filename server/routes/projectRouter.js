@@ -21,10 +21,10 @@ projectRouter.post(
   authController.authenticate,
   projectController.getProject,
   (req, res) => {
-    console.log('testing route')
+    console.log('testing route');
     return res.status(201).json(res.locals.project);
   }
-)
+);
 
 projectRouter.get(
   '/find',
@@ -32,9 +32,10 @@ projectRouter.get(
   // oAuthController.requestGitHubIdentity,
   (req, res) => {
     console.log('in find');
-    return res.status(200).json(res.locals.username);
+    return res
+      .status(200)
+      .json({ hello: test, 'res.locals.usename': res.locals.username });
   }
 );
-
 
 module.exports = projectRouter;

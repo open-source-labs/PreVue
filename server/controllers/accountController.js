@@ -48,8 +48,8 @@ accountController.loginWithoutCookie = (req, res, next) => {
 // showing the logged in user's projects before the mounting
 // of the home page
 accountController.userProjects = (req, res, next) => {
-  Users.findOne({username: res.locals.username})
-    .then(data => {
+  Users.findOne({ username: res.locals.username })
+    .then((data) => {
       res.locals.userProjects = data.project_ids;
       return next();
     })
@@ -59,7 +59,7 @@ accountController.userProjects = (req, res, next) => {
         message: `could not find projects for user`,
       });
     });
-}
+};
 
 // accountController.verifyUser = (req, res, next) => {
 //   // write code here
@@ -82,9 +82,8 @@ accountController.userProjects = (req, res, next) => {
 accountController.findUser = (req, res, next) => {
   // write code here
   // const { username } = req.body;
-  Users.find({ })
+  Users.find({})
     .then((data) => {
-      console.log(data)
       res.locals.username = data;
       return next();
     })
@@ -92,7 +91,7 @@ accountController.findUser = (req, res, next) => {
       // if (err.message === `Username Doesn't Exist`) res.redirect("/signup");
       return next({
         log: err,
-        error: `error found in userController.verifyUser`,
+        error: `error found in userController.findUser`,
       });
     });
 };
