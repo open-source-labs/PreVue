@@ -6,7 +6,7 @@
     :style="{
       'background-color': '#565656',
       'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px'
+      padding: '16px 0px 24px 0px',
     }"
   >
     <v-card-title
@@ -14,17 +14,17 @@
         'font-size': '14px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '0 24px 0 24px'
+        padding: '0 24px 0 24px',
       }"
     >
-     <strong>Component Creator</strong> 
+      <strong>Component Creator</strong>
     </v-card-title>
     <v-card-actions class="d-block">
       <v-form
         id="form1"
         v-on:submit.prevent="handleClick"
         :style="{
-          padding: '0 24px 0 24px'
+          padding: '0 24px 0 24px',
         }"
       >
         <v-text-field
@@ -43,7 +43,7 @@
         :style="{
           display: 'flex',
           'padding-top': '10px',
-          'justify-content': 'center'
+          'justify-content': 'center',
         }"
       >
         <v-btn
@@ -56,7 +56,7 @@
             'align-self': 'center',
             border: '.5px solid #f5f4f3',
             color: '#f5f4f3',
-            'text-transform': 'unset !important'
+            'text-transform': 'unset !important',
           }"
         >
           Add Component
@@ -77,14 +77,14 @@ export default {
   name: 'HomeSidebar',
   components: {
     ChildrenMultiselect,
-    Icons
+    Icons,
   },
   computed: {
     ...mapState([
       'componentMap',
       'selectedElementList',
       'routes',
-      'activeRoute'
+      'activeRoute',
     ]),
     componentNameInputValue: {
       get() {
@@ -92,17 +92,17 @@ export default {
       },
       set(value) {
         this.updateComponentNameInputValue(value);
-      }
+      },
     },
     validateInput() {
       return this.componentNameInputValue.length < 1;
-    }
+    },
   },
   methods: {
     ...mapActions([
       'registerComponent',
       'addToSelectedElementList',
-      'updateComponentNameInputValue'
+      'updateComponentNameInputValue',
     ]),
     // invoked when clicking "add component" button
     handleClick() {
@@ -115,7 +115,7 @@ export default {
         h: 200,
         htmlList: this.selectedElementList,
         children: [],
-        isActive: false
+        isActive: false,
       };
 
       // console.log('component', component);
@@ -125,8 +125,8 @@ export default {
     },
     addToSelectedElementList(htmlElement) {
       this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
