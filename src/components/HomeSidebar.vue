@@ -85,12 +85,10 @@ export default {
       'selectedElementList',
       'routes',
       'activeRoute',
-      'componentNameInputValue',
     ]),
     componentNameInputValue: {
       get() {
         return this.$store.state.componentNameInputValue;
-        // return this.componentNameInputValue;
       },
       set(value) {
         this.updateComponentNameInputValue(value);
