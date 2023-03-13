@@ -7,6 +7,7 @@ const authController = {};
 
 authController.authenticate = (req, res, next) => {
   try {
+    // console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     console.log('INSIDE authController.authenticate');
     const { ssid } = req.cookies;
     //decoded becomes {id,username}

@@ -12,7 +12,7 @@
     "serve": "vite preview",
     "vite": "vite",
     "server": "node server/server.js",
-    "test": "vitest",
+    "test": "NODE_ENV=test vitest",
     "coverage": "vitest run --coverage"
   },
   "license": "MIT",
