@@ -5,7 +5,7 @@ import Vue3DraggableResizable from 'vue3-draggable-resizable';
 import Component from '@/components/Component.vue';
 
 describe('Component.vue', () => {
-  it('properly renders the htlm element of children', () => {
+  it('properly renders the html element of children', () => {
     const wrapper = mount(Component);
     expect(wrapper.find('h3').exists()).toBeTruthy();
     expect(wrapper.find('h1').exists()).toBeFalsy();
@@ -19,7 +19,8 @@ describe('Component.vue', () => {
     const store = createStore({
       state() {
         return {
-          selectedElementList: [{ id: 1, name: 'Element 1' }],
+          store1: "",
+          store2: ""
         };
       },
     });

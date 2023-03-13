@@ -3,7 +3,7 @@
   <section
     class="icon-grid"
     :style="{
-      padding: '0 24px 0 24px'
+      padding: '0 24px 0 24px',
     }"
   >
     <button
@@ -25,7 +25,7 @@ import * as types from '../store/storeTypes';
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons', 'modalOpen'])
+    ...mapState(['icons', 'modalOpen']),
   },
   methods: {
     // handleClick(htmlElement) {
@@ -34,9 +34,11 @@ export default {
     //   console.log(this.$store.state.selectedElementList);
     // },
     changeState(elementName) {
+      // console.log("B4", elementName);
       this.$emit('getClickedIcon', elementName); // emit prop necessary?
-    }
-  }
+      // console.log("AFTER", this.$store.state.icons);
+    },
+  },
 };
 </script>
 

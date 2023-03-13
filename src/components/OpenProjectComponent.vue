@@ -1,4 +1,5 @@
 <template>
+    <!--where you can retrieve past projects from the database-->
   <v-dialog transition="dialog-bottom-transition" width="300">
     <template v-slot:activator="{ props }">
       <v-btn v-bind="props" class='open-btn' id="button">
@@ -12,8 +13,8 @@
       <v-card>
         <v-toolbar id='toolbar' style="{color: white }" color="#39b982" title="Get a project"></v-toolbar>
         <v-card-text>
-          <v-form
-            >  <v-select
+          <v-form 
+            ><v-select 
             v-model="selected"
     :items="projects"
     label="Select"
@@ -26,7 +27,6 @@
       </v-card>
     </template>
   </v-dialog>
-  <!--where you can retrieve past projects from the database-->
 </template>
 
 <script>
@@ -36,8 +36,12 @@ import { mapActions } from 'vuex';
 export default {
   name: 'OpenProjectComponent',
   created() {
-    //fetch request to grab all project names
+    // fetch request to grab all project names
     // populate dropdown with returned project names
+    this.getProjects();
+  },
+  beforeUpdate() {
+    // console.log('i got updated', this.rerenderKey())
     this.getProjects();
   },
   data(){
@@ -45,6 +49,12 @@ export default {
       selected: '',
       projects: []
     }
+  },
+  computed: {
+    rerenderKey: {
+      get(){return this.$store.state.rerenderKey;}
+      
+    },
   },
   methods: {
     ...mapActions(['replaceState']),
@@ -66,21 +76,6 @@ export default {
     }
 
   }
-  // created() {
-  //   Mousetrap.bind(['command+o', 'ctrl+o'], () => {
-  //     this.openProjectJSON();
-  //   });
-  // },
-  // methods: {
-  // select project on click
-  // send fetch request to grab state of selected project and replace current state
-  //   parseFileName(file) {
-  //     return file.split('/').pop();
-  //   },
-  //   openProjectJSON() {
-  //     ipc.send('show-open-dialog');
-  //   }
-  // }
 };
 </script>
 

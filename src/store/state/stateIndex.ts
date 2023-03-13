@@ -31,6 +31,7 @@ const newState: State = {
   htmlElements: [],
   saved: false,
   loggedIn: false,
+  rerenderKey: 0
 };
 
 export default newState;

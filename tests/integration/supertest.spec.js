@@ -4,9 +4,16 @@ const server = require('../../server/server');
 // const server = 'http://localhost:8080';
 const accountRouter = require('../../server/routes/accountRouter');
 const projectRouter = require('../../server/routes/projectRouter');
+<<<<<<< HEAD
 const authController = require('../../server/controllers/authController');
 const jest = require('jest');
 const sinon = require('sinon');
+=======
+
+// remember to put back .env rather than using exposed URI
+//const myURI = needs connection string URI from env file
+  
+>>>>>>> dev
 
 beforeAll(async () => {
   // connect to MongoDB before all tests
@@ -28,6 +35,7 @@ describe('/projects projectRouter', () => {
     projectOwner: 'testflynn5',
   };
 
+<<<<<<< HEAD
   // make a testAccount
   const testAccount = {
     username: 'testflynn5',
@@ -60,11 +68,14 @@ describe('/projects projectRouter', () => {
     it('should retrieve all projects from the database', () => {});
   });
 
+=======
+>>>>>>> dev
   describe('saving a project, POST to /saveProject', () => {
     it('responds with 201 status', () => {
       return request(server)
         .post('/projects/saveProject')
         .send(testProject)
+<<<<<<< HEAD
         .expect(400);
     });
 
@@ -92,10 +103,22 @@ describe('/users accountRouter', () => {
 
     it('creates an SSID cookie', () => {
       // return request(server).post('/users/createUser').expect(201);
+=======
+        .expect(201);
+>>>>>>> dev
     });
+
+    it('should save a project to the database', () => {});
+  });
+
+  describe('find a project, POST to /getProject', () => {
+    it('responds with 201 status', () => {});
+
+    it('should retrieve a project from the database', () => {});
   });
 });
 
+<<<<<<< HEAD
 // let authenticateStub;
 
 // beforeEach(() => {
@@ -120,3 +143,18 @@ describe('/users accountRouter', () => {
 // jest
 //   .spyOn(require('../../server/controllers/authController'), 'authenticate')
 //   .mockImplementation(authenticate);
+=======
+describe('/users accountRouter', () => {
+  const testAccount = {
+    username: 'testflynn5',
+    id: '12345678',
+    project_ids: ['1'],
+  };
+
+  describe('POST / createUser', () => {
+    it('responds with 200 status', () => {
+      // return request(server).post('/users/createUser').expect(201);
+    });
+  });
+});
+>>>>>>> dev
