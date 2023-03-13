@@ -4,9 +4,9 @@ const server = require('../../server/server');
 const accountRouter = require('../../server/routes/accountRouter');
 const projectRouter = require('../../server/routes/projectRouter');
 
-// change this later!!!!!
-const myURI =
-  'mongodb+srv://prevue:prevue123@pvcluster.msrpd4m.mongodb.net/?retryWrites=true&w=majority';
+// remember to put back .env rather than using exposed URI
+//const myURI = needs connection string URI from env file
+  
 
 beforeAll(async () => {
   // connect to MongoDB before all tests
@@ -22,25 +22,41 @@ afterAll(async () => {
   await mongoose.disconnect();
 });
 
-describe('/users accountRouter', () => {
-  describe('POST / createUser', () => {
-    it('responds with 200 status and text/html content type', () => {
-      return (
-        request(server)
-          .post('/users/createUser')
-          .expect(201)
-      );
+describe('/projects projectRouter', () => {
+  const testProject = {
+    project_name: 'Test Project',
+    projectObject: { state: 'state' },
+    projectOwner: 'testflynn5',
+  };
+
+  describe('saving a project, POST to /saveProject', () => {
+    it('responds with 201 status', () => {
+      return request(server)
+        .post('/projects/saveProject')
+        .send(testProject)
+        .expect(201);
     });
+
+    it('should save a project to the database', () => {});
+  });
+
+  describe('find a project, POST to /getProject', () => {
+    it('responds with 201 status', () => {});
+
+    it('should retrieve a project from the database', () => {});
   });
 });
 
-describe('/projects projectRouter', () => {
-  //   describe('GET', () => {
-  // it('responds with 200 status and text/html content type', () => {
-  //   return request(server)
-  //     .get('/')
-  //     .expect('Content-Type', /text\/html/)
-  //     .expect(200);
-  //     });
-  //   });
+describe('/users accountRouter', () => {
+  const testAccount = {
+    username: 'testflynn5',
+    id: '12345678',
+    project_ids: ['1'],
+  };
+
+  describe('POST / createUser', () => {
+    it('responds with 200 status', () => {
+      // return request(server).post('/users/createUser').expect(201);
+    });
+  });
 });
