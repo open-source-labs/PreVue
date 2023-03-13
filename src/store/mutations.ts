@@ -15,6 +15,9 @@ const mutations: Mutations<State> = {
   replaceState(state: State, payload) {
     this.replaceState(payload)
   },
+  [types.INC_RERENDER_KEY]: (state: State) => {
+    state.rerenderKey++;
+  },
   [types.SET_LOGIN] : (state: State, payload) => {
     console.log('payload', payload)
     state.loggedIn = payload;

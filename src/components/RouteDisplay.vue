@@ -24,6 +24,7 @@
         :style="{
           padding: '0 24px 0 24px'
         }"
+        @submit.prevent="handleEnterKeyPress"
       >
         <v-text-field
           v-model="newRoute"
@@ -32,7 +33,7 @@
           placeholder="myCustomRoute"
           required
           :style="{ color: '#f5f4f3' }"
-          @keyup.enter.native="handleEnterKeyPress"
+          
         >
         </v-text-field>
       </v-form>
@@ -71,7 +72,7 @@ export default {
   },
   methods: {
     ...mapActions(['addRouteToRouteMap']),
-    handleEnterKeyPress() {
+    handleEnterKeyPress(event) {
       this.addRouteToRouteMap(this.newRoute)
         .then(() => {
           this.newRoute = '';

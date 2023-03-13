@@ -17,7 +17,7 @@
     
     <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
     <ExportProjectComponent></ExportProjectComponent>
-    <OpenProjectComponent v-if="validUser"></OpenProjectComponent>
+    <OpenProjectComponent :key="rerenderKey" v-if="validUser"></OpenProjectComponent>
     <LogOutComponent v-if="validUser" ></LogOutComponent>
   </div>
   </v-app-bar>
@@ -66,7 +66,12 @@ export default {
   computed: {
     validUser(){
       return this.$store.state.loggedIn;
-    }
+    },
+    // updates list of projects upon saving of new project
+    rerenderKey: {
+      get(){return this.$store.state.rerenderKey;}
+      
+    },
   }
 };
 </script>

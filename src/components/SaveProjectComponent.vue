@@ -41,7 +41,7 @@ import { mapActions } from 'vuex';
 export default {
   name: 'SaveProjectComponent',
   methods: {
-    ...mapActions(['nameProject']),
+    ...mapActions(['nameProject', 'incRerenderKey']),
     save() {
       const stateToSave = {
         projectObject: this.$store.state,
@@ -53,6 +53,8 @@ export default {
         body: JSON.stringify(stateToSave),
         headers: { 'Content-type': 'application/json; charset=UTF-8' }
       });
+      console.log('key', this.rerenderKey)
+      this.incRerenderKey();
     }
   },
   computed: {
@@ -62,6 +64,11 @@ export default {
       },
       set(value) {
         this.nameProject(value);
+      }
+    },
+    rerenderKey: {
+      get() {
+        return this.$store.state.rerenderKey;
       }
     }
   }

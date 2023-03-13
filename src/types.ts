@@ -66,6 +66,7 @@ export type State = {
   htmlElements: any[];
   saved: boolean;
   loggedIn: boolean,
+  rerenderKey: number
 };
 
 export type Mutations<State> = {
