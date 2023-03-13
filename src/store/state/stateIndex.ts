@@ -9,23 +9,23 @@ const newState: State = {
     App: {
       componentName: 'App',
       children: ['HomeView'],
-      htmlList: []
+      htmlList: [],
     },
     HomeView: {
       componentName: 'HomeView',
       children: [],
-      htmlList: []
-    }
+      htmlList: [],
+    },
   },
   routes: {
-    HomeView: []
+    HomeView: [],
   },
 
   componentNameInputValue: '',
   activeRoute: 'HomeView',
   activeComponent: '',
   selectedElementList: [],
-  projectName: 'Unititled-1',
+  projectName: 'Untitled-1',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
   htmlElements: [],
