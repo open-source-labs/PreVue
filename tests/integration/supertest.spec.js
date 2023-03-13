@@ -5,8 +5,8 @@ const accountRouter = require('../../server/routes/accountRouter');
 const projectRouter = require('../../server/routes/projectRouter');
 
 // remember to put back .env rather than using exposed URI
-const myURI =
-  'mongodb+srv://prevue:prevue123@pvcluster.msrpd4m.mongodb.net/?retryWrites=true&w=majority';
+//const myURI = needs connection string URI from env file
+  
 
 beforeAll(async () => {
   // connect to MongoDB before all tests
