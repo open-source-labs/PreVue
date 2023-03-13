@@ -130,13 +130,18 @@ export default {
     writeScript(componentName, children) {
       let str = '';
       children.forEach(name => {
+        console.log('name in writeScript', name)
+        if (typeof name === 'string') {
         name = name.replace(/\s/g, '');
         str += `import ${name} from '@/components/${name}.vue';\n`;
+        }
       });
       let childrenComponentNames = '';
       children.forEach(name => {
+        if (typeof name === 'string') {
         name = name.replace(/\s/g, '');
         childrenComponentNames += `\t\t${name},\n`;
+        }
       });
       return `\n\n<script>\n${str}\nexport default {\n\tname: '${componentName.replace(
         /\s/g,
