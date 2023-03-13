@@ -9,15 +9,10 @@ const authController = require('../../server/controllers/authController');
 // const jest = require('jest');
 const sinon = require('sinon');
 
-// remember to put back .env rather than using exposed URI
-const myURI =
-  'mongodb+srv://prevue:prevue123@pvcluster.msrpd4m.mongodb.net/?retryWrites=true&w=majority';
-
 beforeAll(async () => {
   // console.log('node cache', Object.keys(require.cache));
   // connect to MongoDB before all tests
-  await mongoose.connect(myURI, {
-    //   await mongoose.connect(process.env.MONGO_URI, {
+  await mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

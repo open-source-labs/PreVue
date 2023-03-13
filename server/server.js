@@ -18,8 +18,7 @@ const projectRouter = require('./routes/projectRouter');
 
 // Connecting to MongoDB
 const mongoose = require('mongoose');
-const myURI =
-  'mongodb+srv://prevue:prevue123@pvcluster.msrpd4m.mongodb.net/?retryWrites=true&w=majority';
+const myURI = process.env.MONGO_URI;
 const { MongoClient } = require('mongodb');
 mongoose
   .connect(myURI, {
@@ -27,10 +26,10 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // sets the name of the DB that our collections are part of
-    dbName: 'prevueDB'
+    dbName: 'prevueDB',
   })
   .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Global Middleware
 app.use(express.json());
@@ -56,7 +55,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' }
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
