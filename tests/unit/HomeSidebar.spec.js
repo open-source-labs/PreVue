@@ -1,55 +1,35 @@
-import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
-import Vuex from 'vuex';
+import { shallowMount, mount, createVuexStore } from '@vue/test-utils';
+import { createStore } from 'vuex';
 import HomeSidebar from '@/components/HomeSidebar.vue';
 import Icons from '@/components/Icons.vue';
+import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 
-const localVue = createLocalVue();
 
-localVue.use(Vuex);
 describe('HomeSidebar.vue', () => {
-  let actions;
-  let store;
-  beforeEach(() => {
-    actions = {
-      handleClick: jest.fn()
-    };
-    store = new Vuex.Store({
-      actions
-    });
-  });
-  it('contains an input field', () => {
-    const onClose = jest.fn();
-    const wrapper = shallowMount(HomeSidebar, {
-      propsData: { onClose }
-    });
-    console.log(wrapper.html());
-    // expect(wrapper.contains('#input')).toBe(true);
-  }),
-    it('contains a button that clicks', () => {
-      const test = jest.fn();
-      const wrapper = shallowMount(HomeSidebar);
-      wrapper.setMethods({
-        test: test
-      });
-      wrapper.find('button').trigger('click');
-      expect(test).toBeCalled();
-      // expect(wrapper.contains('button')).toBe(true);
-    }),
-    it('contains Icons', () => {
-      const wrapper = shallowMount(HomeSidebar);
-      expect(wrapper.contains(Icons));
+  it('renders the ChildrenMultiselect component', () => {
+    const store = createStore({
+      state() {
+        return {
+          selectedElementList: [{ id: 1, name: 'Element 1' }],
+          componentNameInputValue: 'mock value',
+        };
+      },
     });
 
-  it('button click calls store action "registerComponent" when clicked', () => {
-    const wrapper = shallowMount(HomeSidebar, {
-      store,
-      localVue
+    const wrapper = mount(HomeSidebar, {
+      components: {
+        ChildrenMultiselect,
+      },
+      global: {
+        plugins: [store],
+      },
+      computed: {
+        validateInput() {
+          componentNameInputValue: "";
+        },
+      },
     });
-    // wrapper.find('[data-component-name]').setValue('Hubert');
-    // input.debug();
-    const button = wrapper.find('button');
-    button.trigger('click');
-    // expect(button).toHaveBeenClicked();
-    expect(actions.handleClick).toHaveBeenCalled();
+    expect(wrapper.findComponent({ name: 'ChildrenMultiselect' }).exists()).toBeTruthy();
   });
+
 });

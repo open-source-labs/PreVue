@@ -1,11 +1,11 @@
 <template>
   <!-- <button class="white--text" @click="addProject">NEW PROJECT</button> -->
-  <button @click="logout">
-    <i class="fas fa-folder-plus fa-lg"></i>
+  <v-btn id='logout-btn' @click="logout">
+    <!-- <i class="fas fa-folder-plus fa-lg"></i> -->
 
     <br />
     <span class="white--text">Logout</span>
-  </button>
+  </v-btn>
 </template>
 
 <script>
@@ -32,4 +32,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#logout-btn {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.white--text {
+  font-size: 14px;
+}
+</style>

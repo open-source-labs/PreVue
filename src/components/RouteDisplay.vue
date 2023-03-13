@@ -4,7 +4,7 @@
     id="sidebar1"
     class="rounded-0"
     :style="{
-      'background-color': 'inherit',
+      'background-color': '#565656',
       'border-bottom': '0.5px solid #6a696a',
       padding: '16px 0px 24px 0px'
     }"
@@ -17,13 +17,14 @@
         padding: '24px 24px 0 24px'
       }"
     >
-      Route Creator
+    <strong>Route Creator</strong>
     </v-card-title>
     <v-card-actions class="d-block">
       <v-form
         :style="{
           padding: '0 24px 0 24px'
         }"
+        @submit.prevent="handleEnterKeyPress"
       >
         <v-text-field
           v-model="newRoute"
@@ -32,7 +33,7 @@
           placeholder="myCustomRoute"
           required
           :style="{ color: '#f5f4f3' }"
-          @keyup.enter.native="handleEnterKeyPress"
+          
         >
         </v-text-field>
       </v-form>
@@ -71,7 +72,7 @@ export default {
   },
   methods: {
     ...mapActions(['addRouteToRouteMap']),
-    handleEnterKeyPress() {
+    handleEnterKeyPress(event) {
       this.addRouteToRouteMap(this.newRoute)
         .then(() => {
           this.newRoute = '';

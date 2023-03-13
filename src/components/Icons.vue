@@ -49,6 +49,7 @@ export default {
 
 button {
   color: #f5f4f3;
+  mix-blend-mode: difference;
   background: none;
   border: none;
 }

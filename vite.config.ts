@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import checker from 'vite-plugin-checker';
@@ -9,6 +10,10 @@ export default defineConfig({
     //   typescript: true,
     // }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

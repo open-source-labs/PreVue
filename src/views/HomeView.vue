@@ -6,7 +6,7 @@
         :style="{
           'background-color': 'rgb(30, 31, 33)'
         }"
-        width="240"
+        width="250"
         permanent
       >
         <RouteDisplay /><HomeSidebar />

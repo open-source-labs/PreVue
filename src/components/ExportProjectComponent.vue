@@ -1,12 +1,11 @@
 <template>
   <!--exports the project as a zip file that includes your project code-->
   <!-- <i class="fas fa-file-export fa-lg" @click="exportProject"></i> -->
-  <button @click="onClick">
-    <i class="fas fa-file-export fa-lg"></i>
-
+  <v-btn class='export-btn' @click="onClick">
+    <!-- <i class="fas fa-file-export fa-lg"></i> -->
     <br />
     <span class="white--text">Export Project</span>
-  </button>
+  </v-btn>
 </template>
 
 <script>
@@ -237,4 +236,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.white--text {
+  font-weight: 700;
+}
+
+.white--text:hover {
+  color: #39b982;
+}
+</style>
