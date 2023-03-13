@@ -24,7 +24,7 @@ export default {
     VueTree
   },
   computed: {
-    ...mapState(['componentMap']),
+    ...mapState(['componentMap','routes']),
     // componentMap: {
     //   get() {
     //     return this.$store.state.componentMap;
@@ -32,56 +32,77 @@ export default {
     // },
     componentMap() {
       return this.$store.state.componentMap;
-    }
+    },
+   
   },
   data() {
-    let childMap = [];
+
+    let childMap;
     const components = JSON.parse(
-      JSON.stringify(Object.entries(this.$store.state.componentMap))
+      JSON.stringify(this.$store.state.componentMap)
     );
 
-    console.log('components', components);
-
-    // iterate through components and check if components have children; if so,
-    // add them as children to their respective parent
-    // the format of the objects is necessary for the tree to render properly
-    for (let component of components) {
-      if (component[1].children.length) {
-        const obj = { value: component[1].componentName, children: [] };
-        for (let i = 0; i < component[1].children.length; i++) {
-          const newObj = { value: component[1].children[i] };
-          obj.children.push(newObj);
+    function traverseChildren(arr, obj) {
+      const result = [];
+      console.log('arr', arr)
+      arr.forEach(child => {
+        let children = [];
+        let value = child;
+        console.log('child', child)
+        if (obj[child] !== undefined) {
+          console.log('inside conditional', obj[child])
+          const tempChildren = traverseChildren(obj[child].children, obj)
+          value = obj[child].componentName;
+          children = tempChildren;
         }
-        childMap.push(obj);
-      }
+        if (typeof child !== 'string') {
+          console.log('child when checking type', child)
+          // value = obj[child].componentName;
+          value = child.componentName;
+        }
+        result.push({value, children})
+      })
+      return result;
     }
 
-    childMap = JSON.parse(JSON.stringify(childMap));
-    childMap = childMap.slice(1);
-    console.log('child map', childMap);
+    function traverseRoutes(obj) {
+      // console.log('in traverse')
+      const result = [];
 
-    // for (let i = 0; i < childMap.length; i++) {
-    //  if (childMap[i].children.length) {
-    //   console.log('childmap i children', childMap[i].children)
-    //  }
-    // }
+      for (const key in obj) {
 
-    // finds Routes
-    // for (let component of components) {
-    //   if (component[1].htmlList) {
-    //     component[1].children.forEach((child) => {
-    //       const obj = { value: child }
-    //       childMap.push(obj);
-    //     });
-    //   }
-    // }
+        const children = [];
 
-    // console.log('childMap', childMap)
+        for (let i = 0; i < obj[key].length; i++) {
+          const child = obj[key][i]
+
+          console.log('childComp', components[child.componentName].children)
+          console.log('components', components)
+
+          // console.log('child.children', child.children)
+
+         const tempChildren = traverseChildren(components[child.componentName].children, components)
+  
+
+          children.push({value: child.componentName, children: tempChildren});
+        }
+
+        result.push({ value: key, children})
+
+      }
+
+
+      return result;
+    }
+
+    const routes = traverseRoutes(this.$store.state.routes);
+    childMap = routes;
+    console.log('routes', routes)
 
     return {
       data: {
         value: 'App',
-        children: childMap
+        children: childMap,
       },
       treeConfig: { nodeWidth: 120, nodeHeight: 80, levelHeight: 200 }
     };
@@ -90,7 +111,8 @@ export default {
     // routes back to main page
     backToWorkspace() {
       this.$router.back();
-    }
+    },
+   
   }
 };
 </script>

@@ -3,6 +3,9 @@ import { Actions } from '../types';
 
 
 const actions: Actions = {
+  [types.incRerenderKey] : ({commit}) => {
+    commit(types.INC_RERENDER_KEY)
+  },
   [types.setLogin]: ({commit}, payload) => {
     commit(types.SET_LOGIN, payload)
   },
