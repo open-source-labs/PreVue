@@ -7,7 +7,7 @@
         'font-size': '14px',
         color: '#3ab982',
         'font-weight': '550',
-        margin: '10px 10px 10px 10px',
+        margin: '10px 10px 10px 10px'
       }"
       v-model="selectedChildren"
       placeholder="Select child components"
@@ -26,63 +26,45 @@ import { mapState, mapActions } from 'vuex';
 import VueMultiselect from 'vue-multiselect';
 
 export default {
-  updated() {
-    // console.log('this.selectedChildren', this.selectedChildren);
-  },
   name: 'ChildrenMultiselect',
   components: {
-    VueMultiselect,
+    VueMultiselect
   },
-  // data() {
-  //   return {
-  //     multiValue: null
-  //   };
-  // }
   computed: {
     ...mapState([
       'componentMap',
       'routes',
       'activeComponent',
       'componentChildrenMultiselectValue',
-      'modalOpen',
+      'modalOpen'
     ]),
     selectedChildren: {
       get() {
         return this.componentChildrenMultiselectValue;
       },
       set(value) {
-        console.log('this.modalOpen', this.modalOpen);
-        if (this.modalOpen) this.updateActiveComponentChildrenValue(value);
+        if (this.modalOpen) {
+          this.updateActiveComponentChildrenValue(value);
+        }
         this.updateComponentChildrenMultiselectValue(value);
-      },
+      }
     },
     options() {
+      // retrieve array of possible options to set as children of component
       const routes = Object.keys(this.routes);
-      // console.log('routes', routes);
       const exceptions = new Set(['App', this.activeComponent, ...routes]);
-      // console.log('exceptions', exceptions);
-      return Object.keys(this.componentMap).filter((component) => {
+      return Object.keys(this.componentMap).filter(component => {
         if (!exceptions.has(component)) return component;
       });
-      // return ['test'];
-    },
+    }
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateActiveComponentChildrenValue',
-    ]),
-    // handleSelect(value) {
-    //   console.log('VALUE', value);
-    //   // if (this.modalOpen) this.updateActiveComponentChildrenValue(value);
-    //   // this.updateComponentChildrenMultiselectValue(value);
-    // }
-  },
+      'updateActiveComponentChildrenValue'
+    ])
+  }
 };
 </script>
-
-<!-- New step!
-     Add Multiselect CSS. Can be added as a static asset or inside a component. -->
-<style src="vue-multiselect/dist/vue-multiselect.css">
-/* your styles */
-</style>
+<!-- use default styles included with multiselect library -->
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>

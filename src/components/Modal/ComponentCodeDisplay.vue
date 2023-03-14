@@ -6,34 +6,36 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
-import { toRaw } from 'vue';
+import { mapState } from 'vuex';
 export default {
   name: 'ComponentCodeDisplay',
   computed: {
     ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
     activeComponentHtmlList: {
       get() {
+        // return html list associated with active component from state
         return this.componentMap[this.activeComponent].htmlList;
-      },
-    },
+      }
+    }
   },
   watch: {
     activeComponentHtmlList: {
+      // watching htmlList in state to reactively display any changes as a result of changes made to list in sibling component
       handler(oldList, newList) {
         this.displayHtmlList(newList);
       },
       // dealing with nested objects, hence need deep property
-      deep: true,
-    },
+      deep: true
+    }
   },
   mounted() {
-    console.log(this.htmlList);
+    // when component is mounted displays the html list from state associated with active component
     this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
+    // parses active component html list in state to create live code display
     traverseElement(list, codeDisplay, level = 0) {
-      list.forEach((htmlElementTagObj) => {
+      list.forEach(htmlElementTagObj => {
         let htmlElementMapKey = htmlElementTagObj.text;
         let htmlelementNode = document.createElement('p');
         let openingTagNode = document.createElement('p');
@@ -65,11 +67,12 @@ export default {
       });
     },
     displayHtmlList(list) {
+      // renders html list from state associated with active component to the screen
       let codeDisplay = document.querySelector('#codeDisplay');
       codeDisplay.innerText = '';
       this.traverseElement(list, codeDisplay);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -84,7 +87,7 @@ export default {
 }
 #codeDisplay {
   padding: 10px;
-  background: #3ab982
+  background: #3ab982;
   /* background: linear-gradient(120deg, #5c258d, #4389a2); */
 }
 </style>

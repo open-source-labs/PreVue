@@ -85,3 +85,6 @@ export const nameProject: Type = 'nameProject';
 export const replaceState: Type = 'replaceState';
 export const setLogin: Type = 'setLogin';
 export const incRerenderKey: Type = 'incRerenderKey';
+
+export const resetComponentChildrenMultiselectValue: Type =
+  'resetComponentChildrenMultiselectValue';

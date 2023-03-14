@@ -1,8 +1,6 @@
 <template>
   <!--exports the project as a zip file that includes your project code-->
-  <!-- <i class="fas fa-file-export fa-lg" @click="exportProject"></i> -->
-  <v-btn class='export-btn' @click="onClick">
-    <!-- <i class="fas fa-file-export fa-lg"></i> -->
+  <v-btn class="export-btn" @click="onClick">
     <br />
     <span class="white--text">Export Project</span>
   </v-btn>
@@ -12,24 +10,13 @@
 import { mapState } from 'vuex';
 import JSZip from '@progress/jszip-esm';
 import { saveAs } from 'file-saver';
+
 export default {
   name: 'ExportProjectComponent',
+  // below methods build boilerplate files and folders to be exported for further development
   methods: {
-    testing(){console.log(this.projectName)},
-    buildDir() {
-      const zip = new JSZip();
-
-      zip.folder('project');
-      zip.folder('project/public');
-      zip.folder('project/src');
-      zip.folder('project/src/components');
-      zip.folder('project/src/views');
-      zip.generateAsync({ type: 'blob' }).then(function(content) {
-        saveAs(content, 'example1.zip');
-      });
-    },
     createRouter() {
-      // console.log('appChildren', this.componentMap['App'].children);
+      // builds complete router file
       const imports = this.createRouterImports(
         this.componentMap['App'].children
       );
@@ -37,10 +24,10 @@ export default {
       const exports = 'export default router;';
 
       const routerFileStr = imports + initRouter + exports;
-      console.log(routerFileStr);
       return routerFileStr;
     },
     createRouterImports(appChildren) {
+      // parses user input and generates imports for router file
       let str = "import * as VueRouter from 'vue-router'\n";
       appChildren.forEach(child => {
         child = child.replace(/\s/g, '');
@@ -49,6 +36,7 @@ export default {
       return str;
     },
     initRouter(appChildren) {
+      // parses user input and generates paths for router file
       let str = `const router = VueRouter.createRouter({history: VueRouter.createWebHashHistory(), base: import.meta.env.BASE_URL, routes: [\n`;
       appChildren.forEach(child => {
         child = child.replace(/\s/g, '');
@@ -60,18 +48,16 @@ export default {
       str += `\t]\n})\n`;
       return str;
     },
-    parseHtmlList(array){
+    parseHtmlList(array) {
       let string = '';
-        array.forEach(element => {
-        //get stuff from test prop
-          string += `\t\t<${element.text}>\n`;
-          if (element.children.length > 0) {
-            string += this.parseHtmlList(element.children, string);
-            }
-          string += `\t\t</${element.text}>\n`;
-        });
-        return string;
-
+      array.forEach(element => {
+        string += `\t\t<${element.text}>\n`;
+        if (element.children.length > 0) {
+          string += this.parseHtmlList(element.children, string);
+        }
+        string += `\t\t</${element.text}>\n`;
+      });
+      return string;
     },
     createComponentCode(componentName, children, htmlList) {
       let component;
@@ -101,26 +87,6 @@ export default {
           str += `\t\t<${name}>\n\t\t</${name}>\n`;
         });
         if (htmlList !== undefined) {
-          // accounts for nesting of html elements in a component
-          // function helper(array) {
-          //   let string = '';
-          //   array.forEach(element => {
-          //     //get stuff from test prop
-          //     string += `\t\t<${element.text}>\n`;
-          //     if (element.children.length > 0) {
-          //       string += helper(element.children, string);
-          //     }
-          //     string += `\t\t</${element.text}>\n`;
-          //   });
-
-          //   return string;
-          // }
-          // console.log('htmlList', htmlList);
-          // htmlList.forEach(element => {
-
-          //   str += `\t\t<${element.text}>\n\t\t</${element.text}>\n`;
-          // });
-          // console.log('helper', helper(htmlList));
           str += this.parseHtmlList(htmlList);
         }
       }
@@ -130,17 +96,16 @@ export default {
     writeScript(componentName, children) {
       let str = '';
       children.forEach(name => {
-        console.log('name in writeScript', name)
         if (typeof name === 'string') {
-        name = name.replace(/\s/g, '');
-        str += `import ${name} from '@/components/${name}.vue';\n`;
+          name = name.replace(/\s/g, '');
+          str += `import ${name} from '@/components/${name}.vue';\n`;
         }
       });
       let childrenComponentNames = '';
       children.forEach(name => {
         if (typeof name === 'string') {
-        name = name.replace(/\s/g, '');
-        childrenComponentNames += `\t\t${name},\n`;
+          name = name.replace(/\s/g, '');
+          childrenComponentNames += `\t\t${name},\n`;
         }
       });
       return `\n\n<script>\n${str}\nexport default {\n\tname: '${componentName.replace(
@@ -172,24 +137,24 @@ export default {
     onClick() {
       const zip = new JSZip();
       const project = this.projectName;
-      zip.folder('project');
-      zip.folder('project/public');
-      zip.folder('project/src');
-      zip.folder('project/src/components');
-      zip.folder('project/src/views');
+      zip.folder(`${project}`);
+      zip.folder(`${project}/public`);
+      zip.folder(`${project}/src`);
+      zip.folder(`${project}/src/components`);
+      zip.folder(`${project}/src/views`);
 
       const index = this.writeIndex();
 
-      zip.file('project/public/index.html', index);
+      zip.file(`${project}/public/index.html`, index);
       const packages = this.writePackages();
-      zip.file('project/package.json', packages);
+      zip.file(`${project}/package.json`, packages);
       const main = this.writeMain();
-      zip.file('project/src/main.js', main);
+      zip.file(`${project}/src/main.js`, main);
       const config = this.writeConfig();
-      zip.file('project/vite.config.js', config);
+      zip.file(`${project}/vite.config.js`, config);
 
       const router = this.createRouter();
-      zip.file('project/src/router.js', router);
+      zip.file(`${project}/src/router.js`, router);
 
       for (let componentName in this.componentMap) {
         let component;
@@ -201,7 +166,7 @@ export default {
               this.componentMap[componentName].htmlList
             );
             zip.file(
-              `project/src/views/${componentName.replace(/\s/g, '')}.vue`,
+              `${project}/src/views/${componentName.replace(/\s/g, '')}.vue`,
               component
             );
           } else {
@@ -211,7 +176,10 @@ export default {
               this.componentMap[componentName].htmlList
             );
             zip.file(
-              `project/src/components/${componentName.replace(/\s/g, '')}.vue`,
+              `${project}/src/components/${componentName.replace(
+                /\s/g,
+                ''
+              )}.vue`,
               component
             );
           }
@@ -221,7 +189,7 @@ export default {
             this.componentMap[componentName].children,
             this.componentMap[componentName].htmlList
           );
-          zip.file(`project/src/${componentName}.vue`, component);
+          zip.file(`${project}/src/${componentName}.vue`, component);
         }
       }
 
@@ -233,8 +201,8 @@ export default {
   computed: {
     ...mapState(['componentMap']),
     projectName: {
-      get(){
-        return this.$store.state.projectName
+      get() {
+        return this.$store.state.projectName;
       }
     }
   }

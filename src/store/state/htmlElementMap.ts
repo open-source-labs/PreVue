@@ -1,3 +1,5 @@
+// Map of html element opening and closing tags
+
 import { HtmlElementMap } from '../../types';
 
 const htmlElementMap: HtmlElementMap = {
@@ -11,7 +13,7 @@ const htmlElementMap: HtmlElementMap = {
   'list-ol': ['<ol>', '</ol>'],
   'list-ul': ['<ul>', '</ul>'],
   input: ['<input />', ''],
-  navbar: ['<nav>', '</nav>'],
+  navbar: ['<nav>', '</nav>']
 };
 
 export default htmlElementMap;

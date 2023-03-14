@@ -15,8 +15,9 @@
         'font-weight': '700',
         padding: '0 24px 0 24px'
       }"
-      >Selected Elements</v-card-title
     >
+      Selected Elements
+    </v-card-title>
     <draggable
       v-model="renderList"
       item-key="index"
@@ -34,7 +35,8 @@
             style="color: white;"
             @click="deleteElement(index)"
             :style="{ 'margin-left': 'auto' }"
-          ></i>
+          >
+          </i>
         </v-chip>
       </template>
     </draggable>
@@ -56,13 +58,16 @@ export default {
   computed: {
     renderList: {
       get() {
+        // return list of user selected html elements associated with created component
         return this.$store.state.selectedElementList;
       },
       set(value) {
+        // sets order of selected html elements in state when dragged or reordered
         this.$store.dispatch(setSelectedElementList, value);
       }
     },
     dragOptions() {
+      // allows selected html elements to be dragged and reordered
       return {
         animation: 200,
         group: 'description',
@@ -72,6 +77,7 @@ export default {
   },
   methods: {
     deleteElement(index) {
+      // remove selected html element when trashcan icon is clicked from elements associated the user created component
       this.$store.dispatch(deleteSelectedElement, index);
     }
   }

@@ -1,34 +1,28 @@
 <template>
-  <!-- <button class="white--text" @click="addProject">NEW PROJECT</button> -->
-  <v-btn id='logout-btn' @click="logout">
-    <!-- <i class="fas fa-folder-plus fa-lg"></i> -->
-
+  <!--button to log user out of current session-->
+  <v-btn id="logout-btn" @click="logout">
     <br />
     <span class="white--text">Logout</span>
   </v-btn>
 </template>
 
 <script>
-
-import {mapActions} from 'vuex';
 export default {
   name: 'LogOutComponent',
   methods: {
     async logout() {
-      
+      // sends request to server and performs logic to ensure that session is invalidated
       const res = await fetch('http://localhost:8080/users/logout', {
         method: 'GET',
         credentials: 'include',
-        headers: { 'Access-Control-Allow-Origin': ['localhost:5173']}
+        headers: { 'Access-Control-Allow-Origin': ['localhost:5173'] }
       });
-
+      // once session in successfully invalidated user is redirected to splash page
       if (res.status) {
-        this.$router.push('/')
+        this.$router.push('/');
       }
-      
     }
   }
-
 };
 </script>
 

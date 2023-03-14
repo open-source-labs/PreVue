@@ -37,38 +37,37 @@ describe('App.vue', () => {
 });
 
 describe('App.vue', () => {
-  //create store with fake properties
-  //before each it, when passing in arguments, pass in
+  // create store with fake properties
   const store = createStore({
     state() {
       return {
         store1: '',
         store2: '',
-        componentNameInputValue: '',
+        componentNameInputValue: ''
       };
-    },
+    }
   });
 
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: [
-        {
-          path: '/',
-          component: App,
-          meta: {
-            hideNavbar: true
-          }
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+      {
+        path: '/',
+        component: App,
+        meta: {
+          hideNavbar: true
         }
-      ]
-    });
+      }
+    ]
+  });
   it('should renders elements found in children', () => {
     const wrapper = mount(App, {
       components: {
-        NavBar,
+        NavBar
       },
       global: {
-        plugins: [store, router],
-      },
+        plugins: [store, router]
+      }
     });
     expect(wrapper.find('h1').exists()).toBeTruthy();
   });
@@ -76,11 +75,11 @@ describe('App.vue', () => {
   it('should renders elements found in children', () => {
     const wrapper = mount(App, {
       components: {
-        NavBar,
+        NavBar
       },
       global: {
-        plugins: [store, router],
-      },
+        plugins: [store, router]
+      }
     });
     expect(wrapper.findComponent({ name: 'NavBar' }).exists()).toBeTruthy();
   });

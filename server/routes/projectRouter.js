@@ -1,10 +1,9 @@
 const express = require('express');
 const projectController = require('../controllers/projectController');
 const authController = require('../controllers/authController');
-// const accountController = require('../controllers/accountController/');
 const projectRouter = express.Router();
 
-//signup route
+// signup route
 // endpoint : /projects/saveProject
 projectRouter.post(
   '/saveProject',
@@ -26,12 +25,12 @@ projectRouter.post(
   }
 );
 
+// used to test Supertest functionality; not used in actual app
 projectRouter.get(
   '/find',
   projectController.findProject,
   // oAuthController.requestGitHubIdentity,
   (req, res) => {
-    console.log('in find');
     return res
       .status(200)
       .json({ hello: test, 'res.locals.usename': res.locals.username });

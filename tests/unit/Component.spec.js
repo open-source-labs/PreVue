@@ -19,23 +19,22 @@ describe('Component.vue', () => {
     const store = createStore({
       state() {
         return {
-          store1: "",
-          store2: ""
+          store1: '',
+          store2: ''
         };
-      },
+      }
     });
 
     const wrapper = mount(Component, {
       components: {
-        Vue3DraggableResizable,
+        Vue3DraggableResizable
       },
       global: {
-        plugins: [store],
-      },
+        plugins: [store]
+      }
     });
     expect(
       wrapper.findComponent({ name: 'Vue3DraggableResizable' }).exists()
     ).toBeTruthy();
-    // expect(wrapper.findComponent({ name: 'HomeQueue' }).exists()).toBeTruthy();
   });
 });

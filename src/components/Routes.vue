@@ -26,19 +26,18 @@ export default {
   name: 'Routes',
   data() {
     return {
-      selectedItem: null,
+      selectedItem: null
     };
   },
   computed: {
-    ...mapState(['routes', 'activeRoute']),
+    ...mapState(['routes', 'activeRoute'])
   },
   methods: {
     ...mapActions(['setActiveRoute']),
     handleClick() {
-      console.log('route', this.selectedItem);
       this.setActiveRoute(this.selectedItem);
-    },
-  },
+    }
+  }
 };
 </script>
 

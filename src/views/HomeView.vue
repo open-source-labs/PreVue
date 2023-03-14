@@ -46,24 +46,25 @@ export default {
     HomeSidebar,
     HomeQueue,
     RouteDisplay,
-    ProjectTabs,
+    ProjectTabs
   },
-  beforeMount(){
+  beforeMount() {
     this.isLoggedIn();
-    console.log(this.$store.state.loggedIn)
   },
   data() {},
   methods: {
     ...mapActions(['setLogin']),
-    async isLoggedIn(){
-      const res = await fetch('http://localhost:8080/users/validateSession', {method: 'GET', credentials: 'include', headers: {
-        'Access-Control-Allow-Origin': ['localhost:5173']
-      }})
-      console.log(res)
+    async isLoggedIn() {
+      const res = await fetch('http://localhost:8080/users/validateSession', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Access-Control-Allow-Origin': ['localhost:5173']
+        }
+      });
+
       if (res.status === 200) {
-        console.log('validating', res.status)
         this.setLogin(true);
-        console.log(this.$store.state.loggedIn)
       } else {
         this.setLogin(false);
       }

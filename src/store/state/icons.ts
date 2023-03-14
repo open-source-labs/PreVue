@@ -1,3 +1,5 @@
+// Font awesome icons for each html tag
+
 import { Icons } from '../../types';
 
 const icons: Icons = {
@@ -11,7 +13,7 @@ const icons: Icons = {
   'list-ol': 'fas fa-list-ol fa-lg',
   'list-ul': 'fas fa-list-ul fa-lg',
   input: 'fas fa-pen fa-lg',
-  navbar: 'fas fa-window-maximize fa-lg',
+  navbar: 'fas fa-window-maximize fa-lg'
 };
 
 export default icons;

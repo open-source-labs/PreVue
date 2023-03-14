@@ -1,4 +1,5 @@
 <template>
+  <!--the entire modal view with respective components rendered in it-->
   <v-container id="modal">
     <v-row>
       <v-col cols="4" class="editSidebar">
@@ -26,12 +27,10 @@ export default {
   components: {
     ComponentCodeDisplay,
     EditSidebar,
-    EditQueue,
+    EditQueue
   },
   mounted() {
-    console.log('CHILDREN', this.children);
     this.updateComponentChildrenMultiselectValue(this.children);
-    console.log('MODAL IS OPEN');
     this.updateOpenModal(true);
   },
   computed: {
@@ -39,24 +38,23 @@ export default {
       'clickedComponent',
       'componentMap',
       'activeComponent',
-      'routes',
+      'routes'
     ]),
     children() {
-      console.log('activeComponent', this.activeComponent);
       return this.componentMap[this.activeComponent].children.reduce(
         (acc, curr) => {
           return acc.concat(curr);
         },
         []
       );
-    },
+    }
   },
   methods: {
     ...mapActions([
       'updateComponentChildrenMultiselectValue',
-      'updateOpenModal',
-    ]),
-  },
+      'updateOpenModal'
+    ])
+  }
 };
 </script>
 
@@ -65,7 +63,4 @@ export default {
   width: 70vw;
   height: 40vw;
 }
-/* .editSidebar {
-  background-color: #d4d4dc;
-} */
 </style>

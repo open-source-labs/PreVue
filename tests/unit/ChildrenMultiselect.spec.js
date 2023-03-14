@@ -1,7 +1,5 @@
 import { shallowMount, mount, createVuexStore } from '@vue/test-utils';
 import { createStore } from 'vuex';
-// import store from '@/store/index';
-// console.log('store', store);
 import { describe, it, expect, vi } from 'vitest';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 import VueMultiselect from 'vue-multiselect';
@@ -10,16 +8,14 @@ describe('ChildrenMultiselect', () => {
   const store = createStore({
     state() {
       return {
-        //   namespace: '',
-        //   getters: '',
         routes: {},
-        componentMap: {},
+        componentMap: {}
       };
-    },
+    }
   });
   it('properly renders div container', () => {
     const wrapper = mount(ChildrenMultiselect, {
-      global: { plugins: [store] },
+      global: { plugins: [store] }
     });
     expect(wrapper.find('div').exists()).toBeTruthy();
   });
@@ -27,7 +23,7 @@ describe('ChildrenMultiselect', () => {
   it('properly renders children component', () => {
     const wrapper = mount(ChildrenMultiselect, {
       components: { VueMultiselect },
-      global: { plugins: [store] },
+      global: { plugins: [store] }
     });
     expect(
       wrapper.findComponent({ name: 'VueMultiselect' }).exists()

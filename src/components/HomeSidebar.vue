@@ -6,7 +6,7 @@
     :style="{
       'background-color': '#565656',
       'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px',
+      padding: '16px 0px 24px 0px'
     }"
   >
     <v-card-title
@@ -14,7 +14,7 @@
         'font-size': '14px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '0 24px 0 24px',
+        padding: '0 24px 0 24px'
       }"
     >
       <strong>Component Creator</strong>
@@ -24,7 +24,7 @@
         id="form1"
         v-on:submit.prevent="handleClick"
         :style="{
-          padding: '0 24px 0 24px',
+          padding: '0 24px 0 24px'
         }"
       >
         <v-text-field
@@ -43,7 +43,7 @@
         :style="{
           display: 'flex',
           'padding-top': '10px',
-          'justify-content': 'center',
+          'justify-content': 'center'
         }"
       >
         <v-btn
@@ -56,7 +56,7 @@
             'align-self': 'center',
             border: '.5px solid #f5f4f3',
             color: '#f5f4f3',
-            'text-transform': 'unset !important',
+            'text-transform': 'unset !important'
           }"
         >
           Add Component
@@ -70,43 +70,45 @@
 import Icons from './Icons.vue';
 import ChildrenMultiselect from '@/components/ChildrenMultiselect.vue';
 import { mapState, mapActions } from 'vuex';
-import { toRaw } from 'vue';
 import * as types from '../store/storeTypes';
 
 export default {
   name: 'HomeSidebar',
   components: {
     ChildrenMultiselect,
-    Icons,
+    Icons
   },
   computed: {
     ...mapState([
       'componentMap',
       'selectedElementList',
       'routes',
-      'activeRoute',
+      'activeRoute'
     ]),
     componentNameInputValue: {
       get() {
+        // reactively returns user input each time text field is updated
         return this.$store.state.componentNameInputValue;
       },
       set(value) {
+        // updates state to reflect current user input in text field
         this.updateComponentNameInputValue(value);
-      },
+      }
     },
     validateInput() {
+      // ensures component can only be created when user has provided a component name, disables add component button
       return this.componentNameInputValue.length < 1;
-    },
+    }
   },
   methods: {
     ...mapActions([
       'registerComponent',
       'addToSelectedElementList',
-      'updateComponentNameInputValue',
+      'updateComponentNameInputValue'
     ]),
     // invoked when clicking "add component" button
     handleClick() {
-      console.log('active routes', this.routes[this.activeRoute]); // toRaw?
+      // creates component object to be stored in state when new component is created
       const component = {
         componentName: this.componentNameInputValue,
         x: 0,
@@ -115,18 +117,16 @@ export default {
         h: 200,
         htmlList: this.selectedElementList,
         children: [],
-        isActive: false,
+        isActive: false
       };
-
-      // console.log('component', component);
-      console.log('component (HomeSidebar handleClick)', component);
-
       this.registerComponent(component);
     },
     addToSelectedElementList(htmlElement) {
+      // allows html elements to be associated with user created component when icons are clicked
+      // invoked when event is registered from child icons component
       this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

@@ -4,29 +4,23 @@ import vue from '@vitejs/plugin-vue';
 import checker from 'vite-plugin-checker';
 const path = require('path');
 export default defineConfig({
-  plugins: [
-    vue(),
-    // checker({
-    //   typescript: true,
-    // }),
-  ],
+  plugins: [vue()],
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'jsdom'
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': path.resolve(__dirname, './src')
+    }
   },
   server: {
     proxy: {
       '/users': {
         target: 'http://localhost:8080',
         changeOrigin: true,
-        secure: false,
-        // rewrite: path => path.replace('/users', ''),
-      },
-    },
-  },
+        secure: false
+      }
+    }
+  }
 });

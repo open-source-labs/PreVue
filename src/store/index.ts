@@ -1,6 +1,4 @@
-// import Vue from 'vue';
 import { createStore } from 'vuex';
-import { State } from '../types';
 
 import state from './state/stateIndex';
 import actions from './actions';

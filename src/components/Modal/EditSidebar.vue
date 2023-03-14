@@ -1,4 +1,5 @@
 <template>
+  <!--renders Icons and childrenMultiSelect in modal view after doubleclicking component-->
   <div class="home-sidebar">
     <p class="panel-heading">Edit {{ activeComponent }}</p>
     <div class="icon-row">
@@ -23,6 +24,7 @@ export default {
     ...mapState(['activeComponent'])
   },
   methods: {
+    // adds HTML elements to selected component
     addToComponentElementList(elementName) {
       this.$store.dispatch(types.addToComponentElementList, elementName);
     }
@@ -35,7 +37,7 @@ export default {
 }
 
 button:hover {
-  color: red !important
+  color: red !important;
 }
 .panel-heading {
   padding: 10px;

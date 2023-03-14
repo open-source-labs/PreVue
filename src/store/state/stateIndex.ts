@@ -1,3 +1,5 @@
+// Vuex state, single source of truth
+
 import icons from './icons';
 import htmlElementMap from './htmlElementMap';
 import { State } from '../../types';
@@ -9,16 +11,16 @@ const newState: State = {
     App: {
       componentName: 'App',
       children: ['HomeView'],
-      htmlList: [],
+      htmlList: []
     },
     HomeView: {
       componentName: 'HomeView',
       children: [],
-      htmlList: [],
-    },
+      htmlList: []
+    }
   },
   routes: {
-    HomeView: [],
+    HomeView: []
   },
 
   componentNameInputValue: '',

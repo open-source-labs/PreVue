@@ -3,7 +3,7 @@
   <section
     class="icon-grid"
     :style="{
-      padding: '0 24px 0 24px',
+      padding: '0 24px 0 24px'
     }"
   >
     <button
@@ -19,26 +19,19 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import * as types from '../store/storeTypes';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons', 'modalOpen']),
+    ...mapState(['icons', 'modalOpen'])
   },
   methods: {
-    // handleClick(htmlElement) {
-    //   console.log(htmlElement);
-    //   this.$store.dispatch(types.addToSelectedElementList, htmlElement);
-    //   console.log(this.$store.state.selectedElementList);
-    // },
     changeState(elementName) {
-      // console.log("B4", elementName);
-      this.$emit('getClickedIcon', elementName); // emit prop necessary?
-      // console.log("AFTER", this.$store.state.icons);
-    },
-  },
+      // emits event to be registered by HomeSidebar parent component, allows html element selections to be updated in state
+      this.$emit('getClickedIcon', elementName);
+    }
+  }
 };
 </script>
 

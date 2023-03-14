@@ -27,30 +27,31 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
 export default {
   name: 'Component',
   components: {
-    Vue3DraggableResizable,
+    Vue3DraggableResizable
   },
   props: {
     compName: String,
     children: Array,
     htmlList: Array,
-    isActive: Boolean,
+    isActive: Boolean
   },
   data() {
+    // default position and size of user created component populated on canvas
     return {
       x: 0,
       y: 0,
       w: 200,
-      h: 200,
+      h: 200
     };
-  },
+  }
 };
 </script>
 <style scoped>
-.component-box{
-  color: green
-}</style>
+.component-box {
+  color: green;
+}
+</style>

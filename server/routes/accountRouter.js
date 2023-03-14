@@ -1,38 +1,18 @@
 const express = require('express');
 const accountController = require('../controllers/accountController');
 const cookieController = require('../controllers/cookieController');
-const sessionController = require('../controllers/sessionController');
 const oAuthController = require('../controllers/oAuthController');
 const authController = require('../controllers/authController');
 const accountRouter = express.Router();
 
-accountRouter.post(
-  '/loginWithoutCookie',
-  // accountController.loginWithoutCookie,
-  (req, res) => {
-    console.log('hello from accountRouter');
-    return res.status(201).json(res.locals.id);
-  }
-);
-
+// route for GitHub OAuth
 accountRouter.get(
   '/oauth',
   oAuthController.oAuthLogin,
   // oAuthController.requestGitHubIdentity,
   (req, res) => {
-    console.log('in oauth router');
+    console.log('Oauth Router console log');
     return res.status(200).json(res.locals.url);
-  }
-);
-
-// just trying to check for users; can be deleted later
-accountRouter.get(
-  '/find',
-  accountController.findUser,
-  // oAuthController.requestGitHubIdentity,
-  (req, res) => {
-    console.log('in find');
-    return res.status(200).json(res.locals.username);
   }
 );
 
@@ -62,6 +42,7 @@ accountRouter.get(
   }
 );
 
+// validates user on login
 accountRouter.get(
   '/validateSession',
   authController.authenticate,
@@ -70,8 +51,19 @@ accountRouter.get(
   }
 );
 
+// logs out user by deleting cookie
 accountRouter.get('/logout', cookieController.deleteCookie, (req, res) => {
   return res.sendStatus(200);
 });
+
+// general route for querying to find all users in database
+accountRouter.get(
+  '/find',
+  accountController.findUser,
+  // oAuthController.requestGitHubIdentity,
+  (req, res) => {
+    return res.status(200).json(res.locals.username);
+  }
+);
 
 module.exports = accountRouter;

@@ -13,13 +13,12 @@ const mutations: Mutations<State> = {
     }
   },
   replaceState(state: State, payload) {
-    this.replaceState(payload)
+    this.replaceState(payload);
   },
   [types.INC_RERENDER_KEY]: (state: State) => {
     state.rerenderKey++;
   },
-  [types.SET_LOGIN] : (state: State, payload) => {
-    console.log('payload', payload)
+  [types.SET_LOGIN]: (state: State, payload) => {
     state.loggedIn = payload;
   },
   [types.NAME_PROJECT]: (state: State, payload) => {
@@ -49,17 +48,11 @@ const mutations: Mutations<State> = {
   },
   [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {
     const componentName: string = state.activeComponent;
-    // state.componentMap[componentName].htmlList = elementName;
-    // console.log('elementName:', elementName);
+
     state.componentMap[componentName].htmlList.push({
       text: elementName,
       children: []
     });
-    // const test: HtmlList[] = state.componentMap[componentName].htmlList;
-    // test.push({
-    //   text: elementName,
-    //   children: []
-    // });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
     const componentName = state.activeComponent;
@@ -108,18 +101,9 @@ const mutations: Mutations<State> = {
     state.selectedElementList.splice(payload, 1);
   },
   [types.SET_STATE]: (state: State, payload) => {
-    console.log('SETTING STATE');
-    console.log(payload);
     Object.assign(state, payload);
   },
-  // [types.ADD_PROJECT]: (state: State, payload) => {
-  //   console.log('PUSHING ', payload);
-  //   state.projects.push(payload);
-  //   state.projectNumber++;
-  // },
-  // [types.CHANGE_ACTIVE_TAB]: (state: State, payload) => {
-  //   state.activeTab = payload;
-  // },
+
   [types.ADD_ROUTE]: (state: State, payload) => {
     state.routes = {
       ...state.routes,
@@ -161,16 +145,13 @@ const mutations: Mutations<State> = {
     state.componentMap[state.activeRoute].children.push(payload);
   },
   [types.DELETE_PROJECT_TAB]: (state: State, payload) => {
-    // state.projects.splice(payload, 1);
-    // localforage.getItem(state.projects[payload - 1].filename).then(data => {
-    //   state = data;
-    // });
-    // state.activeTab = state.activeTab - 1;
+    // delete project tab functionality yet to be implemented
   },
   [types.UPDATE_COMPONENT_CHILDREN_MULTISELECT_VALUE]: (
     state: State,
     payload
   ) => {
+    console.log('payload', payload);
     state.componentChildrenMultiselectValue = payload;
   },
   [types.UPDATE_COMPONENT_CHILDREN_VALUE]: (state: State, payload) => {

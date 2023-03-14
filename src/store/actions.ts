@@ -1,15 +1,14 @@
 import * as types from './storeTypes';
 import { Actions } from '../types';
 
-
 const actions: Actions = {
-  [types.incRerenderKey] : ({commit}) => {
-    commit(types.INC_RERENDER_KEY)
+  [types.incRerenderKey]: ({ commit }) => {
+    commit(types.INC_RERENDER_KEY);
   },
-  [types.setLogin]: ({commit}, payload) => {
-    commit(types.SET_LOGIN, payload)
+  [types.setLogin]: ({ commit }, payload) => {
+    commit(types.SET_LOGIN, payload);
   },
-  [types.replaceState]: ({commit}, payload) => {
+  [types.replaceState]: ({ commit }, payload) => {
     commit('replaceState', payload);
   },
   [types.nameProject]: ({ commit }, payload) => {
@@ -31,7 +30,7 @@ const actions: Actions = {
       const component = state.componentNameInputValue;
       const value = state.componentChildrenMultiselectValue.map(
         (component: string) => {
-          return state.componentMap[component];
+          return state.componentMap[component].componentName;
         }
       );
       commit(types.UPDATE_COMPONENT_CHILDREN_VALUE, { component, value });

@@ -29,31 +29,33 @@
 
     <v-overlay v-model="modalOpen" class="overlay">
       <v-dialog v-model="modalOpen" class="modal" width="auto">
-        <v-card> <Modal /> </v-card></v-dialog
-    ></v-overlay>
+        <v-card>
+          <Modal />
+        </v-card>
+      </v-dialog>
+    </v-overlay>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
-// import { toRaw } from 'vue';
 import Modal from './Modal/Modal.vue';
-// import { ModalProgrammatic } from 'buefy/dist/components/modal';
+
 export default {
   name: 'ComponentDisplay',
   components: {
     Vue3DraggableResizable,
-    Modal,
+    Modal
   },
   data() {
     return {
-      modalOpen: false,
-      abilityToDelete: false,
-      // overlay: false,
+      // by default modal associated with active component for further user custimaztion should be hidden
+      modalOpen: false
     };
   },
   mounted() {
-    window.addEventListener('keyup', (event) => {
+    // allows active user created component to be deleted when backspace is pressed
+    window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
@@ -64,84 +66,64 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
-      // console.log(
-      //   'activeRouteArray: this.routes[this.activeRoute]',
-      //   this.routes[this.activeRoute]
-      // );
+      // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
-      // console.log(
-      //   'this.activeRouteArray (within activeComponentData)',
-      //   this.activeRouteArray
-      // );
-      return this.activeRouteArray.filter((componentData) => {
+      // returns object containing data associated with current active component
+      return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
-    },
+    }
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    onResize: function (x) {
+    onResize: function(x) {
+      // updates state associated with active component to reflect start of resize user has made to the component
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onResizeEnd: function (x) {
+    onResizeEnd: function(x) {
+      // updates state associated with active component to reflect end of resize user has made to the component
       this.activeComponentData.isActive = true;
-      console.log('on resizeend invoked');
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
-    onDrag: function (x) {
-      console.log(
-        'this.activeComponentData (componentDisplay.vue)',
-        this.activeComponentData
-      );
+    onDrag: function(x) {
+      // updates state associated with active component to reflect start of drag user has made to the component
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
-      console.log('--------------------');
     },
-    onDragEnd: function (x) {
+    onDragEnd: function(x) {
+      // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
     },
     onActivated(componentData) {
+      // updates state to reflect current selected componenet (i.e. active component)
       this.setActiveComponent(componentData.componentName);
-      console.log('active', componentData.componentName);
       this.activeComponentData.isActive = true;
     },
     onDeactivated() {
-      console.log('deactivated', this.activeComponentData);
+      // updates state when current selected component is unselected
       this.activeComponentData.isActive = false;
     },
     onClick(compData) {
-      console.log('onClick invoked', compData.componentName);
+      // sets clicked component as active in state
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
     },
     onDoubleClick(compData) {
-      // console.log('testing', this.$store.state.activeComponent);
-      // console.log('onClick compdata', compData.componentName);
-      // uses Buefy
+      // sets double clicked component as active and opens modal providing options to further manipulate the component
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
-      // this.overlay = !this.overlay;
-      console.log('this,modalOpen', this.modalOpen);
-      // ModalProgrammatic.open({
-      //   parent: this,
-      //   component: ModalView,
-      //   onCancel: () => {
-      //     this.updateOpenModal(false);
-      //     this.setActiveComponent('');
-      //   }
-      // });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -159,10 +141,4 @@ export default {
   color: #3ab982;
   border: 1px solid salmon;
 }
-/* .modal {
-  z-index: 501;
-}
-.overlay {
-  z-index: 500;
-} */
 </style>

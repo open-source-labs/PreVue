@@ -1,5 +1,6 @@
+// TypeScript - type declaration file
+
 export type Icons = {
-  //   [k: string]: string;
   div: string;
   button: string;
   form: string;
@@ -65,8 +66,8 @@ export type State = {
   modalOpen: boolean;
   htmlElements: any[];
   saved: boolean;
-  loggedIn: boolean,
-  rerenderKey: number
+  loggedIn: boolean;
+  rerenderKey: number;
 };
 
 export type Mutations<State> = {

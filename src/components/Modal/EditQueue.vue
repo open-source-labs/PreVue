@@ -11,21 +11,13 @@ import '@he-tree/vue/style/default.css';
 import { mapState, mapActions } from 'vuex';
 import {
   setClickedElementList,
-  deleteFromComponentHtmlList,
-  // setComponentHtmlList,
-  addToComponentElementList
+  deleteFromComponentHtmlList
 } from '../../store/storeTypes';
 export default {
   name: 'EditQueue',
   props: {
     name: {
       type: String
-    },
-    $nodeStyle: {
-      // type: [Object, String],
-      // default: () => {
-      //   return { 'background-color': 'red' };
-      // }
     }
   },
   data() {
@@ -37,9 +29,11 @@ export default {
     ...mapState(['componentMap', 'activeComponent', 'routes', 'activeRoute']),
     renderList: {
       get() {
+        // returns html element list associated with active component from state
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
+        // updates html element list in state associated with active component on reorder or drag
         this.setClickedElementList(newArr);
       }
     }
@@ -47,16 +41,13 @@ export default {
   methods: {
     ...mapActions([setClickedElementList]),
     deleteElement(id) {
+      // deletes html element from list associated with active component in state when trashcan icon is clicked
       this.$store.dispatch(deleteFromComponentHtmlList, id);
     }
   },
   components: { Tree: Tree.mixPlugins([Draggable]) }
 };
 </script>
-
-<!-- <style src="@he-tree/vue/style/default.css">
-/* your styles */
-</style> -->
 
 <style>
 .panel-heading {
@@ -82,7 +73,6 @@ p {
   align-items: padding-left;
   appearance: none;
   background-color: #3ab982;
-  /*background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%); */
   background-size: calc(100% + 20px) calc(100% + 20px);
   border-radius: 100px;
   border-width: 0;
