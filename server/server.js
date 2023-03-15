@@ -8,7 +8,7 @@ const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:8080',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true
+  credentials: true,
 };
 const accountRouter = require('./routes/accountRouter');
 const projectRouter = require('./routes/projectRouter');
@@ -23,10 +23,10 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // sets the name of the DB that our collections are part of
-    dbName: 'prevueDB'
+    dbName: 'prevueDB',
   })
   .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Global Middleware
 app.use(express.json());
@@ -40,9 +40,9 @@ app.use(express.static(path.join(__dirname, '..', '/dist')));
 app.use('/users', accountRouter);
 app.use('/projects', projectRouter);
 
-app.get('*', (req, res) => {
-  return res.sendFile(path.join(__dirname, '..', '/dist/index.html'));
-});
+// app.get('*', (req, res) => {
+//   return res.sendFile(path.join(__dirname, '..', '/dist/index.html'));
+// });
 
 app.use((req, res) => res.sendStatus(404));
 
@@ -51,7 +51,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' }
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
