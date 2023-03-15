@@ -12,10 +12,10 @@ export default {
   methods: {
     async logout() {
       // sends request to server and performs logic to ensure that session is invalidated
-      const res = await fetch('http://localhost:8080/users/logout', {
+      const res = await fetch('/users/logout', {
         method: 'GET',
-        credentials: 'include',
-        headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
+        credentials: 'include'
+        // headers: { 'Access-Control-Allow-Origin': ['localhost:8080'] }
       });
       // once session in successfully invalidated user is redirected to splash page
       if (res.status) {

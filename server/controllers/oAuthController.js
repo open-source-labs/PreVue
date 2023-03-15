@@ -6,7 +6,7 @@ const GITHUB_OAUTH_CLIENT_ID = process.env.GITHUB_OAUTH_CLIENT_ID;
 const GITHUB_OAUTH_CLIENT_SECRET = process.env.GITHUB_OAUTH_CLIENT_SECRET;
 const GITHUB_ACCESS_TOKEN_REQUEST_URL = `https://github.com/login/oauth/access_token`;
 const GITHUB_REDIRECT_URI =
-  'http://localhost:4173/users/oauth/access_token/redirect';
+  'http://localhost:8080/users/oauth/access_token/redirect';
 let str = GITHUB_OAUTH_CLIENT_ID.toString();
 let newStr = GITHUB_REDIRECT_URI.toString();
 

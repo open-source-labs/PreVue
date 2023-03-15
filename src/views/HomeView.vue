@@ -55,12 +55,12 @@ export default {
   methods: {
     ...mapActions(['setLogin']),
     async isLoggedIn() {
-      const res = await fetch('http://localhost:8080/users/validateSession', {
+      const res = await fetch('/users/validateSession', {
         method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Access-Control-Allow-Origin': ['localhost:4173']
-        }
+        credentials: 'include'
+        // headers: {
+        //   'Access-Control-Allow-Origin': ['localhost:8080']
+        // }
       });
 
       if (res.status === 200) {

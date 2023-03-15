@@ -1,10 +1,11 @@
 const express = require('express');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 8080;
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:4173',
+  origin: 'http://localhost:8080',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
@@ -31,6 +32,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, '..', '/dist')));
 
 // Routers
 app.use('/users', accountRouter);

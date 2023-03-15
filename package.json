@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run vite\" \"npm run server\"",
     "build": "vite build",
     "serve": "vite preview",
-    "vite": "concurrently \"npm run serve\" \"npm run server\"",
+    "vite": "npm run server",
     "server": "node server/server.js",
     "test": "NODE_ENV=test vitest",
     "coverage": "vitest run --coverage"

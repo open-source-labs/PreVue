@@ -54,7 +54,7 @@ export default {
         projectObject: this.$store.state,
         project_name: this.$store.state.projectName
       };
-      fetch('http://localhost:8080/projects/saveProject', {
+      fetch('/projects/saveProject', {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(stateToSave),
