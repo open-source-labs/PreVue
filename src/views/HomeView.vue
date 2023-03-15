@@ -59,7 +59,7 @@ export default {
         method: 'GET',
         credentials: 'include',
         headers: {
-          'Access-Control-Allow-Origin': ['localhost:5173']
+          'Access-Control-Allow-Origin': ['localhost:4173']
         }
       });
 

@@ -15,7 +15,7 @@ export default {
       const res = await fetch('http://localhost:8080/users/logout', {
         method: 'GET',
         credentials: 'include',
-        headers: { 'Access-Control-Allow-Origin': ['localhost:5173'] }
+        headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
       });
       // once session in successfully invalidated user is redirected to splash page
       if (res.status) {

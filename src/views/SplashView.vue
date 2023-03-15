@@ -55,9 +55,9 @@
         <li>Drag the elements to change their order</li>
         <li>
           Once you're satisfied, click the button to ‘add a component’ and it
-          will show up in the working area. Resize and move components to fit
-          the design you have in mind.
+          will show up in the working area.
         </li>
+        <li>Resize and move components to fit the design you have in mind.</li>
       </ul>
       <br />
       <h4>Editing Components</h4>
@@ -179,7 +179,7 @@ export default {
     fetch('http://localhost:8080/users/validateSession', {
       credentials: 'include',
       headers: {
-        'Access-Control-Allow-Origin': ['localhost:5173']
+        'Access-Control-Allow-Origin': ['localhost:4173']
       }
     }).then(res => {
       if (res.status === 200) {
@@ -194,7 +194,7 @@ export default {
         method: 'GET',
         redirect: 'follow',
 
-        headers: { 'Access-Control-Allow-Origin': '*' }
+        headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
       })
         .then(res => {
           return res.json();

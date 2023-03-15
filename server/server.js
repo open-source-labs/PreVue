@@ -4,7 +4,7 @@ const app = express();
 const PORT = 8080;
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'http://localhost:4173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
