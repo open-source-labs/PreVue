@@ -1,5 +1,8 @@
-<template>
-  <!-- <button class="white--text" @click="addProject">NEW PROJECT</button> -->
+<!-- <template>
+  
+// Keep or delete???
+
+
   <button @click="addProject">
     <i class="fas fa-folder-plus fa-lg"></i>
 
@@ -29,4 +32,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style></style> -->

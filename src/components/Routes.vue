@@ -1,17 +1,22 @@
 <template>
-  <table class="table is-fullwidth is-scrollable">
-    <a
-      :class="route === activeRoute ? 'panel-block is-active' : 'panel-block'"
-      v-for="route in Object.keys(routes)"
-      :key="route"
-      @click="handleClick(route)"
-    >
-      <span class="panel-icon">
-        <i class="fas fa-location-arrow" aria-hidden="true"></i>
-      </span>
-      {{ route }}
-    </a>
-  </table>
+  <!--where you can see the list of saved routess-->
+  <v-select
+    :style="{
+      'background-color': 'inherit',
+      'border-bottom': '0.5px solid #6a696a',
+      padding: '0 24px 0 24px',
+      color: '#f5f4f3'
+    }"
+    clearable
+    placeholder="Select a route"
+    :items="Object.keys(routes)"
+    variant="underlined"
+    route-text="name"
+    return-object
+    v-model="selectedItem"
+    @update:modelValue="handleClick(selectedItem)"
+  >
+  </v-select>
 </template>
 
 <script>
@@ -19,14 +24,21 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Routes',
+  data() {
+    return {
+      selectedItem: null
+    };
+  },
   computed: {
     ...mapState(['routes', 'activeRoute'])
   },
   methods: {
     ...mapActions(['setActiveRoute']),
-    handleClick(route) {
-      this.setActiveRoute(route);
+    handleClick() {
+      this.setActiveRoute(this.selectedItem);
     }
   }
 };
 </script>
+
+<style scoped></style>
