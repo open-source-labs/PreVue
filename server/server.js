@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 8080;
+
 const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:8080',
@@ -38,6 +39,10 @@ app.use(express.static(path.join(__dirname, '..', '/dist')));
 // Routers
 app.use('/users', accountRouter);
 app.use('/projects', projectRouter);
+
+app.get('*', (req, res) => {
+  return res.sendFile(path.join(__dirname, '..', '/dist/index.html'));
+});
 
 app.use((req, res) => res.sendStatus(404));
 
