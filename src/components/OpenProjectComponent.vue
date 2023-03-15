@@ -65,12 +65,12 @@ export default {
     async selectProject() {
       const selected = this.selected;
       // request to find projects by the logged in user
-      const res = await fetch('http://localhost:8080/projects/getProject', {
+      const res = await fetch('/projects/getProject', {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify({ project_name: selected }),
         headers: {
-          'Access-Control-Allow-Origin': ['localhost:4173'],
+          // 'Access-Control-Allow-Origin': ['localhost:8080'],
           'Content-Type': 'application/json'
         }
       });
@@ -81,9 +81,9 @@ export default {
     },
     async getProjects() {
       // returns array of all projects associated with authenticated user from database and updates component state
-      const res = await fetch('http://localhost:8080/users/userProjects', {
-        credentials: 'include',
-        headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
+      const res = await fetch('/users/userProjects', {
+        credentials: 'include'
+        // headers: { 'Access-Control-Allow-Origin': ['localhost:8080'] }
       });
       const data = await res.json();
       this.projects = await data;

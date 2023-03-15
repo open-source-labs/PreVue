@@ -176,11 +176,11 @@ export default {
   name: 'Splash',
 
   beforeCreate() {
-    fetch('http://localhost:8080/users/validateSession', {
-      credentials: 'include',
-      headers: {
-        'Access-Control-Allow-Origin': ['localhost:4173']
-      }
+    fetch('/users/validateSession', {
+      credentials: 'include'
+      // headers: {
+      //   'Access-Control-Allow-Origin': ['localhost:4173']
+      // }
     }).then(res => {
       if (res.status === 200) {
         this.toHome();
@@ -190,11 +190,11 @@ export default {
   methods: {
     oauth() {
       // make request to endpoint, to be redirected in server
-      fetch('http://localhost:8080/users/oauth', {
+      fetch('/users/oauth', {
         method: 'GET',
-        redirect: 'follow',
+        redirect: 'follow'
 
-        headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
+        // headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
       })
         .then(res => {
           return res.json();

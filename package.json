@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run vite\" \"npm run server\"",
     "build": "vite build",
     "serve": "vite preview",
-    "vite": "concurrently \"npm run serve\" \"npm run server\"",
+    "vite": "npm run server",
     "server": "node server/server.js",
     "test": "NODE_ENV=test vitest",
     "coverage": "vitest run --coverage"
@@ -22,6 +22,7 @@
     "@ssthouse/vue3-tree-chart": "^0.2.6",
     "axios": "^1.3.4",
     "concurrently": "^7.6.0",
+    "connect-history-api-fallback": "^2.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
