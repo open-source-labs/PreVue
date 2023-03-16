@@ -66,8 +66,9 @@ the component architecture as a Vue application created with the default Vue CLI
 - Any components created on a given route will be automatically saved to that route
 - See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
 
-
-<img src="src/assets/routecreator.png?raw=true">
+<div style="text-align: center;">
+  <img src="src/assets/routecreator.png?raw=true">
+</div>
 
 #### Tree View of Application Architecture
 
