@@ -1,5 +1,5 @@
 # base image that provides runtime environment for the application
-FROM node:16.18
+FROM node:16.13
 # where the application code will be copied to in the docker container
 WORKDIR /usr/src/app
 # copies all files from the current directory (where the Dockerfile is located) to the working directory in the docker image (which we set on line 4)
