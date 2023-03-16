@@ -1,7 +1,13 @@
 <template>
-  <section class="icon-grid">
+  <!--the collection of HTML element icons in the left sidebar-->
+  <section
+    class="icon-grid"
+    :style="{
+      padding: '0 24px 0 24px'
+    }"
+  >
     <button
-      @click.prevent="changeState(elementName)"
+      @click="changeState(elementName)"
       v-for="([elementName, iconString], idx) in Object.entries(icons)"
       :key="idx + Date.now()"
     >
@@ -18,10 +24,11 @@ import { mapState } from 'vuex';
 export default {
   name: 'Icons',
   computed: {
-    ...mapState(['icons'])
+    ...mapState(['icons', 'modalOpen'])
   },
   methods: {
     changeState(elementName) {
+      // emits event to be registered by HomeSidebar parent component, allows html element selections to be updated in state
       this.$emit('getClickedIcon', elementName);
     }
   }
@@ -32,20 +39,12 @@ export default {
 .icon-grid {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-row-gap: 1em;
-  padding-top: 10px;
-}
-
-@media (max-width: 680px) {
-  .icon-grid {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-row-gap: 1em;
-    width: 100%;
-  }
+  grid-row-gap: 0.5em;
 }
 
 button {
+  color: #f5f4f3;
+  mix-blend-mode: difference;
   background: none;
   border: none;
 }
