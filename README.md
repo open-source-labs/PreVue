@@ -128,6 +128,8 @@ Run the app
 npm run server
 ```
 
+Go to <strong>http://localhost:8080</strong> to use PreVue!
+
 ## Built With
 
 ---
