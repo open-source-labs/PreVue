@@ -48,7 +48,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - Once you're satisfied, click the button to ‘add a component’ and it will show up in the working area. Resize and move components to fit the design you have in mind.
 
 
-<img src='http://g.recordit.co/fyQ6LKvwlt.gif'/>
+<img width="1000" src="src/assets/newcomp.png?raw=true">
 
 #### Editing Components
 
