@@ -73,7 +73,7 @@ the component architecture as a Vue application created with the default Vue CLI
 #### Tree View of Application Architecture
 
 <p align="center">
-  <img width="1000" src="src/assets/treeview.png?raw=true">
+  <img width="500" src="src/assets/treeview.png?raw=true">
 
 </p>
 
