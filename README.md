@@ -58,7 +58,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - Establish parent-child component relationships via the dropdown menu when creating or editing components
 
 
-<img src='http://g.recordit.co/A6rOQRJVOc.gif'/>
+<img width="1000" src="src/assets/componentdisplay.png?raw=true">
 
 #### Adding Routes
 
@@ -67,7 +67,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
 
 
-<img src='http://g.recordit.co/bfYwX1sdtl.gif'/>
+<img src="src/assets/routeCreator.png?raw=true">
 
 #### Tree View of Application Architecture
 
