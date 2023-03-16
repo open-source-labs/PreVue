@@ -122,7 +122,11 @@ Install dependencies
 ```
 npm i
 ```
+Build the app
 
+```
+npm run build
+```
 Run the app
 
 ```
