@@ -79,6 +79,7 @@ the component architecture as a Vue application created with the default Vue CLI
 
 #### Saving/Opening/Exporting Projects
 
+- In order to utilize the saving and opening functionality of PreVue, please clone the repo to run on your local machine.
 - If you're signed in with GitHub, click the ‘Save Project’ icon to save it to PreVue’s database
 - Click ‘Open Project’ to retrieve past projects
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
