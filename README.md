@@ -48,7 +48,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - Once you're satisfied, click the button to ‘add a component’ and it will show up in the working area. Resize and move components to fit the design you have in mind.
 
 
-<img width="1000" src="src/assets/newcomp.png?raw=true">
+<img width="1000" src="src/assets/PreVueDemo.gif">
 
 #### Editing Components
 
@@ -73,7 +73,7 @@ the component architecture as a Vue application created with the default Vue CLI
 #### Tree View of Application Architecture
 
 <p align="center">
-  <img width="1000" src="src/assets/treeview.png?raw=true">
+  <img width="500" src="src/assets/treeview.png?raw=true">
 
 </p>
 
@@ -86,7 +86,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
 
-<img src='http://g.recordit.co/uFLqyjAnMm.gif'/>
+<img src='src/assets/PreVueExportDemo.gif'/>
 
 ##### Code Exporting
 
