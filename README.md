@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" src="src/assets/PreVueDemo.mp4?raw=true">
+  <img width="350" src="src/assets/PreVueDemo.mp4">
   <h1 align="center">PreVue </h1>
 </p>
 
