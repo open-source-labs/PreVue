@@ -114,7 +114,7 @@ src/
 Clone this repo
 
 ```
-git clone https://github.com/teamprevue/PreVue.git
+git clone https://github.com/oslabs/PreVue.git
 ```
 
 Install dependencies
