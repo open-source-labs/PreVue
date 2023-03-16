@@ -67,7 +67,7 @@ the component architecture as a Vue application created with the default Vue CLI
 - See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
 
 
-<img src="src/assets/routeCreator.png?raw=true">
+<img src="src/assets/routecreator.png?raw=true">
 
 #### Tree View of Application Architecture
 
