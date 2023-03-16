@@ -28,7 +28,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 the component architecture as a Vue application created with the default Vue CLI settings.
 
 <p align="center">
-  <img width="1000" src="src/assets/3.png?raw=true">
+  <img width="1000" src="src/assets/pvv.png?raw=true">
 
 </p>
 
