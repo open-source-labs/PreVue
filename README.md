@@ -121,10 +121,10 @@ Install dependencies
 npm i
 ```
 
-Run electron app
+Run the app
 
 ```
-npm run electron:serve
+npm run server
 ```
 
 ## Built With
@@ -143,7 +143,7 @@ npm run electron:serve
 
 ---
 
-PreVue We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well.
+PreVue We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates.
 
 ## Authors
 
