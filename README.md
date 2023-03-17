@@ -151,7 +151,7 @@ Go to <strong>http://localhost:8080</strong> to use PreVue!
 
 ---
 
-PreVue We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates.
+We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates.
 
 ## Authors
 
