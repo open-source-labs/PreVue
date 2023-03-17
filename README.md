@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" src="src/assets/prevue_color_white.png?raw=true">
+  <img width="350" src="src/assets/prevue-large-green-bottom.png">
   <h1 align="center">PreVue </h1>
 </p>
 
@@ -14,6 +14,10 @@ For Vue Developers
 
 <h4 align="center">
 From Component Architecture to Code Exporting
+</h4>
+
+<h4 align='center'>
+  https://www.prevue.live
 </h4>
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
@@ -67,13 +71,13 @@ the component architecture as a Vue application created with the default Vue CLI
 - See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
 
 <p align="center">
-<img src="src/assets/routecreator.png?raw=true">
+<img width ="300" src="src/assets/routecreator.png?raw=true">
 </p>
 
 #### Tree View of Application Architecture
 
 <p align="center">
-  <img width="500" src="src/assets/treeview.png?raw=true">
+  <img width="300" src="src/assets/treeview.png?raw=true">
 
 </p>
 
@@ -106,34 +110,13 @@ src/
     UserCreatedRouteComponent2.vue
     ...
 ```
+
 ## Running your own local version
 
 
 ### Setup
 
-Clone this repo
-
-```
-git clone https://github.com/oslabs/PreVue.git
-```
-
-Install dependencies
-
-```
-npm i
-```
-Build the app
-
-```
-npm run build
-```
-Run the app
-
-```
-npm run server
-```
-
-Go to <strong>http://localhost:8080</strong> to use PreVue!
+Coming soon!
 
 ## Built With
 
@@ -143,19 +126,40 @@ Go to <strong>http://localhost:8080</strong> to use PreVue!
 - [Vue Router](https://router.vuejs.org/guide/#html)
 - [Vuex](https://vuex.vuejs.org/)
 - [Vite](https://vitejs.dev/)
+- [Node.js](https://nodejs.org/en)
+- [Express](https://expressjs.com/)
 - [Vuetify](https://vuetifyjs.com/)
 - [Jest](https://jestjs.io/)
+- [Vue Test Utils](https://test-utils.vuejs.org/)
 - [SuperTest](https://www.npmjs.com/package/supertest)
+
+## Changelog
+
+---
+
+PreVue 2.0 Adds:
+- Implementation of PreVue as a web application
+- OAuth via GitHub
+- TypeScript integration
+- Backend infrastructure built with Node/Express
+- General UI/UX enhancements
+- Testing with Vitest and Supertest (and Jest)
+
 
 ## Contributing
 
 ---
 
-We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates.
+We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates. Some ideas for future contributions include:
+
+- Project livesharing (via Websockets)
+- Migrate state management from Vuex to Pinia
+- More thorough testing with Jest
 
 ## Authors
 
 ---
+
 PreVue 2.0
 - **Jason Boo** [@jasonboo123](https://github.com/jasonboo123)
 - **Robert Drake** [@rmdrake8](https://github.com/rmdrake8)
