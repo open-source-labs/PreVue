@@ -44,7 +44,7 @@ import LogOutComponent from './LogOutComponent.vue';
 
 const TREE_ROUTE_NAME = 'tree';
 
-defineProps(['route', 'imageURL']);
+defineProps(['imageURL']);
 
 const router = useRouter();
 
