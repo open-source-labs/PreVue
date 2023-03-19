@@ -7,14 +7,14 @@
     role="navigation"
     aria-label="main navigation"
   >
-    <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
+    <img src="../assets/logo.png" id="prevue-logo" @click="toHomeRoute" />
     <h1 id="prevue">PreVue</h1>
     <div class="buttons">
-      <v-btn v-if="isTreeRoute" id="tree-btn" @click="routeHome">
+      <v-btn v-if="isRouteTree" id="tree-btn" @click="toHomeRoute">
         <br />
-        <span class="white--text">Workspace</span>
+        <span class="white--text">WorkSpace</span>
       </v-btn>
-      <v-btn v-else id="tree-btn" @click="routeTree">
+      <v-btn v-else id="tree-btn" @click="toTreeRoute">
         <br />
         <span class="white--text">Tree</span>
       </v-btn>
@@ -31,49 +31,37 @@
   </v-app-bar>
 </template>
 
-<script>
+<script setup>
+import { defineProps, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
 import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import LogOutComponent from './LogOutComponent.vue';
 
-export default {
-  name: 'NavBar',
-  props: ['route', 'imageURL'],
+defineProps(['route', 'imageURL']);
 
-  components: {
-    SaveProjectComponent,
-    OpenProjectComponent,
-    LogOutComponent,
-    ExportProjectComponent,
-    NewProjectComponent
-  },
-  methods: {
-    // routing to homepage and tree view
-    routeHome() {
-      this.$router.push({ path: '/home' });
-    },
-    routeTree() {
-      this.$router.push({ path: '/tree' });
-    }
-  },
-  computed: {
-    // checks if user is loggedin and conditonally renders save and open project buttons
-    validUser() {
-      return this.$store.state.loggedIn;
-    },
-    // uforces update of list of projects upon saving of new project
-    rerenderKey: {
-      get() {
-        return this.$store.state.rerenderKey;
-      }
-    },
-    isTreeRoute() {
-      return this.$router.currentRoute.value.name === 'tree';
-    }
-  }
-};
+const router = useRouter();
+
+const store = useStore();
+
+const validUser = computed(() => store.state.loggedIn);
+
+const rerenderKey = computed(() => store.state.rerenderKey);
+
+const isRouteTree = computed(() => router.currentRoute.value.name === 'tree');
+
+function toHomeRoute() {
+  router.push({ path: '/home' });
+}
+
+function toTreeRoute() {
+  router.push({ path: '/tree' });
+}
+
 </script>
 
 <style scoped>
