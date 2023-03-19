@@ -7,66 +7,68 @@
     role="navigation"
     aria-label="main navigation"
   >
-    <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
+    <img src="../assets/logo.png" id="prevue-logo" @click="toHomeRoute" />
     <h1 id="prevue">PreVue</h1>
     <div class="buttons">
-      <v-btn id="tree-btn" @click="routeTree">
+      <v-btn v-if="isRouteTree" id="tree-btn" @click="toHomeRoute">
+        <br />
+        <span class="white--text">WorkSpace</span>
+      </v-btn>
+      <v-btn v-else id="tree-btn" @click="toTreeRoute">
         <br />
         <span class="white--text">Tree</span>
       </v-btn>
 
-      <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
+      <SaveProjectComponent v-if="isLoggedIn"></SaveProjectComponent>
       <ExportProjectComponent></ExportProjectComponent>
       <OpenProjectComponent
         :key="rerenderKey"
-        v-if="validUser"
+        v-if="isLoggedIn"
       ></OpenProjectComponent>
       <NewProjectComponent></NewProjectComponent>
-      <LogOutComponent v-if="validUser"></LogOutComponent>
+      <LogOutComponent v-if="isLoggedIn"></LogOutComponent>
     </div>
   </v-app-bar>
 </template>
 
-<script>
+<script setup>
+import { defineProps, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
 import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import LogOutComponent from './LogOutComponent.vue';
 
-export default {
-  name: 'NavBar',
-  props: ['route', 'imageURL'],
+const TREE_ROUTE_NAME = 'tree';
 
-  components: {
-    SaveProjectComponent,
-    OpenProjectComponent,
-    LogOutComponent,
-    ExportProjectComponent,
-    NewProjectComponent
-  },
-  methods: {
-    // routing to homepage and tree view
-    routeHome() {
-      this.$router.push({ path: '/home' });
-    },
-    routeTree() {
-      this.$router.push({ path: '/tree' });
-    }
-  },
-  computed: {
-    // checks if user is loggedin and conditonally renders save and open project buttons
-    validUser() {
-      return this.$store.state.loggedIn;
-    },
-    // uforces update of list of projects upon saving of new project
-    rerenderKey: {
-      get() {
-        return this.$store.state.rerenderKey;
-      }
-    }
+defineProps({
+  imageURL: {
+    type: String,
+    required: true
   }
-};
+});
+
+const router = useRouter();
+
+const store = useStore();
+
+const isLoggedIn = computed(() => store.state.loggedIn);
+
+const rerenderKey = computed(() => store.state.rerenderKey);
+
+const isRouteTree = computed(() => router.currentRoute.value.name === TREE_ROUTE_NAME);
+
+function toHomeRoute() {
+  router.push({ path: '/home' });
+}
+
+function toTreeRoute() {
+  router.push({ path: '/tree' });
+}
+
 </script>
 
 <style scoped>
