@@ -42,6 +42,8 @@ import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
 import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import LogOutComponent from './LogOutComponent.vue';
 
+const TREE_ROUTE_NAME = 'tree';
+
 defineProps(['route', 'imageURL']);
 
 const router = useRouter();
@@ -52,7 +54,7 @@ const validUser = computed(() => store.state.loggedIn);
 
 const rerenderKey = computed(() => store.state.rerenderKey);
 
-const isRouteTree = computed(() => router.currentRoute.value.name === 'tree');
+const isRouteTree = computed(() => router.currentRoute.value.name === TREE_ROUTE_NAME);
 
 function toHomeRoute() {
   router.push({ path: '/home' });
