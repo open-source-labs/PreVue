@@ -10,7 +10,11 @@
     <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
     <h1 id="prevue">PreVue</h1>
     <div class="buttons">
-      <v-btn id="tree-btn" @click="routeTree">
+      <v-btn v-if="isTreeRoute" id="tree-btn" @click="routeHome">
+        <br />
+        <span class="white--text">Workspace</span>
+      </v-btn>
+      <v-btn v-else id="tree-btn" @click="routeTree">
         <br />
         <span class="white--text">Tree</span>
       </v-btn>
@@ -64,6 +68,9 @@ export default {
       get() {
         return this.$store.state.rerenderKey;
       }
+    },
+    isTreeRoute() {
+      return this.$router.currentRoute.value.name === 'tree';
     }
   }
 };
