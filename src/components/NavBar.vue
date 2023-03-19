@@ -19,14 +19,14 @@
         <span class="white--text">Tree</span>
       </v-btn>
 
-      <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
+      <SaveProjectComponent v-if="isLoggedIn"></SaveProjectComponent>
       <ExportProjectComponent></ExportProjectComponent>
       <OpenProjectComponent
         :key="rerenderKey"
-        v-if="validUser"
+        v-if="isLoggedIn"
       ></OpenProjectComponent>
       <NewProjectComponent></NewProjectComponent>
-      <LogOutComponent v-if="validUser"></LogOutComponent>
+      <LogOutComponent v-if="isLoggedIn"></LogOutComponent>
     </div>
   </v-app-bar>
 </template>
@@ -55,7 +55,7 @@ const router = useRouter();
 
 const store = useStore();
 
-const validUser = computed(() => store.state.loggedIn);
+const isLoggedIn = computed(() => store.state.loggedIn);
 
 const rerenderKey = computed(() => store.state.rerenderKey);
 
