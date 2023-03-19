@@ -21,6 +21,7 @@
         :key="rerenderKey"
         v-if="validUser"
       ></OpenProjectComponent>
+      <NewProjectComponent></NewProjectComponent>
       <LogOutComponent v-if="validUser"></LogOutComponent>
     </div>
   </v-app-bar>
@@ -30,6 +31,7 @@
 import SaveProjectComponent from '@/components/SaveProjectComponent.vue';
 import OpenProjectComponent from '@/components/OpenProjectComponent.vue';
 import ExportProjectComponent from '@/components/ExportProjectComponent.vue';
+import NewProjectComponent from '@/components/NewProjectComponent.vue';
 import LogOutComponent from './LogOutComponent.vue';
 
 export default {
@@ -40,7 +42,8 @@ export default {
     SaveProjectComponent,
     OpenProjectComponent,
     LogOutComponent,
-    ExportProjectComponent
+    ExportProjectComponent,
+    NewProjectComponent
   },
   methods: {
     // routing to homepage and tree view
@@ -115,3 +118,4 @@ button:hover {
   color: #00c4a7;
 }
 </style>
+
