@@ -41,10 +41,12 @@ const actions: Actions = {
   },
   [types.setSelectedElementList]: ({ commit }, payload) => {
     if (payload) {
+      
       commit(types.SET_SELECTED_ELEMENT_LIST, payload);
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
+    console.log('action payload is', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.addToComponentElementList]: ({ commit }, payload) => {
@@ -63,6 +65,7 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_COMPONENT, '');
   },
   [types.deleteSelectedElement]: ({ commit }, payload) => {
+    //console.log('this is the payload', payload)
     commit(types.DELETE_SELECTED_ELEMENT, payload);
   },
   [types.setState]: ({ commit }, payload) => {
