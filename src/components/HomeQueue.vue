@@ -27,9 +27,13 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <template #item="{element}">
+
+
+
+      <template #item="{element, index}">
         <v-chip class="ma-2 list-group-item">
           {{ element.text }}
+          <!-- <span class="index-label">{{ index + 1 }}</span> -->
           <i
             class="fas fa fa-trash fa-md"
             style="color: white;"
@@ -59,6 +63,7 @@ export default {
     renderList: {
       get() {
         // return list of user selected html elements associated with created component
+        
         return this.$store.state.selectedElementList;
       },
       set(value) {
@@ -78,6 +83,9 @@ export default {
   methods: {
     deleteElement(index) {
       // remove selected html element when trashcan icon is clicked from elements associated the user created component
+
+      console.log(index)
+      
       this.$store.dispatch(deleteSelectedElement, index);
     }
   }
@@ -101,6 +109,12 @@ export default {
 .list-group-item:hover {
   background-color: rgba(0, 255, 126, 0.40242034313725494);
 }
+
+.index-label {
+  color: white;
+  margin-right: 8px;
+}
+
 /* .home-queue {
   border: 1px solid white;
   background-color: hsl(222, 15%, 26%);
