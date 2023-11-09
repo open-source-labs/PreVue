@@ -188,7 +188,5 @@ export default {
   grid-template-columns: repeat(100, 1fr);
   color: #3ab982;
   border: 1px solid rgb(51, 0, 255);
-  max-width: 150px;
-  position: sticky;
 }
 </style>
