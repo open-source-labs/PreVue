@@ -17,10 +17,18 @@ const actions: Actions = {
   [types.initialiseStore]: ({ commit }) => {
     commit(types.INITIALISESTORE);
   },
+
+
+
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
+   // console.log('componentName is', componentName)
+   //console.log('componentNameInputValue is', state.componentNameInputValue)
+    //console.log('componentMap is', state.componentMap)
+
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
+
       commit(
         types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN,
         payload.componentName
@@ -46,7 +54,7 @@ const actions: Actions = {
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
-    console.log('action payload is', payload);
+    //console.log('action payload is', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.addToComponentElementList]: ({ commit }, payload) => {
