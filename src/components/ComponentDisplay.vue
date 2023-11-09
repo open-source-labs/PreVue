@@ -161,27 +161,33 @@ export default {
 </script>
 
 <style scoped>
-.component-display {
+/* .component-display {
   border: 1px solid plum;
   height: 84vh;
-}
+} */
 .component-display {
   color: #3ab982;
-  box-sizing: border-box;
-  border: 6px solid rgb(243,74,209);
+  border: 1px solid rgb(0, 205, 68);
+  border-radius: 10px;
   position: relative;
+  height: 84vh;
 }
 .component-box {
+  box-sizing: content-box;
   color: #3ab982;
-  border: 4px solid rgb(132, 0, 255);
-  /* position: relative; */
+  /* border: 1px solid rgb(38, 0, 255); */
+  border-radius: 25px;
+  background-image: url("../assets/form.svg");
+  background-size: contain;
+  background-position: center;
+  text-align: center;
 }
 
 .component-elements {
   display: grid;
   grid-template-columns: repeat(100, 1fr);
   color: #3ab982;
-  border: 1px solid rgb(242,255,0);
+  border: 1px solid rgb(51, 0, 255);
   max-width: 150px;
   position: sticky;
 }
