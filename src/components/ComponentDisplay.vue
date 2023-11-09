@@ -3,8 +3,8 @@
   <div class="component-display">
     <Vue3DraggableResizable
       class="component-box"
-      v-for="componentData in activeRouteArray"
-      :draggable="true"
+      v-for="(componentData, index) in activeRouteArray"
+      :draggable="isDraggable"
       :resizable="true"
       :disabledX="false"
       :disabledY="false"
@@ -24,7 +24,23 @@
       @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
-      <h3>{{ componentData.componentName }}</h3>
+      <h3>{{ componentData.componentName}}</h3>
+      <Vue3DraggableResizable
+      class="component-elements"
+      v-for="(element, i) in theHtmlList(index)"
+      :draggable="true"
+      :resizable="true"
+      :disabledX="false"
+      :disabledY="false"
+      :key="i + element"
+      @drag-start="notDraggable()"
+      @drag-end="$event => draggableAgain()"
+      >
+      AAAHHH
+      {{  }}
+      </Vue3DraggableResizable>
+
+
     </Vue3DraggableResizable>
 
     <v-overlay v-model="modalOpen" class="overlay">
@@ -50,7 +66,8 @@ export default {
   data() {
     return {
       // by default modal associated with active component for further user custimaztion should be hidden
-      modalOpen: false
+      modalOpen: false,
+      isDraggable: true 
     };
   },
   mounted() {
@@ -66,14 +83,24 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
+      console.log("routes:", this.routes)
+      console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
+      // console.log("active comp:", this.activeComponent)
+      // console.log("active route array:", this.activeRouteArray)
+      console.log("comp map:", this.componentMap)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
+    },
+    theHtmlList(){
+    return (i) => {
+      return this.routes[this.activeRoute][i].htmlList;
+      }
     }
   },
   methods: {
@@ -122,6 +149,12 @@ export default {
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
+    },
+    notDraggable() {
+      this.isDraggable = false
+    },
+    draggableAgain() {
+      this.isDraggable = true
     }
   }
 };
@@ -134,11 +167,18 @@ export default {
 }
 .component-display {
   color: #3ab982;
-  border: 1px solid salmon;
+  border: 1px solid rgb(0, 205, 68);
   position: relative;
 }
 .component-box {
   color: #3ab982;
-  border: 1px solid salmon;
+  border: 1px solid rgb(38, 0, 255);
+}
+
+.component-elements {
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  color: #3ab982;
+  border: 1px solid rgb(255, 0, 187);
 }
 </style>
