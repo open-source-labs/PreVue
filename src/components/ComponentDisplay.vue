@@ -37,7 +37,7 @@
       @drag-end="$event => draggableAgain()"
       >
       AAAHHH
-      {{  }}
+
       </Vue3DraggableResizable>
 
 
@@ -83,15 +83,15 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
-      console.log("routes:", this.routes)
-      console.log("active routes:", this.activeRoute)
+      //console.log("routes:", this.routes)
+      //console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
       // console.log("active comp:", this.activeComponent)
       // console.log("active route array:", this.activeRouteArray)
-      console.log("comp map:", this.componentMap)
+      //console.log("comp map:", this.componentMap)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
@@ -167,18 +167,22 @@ export default {
 }
 .component-display {
   color: #3ab982;
-  border: 1px solid rgb(0, 205, 68);
+  box-sizing: border-box;
+  border: 6px solid rgb(243,74,209);
   position: relative;
 }
 .component-box {
   color: #3ab982;
-  border: 1px solid rgb(38, 0, 255);
+  border: 4px solid rgb(132, 0, 255);
+  /* position: relative; */
 }
 
 .component-elements {
   display: grid;
   grid-template-columns: repeat(100, 1fr);
   color: #3ab982;
-  border: 1px solid rgb(255, 0, 187);
+  border: 1px solid rgb(242,255,0);
+  max-width: 150px;
+  position: sticky;
 }
 </style>
