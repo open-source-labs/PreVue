@@ -39,9 +39,11 @@ const mutations: Mutations<State> = {
         isActive
       }
     };
+
+    //console.log('htmlList[0] is', htmlList[0].text)
   },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
-    console.log('mutation payload is', payload)
+    //console.log('mutation payload is', payload)
     state.selectedElementList.push({ text: payload, children: []});
   },
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {

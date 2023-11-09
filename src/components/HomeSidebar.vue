@@ -31,7 +31,7 @@
           required
           v-model="componentNameInputValue"
           variant="underlined"
-          label="Component name"
+          label="Enter a Component Name"
           placeholder="myCustomComponent"
           :style="{ color: '#f5f4f3' }"
         >
@@ -39,6 +39,7 @@
       </v-form>
       <Icons @getClickedIcon="addToSelectedElementList" />
       <ChildrenMultiselect />
+
       <div
         :style="{
           display: 'flex',
@@ -129,6 +130,8 @@ export default {
   }
 };
 </script>
+
+
 <style>
 #sidebar > div {
   padding: 0;
