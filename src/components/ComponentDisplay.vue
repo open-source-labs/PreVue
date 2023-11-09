@@ -161,18 +161,26 @@ export default {
 </script>
 
 <style scoped>
-.component-display {
+/* .component-display {
   border: 1px solid plum;
   height: 84vh;
-}
+} */
 .component-display {
   color: #3ab982;
   border: 1px solid rgb(0, 205, 68);
+  border-radius: 10px;
   position: relative;
+  height: 84vh;
 }
 .component-box {
+  box-sizing: content-box;
   color: #3ab982;
-  border: 1px solid rgb(38, 0, 255);
+  /* border: 1px solid rgb(38, 0, 255); */
+  border-radius: 25px;
+  background-image: url("../assets/form.svg");
+  background-size: contain;
+  background-position: center;
+  text-align: center;
 }
 
 .component-elements {
