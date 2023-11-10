@@ -86,6 +86,10 @@ export type HtmlChild = {
   text: string;
   children: HtmlChild[];
   _id?: number;
+  x?: number;
+  y?: number;
+  w?: number; 
+  h?: number; 
 };
 
 export type HtmlList = HtmlChild[];

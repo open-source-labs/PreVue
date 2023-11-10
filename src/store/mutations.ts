@@ -41,7 +41,14 @@ const mutations: Mutations<State> = {
     };
   },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
-    state.selectedElementList.push({ text: payload, children: [] });
+    state.selectedElementList.push({ 
+      text: payload, 
+      children: [],
+      x: 20,
+      y: 20,
+      w: 100,
+      h: 100
+     });
   },
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
@@ -51,7 +58,11 @@ const mutations: Mutations<State> = {
 
     state.componentMap[componentName].htmlList.push({
       text: elementName,
-      children: []
+      children: [],
+      x: 20,
+      y: 20,
+      w: 100,
+      h: 100
     });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
