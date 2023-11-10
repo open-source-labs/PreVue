@@ -200,7 +200,7 @@ export default {
   height: 84vh;
 }
 .component-box {
-  box-sizing: content-box;
+  box-sizing: border-box;
   color: #3ab982;
   /* border: 1px solid rgb(38, 0, 255); */
   border-radius: 25px;
@@ -208,13 +208,22 @@ export default {
   background-size: contain;
   background-position: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .component-elements {
-  display: grid;
-  grid-template-columns: repeat(100, 1fr);
+  display: flex;
+  /* grid-template-columns: repeat(2, 1fr); */
+  margin: 10px 0;
+  padding: 5px;
+  text-align: center;
   color: #3ab982;
   border: 1px solid rgb(51, 0, 255);
+  border-radius: 7px;
+  position: sticky;
+  max-width: min-content;
 }
 
 </style>
