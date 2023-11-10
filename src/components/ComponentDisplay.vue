@@ -24,7 +24,8 @@
       @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
-      <h3>{{ componentData.componentName}}</h3>
+    
+    <h3>{{ componentData.componentName}}</h3>
       
     <Vue3DraggableResizable
       class="component-elements"
@@ -42,13 +43,15 @@
       <!-- <img :src="`../assets/${element.text}.svg`" alt="SVG Image" />   -->
       <!-- <img :src="'../assets/' + element.text + '.svg'" alt="SVG Image" /> -->
 
-      {{ console.log(`../assets/${element.text}.svg` )}}
       <!-- const basePath = "../assets/";
-      return `${basePath}${text}.svg`; -->
+       return `${basePath}${text}.svg`; -->
     
-      <!-- <span v-else>{{ element.text }}</span> -->
-      {{ element.text }}
-      <!-- {{ console.log('i is', i) }} -->
+      <!-- {{ element.text }} -->
+      {{ console.log(`../assets/${element.text}.svg` )}}
+
+      <img :src="`./src/assets/${element.text}.svg`" alt="SVG Image" />
+
+ 
       </Vue3DraggableResizable>
     </Vue3DraggableResizable>
 
@@ -114,12 +117,12 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    isSvg(text) {
-      return text.endsWith('.svg')
-    },
-    generateSvgPath(text) {
-      const basePath = "../assets/";
-      return `${basePath}${text}.svg`;
+    // isSvg(text) {
+    //   return text.endsWith('.svg')
+    // },
+    // generateSvgPath(text) {
+    //   const basePath = "../assets/";
+    //   return `${basePath}${text}.svg`;
   //     const basePath = "../assets/";
   //     const imagePath = `"${basePath}${text}.svg"`;
   //     console.log(imagePath)
@@ -131,7 +134,7 @@ export default {
   // `;
         /* background-image: url("../assets/button.svg"); */
 
-    },
+    // },
     onResize: function(x) {
       // updates state associated with active component to reflect start of resize user has made to the component
       this.activeComponentData.x = x.x;
@@ -214,16 +217,13 @@ export default {
 }
 
 .component-elements {
-  display: flex;
-  /* grid-template-columns: repeat(2, 1fr); */
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
   margin: 10px 0;
-  padding: 5px;
-  text-align: center;
-  color: #3ab982;
-  border: 1px solid rgb(51, 0, 255);
-  border-radius: 7px;
+  color: #3AB982;
+  border: 2px solid rgb(255, 0, 221);
   position: sticky;
-  max-width: min-content;
+  max-width: fit-content;
 }
 
 </style>
