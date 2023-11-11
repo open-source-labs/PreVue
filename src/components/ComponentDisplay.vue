@@ -24,8 +24,10 @@
       @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
-      <h3>{{ componentData.componentName}}</h3>
-      <Vue3DraggableResizable
+    
+    <h3>{{ componentData.componentName}}</h3>
+      
+    <Vue3DraggableResizable
       class="component-elements"
       v-for="(element, i) in theHtmlList(index)"
       :draggable="true"
@@ -44,11 +46,21 @@
       updatePosition($event, i, index);
     }"
       >
-      AAAHHH
-      {{  }}
+      <!-- <div v-if="isSvg(element.text)" v-html="generateSvgPath(element.text)" ></div> -->
+      <!-- <div v-html="generateSvgPath(element.text)"></div> -->
+      <!-- <img :src="`../assets/${element.text}.svg`" alt="SVG Image" />   -->
+      <!-- <img :src="'../assets/' + element.text + '.svg'" alt="SVG Image" /> -->
+
+      <!-- const basePath = "../assets/";
+       return `${basePath}${text}.svg`; -->
+    
+      <!-- {{ element.text }} -->
+      {{ console.log(`../assets/${element.text}.svg` )}}
+
+      <img :src="`./src/assets/${element.text}.svg`" alt="SVG Image" />
+
+ 
       </Vue3DraggableResizable>
-
-
     </Vue3DraggableResizable>
 
     <v-overlay v-model="modalOpen" class="overlay">
@@ -121,6 +133,24 @@ export default {
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
+    // isSvg(text) {
+    //   return text.endsWith('.svg')
+    // },
+    // generateSvgPath(text) {
+    //   const basePath = "../assets/";
+    //   return `${basePath}${text}.svg`;
+  //     const basePath = "../assets/";
+  //     const imagePath = `"${basePath}${text}.svg"`;
+  //     console.log(imagePath)
+  //     // return `<img src="${imagePath}" alt="SVG Image" style='background-image: url("${imagePath}")' />`;
+  //     return `
+  //   <div class="svg-wrapper" style="background-image: url('${imagePath}')">
+  //     <img src="${imagePath}" alt="SVG Image" />
+  //   </div>
+  // `;
+        /* background-image: url("../assets/button.svg"); */
+
+    // },
     onResize: function(x) {
       // updates state associated with active component to reflect start of resize user has made to the component
       this.activeComponentData.x = x.x;
@@ -199,24 +229,36 @@ export default {
 </script>
 
 <style scoped>
-.component-display {
+/* .component-display {
   border: 1px solid plum;
   height: 84vh;
-}
+} */
 .component-display {
   color: #3ab982;
   border: 1px solid rgb(0, 205, 68);
+  border-radius: 10px;
   position: relative;
+  height: 84vh;
 }
 .component-box {
+  box-sizing: content-box;
   color: #3ab982;
-  border: 1px solid rgb(38, 0, 255);
+  /* border: 1px solid rgb(38, 0, 255); */
+  border-radius: 25px;
+  /* background-image: url("../assets/button.svg"); */
+  background-size: contain;
+  background-position: center;
+  text-align: center;
 }
 
 .component-elements {
   display: grid;
   grid-template-columns: repeat(100, 1fr);
-  color: #3ab982;
-  border: 1px solid rgb(255, 0, 187);
+  margin: 10px 0;
+  color: #3AB982;
+  border: 2px solid rgb(255, 0, 221);
+  position: sticky;
+  max-width: fit-content;
 }
+
 </style>
