@@ -1,6 +1,7 @@
 <template>
   <!--the sandbox area where the component boxes are rendered-->
   <div class="component-display">
+
     <Vue3DraggableResizable
       class="component-box"
       v-for="(componentData, index) in activeRouteArray"
@@ -45,21 +46,12 @@
       draggableAgain();
       updatePosition($event, i, index);
     }"
-      >
-      <!-- <div v-if="isSvg(element.text)" v-html="generateSvgPath(element.text)" ></div> -->
-      <!-- <div v-html="generateSvgPath(element.text)"></div> -->
-      <!-- <img :src="`../assets/${element.text}.svg`" alt="SVG Image" />   -->
-      <!-- <img :src="'../assets/' + element.text + '.svg'" alt="SVG Image" /> -->
+    >
 
-      <!-- const basePath = "../assets/";
-       return `${basePath}${text}.svg`; -->
-    
-      <!-- {{ element.text }} -->
-      <!-- {{ console.log(`../assets/${element.text}.svg` )}} -->
-      <img :src="`./src/assets/${element.text}.svg`" :alt="`${element.text} SVG Image`" />
-
+      <img :src="`./src/assets/${element.text}.svg`" class="graphic" :alt="`${element.text} SVG Image`"/>
  
-      </Vue3DraggableResizable>
+    </Vue3DraggableResizable>
+
     </Vue3DraggableResizable>
 
     <v-overlay v-model="modalOpen" class="overlay">
@@ -71,6 +63,7 @@
     </v-overlay>
   </div>
 </template>
+
 <script>
 import { mapState, mapActions } from 'vuex';
 import Vue3DraggableResizable from 'vue3-draggable-resizable';
@@ -82,6 +75,7 @@ export default {
     Vue3DraggableResizable,
     Modal
   },
+
   data() {
     return {
       // by default modal associated with active component for further user custimaztion should be hidden
@@ -89,6 +83,7 @@ export default {
       isDraggable: true
     };
   },
+
   mounted() {
     // allows active user created component to be deleted when backspace is pressed
     window.addEventListener('keyup', event => {
@@ -99,6 +94,7 @@ export default {
       }
     });
   },
+
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
@@ -107,6 +103,7 @@ export default {
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
+
     activeComponentData() {
       // console.log("active comp:", this.activeComponent)
       // console.log("active route array:", this.activeRouteArray)
@@ -117,12 +114,14 @@ export default {
         return componentData.componentName === this.activeComponent;
       })[0];
     },
-    theHtmlList(){
+
+    theHtmlList() {
     return (i) => {
       return this.routes[this.activeRoute][i].htmlList;
       }
     },
-    elementPosition(){
+
+    elementPosition() {
       return (i, index) => { 
         // console.log("Sdf", this.routes[this.activeRoute][index].htmlList[i])
         // console.log("X", x)
@@ -130,26 +129,10 @@ export default {
       }
     }
   },
+
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    // isSvg(text) {
-    //   return text.endsWith('.svg')
-    // },
-    // generateSvgPath(text) {
-    //   const basePath = "../assets/";
-    //   return `${basePath}${text}.svg`;
-  //     const basePath = "../assets/";
-  //     const imagePath = `"${basePath}${text}.svg"`;
-  //     console.log(imagePath)
-  //     // return `<img src="${imagePath}" alt="SVG Image" style='background-image: url("${imagePath}")' />`;
-  //     return `
-  //   <div class="svg-wrapper" style="background-image: url('${imagePath}')">
-  //     <img src="${imagePath}" alt="SVG Image" />
-  //   </div>
-  // `;
-        /* background-image: url("../assets/button.svg"); */
 
-    // },
     onResize: function(x) {
       // updates state associated with active component to reflect start of resize user has made to the component
       this.activeComponentData.x = x.x;
@@ -157,17 +140,20 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
+
     resizeElement: function(x, i, index){
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
       this.elementPosition(i, index).w = x.w
       this.elementPosition(i, index).h = x.h
     },
+
     updatePosition: function(x, i, index){//yeehaw
       console.log("xxx", x)
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
     },
+
     onResizeEnd: function(x) {
       // updates state associated with active component to reflect end of resize user has made to the component
       this.activeComponentData.isActive = true;
@@ -176,83 +162,74 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
+
     onDrag: function(x) {
       // updates state associated with active component to reflect start of drag user has made to the component
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
     },
+
     onDragEnd: function(x) {
       // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
       console.log("XD", x)
       this.activeComponentData.y = x.y;
     },
+
     onActivated(componentData) {
       // updates state to reflect current selected componenet (i.e. active component)
       this.setActiveComponent(componentData.componentName);
       this.activeComponentData.isActive = true;
     },
+
     onDeactivated() {
       // updates state when current selected component is unselected
       this.activeComponentData.isActive = false;
     },
+
     onClick(compData) {
       // sets clicked component as active in state
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
     },
+
     onDoubleClick(compData) {
       // sets double clicked component as active and opens modal providing options to further manipulate the component
       this.setActiveComponent(compData.componentName);
       this.activeComponentData.isActive = true;
       this.modalOpen = true;
     },
+
     notDraggable() {
       this.isDraggable = false
     },
+
     draggableAgain() {
       this.isDraggable = true
-    },
-    // updatePosition(i, index){
-    //   // console.log("BITCH", this.activeComponentData.htmlList[i])
-    //   // console.log("ASS", this.elementPosition(i, index))
-    //   // console.log("FUCK", this.routes[this.activeRoute][index].htmlList[i])
-    //   // this.activeComponentData.htmlList[i].x = 150
-    //   // this.activeComponentData.htmlList[i].y = 150
-    // },
-    // updatePosition: function(x){
-    //   console.log(x)
-    // }
+    }
   }
 };
 </script>
 
 <style scoped>
-/* .component-display {
-  border: 1px solid plum;
-  height: 84vh;
-} */
 .component-display {
   color: #3ab982;
   border: 1px solid rgb(0, 205, 68);
   border-radius: 10px;
   position: relative;
   height: 84vh;
+  /* overflow: hidden; */
 }
 .component-box {
   box-sizing: border-box;
   color: #3ab982;
-  /* border: 1px solid rgb(38, 0, 255); */
   border-radius: 25px;
-  /* background-image: url("../assets/button.svg"); */
-  /* background-size: contain;
-  background-position: center; */
   text-align: center;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
-  min-width: max-content;
-  min-height: max-content;
+  align-items: center;
+  min-width: fit-content;
+  min-height: fit-content;
 }
 
 .component-elements {
@@ -269,5 +246,68 @@ export default {
   min-width: fit-content;
   min-height: fit-content;
 }
+
+/*CSS styles to dynamically adjust the specific component graphic, relative to its parent container*/
+.graphic {
+  height: calc(100%);
+  width: calc(100%);
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+/* .div {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.button {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.form {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.img {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.link {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.list {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.paragraph {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.list-ol {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.list-ul {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.input {
+  height: calc(100%);
+  width: calc(100%);
+}
+
+.navbar {
+  height: calc(100%);
+  width: calc(100%);
+} */
 
 </style>
