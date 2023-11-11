@@ -35,8 +35,16 @@
       :disabledX="false"
       :disabledY="false"
       :key="i + element"
+      :x="elementPosition(i, index).x"
+      :y="elementPosition(i, index).y"
+      :w="elementPosition(i, index).w"
+      :h="elementPosition(i, index).h"
+      @resize-end="resizeElement($event, i, index)"
       @drag-start="notDraggable()"
-      @drag-end="$event => draggableAgain()"
+      @drag-end="$event => {
+      draggableAgain();
+      updatePosition($event, i, index);
+    }"
       >
       <!-- <div v-if="isSvg(element.text)" v-html="generateSvgPath(element.text)" ></div> -->
       <!-- <div v-html="generateSvgPath(element.text)"></div> -->
@@ -78,7 +86,7 @@ export default {
     return {
       // by default modal associated with active component for further user custimaztion should be hidden
       modalOpen: false,
-      isDraggable: true 
+      isDraggable: true
     };
   },
   mounted() {
@@ -94,15 +102,16 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
     activeRouteArray() {
-      //console.log("routes:", this.routes)
-      //console.log("active routes:", this.activeRoute)
+      console.log("routes:", this.routes[this.activeRoute])
+      console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
       // console.log("active comp:", this.activeComponent)
       // console.log("active route array:", this.activeRouteArray)
-      //console.log("comp map:", this.componentMap)
+      console.log("comp map:", this.componentMap)
+      console.log("routes:", this.routes)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
@@ -111,6 +120,13 @@ export default {
     theHtmlList(){
     return (i) => {
       return this.routes[this.activeRoute][i].htmlList;
+      }
+    },
+    elementPosition(){
+      return (i, index) => { 
+        // console.log("Sdf", this.routes[this.activeRoute][index].htmlList[i])
+        // console.log("X", x)
+         return this.routes[this.activeRoute][index].htmlList[i]
       }
     }
   },
@@ -141,6 +157,17 @@ export default {
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
     },
+    resizeElement: function(x, i, index){
+      this.elementPosition(i, index).x = x.x
+      this.elementPosition(i, index).y = x.y
+      this.elementPosition(i, index).w = x.w
+      this.elementPosition(i, index).h = x.h
+    },
+    updatePosition: function(x, i, index){//yeehaw
+      console.log("xxx", x)
+      this.elementPosition(i, index).x = x.x
+      this.elementPosition(i, index).y = x.y
+    },
     onResizeEnd: function(x) {
       // updates state associated with active component to reflect end of resize user has made to the component
       this.activeComponentData.isActive = true;
@@ -157,6 +184,7 @@ export default {
     onDragEnd: function(x) {
       // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
+      console.log("XD", x)
       this.activeComponentData.y = x.y;
     },
     onActivated(componentData) {
@@ -184,7 +212,17 @@ export default {
     },
     draggableAgain() {
       this.isDraggable = true
-    }
+    },
+    // updatePosition(i, index){
+    //   // console.log("BITCH", this.activeComponentData.htmlList[i])
+    //   // console.log("ASS", this.elementPosition(i, index))
+    //   // console.log("FUCK", this.routes[this.activeRoute][index].htmlList[i])
+    //   // this.activeComponentData.htmlList[i].x = 150
+    //   // this.activeComponentData.htmlList[i].y = 150
+    // },
+    // updatePosition: function(x){
+    //   console.log(x)
+    // }
   }
 };
 </script>

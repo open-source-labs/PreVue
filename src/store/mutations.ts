@@ -42,6 +42,16 @@ const mutations: Mutations<State> = {
 
     //console.log('htmlList[0] is', htmlList[0].text)
   },
+  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {//this
+    state.selectedElementList.push({ 
+      text: payload, 
+      children: [],
+      x: 20,
+      y: 20,
+      w: 100,
+      h: 100
+     });
+  },
   [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     //console.log('mutation payload is', payload)
     state.selectedElementList.push({ text: payload, children: []});
@@ -49,12 +59,16 @@ const mutations: Mutations<State> = {
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {//and this
     const componentName: string = state.activeComponent;
 
     state.componentMap[componentName].htmlList.push({
       text: elementName,
-      children: []
+      children: [],
+      x: 20,
+      y: 20,
+      w: 100,
+      h: 100
     });
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
