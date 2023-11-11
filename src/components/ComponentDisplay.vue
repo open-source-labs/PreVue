@@ -218,7 +218,6 @@ export default {
   border-radius: 10px;
   position: relative;
   height: 84vh;
-  /* overflow: hidden; */
 }
 .component-box {
   box-sizing: border-box;
@@ -227,32 +226,23 @@ export default {
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: fit-content;
-  min-height: fit-content;
+  align-items: center; 
+  flex-wrap: wrap;
 }
 
 .component-elements {
   box-sizing: content-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border-radius: 7px;
-  margin: 10px;
+  margin: 5px;
   color: #3AB982;
   border: 2px solid rgb(255, 0, 221);
   position: sticky;
-  min-width: fit-content;
-  min-height: fit-content;
 }
 
 /*CSS styles to dynamically adjust the specific component graphic, relative to its parent container*/
 .graphic {
   height: calc(100%);
   width: calc(100%);
-  min-height: fit-content;
-  min-width: fit-content;
 }
 
 /* .div {
