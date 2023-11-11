@@ -40,7 +40,7 @@ const mutations: Mutations<State> = {
       }
     };
   },
-  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
+  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {//this
     state.selectedElementList.push({ 
       text: payload, 
       children: [],
@@ -53,7 +53,7 @@ const mutations: Mutations<State> = {
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {//and this
     const componentName: string = state.activeComponent;
 
     state.componentMap[componentName].htmlList.push({
