@@ -55,7 +55,7 @@
        return `${basePath}${text}.svg`; -->
     
       <!-- {{ element.text }} -->
-      {{ console.log(`../assets/${element.text}.svg` )}}
+      <!-- {{ console.log(`../assets/${element.text}.svg` )}} -->
 
       <img :src="`./src/assets/${element.text}.svg`" alt="SVG Image" />
 
@@ -165,7 +165,6 @@ export default {
       this.elementPosition(i, index).h = x.h
     },
     updatePosition: function(x, i, index){//yeehaw
-      console.log("xxx", x)
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
     },
@@ -185,7 +184,6 @@ export default {
     onDragEnd: function(x) {
       // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
-      console.log("XD", x)
       this.activeComponentData.y = x.y;
     },
     onActivated(componentData) {
@@ -213,52 +211,28 @@ export default {
     },
     draggableAgain() {
       this.isDraggable = true
-    },
-    // updatePosition(i, index){
-    //   // console.log("BITCH", this.activeComponentData.htmlList[i])
-    //   // console.log("ASS", this.elementPosition(i, index))
-    //   // console.log("FUCK", this.routes[this.activeRoute][index].htmlList[i])
-    //   // this.activeComponentData.htmlList[i].x = 150
-    //   // this.activeComponentData.htmlList[i].y = 150
-    // },
-    // updatePosition: function(x){
-    //   console.log(x)
-    // }
+    }
   }
 };
 </script>
-
 <style scoped>
-/* .component-display {
+.component-display {
   border: 1px solid plum;
   height: 84vh;
-} */
+}
 .component-display {
   color: #3ab982;
   border: 1px solid rgb(0, 205, 68);
-  border-radius: 10px;
   position: relative;
-  height: 84vh;
 }
 .component-box {
-  box-sizing: content-box;
   color: #3ab982;
-  /* border: 1px solid rgb(38, 0, 255); */
-  border-radius: 25px;
-  /* background-image: url("../assets/button.svg"); */
-  background-size: contain;
-  background-position: center;
-  text-align: center;
+  border: 1px solid rgb(38, 0, 255);
 }
-
 .component-elements {
   display: grid;
   grid-template-columns: repeat(100, 1fr);
-  margin: 10px 0;
-  color: #3AB982;
-  border: 2px solid rgb(255, 0, 221);
-  position: sticky;
-  max-width: fit-content;
+  color: #3ab982;
+  border: 1px solid rgb(255, 0, 187);
 }
-
 </style>

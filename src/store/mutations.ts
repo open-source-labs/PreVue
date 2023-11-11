@@ -52,10 +52,6 @@ const mutations: Mutations<State> = {
       h: 100
      });
   },
-  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
-    //console.log('mutation payload is', payload)
-    state.selectedElementList.push({ text: payload, children: []});
-  },
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
   },
@@ -69,7 +65,17 @@ const mutations: Mutations<State> = {
       y: 20,
       w: 100,
       h: 100
-    });
+    })
+
+    //also adds to routes
+    state.routes[state.activeRoute][0].htmlList.push({ 
+      text: elementName,
+      children: [],
+      x: 20,
+      y: 20,
+      w: 100,
+      h: 100
+    })
   },
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
     const componentName = state.activeComponent;
