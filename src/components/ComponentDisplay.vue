@@ -47,9 +47,8 @@
        return `${basePath}${text}.svg`; -->
     
       <!-- {{ element.text }} -->
-      {{ console.log(`../assets/${element.text}.svg` )}}
-
-      <img :src="`./src/assets/${element.text}.svg`" alt="SVG Image" />
+      <!-- {{ console.log(`../assets/${element.text}.svg` )}} -->
+      <img :src="`./src/assets/${element.text}.svg`" :alt="`${element.text} SVG Image`" />
 
  
       </Vue3DraggableResizable>
@@ -208,22 +207,44 @@ export default {
   /* border: 1px solid rgb(38, 0, 255); */
   border-radius: 25px;
   /* background-image: url("../assets/button.svg"); */
-  background-size: contain;
-  background-position: center;
+  /* background-size: contain;
+  background-position: center; */
   text-align: center;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  min-width: max-content;
+  min-height: max-content;
 }
 
 .component-elements {
-  display: grid;
-  grid-template-columns: repeat(100, 1fr);
-  margin: 10px 0;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  margin: 10px;
   color: #3AB982;
   border: 2px solid rgb(255, 0, 221);
   position: sticky;
-  max-width: fit-content;
+  min-width: max-content;
+  min-height: max-content;
 }
+
+.data-v-aa7ee463{
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  flex-grow: 3;
+}
+
+.vdr-container active dragging draggable resizable component-elements {
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  flex-grow: 3;
+}
+
 
 </style>
