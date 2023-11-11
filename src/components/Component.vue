@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <!--the individual boxes that are made with the component creator-->
   <div>
@@ -57,5 +56,3 @@ export default {
 }
 </style>
 
-=======
->>>>>>> d97c19b5d25e7f904f1a505c96d86e2074cc7269

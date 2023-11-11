@@ -266,23 +266,8 @@ export default {
   color: #3AB982;
   border: 2px solid rgb(255, 0, 221);
   position: sticky;
-  min-width: max-content;
-  min-height: max-content;
+  min-width: fit-content;
+  min-height: fit-content;
 }
-
-.data-v-aa7ee463{
-  display: flex;
-  flex-direction: column;
-  flex-basis: auto;
-  flex-grow: 3;
-}
-
-.vdr-container active dragging draggable resizable component-elements {
-  display: flex;
-  flex-direction: column;
-  flex-basis: auto;
-  flex-grow: 3;
-}
-
 
 </style>
