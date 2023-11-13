@@ -10,11 +10,26 @@ import { mapState } from 'vuex';
 export default {
   name: 'ComponentCodeDisplay',
   computed: {
-    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
+    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap', 'routes', 'activeRoute']),
     activeComponentHtmlList: {
       get() {
+
+        const componentName = this.activeComponent;
+
+        const findIndex = function(obj){
+          for(const num in obj){
+            if(obj[num].componentName === componentName){
+              return num
+            }
+         }
+       }
+       let index = findIndex(this.routes[this.activeRoute])
+       return this.routes[this.activeRoute][index].htmlList
+
+
         // return html list associated with active component from state
         return this.componentMap[this.activeComponent].htmlList;
+
       }
     }
   },

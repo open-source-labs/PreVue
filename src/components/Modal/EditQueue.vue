@@ -30,6 +30,18 @@ export default {
     renderList: {
       get() {
         // returns html element list associated with active component from state
+        const componentName = this.activeComponent;
+
+        const findIndex = function(obj){
+          for(const num in obj){
+            if(obj[num].componentName === componentName){
+              return num
+            }
+         }
+       }
+       let index = findIndex(this.routes[this.activeRoute])
+       return this.routes[this.activeRoute][index].htmlList
+       
         return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {

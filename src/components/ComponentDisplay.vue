@@ -46,6 +46,8 @@
       updatePosition($event, i, index);
     }"
       >
+      <!-- @activated="elementActive(i, index)" -->
+
       <!-- <div v-if="isSvg(element.text)" v-html="generateSvgPath(element.text)" ></div> -->
       <!-- <div v-html="generateSvgPath(element.text)"></div> -->
       <!-- <img :src="`../assets/${element.text}.svg`" alt="SVG Image" />   -->
@@ -57,8 +59,18 @@
       <!-- {{ element.text }} -->
       <!-- {{ console.log(`../assets/${element.text}.svg` )}} -->
 
-      <img :src="`./src/assets/${element.text}.svg`" alt="SVG Image" />
-
+      <img
+        v-if="element.text === 'div'"
+        class="image"
+        :src="`./src/assets/${element.text}.svg` "  
+        :alt="`${element.text} SVG Image`"  
+        />
+        <img
+        v-else="element.text === 'button'"
+        class="image"
+        :src="`./src/assets/${element.text}.png` "  
+        :alt="`${element.text} SVG Image`"  
+        />
  
       </Vue3DraggableResizable>
     </Vue3DraggableResizable>
@@ -130,6 +142,13 @@ export default {
          return this.routes[this.activeRoute][index].htmlList[i]
       }
     }
+    // elementActive(){
+    //   return(i, index) => {
+    //     console.log("activo", index)
+    //     console.log("ASSS", this.routes[this.activeRoute])
+    //   return this.routes[this.activeRoute][index].htmlList[i].isActive = true;
+    //   }
+    // }
   },
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal']),
@@ -188,6 +207,7 @@ export default {
     },
     onActivated(componentData) {
       // updates state to reflect current selected componenet (i.e. active component)
+      console.log("activated")
       this.setActiveComponent(componentData.componentName);
       this.activeComponentData.isActive = true;
     },
@@ -217,17 +237,26 @@ export default {
 </script>
 <style scoped>
 .component-display {
-  border: 1px solid plum;
-  height: 84vh;
-}
-.component-display {
   color: #3ab982;
   border: 1px solid rgb(0, 205, 68);
+  border-radius: 10px;
   position: relative;
+  height: 84vh;
 }
+
 .component-box {
+  box-sizing: border-box;
   color: #3ab982;
-  border: 1px solid rgb(38, 0, 255);
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  width: 10000%;
+  height: 100%;
 }
 .component-elements {
   display: grid;

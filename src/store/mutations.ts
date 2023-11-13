@@ -55,20 +55,33 @@ const mutations: Mutations<State> = {
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {//and this
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => { //and this
     const componentName: string = state.activeComponent;
 
-    state.componentMap[componentName].htmlList.push({
-      text: elementName,
-      children: [],
-      x: 20,
-      y: 20,
-      w: 100,
-      h: 100
-    })
+    // state.componentMap[componentName].htmlList.push({
+    //   text: elementName,
+    //   children: [],
+    //   x: 20,
+    //   y: 20,
+    //   w: 100,
+    //   h: 100
+    // })
+
+    //find the active component and save the index
+    const findIndex = function(obj){
+      for(const num in obj){
+        if(obj[num].componentName === componentName){
+          return num
+        }
+      }
+    }
+    let index = findIndex(state.routes[state.activeRoute])
+    console.log("index", index)
 
     //also adds to routes
-    state.routes[state.activeRoute][0].htmlList.push({ 
+
+    console.log("COMPONENT HTML LIST FUNCTION", state.routes[state.activeRoute])
+    state.routes[state.activeRoute][index].htmlList.push({ 
       text: elementName,
       children: [],
       x: 20,
@@ -77,6 +90,7 @@ const mutations: Mutations<State> = {
       h: 100
     })
   },
+
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
     const componentName = state.activeComponent;
     const htmlList = state.componentMap[componentName].htmlList;
