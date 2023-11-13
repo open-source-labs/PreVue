@@ -52,7 +52,7 @@
         class="div"
         :alt="div-component" >
         div
-        </div>
+      </div>
 
 
       <img v-else 
@@ -247,6 +247,9 @@ export default {
   color: #3AB982;
   /* border: 2px solid rgb(255, 0, 221); */
   object-fit: cover;
+  display: flex;
+  align-content: stretch;
+  justify-content: stretch;
   /* position: sticky; */
 }
 
@@ -254,7 +257,6 @@ export default {
 .graphic {
   height: calc(100%);
   width: calc(100%);
-  object-fit: cover;
 }
 
 .div {
@@ -262,8 +264,10 @@ export default {
   height: calc(100%);
   width: calc(100%);
   border-radius: 5px;
-  text-align: center;
+  text-align: right;
+  color: rgb(41, 41, 232);
+  letter-spacing: 3px;
+  font-weight: bold;
 }
-
 
 </style>
