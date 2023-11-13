@@ -47,8 +47,19 @@
       updatePosition($event, i, index);
     }"
     >
+      <div 
+        v-if="element.text === 'div'"
+        class="div"
+        :alt="div-component" >
+        div
+        </div>
 
-      <img :src="`./src/assets/${element.text}.svg`" class="graphic" :alt="`${element.text} SVG Image`"/>
+
+      <img v-else 
+      :src="`./src/assets/${element.text}.svg`" 
+      class="graphic" 
+      :alt="`${element.text} SVG Image`"
+      />
  
     </Vue3DraggableResizable>
 
@@ -234,69 +245,25 @@ export default {
   border-radius: 7px;
   margin: 5px;
   color: #3AB982;
-  border: 2px solid rgb(255, 0, 221);
-  position: sticky;
+  /* border: 2px solid rgb(255, 0, 221); */
+  object-fit: cover;
+  /* position: sticky; */
 }
 
 /*CSS styles to dynamically adjust the specific component graphic, relative to its parent container*/
 .graphic {
   height: calc(100%);
   width: calc(100%);
+  object-fit: cover;
 }
 
-/* .div {
+.div {
+  border: 4px inset gray;
   height: calc(100%);
   width: calc(100%);
+  border-radius: 5px;
+  text-align: center;
 }
 
-.button {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.form {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.img {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.link {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.list {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.paragraph {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.list-ol {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.list-ul {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.input {
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.navbar {
-  height: calc(100%);
-  width: calc(100%);
-} */
 
 </style>
