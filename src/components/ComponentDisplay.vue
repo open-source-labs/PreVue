@@ -52,7 +52,7 @@
         class="div"
         :alt="div-component" >
         div
-        </div>
+      </div>
 
 
       <img v-else 
@@ -225,7 +225,7 @@ export default {
 <style scoped>
 .component-display {
   color: #3ab982;
-  border: 1px solid rgb(0, 205, 68);
+  border: 2px inset rgb(148, 142, 142);
   border-radius: 10px;
   position: relative;
   height: 84vh;
@@ -238,6 +238,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; 
+  box-shadow: 3px 3px 5px rgb(61, 59, 59);
 }
 
 .component-elements {
@@ -247,6 +248,9 @@ export default {
   color: #3AB982;
   /* border: 2px solid rgb(255, 0, 221); */
   object-fit: cover;
+  display: flex;
+  align-content: stretch;
+  justify-content: stretch;
   /* position: sticky; */
 }
 
@@ -254,7 +258,10 @@ export default {
 .graphic {
   height: calc(100%);
   width: calc(100%);
-  object-fit: cover;
+  min-width: 50px;
+  min-height: 50px;
+  box-shadow: 3px 3px 5px rgb(80, 95, 80);
+  border-radius: 20px;
 }
 
 .div {
@@ -262,8 +269,10 @@ export default {
   height: calc(100%);
   width: calc(100%);
   border-radius: 5px;
-  text-align: center;
+  text-align: right;
+  color: rgb(41, 41, 232);
+  letter-spacing: 3px;
+  font-weight: bold;
 }
-
 
 </style>
