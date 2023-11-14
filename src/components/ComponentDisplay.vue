@@ -258,8 +258,8 @@ export default {
 .graphic {
   height: calc(100%);
   width: calc(100%);
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 30px;
+  min-height: 30px;
   box-shadow: 3px 3px 5px rgb(80, 95, 80);
   border-radius: 20px;
 }
