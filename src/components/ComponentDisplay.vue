@@ -225,7 +225,7 @@ export default {
 <style scoped>
 .component-display {
   color: #3ab982;
-  border: 1px solid rgb(0, 205, 68);
+  border: 2px inset rgb(148, 142, 142);
   border-radius: 10px;
   position: relative;
   height: 84vh;
@@ -238,6 +238,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; 
+  box-shadow: 3px 3px 5px rgb(61, 59, 59);
 }
 
 .component-elements {
@@ -257,6 +258,10 @@ export default {
 .graphic {
   height: calc(100%);
   width: calc(100%);
+  min-width: 50px;
+  min-height: 50px;
+  box-shadow: 3px 3px 5px rgb(80, 95, 80);
+  border-radius: 20px;
 }
 
 .div {
