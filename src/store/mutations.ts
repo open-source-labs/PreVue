@@ -132,18 +132,16 @@ const mutations: Mutations<State> = {
     }
     state.componentMap = newObj;
   },
-
+ 
 
   //new
   [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {
     const { routes, activeElement, activeRoute, componentIndex, elementIndex } = state;
     
     const newList = Object.assign({}, routes[activeRoute][componentIndex].htmlList)
-    console.log('compIndex', componentIndex)
-    console.log('elIndex', elementIndex)
     delete newList[elementIndex]
     routes[activeRoute][componentIndex].htmlList = newList
-
+    console.log("NEWLIST", newList)
   },
 
   [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {
