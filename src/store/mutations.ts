@@ -18,6 +18,10 @@ const mutations: Mutations<State> = {
   [types.INC_RERENDER_KEY]: (state: State) => {
     state.rerenderKey++;
   },
+  [types.UPDATE_PROJECT_NAME]: (state: State, payload) => {
+    console.log(payload);
+    state.projectName = payload;
+  },
   [types.SET_LOGIN]: (state: State, payload) => {
     state.loggedIn = payload;
   },

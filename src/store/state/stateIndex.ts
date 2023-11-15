@@ -32,7 +32,7 @@ const newState: State = {
   elementIndex: 0,
 
   selectedElementList: [],
-  projectName: 'Untitled-1',
+  projectName: 'Project-Name',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
   htmlElements: [],

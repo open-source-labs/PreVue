@@ -12,13 +12,14 @@
         <v-text-field v-model="editedProjectName" @input="onEdit" @blur="onBlur" class="tab-entry"/>
       </v-tab>
       <!-- if not already editing, click to edit and display project getter return val -->
-      <v-tab v-else @click="enterEditMode" class="has-background-white tab-entry">{{ project }}</v-tab>
+      <v-tab v-else @click="enterEditMode" class="has-background-white tab-entry">{{ editedProjectName }}</v-tab>
     </v-tab-item>
   </v-tabs>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
+
 
 export default {
   name: 'ProjectTabs',
@@ -26,32 +27,24 @@ export default {
     return {
       // initial local state values
       editMode: false,
-      editedProjectName: '',
+      editedProjectName: this.$store.state.projectName,
     };
   },
-  computed: {
-    ...mapState(['projectName']),
-    project: {
-      get() {
-        return this.$store.state.projectName;
-      },
-    },
-  },
   methods: {
+    // ...mapMutations(['updateProjectName']),
     // on click
     enterEditMode() {
       this.editMode = true;
       this.editedProjectName = this.project;
-      
     },
     onEdit(event) {
       this.editedProjectName = event.target.value;
-      
     },
     // Exit edit mode on blur
     onBlur() {
       this.editMode = false;
-      this.$store.commit('updateProjectName', this.editedProjectName);
+      this.$store.commit(types.UPDATE_PROJECT_NAME, this.editedProjectName);
+      // this.$store.commit(this.updateProjectName(this.editedProjectName));
     },
   },
 };
@@ -63,6 +56,6 @@ export default {
 }
 
 .tab-entry {
-  width: 130px;
+  width: 135px;
 }
 </style>

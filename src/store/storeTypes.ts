@@ -2,6 +2,7 @@ import { Type } from '../types';
 
 //Mutations
 export const INC_RERENDER_KEY: Type = 'INC_RERENDER_KEY';
+export const UPDATE_PROJECT_NAME = 'UPDATE_PROJECT_NAME';
 export const SET_LOGIN: Type = 'SET_LOGIN';
 export const REPLACE_STATE: Type = 'REPLACE_STATE';
 export const NAME_PROJECT: Type = 'NAME_PROJECT';

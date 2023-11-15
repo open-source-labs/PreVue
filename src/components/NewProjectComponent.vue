@@ -40,7 +40,7 @@ export default {
         activeRoute: 'HomeView',
         activeComponent: '',
         selectedElementList: [],
-        projectName: 'Untitled-1',
+        projectName: 'Project-Name',
         componentChildrenMultiselectValue: [],
         modalOpen: false,
         htmlElements: [],
