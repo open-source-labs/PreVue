@@ -11,13 +11,13 @@
   >
     <v-card-title
       :style="{
-        'font-size': '14px',
+        'font-size': '18px',
         color: '#f5f4f3',
         'font-weight': '550',
         padding: '24px 24px 0 24px'
       }"
     >
-      <strong>Route Creator</strong>
+      <strong>View Creator</strong>
     </v-card-title>
     <v-card-actions class="d-block">
       <v-form
@@ -29,8 +29,8 @@
         <v-text-field
           v-model="newRoute"
           variant="underlined"
-          label="Route name"
-          placeholder="myCustomRoute"
+          label="Enter A View Name"
+          placeholder="myCustomView"
           required
           :style="{ color: '#f5f4f3' }"
         >
