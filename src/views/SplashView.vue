@@ -38,8 +38,7 @@
         <p>
           <strong>
             Use PreVue to create projects in single sessions or sign in with
-            GitHub to save projects and update them anytime.</strong
-          >
+            GitHub to save projects and update them anytime.</strong>
         </p>
       </div>
       <br />
@@ -188,20 +187,22 @@ export default {
     });
   },
   methods: {
+    // oauth() {
+    //   // make request to endpoint, to be redirected in server
+    //   fetch('/users/oauth', {
+    //     method: 'GET',
+    //     redirect: 'follow'
+    //     // headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
+    //   })
+    //     .then(res => {
+    //       return res.json();
+    //     })
+    //     .then(data => window.location.replace(data));
+    // },
     oauth() {
-      // make request to endpoint, to be redirected in server
-      fetch('/users/oauth', {
-        method: 'GET',
-        redirect: 'follow'
-
-        // headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
-      })
-        .then(res => {
-          return res.json();
-        })
-        .then(data => window.location.replace(data));
+      // Redirect the client to the backend OAuth endpoint
+      window.location.href = '/users/oauth';
     },
-
     toHome() {
       this.$router.push('/home');
     }
@@ -227,6 +228,7 @@ video {
   align-items: center;
   justify-content: center;
 }
+
 .scroll {
   height: 120vh;
   overflow-y: auto;
