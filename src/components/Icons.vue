@@ -40,7 +40,7 @@ export default {
 .icon-grid {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 1.5em;
 }
 
 button {
