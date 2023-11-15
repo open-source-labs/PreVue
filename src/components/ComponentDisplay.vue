@@ -39,6 +39,8 @@
       :y="elementPosition(i, index).y"
       :w="elementPosition(i, index).w"
       :h="elementPosition(i, index).h"
+      @activated="activateElement(i, index); activateElementOn(i, index)"
+      @deactivated="deactivateElement(i, index)"
       @resize-end="resizeElement($event, i, index)"
       @drag-start="notDraggable()"
       @drag-end="$event => {
@@ -106,14 +108,21 @@ export default {
     // allows active user created component to be deleted when backspace is pressed
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
-        if (this.activeComponent && this.activeComponentData.isActive) {
+        if (this.activeElement && this.activeElement.isActive === true){ 
+          console.log("ACTIVE", this.activeElement)
+          console.log("component index", this.componentIndex)
+          console.log("element index", this.elementIndex)
+          this.$store.dispatch('deleteActiveElement') 
+        }
+        else if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
         }
       }
     });
   },
   computed: {
-    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
+    ...mapActions(['setActiveElement', 'setComponentIndex,', 'setElementIndex']),
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement']),
     activeRouteArray() {
       console.log("routes:", this.routes[this.activeRoute])
       console.log("active routes:", this.activeRoute)
@@ -121,8 +130,6 @@ export default {
       return this.routes[this.activeRoute];
     },
     activeComponentData() {
-      // console.log("active comp:", this.activeComponent)
-      // console.log("active route array:", this.activeRouteArray)
       console.log("comp map:", this.componentMap)
       console.log("routes:", this.routes)
       // returns object containing data associated with current active component
@@ -131,8 +138,8 @@ export default {
       })[0];
     },
     theHtmlList(){
-    return (i) => {
-      return this.routes[this.activeRoute][i].htmlList;
+    return (index) => {
+      return this.routes[this.activeRoute][index].htmlList;
       }
     },
     elementPosition(){
@@ -141,35 +148,39 @@ export default {
         // console.log("X", x)
          return this.routes[this.activeRoute][index].htmlList[i]
       }
-    }
-    // elementActive(){
-    //   return(i, index) => {
-    //     console.log("activo", index)
-    //     console.log("ASSS", this.routes[this.activeRoute])
-    //   return this.routes[this.activeRoute][index].htmlList[i].isActive = true;
-    //   }
-    // }
+    },
+    activateElementOn(){
+      return(i, index) => {
+        console.log("deactivated", this.elementPosition(i, index).isActive)
+        this.elementPosition(i, index).isActive = true;
+      }
+    },
+    deactivateElement(){
+      return(i, index) => {
+        console.log("deactivated", this.elementPosition(i, index).isActive)
+        this.elementPosition(i, index).isActive = false;
+      }
+    },
   },
   methods: {
-    ...mapActions(['setActiveComponent', 'updateOpenModal']),
-    // isSvg(text) {
-    //   return text.endsWith('.svg')
-    // },
-    // generateSvgPath(text) {
-    //   const basePath = "../assets/";
-    //   return `${basePath}${text}.svg`;
-  //     const basePath = "../assets/";
-  //     const imagePath = `"${basePath}${text}.svg"`;
-  //     console.log(imagePath)
-  //     // return `<img src="${imagePath}" alt="SVG Image" style='background-image: url("${imagePath}")' />`;
-  //     return `
-  //   <div class="svg-wrapper" style="background-image: url('${imagePath}')">
-  //     <img src="${imagePath}" alt="SVG Image" />
-  //   </div>
-  // `;
-        /* background-image: url("../assets/button.svg"); */
-
-    // },
+    ...mapActions(['setActiveComponent', 'updateOpenModal', 'setActiveElement', 'setComponentIndex', 'setElementIndex']),
+    activateElement(i, index){
+        console.log("ELLEMENT ACTIVATED")
+        console.log("componentIndexFFF1", index)
+        this.$store.dispatch('setComponentIndex', index)
+        .then(() => {
+          console.log("componentIndexFFF2", this.$store.state.componentIndex)
+          
+          return this.$store.dispatch('setElementIndex', i)
+        })
+        .then(() => {
+          console.log("elementIndexFFF",this.$store.state.elementIndex)
+          return this.$store.dispatch('setActiveElement', this.elementPosition(i ,index))
+        })
+        .then(() => {
+          console.log("activeElement1111",this.$store.state.activeElement)
+        })
+    },
     onResize: function(x) {
       // updates state associated with active component to reflect start of resize user has made to the component
       this.activeComponentData.x = x.x;
@@ -210,6 +221,7 @@ export default {
       console.log("activated")
       this.setActiveComponent(componentData.componentName);
       this.activeComponentData.isActive = true;
+      this.activeElement.isActive = false
     },
     onDeactivated() {
       // updates state when current selected component is unselected

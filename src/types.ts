@@ -60,6 +60,11 @@ export type State = {
   componentNameInputValue: string;
   activeRoute: string;
   activeComponent: string;
+
+  activeElement: string; //new
+  componentIndex: number; //new
+  elementIndex: number; //new
+
   projectName: string;
   selectedElementList: object[];
   componentChildrenMultiselectValue: string[];

@@ -49,7 +49,8 @@ const mutations: Mutations<State> = {
       x: 20,
       y: 20,
       w: 100,
-      h: 100
+      h: 100,
+      isActive: Boolean
      });
   },
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
@@ -87,7 +88,8 @@ const mutations: Mutations<State> = {
       x: 20,
       y: 20,
       w: 100,
-      h: 100
+      h: 100,
+      isActive: Boolean
     })
   },
 
@@ -130,6 +132,31 @@ const mutations: Mutations<State> = {
     }
     state.componentMap = newObj;
   },
+
+
+  //new
+  [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {
+    const { routes, activeElement, activeRoute, componentIndex, elementIndex } = state;
+    
+    const newList = Object.assign({}, routes[activeRoute][componentIndex].htmlList)
+    console.log('compIndex', componentIndex)
+    console.log('elIndex', elementIndex)
+    delete newList[elementIndex]
+    routes[activeRoute][componentIndex].htmlList = newList
+
+  },
+
+  [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {
+    state.activeElement = payload;
+  },
+  [types.SET_COMPONENT_INDEX]: (state: State, payload) => {
+    state.componentIndex = payload;
+  },
+  [types.SET_ELEMENT_INDEX]: (state: State, payload) => {
+    state.elementIndex = payload;
+  },
+
+
   [types.SET_COMPONENT_MAP]: (state: State, payload) => {
     console.log(payload);
     state.componentMap = payload;
