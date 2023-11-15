@@ -30,7 +30,7 @@
           v-model="newRoute"
           variant="underlined"
           label="Enter A View Name"
-          placeholder="myCustomRoute"
+          placeholder="myCustomView"
           required
           :style="{ color: '#f5f4f3' }"
         >
