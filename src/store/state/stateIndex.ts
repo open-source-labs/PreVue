@@ -26,6 +26,11 @@ const newState: State = {
   componentNameInputValue: '',
   activeRoute: 'HomeView',
   activeComponent: '',
+  
+  activeElement: '',
+  componentIndex: 0,
+  elementIndex: 0,
+
   selectedElementList: [],
   projectName: 'Untitled-1',
   componentChildrenMultiselectValue: [],

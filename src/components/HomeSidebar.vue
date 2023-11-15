@@ -126,6 +126,7 @@ export default {
       // allows html elements to be associated with user created component when icons are clicked
       // invoked when event is registered from child icons component
       this.$store.dispatch(types.addToSelectedElementList, htmlElement);
+      // this.$store.dispatch(types.addToComponentElementList, htmlElement);
     }
   }
 };

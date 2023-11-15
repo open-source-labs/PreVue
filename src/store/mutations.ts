@@ -49,28 +49,50 @@ const mutations: Mutations<State> = {
       x: 20,
       y: 20,
       w: 100,
-      h: 100
+      h: 100,
+      isActive: Boolean
      });
-  },
-  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
-    //console.log('mutation payload is', payload)
-    state.selectedElementList.push({ text: payload, children: []});
   },
   [types.SET_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList = payload;
   },
-  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => {//and this
+  [types.ADD_TO_COMPONENT_HTML_LIST]: (state: State, elementName) => { //and this
     const componentName: string = state.activeComponent;
 
-    state.componentMap[componentName].htmlList.push({
+    // state.componentMap[componentName].htmlList.push({
+    //   text: elementName,
+    //   children: [],
+    //   x: 20,
+    //   y: 20,
+    //   w: 100,
+    //   h: 100
+    // })
+
+    //find the active component and save the index
+    const findIndex = function(obj){
+      for(const num in obj){
+        if(obj[num].componentName === componentName){
+          return num
+        }
+      }
+    }
+    let index = findIndex(state.routes[state.activeRoute])
+    console.log("index", index)
+
+    //also adds to routes
+
+    console.log("COMPONENT HTML LIST FUNCTION", state.routes[state.activeRoute])
+    state.routes[state.activeRoute][index].htmlList.push({ 
       text: elementName,
       children: [],
       x: 20,
       y: 20,
       w: 100,
-      h: 100
-    });
+      h: 100,
+      isActive: Boolean
+    })
   },
+
   [types.DELETE_FROM_COMPONENT_HTML_LIST]: (state: State, id) => {
     const componentName = state.activeComponent;
     const htmlList = state.componentMap[componentName].htmlList;
@@ -110,6 +132,31 @@ const mutations: Mutations<State> = {
     }
     state.componentMap = newObj;
   },
+
+
+  //new
+  [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {
+    const { routes, activeElement, activeRoute, componentIndex, elementIndex } = state;
+    
+    const newList = Object.assign({}, routes[activeRoute][componentIndex].htmlList)
+    console.log('compIndex', componentIndex)
+    console.log('elIndex', elementIndex)
+    delete newList[elementIndex]
+    routes[activeRoute][componentIndex].htmlList = newList
+
+  },
+
+  [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {
+    state.activeElement = payload;
+  },
+  [types.SET_COMPONENT_INDEX]: (state: State, payload) => {
+    state.componentIndex = payload;
+  },
+  [types.SET_ELEMENT_INDEX]: (state: State, payload) => {
+    state.elementIndex = payload;
+  },
+
+
   [types.SET_COMPONENT_MAP]: (state: State, payload) => {
     console.log(payload);
     state.componentMap = payload;

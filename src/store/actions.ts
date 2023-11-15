@@ -105,9 +105,26 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_ROUTE, payload);
   },
   [types.setActiveComponent]: ({ commit }, payload) => {
-    console.log(payload);
     commit(types.SET_ACTIVE_COMPONENT, payload);
   },
+
+
+
+  [types.setActiveElement]: ({ commit }, payload) => { //new
+    commit(types.SET_ACTIVE_ELEMENT, payload);
+  },
+  [types.deleteActiveElement]: ({ commit }) => {
+    commit(types.DELETE_ACTIVE_ELEMENT)
+  },
+  [types.setComponentIndex]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_INDEX, payload)
+  },
+  [types.setElementIndex]: ({ commit }, payload) => {
+    commit(types.SET_ELEMENT_INDEX, payload)
+  },
+
+
+
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);
   },
