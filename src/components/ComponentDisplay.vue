@@ -48,7 +48,7 @@
       draggableAgain();
       updatePosition($event, i, index);
     }"
-
+  >
       <div 
         v-if="element.text === 'div'"
         class="div"
