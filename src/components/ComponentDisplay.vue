@@ -108,7 +108,6 @@ export default {
     });
   },
   computed: {
-    ...mapActions(['setActiveElement', 'setComponentIndex,', 'setElementIndex']),
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement']),
     activeRouteArray() {
       console.log("routes:", this.routes[this.activeRoute])
