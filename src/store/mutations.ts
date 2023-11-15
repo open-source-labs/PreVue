@@ -137,11 +137,20 @@ const mutations: Mutations<State> = {
   //new
   [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {
     const { routes, activeElement, activeRoute, componentIndex, elementIndex } = state;
+  
+    const component = routes[activeRoute][componentIndex];
     
-    const newList = Object.assign({}, routes[activeRoute][componentIndex].htmlList)
-    delete newList[elementIndex]
-    routes[activeRoute][componentIndex].htmlList = newList
-    console.log("NEWLIST", newList)
+    // Using slice to create a shallow copy of the htmlList
+    const newList = component.htmlList.slice();
+    
+    // Remove the element at elementIndex
+    newList.splice(elementIndex, 1);
+    
+    // Update the htmlList in the component
+    component.htmlList = newList;
+  
+    console.log("NEWLIST", newList);
+    console.log("NEWLIST2", typeof component.htmlList);
   },
 
   [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {

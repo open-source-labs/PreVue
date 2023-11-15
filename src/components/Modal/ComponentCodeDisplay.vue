@@ -24,6 +24,7 @@ export default {
       //    }
       //  }
       //  let index = findIndex(this.routes[this.activeRoute])
+      console.log("COMPCODE", this.routes[this.activeRoute][this.componentIndex].htmlList)
        return this.routes[this.activeRoute][this.componentIndex].htmlList
 
         // return html list associated with active component from state

@@ -106,8 +106,6 @@ export default {
           console.log("component index", this.componentIndex)
           console.log("element index", this.elementIndex)
           this.$store.dispatch('deleteActiveElement') 
-          console.log("DELETED AND NOW", this.routes[this.activeRoute][this.componentIndex].htmlList)
-
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('deleteActiveComponent');
