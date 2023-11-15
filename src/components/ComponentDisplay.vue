@@ -48,23 +48,10 @@
       updatePosition($event, i, index);
     }"
       >
-      <!-- @activated="elementActive(i, index)" -->
-
-      <!-- <div v-if="isSvg(element.text)" v-html="generateSvgPath(element.text)" ></div> -->
-      <!-- <div v-html="generateSvgPath(element.text)"></div> -->
-      <!-- <img :src="`../assets/${element.text}.svg`" alt="SVG Image" />   -->
-      <!-- <img :src="'../assets/' + element.text + '.svg'" alt="SVG Image" /> -->
-
-      <!-- const basePath = "../assets/";
-       return `${basePath}${text}.svg`; -->
-    
-      <!-- {{ element.text }} -->
-      <!-- {{ console.log(`../assets/${element.text}.svg` )}} -->
-
-      <img
-        v-if="element.text === 'div'"
+      <!-- <img
+        v-if="element.text === 'img'"
         class="image"
-        :src="`./src/assets/${element.text}.svg` "  
+        :src="`./src/assets/${element.text}.png` "  
         :alt="`${element.text} SVG Image`"  
         />
         <img
@@ -72,7 +59,7 @@
         class="image"
         :src="`./src/assets/${element.text}.png` "  
         :alt="`${element.text} SVG Image`"  
-        />
+        /> -->
  
       </Vue3DraggableResizable>
     </Vue3DraggableResizable>
@@ -267,12 +254,10 @@ export default {
 }
 
 .image {
-  width: 10000%;
+  width: 100%;
   height: 100%;
 }
 .component-elements {
-  display: grid;
-  grid-template-columns: repeat(100, 1fr);
   color: #3ab982;
   border: 1px solid rgb(255, 0, 187);
 }
