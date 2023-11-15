@@ -102,9 +102,9 @@ export default {
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeElement && this.activeElement.isActive === true){ 
-          console.log("ACTIVE", this.activeElement)
-          console.log("component index", this.componentIndex)
-          console.log("element index", this.elementIndex)
+          //console.log("ACTIVE", this.activeElement)
+         // console.log("component index", this.componentIndex)
+         // console.log("element index", this.elementIndex)
           this.$store.dispatch('deleteActiveElement') 
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
@@ -117,15 +117,15 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement']),
     activeRouteArray() {
-      console.log("routes:", this.routes[this.activeRoute])
-      console.log("active routes:", this.activeRoute)
+      //console.log("routes:", this.routes[this.activeRoute])
+      //console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
 
     activeComponentData() {
-      console.log("comp map:", this.componentMap)
-      console.log("routes:", this.routes)
+      //console.log("comp map:", this.componentMap)
+      //console.log("routes:", this.routes)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
@@ -146,13 +146,13 @@ export default {
     },
     activateElementOn(){
       return(i, index) => {
-        console.log("deactivated", this.elementPosition(i, index).isActive)
+        //console.log("deactivated", this.elementPosition(i, index).isActive)
         this.elementPosition(i, index).isActive = true;
       }
     },
     deactivateElement(){
       return(i, index) => {
-        console.log("deactivated", this.elementPosition(i, index).isActive)
+       // console.log("deactivated", this.elementPosition(i, index).isActive)
         this.elementPosition(i, index).isActive = false;
       }
     },
@@ -161,20 +161,20 @@ export default {
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal', 'setActiveElement', 'setComponentIndex', 'setElementIndex']),
     activateElement(i, index){
-        console.log("ELLEMENT ACTIVATED")
-        console.log("componentIndexFFF1", index)
+        //console.log("ELLEMENT ACTIVATED")
+        //console.log("componentIndexFFF1", index)
         this.$store.dispatch('setComponentIndex', index)
         .then(() => {
-          console.log("componentIndexFFF2", this.$store.state.componentIndex)
+          //console.log("componentIndexFFF2", this.$store.state.componentIndex)
           
           return this.$store.dispatch('setElementIndex', i)
         })
         .then(() => {
-          console.log("elementIndexFFF",this.$store.state.elementIndex)
+          //console.log("elementIndexFFF",this.$store.state.elementIndex)
           return this.$store.dispatch('setActiveElement', this.elementPosition(i ,index))
         })
         .then(() => {
-          console.log("activeElement1111",this.$store.state.activeElement)
+         // console.log("activeElement1111",this.$store.state.activeElement)
         })
     },
     onResize: function(x) {
