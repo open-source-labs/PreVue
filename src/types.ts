@@ -6,7 +6,7 @@ export type Icons = {
   form: string;
   img: string;
   link: string;
-  list: string;
+  'list-item': string;
   paragraph: string;
   'list-ol': string;
   'list-ul': string;
@@ -20,7 +20,7 @@ export type HtmlElementMap = {
   form: string[];
   img: string[];
   link: string[];
-  list: string[];
+  'list-item': string[];
   paragraph: string[];
   'list-ol': string[];
   'list-ul': string[];
