@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
 
 
 export default {
@@ -30,8 +29,8 @@ export default {
       editedProjectName: this.$store.state.projectName,
     };
   },
-  methods: {
-    // ...mapMutations(['updateProjectName']),
+    methods: {
+// ...mapMutations(['updateProjectName']),
     // on click
     enterEditMode() {
       this.editMode = true;
@@ -44,7 +43,7 @@ export default {
     onBlur() {
       this.editMode = false;
       this.$store.commit(types.UPDATE_PROJECT_NAME, this.editedProjectName);
-      // this.$store.commit(this.updateProjectName(this.editedProjectName));
+    // this.$store.commit(this.updateProjectName(this.editedProjectName));
     },
   },
 };
@@ -59,3 +58,5 @@ export default {
   width: 135px;
 }
 </style>
+
+
