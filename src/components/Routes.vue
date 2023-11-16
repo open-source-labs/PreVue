@@ -8,7 +8,7 @@
       color: '#f5f4f3'
     }"
     clearable
-    placeholder="Select a route"
+    placeholder="Select A View"
     :items="Object.keys(routes)"
     variant="underlined"
     route-text="name"

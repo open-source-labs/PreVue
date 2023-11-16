@@ -56,7 +56,6 @@
         div
       </div>
 
-
       <img v-else 
       :src="`./src/assets/${element.text}.svg`" 
       class="graphic" 
@@ -102,9 +101,9 @@ export default {
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
         if (this.activeElement && this.activeElement.isActive === true){ 
-          console.log("ACTIVE", this.activeElement)
-          console.log("component index", this.componentIndex)
-          console.log("element index", this.elementIndex)
+          //console.log("ACTIVE", this.activeElement)
+         // console.log("component index", this.componentIndex)
+         // console.log("element index", this.elementIndex)
           this.$store.dispatch('deleteActiveElement') 
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
@@ -117,15 +116,15 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement']),
     activeRouteArray() {
-      console.log("routes:", this.routes[this.activeRoute])
-      console.log("active routes:", this.activeRoute)
+      //console.log("routes:", this.routes[this.activeRoute])
+      //console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
 
     activeComponentData() {
-      console.log("comp map:", this.componentMap)
-      console.log("routes:", this.routes)
+      //console.log("comp map:", this.componentMap)
+      //console.log("routes:", this.routes)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
@@ -153,25 +152,24 @@ export default {
           })
         }
       mapAll(list)
-      console.log("SUCCESS", newArr)
       return newArr
       }
     },
     elementPosition() {
       return (i, index) => { 
-        console.log("Sdf", this.elementsAndChildren(index)[i])
          return this.elementsAndChildren(index)[i]
       }
     },
     activateElementOn(){
       return(i, index) => {
-        console.log("deactivated", this.elementPosition(i, index).isActive)
+        //console.log("deactivated", this.elementPosition(i, index).isActive)
+        console.log("ACTIVE ELEMENT", this.elementPosition(i, index))
         this.elementPosition(i, index).isActive = true;
       }
     },
     deactivateElement(){
       return(i, index) => {
-        console.log("deactivated", this.elementPosition(i, index).isActive)
+       // console.log("deactivated", this.elementPosition(i, index).isActive)
         this.elementPosition(i, index).isActive = false;
       }
     },
@@ -180,20 +178,20 @@ export default {
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal', 'setActiveElement', 'setComponentIndex', 'setElementIndex']),
     activateElement(i, index){
-        console.log("ELLEMENT ACTIVATED")
-        console.log("componentIndexFFF1", index)
+        //console.log("ELLEMENT ACTIVATED")
+        //console.log("componentIndexFFF1", index)
         this.$store.dispatch('setComponentIndex', index)
         .then(() => {
-          console.log("componentIndexFFF2", this.$store.state.componentIndex)
+          //console.log("componentIndexFFF2", this.$store.state.componentIndex)
           
           return this.$store.dispatch('setElementIndex', i)
         })
         .then(() => {
-          console.log("elementIndexFFF",this.$store.state.elementIndex)
+          //console.log("elementIndexFFF",this.$store.state.elementIndex)
           return this.$store.dispatch('setActiveElement', this.elementPosition(i ,index))
         })
         .then(() => {
-          console.log("activeElement1111",this.$store.state.activeElement)
+         // console.log("activeElement1111",this.$store.state.activeElement)
         })
     },
     onResize: function(x) {
@@ -285,6 +283,7 @@ export default {
 .component-box {
   box-sizing: border-box;
   color: #3ab982;
+  background-color: #e3e3e3;
   border-radius: 25px;
   text-align: center;
   display: flex;
@@ -302,7 +301,8 @@ export default {
   box-sizing: content-box;
   border-radius: 7px;
   margin: 5px;
-  color: #3AB982;
+  color: #84a891;
+  background-color: #ffffff;
   /* border: 2px solid rgb(255, 0, 221); */
   object-fit: cover;
   display: flex;
