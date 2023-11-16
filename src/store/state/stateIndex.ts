@@ -30,7 +30,7 @@ const newState: State = {
   activeElement: '',
   componentIndex: 0,
   elementIndex: 0,
-
+  
   selectedElementList: [],
   projectName: 'Project-Name',
   componentChildrenMultiselectValue: [],

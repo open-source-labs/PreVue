@@ -59,6 +59,7 @@ export const UPDATE_OPEN_MODAL: Type = 'UPDATE_OPEN_MODAL';
 
 //Actions
 export const registerComponent: Type = 'registerComponent';
+export const updateProjectName: Type = 'updateProjectName';
 export const setSelectedElementList: Type = 'setSelectedElementList';
 export const addToSelectedElementList: Type = 'addToSelectedElementList';
 export const addToComponentElementList: Type = 'addToComponentElementList';

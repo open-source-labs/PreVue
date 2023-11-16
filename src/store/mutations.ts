@@ -2,7 +2,7 @@ import * as types from './storeTypes';
 import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
 const mutations: Mutations<State> = {
-  initializeStore(state: State) {
+  initialiseStore(state: State) {
     if (localStorage.getItem('store')) {
       this.replaceState(
         Object.assign(
@@ -19,7 +19,7 @@ const mutations: Mutations<State> = {
     state.rerenderKey++;
   },
   [types.UPDATE_PROJECT_NAME]: (state: State, payload) => {
-    console.log(payload);
+    //console.log(payload);
     state.projectName = payload;
   },
   [types.SET_LOGIN]: (state: State, payload) => {

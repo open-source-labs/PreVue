@@ -19,6 +19,7 @@
 
 <script>
 
+import { mapActions } from 'vuex';
 
 export default {
   name: 'ProjectTabs',
@@ -30,7 +31,7 @@ export default {
     };
   },
     methods: {
-// ...mapMutations(['updateProjectName']),
+    ...mapActions(['updateProjectName']),
     // on click
     enterEditMode() {
       this.editMode = true;
@@ -42,7 +43,7 @@ export default {
     // Exit edit mode on blur
     onBlur() {
       this.editMode = false;
-      this.$store.commit(types.UPDATE_PROJECT_NAME, this.editedProjectName);
+      this.updateProjectName(this.editedProjectName);
     // this.$store.commit(this.updateProjectName(this.editedProjectName));
     },
   },
