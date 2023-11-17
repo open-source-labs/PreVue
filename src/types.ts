@@ -37,6 +37,7 @@ export type Component = {
   y?: number;
   h?: number;
   w?: number;
+  id?: number;
 };
 export type ComponentMap = {
   [k: string]: Component;
