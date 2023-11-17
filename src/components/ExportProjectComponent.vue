@@ -136,7 +136,7 @@ export default {
     },
     onClick() {
       const zip = new JSZip();
-      const project = 'test';
+      const project = this.$store.state.editedProjectName;
       console.log(project)
       zip.folder(`${project}`);
       zip.folder(`${project}/public`);

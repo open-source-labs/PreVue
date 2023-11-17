@@ -50,6 +50,7 @@ export default {
         rerenderKey: 0
       };
       this.replaceState(state);
+      console.log('this.$store.state.editedProjectName is', this.$store.state.editedProjectName);
     }
   }
 };

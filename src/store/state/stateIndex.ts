@@ -33,6 +33,7 @@ const newState: State = {
   
   selectedElementList: [],
   projectName: 'Project-Name',
+  editedProjectName: 'Project-Name',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
   htmlElements: [],
