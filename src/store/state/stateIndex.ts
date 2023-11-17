@@ -30,9 +30,10 @@ const newState: State = {
   activeElement: '',
   componentIndex: 0,
   elementIndex: 0,
-
+  
   selectedElementList: [],
-  projectName: 'Untitled-1',
+  projectName: 'Project-Name',
+  editedProjectName: 'Project-Name',
   componentChildrenMultiselectValue: [],
   modalOpen: false,
   htmlElements: [],
