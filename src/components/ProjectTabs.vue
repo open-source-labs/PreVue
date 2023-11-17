@@ -1,7 +1,7 @@
 <template>
-  <v-tabs>
+  <v-tabs class="tab-entry">
     <!-- v-tab-item component is used to define the content of a specific tab in a tab group  -->
-    <v-tab-item>
+    <v-tab-item class="tab-entry">
       <!-- if the tab is in editMode, become a text field for project name entry -->
       <v-tab v-if="editMode" class="has-background-white tab-entry">
         <!-- if we're editing, bind editedProjectName state to text field -->
@@ -9,7 +9,7 @@
         <!-- @blur event listener is used to handle the blur event on the v-text-field. 
           The onBlur method is called when the field loses focus 
           when the user clicks outside the field or presses the Tab key -->
-        <v-text-field v-model="editedProjectName" @input="onEdit" @blur="onBlur" class="tab-entry"/>
+        <v-text-field v-model="editedProjectName" @input="onEdit" @blur="onBlur"  @keydown.enter="onEnter" class="tab-entry"/>
       </v-tab>
       <!-- if not already editing, click to edit and display project getter return val -->
       <v-tab v-else @click="enterEditMode" class="has-background-white tab-entry">{{ projectTabName }}</v-tab>
@@ -45,6 +45,11 @@ export default {
     onEdit(event) {
       this.editedProjectName = event.target.value;
     },
+    // was determined to make pressing enter also save the project name
+    onEnter(event) {
+      this.editMode = false;
+      this.updateProjectName(event.target.value);
+    },
     // Exit edit mode on blur
     onBlur(event) {
       this.editMode = false;
@@ -63,7 +68,7 @@ export default {
 }
 
 .tab-entry {
-  width: 135px;
+  min-width: 150px;
 }
 </style>
 
