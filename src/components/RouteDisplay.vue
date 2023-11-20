@@ -13,7 +13,7 @@
         'font-size': '20px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '24px 24px 0 24px'
+        padding: '30px 24px 0 24px'
       }"
     >
       <strong>View Creator</strong>
