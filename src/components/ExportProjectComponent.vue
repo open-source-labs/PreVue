@@ -212,7 +212,7 @@ export default {
 
 <style scoped>
 .white--text {
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .white--text:hover {

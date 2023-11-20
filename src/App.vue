@@ -26,7 +26,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 #app {
   height: 105vh;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 #nav {
   display: flex;

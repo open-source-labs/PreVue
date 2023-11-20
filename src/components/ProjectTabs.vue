@@ -3,13 +3,19 @@
     <!-- v-tab-item component is used to define the content of a specific tab in a tab group  -->
     <v-tab-item class="tab-entry">
       <!-- if the tab is in editMode, become a text field for project name entry -->
-      <v-tab v-if="editMode" class="has-background-white tab-entry">
+      <v-tab v-if="editMode" class="has-background-white ">
         <!-- if we're editing, bind editedProjectName state to text field -->
         <!-- call onEdit when in edit mode -->
         <!-- @blur event listener is used to handle the blur event on the v-text-field. 
           The onBlur method is called when the field loses focus 
           when the user clicks outside the field or presses the Tab key -->
-        <v-text-field v-model="editedProjectName" @input="onEdit" @blur="onBlur"  @keydown.enter="onEnter" class="tab-entry"/>
+        <v-text-field 
+          v-model="editedProjectName" 
+          @input="onEdit" 
+          @blur="onBlur"  
+          @keydown.enter="onEnter" 
+          class="tab-edit"
+        />
       </v-tab>
       <!-- if not already editing, click to edit and display project getter return val -->
       <v-tab v-else @click="enterEditMode" class="has-background-white tab-entry">{{ projectTabName }}</v-tab>
@@ -64,11 +70,19 @@ export default {
 
 <style lang="scss" scoped>
 .has-background-white {
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .tab-entry {
-  min-width: 150px;
+  min-width: 250px;
+}
+
+.tab-edit {
+  width: 350px;
+  height: 300px;
+  font-size: 22px;
 }
 </style>
 

@@ -2,17 +2,18 @@
   <!--the navbar on the main and tree views-->
   <v-app-bar
     class="border-bottom"
-    id="navbar"
+    style="height: 80px"
     color="black"
     role="navigation"
     aria-label="main navigation"
   >
+  <!-- id="navbar" -->
     <img src="../assets/logo.png" id="prevue-logo" @click="routeHome" />
     <h1 id="prevue">PreVue</h1>
     <div class="buttons">
       <v-btn id="tree-btn" @click="routeTree">
         <br />
-        <span class="white--text">Tree</span>
+        <span class="white--text">Component Tree</span>
       </v-btn>
 
       <SaveProjectComponent v-if="validUser"></SaveProjectComponent>
@@ -70,9 +71,9 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@450&display=swap');
 .border-bottom {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 5px solid #ccc;
   border-color: #39b982;
   align-items: right;
 }
@@ -86,21 +87,23 @@ export default {
 }
 
 #prevue {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 1000;
   font-size: 2.5em;
   color: #39b982;
   text-decoration: none;
   margin-right: 10px;
 }
 #prevue-logo {
-  height: 80px;
+  height: 90px;
   width: 70px;
   transform: scale(0.7);
+  transition: transform 0.3s ease-in-out;
 }
 
 #prevue-logo:hover {
   cursor: pointer;
+  transform: scale(0.7) translateY(-10px); 
 }
 
 #tree-btn {
