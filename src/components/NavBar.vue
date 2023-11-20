@@ -49,7 +49,7 @@ export default {
   methods: {
     // routing to homepage and tree view
     routeHome() {
-      this.$router.push({ path: '/home' });
+      this.$router.push({ path: '/' });
     },
     routeTree() {
       this.$router.push({ path: '/tree' });
