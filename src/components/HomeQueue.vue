@@ -5,7 +5,7 @@
     :style="{
       'background-color': '#3b444b',
       padding: '16px 0px 24px 0px',
-      height: '900px'
+      height: '1400px'
     }"
   >
     <v-card-title
