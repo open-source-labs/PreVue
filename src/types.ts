@@ -74,7 +74,11 @@ export type State = {
   saved: boolean;
   loggedIn: boolean;
   rerenderKey: number;
+
+  arrayOfStates: Array<object>;
 };
+
+// export type StateQueue = State[]
 
 export type Mutations<State> = {
   [k: Type]: (

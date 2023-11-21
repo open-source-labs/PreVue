@@ -1,7 +1,9 @@
 import * as types from './storeTypes';
+import { MutationTree } from 'vuex';
 import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
-const mutations: Mutations<State> = {
+
+const mutations: MutationTree<State> = {
   initializeStore(state: State) {
     if (localStorage.getItem('store')) {
       this.replaceState(
@@ -119,8 +121,9 @@ const mutations: Mutations<State> = {
     const componentName = state.activeComponent;
     state.componentMap[componentName].htmlList = payload;
   },
+
   [types.DELETE_ACTIVE_COMPONENT]: (state: State) => {
-    const { componentMap, activeComponent } = state;
+    const { routes, activeRoute, componentMap, activeComponent, arrayOfStates } = state;
 
     const newObj = Object.assign({}, componentMap);
 
@@ -136,18 +139,17 @@ const mutations: Mutations<State> = {
   },
  
 
-  //AAAAHHJHHHHH new
-  [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {
-    const { routes, activeElement, activeRoute, componentIndex, elementIndex, activeComponent } = state;
+
+
+  [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {//new
+    let { routes, activeElement, activeRoute, componentIndex, elementIndex, activeComponent, arrayOfStates } = state;
     
     const component = routes[activeRoute][componentIndex];
-    
-    console.log("ID", activeElement.id)
 
     let newList
     let oldIndex = []
 
-    function findActiveElement(arr, id) {
+    function findAndDelete(arr, id) {
       for (const [i, el] of arr.entries()) {
         if (el.id === id) {
           newList = arr.slice();
@@ -175,25 +177,44 @@ const mutations: Mutations<State> = {
         }
         if (el.children.length > 0) {
           oldIndex.push(i)
-          return findActiveElement(el.children, id);
+          return findAndDelete(el.children, id);
         }
       }
     }
-      console.log("before", component.htmlList)
-      findActiveElement(component.htmlList, activeElement.id)
-      console.log("after", component.htmlList)
+      findAndDelete(component.htmlList, activeElement.id);
+      activeElement = ''
   },
 
-  [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {
+  [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {//new
     state.activeElement = payload;
   },
-  [types.SET_COMPONENT_INDEX]: (state: State, payload) => {
+  [types.SET_COMPONENT_INDEX]: (state: State, payload) => {//new
     state.componentIndex = payload;
   },
-  [types.SET_ELEMENT_INDEX]: (state: State, payload) => {
+  [types.SET_ELEMENT_INDEX]: (state: State, payload) => {//new
     state.elementIndex = payload;
   },
 
+
+
+  [types.SAVE_STATE]: (state: State) => {//new
+    const { routes, activeRoute, arrayOfStates } = state;
+    // state.arrayOfStates = [
+    //   ...arrayOfStates, 
+    //   routes[activeRoute],
+    // ]
+    arrayOfStates.push(routes[activeRoute])
+    console.log("pt 1", arrayOfStates)
+  },
+  [types.RESTORE_STATE]: (state: State) => {//new
+    const { routes, activeRoute, arrayOfStates } = state;
+    // console.log("pt 2", arrayOfStates[arrayOfStates.length - 1])
+    routes[activeRoute] = arrayOfStates.pop()
+    console.log("pt 2", arrayOfStates)
+    console.log("pt 3", routes[activeRoute])
+  },
+
+  
 
   [types.SET_COMPONENT_MAP]: (state: State, payload) => {
     console.log(payload);

@@ -19,9 +19,7 @@
       @click="onClick(componentData)"
       @activated="onActivated(componentData)"
       @deactivated="onDeactivated"
-      @drag-start="activeComponentData, onDrag"
       @drag-end="onDragEnd"
-      @resize-start="activeComponentData, onResize"
       @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
@@ -98,23 +96,37 @@ export default {
 
   mounted() {
     // allows active user created component to be deleted when backspace is pressed
-    window.addEventListener('keyup', event => {
+    window.addEventListener('keydown', event => {
+      if (event.key === 'q') { 
+        console.log("Q", this.$store.state.routes[this.activeRoute])
+        // this.$store.state.routes[this.activeRoute]
+      }
+    })
+    window.addEventListener('keyup', async (event) => {
       if (event.key === 'Backspace') {
         if (this.activeElement && this.activeElement.isActive === true){ 
-          //console.log("ACTIVE", this.activeElement)
-         // console.log("component index", this.componentIndex)
-         // console.log("element index", this.elementIndex)
-          this.$store.dispatch('deleteActiveElement') 
+          await this.$store.dispatch('saveState')
+          this.$store.dispatch('deleteActiveElement')
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
+          await this.$store.dispatch('saveState') 
           this.$store.dispatch('deleteActiveComponent');
+           }
+          }
+        });
+
+    window.addEventListener('keydown', event => {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'z') {
+        if(this.$store.state.arrayOfStates.length > 0){
+          console.log("UNDO invoked");
+          this.$store.dispatch('restoreState')
         }
       }
     });
   },
 
   computed: {
-    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement']),
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement', 'elementIndex', 'componentIndex']),
     activeRouteArray() {
       //console.log("routes:", this.routes[this.activeRoute])
       //console.log("active routes:", this.activeRoute)
@@ -194,13 +206,6 @@ export default {
          // console.log("activeElement1111",this.$store.state.activeElement)
         })
     },
-    onResize: function(x) {
-      // updates state associated with active component to reflect start of resize user has made to the component
-      this.activeComponentData.x = x.x;
-      this.activeComponentData.y = x.y;
-      this.activeComponentData.w = x.w;
-      this.activeComponentData.h = x.h;
-    },
 
     resizeElement: function(x, i, index){
       this.elementPosition(i, index).x = x.x
@@ -221,12 +226,6 @@ export default {
       this.activeComponentData.y = x.y;
       this.activeComponentData.w = x.w;
       this.activeComponentData.h = x.h;
-    },
-
-    onDrag: function(x) {
-      // updates state associated with active component to reflect start of drag user has made to the component
-      this.activeComponentData.x = x.x;
-      this.activeComponentData.y = x.y;
     },
 
     onDragEnd: function(x) {
