@@ -1,32 +1,36 @@
 <template>
   <v-card>
-    <v-layout>
+    <v-layout :style="{'margin-bottom': '30px'}"  class="full-height">
       <v-navigation-drawer
         id="side-nav"
         :style="{
-          'background-color': 'rgb(30, 31, 33)'
+          'background-color': '#3b444b',
+         
+          'height': '100%',
+          
         }"
-        width="250"
         permanent
       >
         <RouteDisplay /><HomeSidebar />
       </v-navigation-drawer>
 
-      <v-app-bar color="grey" height="48" flat><ProjectTabs /></v-app-bar>
+      <v-app-bar color='#8d949e' height="80" style="width: 1790px; z-index: 1;" flat><ProjectTabs /></v-app-bar>
 
+ 
       <v-navigation-drawer
-        :style="{ 'background-color': 'rgb(30, 31, 33)' }"
+        :style="{ 'background-color': '#6c757d' ,'position': 'absolute', 'top': '0', 'height': '100%'}"
         location="right"
-        width="180"
+        width="250"
         permanent
-        ><HomeQueue
-      /></v-navigation-drawer>
-
-      <v-main>
-        <v-container style="min-height: 300px"
+        >
+        <HomeQueue/>
+      </v-navigation-drawer>
+      <v-main style="padding-bottom: 60px;">
+        <v-container style="min-height: 300px;" 
           ><ComponentDisplay />
         </v-container>
       </v-main>
+      
     </v-layout>
   </v-card>
 </template>
@@ -74,7 +78,18 @@ export default {
 </script>
 
 <style>
+.full-height {
+  height: 100%;
+}
+
 #side-nav > * {
   font-size: 14px;
+}
+
+#bottom-bar {
+  position: absolute; /* or position: absolute; */
+  bottom: 0;
+  width: 100%; /* Make the bar span the entire width of the viewport */
+  height: 15px
 }
 </style>
