@@ -122,6 +122,7 @@ const mutations: MutationTree<State> = {
     state.componentMap[componentName].htmlList = payload;
   },
 
+  // 
   [types.DELETE_ACTIVE_COMPONENT]: (state: State) => {
     const { routes, activeRoute, componentMap, activeComponent, arrayOfStates } = state;
 
@@ -141,20 +142,25 @@ const mutations: MutationTree<State> = {
 
 
 
+  // gets the component
+  // traverses the component document and 
+  // performs a splice on the element when it finds it
   [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {//new
-    let { routes, activeElement, activeRoute, componentIndex, elementIndex, activeComponent, arrayOfStates } = state;
-    
+    let { routes, activeElement, activeRoute, componentIndex } = state;
+    // routes, activeRoute, arrayOfStates
     const component = routes[activeRoute][componentIndex];
 
     let newList
     let oldIndex = []
 
+    // ARRAY OF STATES IS NEVER GETTING CHANGED is that a problem? Because then undo runs which has to access this deleted state right?
     function findAndDelete(arr, id) {
       for (const [i, el] of arr.entries()) {
         if (el.id === id) {
-          newList = arr.slice();
-          newList.splice(i, 1);
-          if(!oldIndex.length){ 
+          newList = arr.slice(); // create a shallow copy
+          newList.splice(i, 1); // delete the id'd element
+          // 
+          if(!oldIndex.length){
             component.htmlList = newList 
           } else {
             if(oldIndex.length === 1){
@@ -181,8 +187,8 @@ const mutations: MutationTree<State> = {
         }
       }
     }
-      findAndDelete(component.htmlList, activeElement.id);
-      activeElement = ''
+    findAndDelete(component.htmlList, activeElement.id);
+    activeElement = ''
   },
 
   [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {//new
@@ -197,21 +203,23 @@ const mutations: MutationTree<State> = {
 
 
 
+  // pushes new state to arrayOfStates
   [types.SAVE_STATE]: (state: State) => {//new
     const { routes, activeRoute, arrayOfStates } = state;
-    // state.arrayOfStates = [
-    //   ...arrayOfStates, 
-    //   routes[activeRoute],
-    // ]
-    arrayOfStates.push(routes[activeRoute])
+    const cloneOfActiveRoute = JSON.parse(JSON.stringify(routes[activeRoute]))
+    state.arrayOfStates = [...state.arrayOfStates, cloneOfActiveRoute]
     console.log("pt 1", arrayOfStates)
   },
+  // removing the top element of arrayOfStates, aka, the current state
+  // assigning routes[activeRoute] to state we just removed
   [types.RESTORE_STATE]: (state: State) => {//new
     const { routes, activeRoute, arrayOfStates } = state;
+    const prevRoute = arrayOfStates.pop();
+    console.log('prevRoute',prevRoute)
     // console.log("pt 2", arrayOfStates[arrayOfStates.length - 1])
-    routes[activeRoute] = arrayOfStates.pop()
+    routes[activeRoute] = prevRoute;
     console.log("pt 2", arrayOfStates)
-    console.log("pt 3", routes[activeRoute])
+    // console.log("pt 3", routes[activeRoute])
   },
 
   

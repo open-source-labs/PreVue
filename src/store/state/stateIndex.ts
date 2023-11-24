@@ -43,4 +43,6 @@ const newState: State = {
   arrayOfStates: [],
 };
 
+console.log('newState',newState)
+
 export default newState;

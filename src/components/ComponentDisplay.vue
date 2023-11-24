@@ -99,17 +99,18 @@ export default {
     window.addEventListener('keydown', event => {
       if (event.key === 'q') { 
         console.log("Q", this.$store.state.routes[this.activeRoute])
-        // this.$store.state.routes[this.activeRoute]
       }
     })
-    window.addEventListener('keyup', async (event) => {
+    window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
+        console.log('backspace',this.activeElement && this.activeElement.isActive === true)
         if (this.activeElement && this.activeElement.isActive === true){ 
-          await this.$store.dispatch('saveState')
+          this.$store.dispatch('saveState')
           this.$store.dispatch('deleteActiveElement')
+          // setTimeout(() => this.$store.dispatch('deleteActiveElement'), 7000)
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
-          await this.$store.dispatch('saveState') 
+          this.$store.dispatch('saveState') 
           this.$store.dispatch('deleteActiveComponent');
            }
           }
