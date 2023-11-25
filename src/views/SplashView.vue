@@ -1,14 +1,33 @@
 <template>
   <div class="scroll">
     <div id="splash">
-      <div id="top-elements">
-        <div @click="toHome">
-          <h4 id="prevue-link">Try PreVue</h4>
+
+
+      <div id="toolbar">
+        <div id="toolbar-content">
+          <img src="../assets/logo.png" alt="PreVue Logo" id="toolbar-logo" />
+          <h2>PreVue</h2>
         </div>
-        <v-btn width="200px" color="success" class="mt-4" @click="oauth">
-          Sign in with GitHub
-        </v-btn>
+
+
+        <div @click="toHome">
+          <h4 id="prevue-link">Home</h4>
+        </div>
+        <div @click="toHome">
+          <h4 id="prevue-link">Team</h4>
+        </div>
+        <div @click="toHome">
+          <h4 id="prevue-link">Docs</h4>
+        </div>
+        <div @click="oauth">
+          <h4 id="prevue-link">Github</h4>
+        </div>
+        <!-- <v-btn width="85px" height="20px" color="success" class="mt-4" @click="oauth">
+          GitHub
+        </v-btn> -->
       </div>
+
+
       <h1 id="prevue">PreVue</h1>
       <h2>All in One Prototyping Tool For Vue Developers</h2>
       <h3>From Component Architecture to Code Exporting</h3>
@@ -211,7 +230,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap'); */
 
 html {
   height: 140vh;
@@ -228,7 +247,6 @@ video {
   align-items: center;
   justify-content: center;
 }
-
 .scroll {
   height: 120vh;
   overflow-y: auto;
@@ -239,7 +257,7 @@ video {
   background-size: contain;
   background-repeat: repeat;
   background-attachment: fixed;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   overflow: visible;
   padding: 3em 10em 10em 10em;
   margin-bottom: 10vh;
@@ -251,11 +269,17 @@ video {
 
 #prevue {
   font-size: xx-large;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 2.5em;
   color: #39b982;
   text-decoration: none;
+}
+
+
+#prevue-link:hover {
+  color: green;
+  cursor: pointer;
 }
 
 .border {
@@ -266,12 +290,51 @@ video {
   width: 100vw;
 }
 
-#top-elements {
-  margin-left: auto;
+
+#toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  /* justify-content: flex-end;  */
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px; 
+  z-index: 1;
+  font-size: 13px;
 }
+
+#toolbar-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: auto; 
+}
+
+#toolbar-content {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+
+#toolbar h4,
+#toolbar > div > h4 {
+  margin: 0;
+  margin-left: auto; 
+  margin-right: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  #toolbar h4,
+  #toolbar > div > h4 {
+    display: none; 
+  }
+}
+
 
 #authors {
   display: flex;
@@ -301,15 +364,6 @@ video {
   margin: 0 10em 0em 10em;
 }
 
-#prevue-link {
-  margin-top: 12px;
-  margin-right: 20px;
-}
-
-#prevue-link:hover {
-  color: green;
-  cursor: pointer;
-}
 
 #bottom-elements {
   display: flex;
