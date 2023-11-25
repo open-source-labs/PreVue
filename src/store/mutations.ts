@@ -188,7 +188,6 @@ const mutations: MutationTree<State> = {
       }
     }
     findAndDelete(component.htmlList, activeElement.id);
-    state.activeElement = null
   },
 
   [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {//new
@@ -208,7 +207,10 @@ const mutations: MutationTree<State> = {
     const { routes, activeRoute, arrayOfStates } = state;
     const cloneOfActiveRoute = JSON.parse(JSON.stringify(routes[activeRoute]))
     state.arrayOfStates = [...state.arrayOfStates, cloneOfActiveRoute]
-    console.log("pt 1", arrayOfStates)
+    if(arrayOfStates.length > 120){
+      state.arrayOfStates = arrayOfStates.slice(20, arrayOfStates.length)
+    }
+    // console.log("pt 1", arrayOfStates)
   },
   // removing the top element of arrayOfStates, aka, the current state
   // assigning routes[activeRoute] to state we just removed

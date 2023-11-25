@@ -4,6 +4,7 @@
 
     <Vue3DraggableResizable
       class="component-box"
+
       v-for="(componentData, index) in activeRouteArray"
       :draggable="isDraggable"
       :resizable="true"
@@ -27,8 +28,17 @@
     <h3>{{ componentData.componentName}}</h3>
       
     <Vue3DraggableResizable
-      class="component-elements"
       v-for="(element, i) in elementsAndChildren(index)"
+      class="component-elements"
+      :class="{
+        'layer1': element.depth === 1,
+        'layer2': element.depth === 2,
+        'layer3': element.depth === 3,
+        'layer4': element.depth === 4,
+        'layer5': element.depth === 5,
+        'layer6': element.depth === 6,
+        'layer7': element.depth === 7
+      }"
       :draggable="true"
       :resizable="true"
       :disabledX="false"
@@ -110,7 +120,7 @@ export default {
           // setTimeout(() => this.$store.dispatch('deleteActiveElement'), 7000)
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
-          this.$store.dispatch('saveState') 
+          this.$store.dispatch('saveState')
           this.$store.dispatch('deleteActiveComponent');
            }
           }
@@ -155,12 +165,14 @@ export default {
       if(!Array.isArray(list)) { 
         console.log ("ERROR")
         return newArr
-    }
-      const mapAll = function(arr){
+      }
+      const mapAll = function(arr, currentDepth = 0){
         arr.forEach(el => {
+          const newDepth = currentDepth + 1
            if (Array.isArray(el.children) && el.children.length > 0){
-            mapAll(el.children)
+            mapAll(el.children, newDepth)
           }
+          el.depth = newDepth
           newArr.push(el)
           })
         }
@@ -209,6 +221,7 @@ export default {
     },
 
     resizeElement: function(x, i, index){
+      this.$store.dispatch('saveState')
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
       this.elementPosition(i, index).w = x.w
@@ -216,11 +229,14 @@ export default {
     },
 
     updatePosition: function(x, i, index){//yeehaw
+      this.$store.dispatch('saveState')
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
     },
 
     onResizeEnd: function(x) {
+      this.$store.dispatch('saveState')
+
       // updates state associated with active component to reflect end of resize user has made to the component
       this.activeComponentData.isActive = true;
       this.activeComponentData.x = x.x;
@@ -230,6 +246,7 @@ export default {
     },
 
     onDragEnd: function(x) {
+      this.$store.dispatch('saveState')
       // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
       this.activeComponentData.y = x.y;
@@ -295,6 +312,28 @@ export default {
 .image {
   width: 100%;
   height: 100%;
+}
+
+.layer1 {
+  z-index: 1;
+}
+.layer2 {
+  z-index: 2;
+}
+.layer3 {
+  z-index: 3;
+}
+.layer4 {
+  z-index: 4;
+}
+.layer5 {
+  z-index: 5;
+}
+.layer6 {
+  z-index: 6;
+}
+.layer7 {
+  z-index: 7;
 }
 .component-elements {
 
