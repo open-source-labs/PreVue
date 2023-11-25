@@ -153,13 +153,13 @@ const mutations: MutationTree<State> = {
     let newList
     let oldIndex = []
 
-    // ARRAY OF STATES IS NEVER GETTING CHANGED is that a problem? Because then undo runs which has to access this deleted state right?
     function findAndDelete(arr, id) {
       for (const [i, el] of arr.entries()) {
+        console.log("EL", el)
         if (el.id === id) {
+          console.log("FUCK")
           newList = arr.slice(); // create a shallow copy
           newList.splice(i, 1); // delete the id'd element
-          // 
           if(!oldIndex.length){
             component.htmlList = newList 
           } else {
@@ -178,17 +178,17 @@ const mutations: MutationTree<State> = {
             } else if (oldIndex.length === 7){
               component.htmlList[oldIndex[0]].children[oldIndex[1]].children[oldIndex[2]].children[oldIndex[3]].children[oldIndex[4]].children[oldIndex[5]].children[oldIndex[6]].children = newList
             }
-          };
-          return
-        }
-        if (el.children.length > 0) {
+          }
+        } else if (el.children.length > 0) {
+          console.log("CHILD")
           oldIndex.push(i)
-          return findAndDelete(el.children, id);
+          findAndDelete(el.children, id);
         }
+        oldIndex = []
       }
     }
     findAndDelete(component.htmlList, activeElement.id);
-    activeElement = ''
+    state.activeElement = null
   },
 
   [types.SET_ACTIVE_ELEMENT]: (state: State, payload) => {//new
