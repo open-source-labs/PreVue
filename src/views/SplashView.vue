@@ -2,13 +2,14 @@
   <div class="scroll">
     <div id="splash">
 
-
+      <!-- html for the navigation bar -->
       <div id="toolbar">
+        <!-- left side of nav bar -->
         <div id="toolbar-content">
           <img src="../assets/logo.png" alt="PreVue Logo" id="toolbar-logo" />
           <h2>PreVue</h2>
         </div>
-
+        <!-- right side of nav bar -->
         <div @click="toHome">
           <h4 id="prevue-link">Home</h4>
         </div>
@@ -21,16 +22,10 @@
         <div @click="oauth">
           <h4 id="prevue-link">Github</h4>
         </div>
-        <!-- <v-btn width="85px" height="20px" color="success" class="mt-4" @click="oauth">
-          GitHub
-        </v-btn> -->
       </div>
 
 
-
-
-
-      
+      <!-- html for the first/top panel -->
       <div id="header-container">
         <div id="header-content">
           <div class="header-text">
@@ -50,19 +45,19 @@
       
      
       
-  
+      <!-- html for the second panel -->
       <div class="second-panel">
         <h2>Intuitive & Customizable</h2>
         <p id="subtitle-second-panel">PreVue allows you to easily build intuitive user interfaces and construct pre-built components with hierarchal data flow, seamless drag-and-drop, customizable file exports and more!
         </p>
         <v-btn width="150px" color="white" class="mt-4">
             Learn More
-          </v-btn>
+        </v-btn>
       </div>
       
 
 
-
+      <!-- html for the third panel -->
       <div id="third-panel-container">
         <div id="header-content">
           <div id="video-container">
@@ -77,68 +72,125 @@
       </div>
 
 
-
+       <!-- html for the fourth / team contributors panel -->
       <h2 class="prevue-github-panel">PreVue Contributors</h2>
+      <!-- PreVue 3.0 Contributors -->
       <div class="authors">
+        <!-- Ilay Eskinazi -->
+        <div class="author">
+          <img src="../assets/ilay-photo.jpg" />
+          <h3>Ilay Eskinazi</h3>
+          <div class="social-icons-container">
+              <a href="https://github.com/jasonboo123">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/jason-boo/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
+          </div>
+        </div>
+        <!-- Nathan Bornstein -->
+        <div class="author">
+          <img src="../assets/nathan-photo.jpg" />
+          <h3>Nathan Bornstein</h3>
+          <div class="social-icons-container">
+              <a href="https://github.com/rmdrake8">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/rmdrake8/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
+          </div>
+        </div>
+        <!-- April Sanders -->
+        <div class="author">
+          <img src="../assets/april-photo.jpg" />
+          <h3>April Sanders</h3>
+          <div class="social-icons-container">
+              <a href="https://github.com/algorithmrhythm">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/aprilshorttsanders/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
+          </div>
+        </div>
+        <!-- Cole Jaeger -->
+        <div class="author">
+          <img src="../assets/cole-photo.jpg" />
+          <h3>Cole Jaeger</h3>
+          <div class="social-icons-container">
+              <a href="https://github.com/zachpestaina">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/zachpestaina/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- PreVue 2.0 Contributors -->
+      <div class="authors">
+        <!-- Jason Boo -->
         <div class="author">
           <img src="../assets/jason-photo.jpg" />
           <h3>Jason Boo</h3>
-          <div class="links">
-            <h4><a href="https://github.com/jasonboo123">Github</a></h4>
-            <h4>
-              <a href="https://www.linkedin.com/in/jason-boo/">LinkedIn</a>
-            </h4>
+          <div class="social-icons-container">
+              <a href="https://github.com/jasonboo123">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/jason-boo/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
           </div>
         </div>
-
-
+        <!-- Robert Drake -->
         <div class="author">
           <img src="../assets/robert-photo.jpeg" />
           <h3>Robert Drake</h3>
-          <div class="links">
-            <h4><a href="https://github.com/rmdrake8">Github</a></h4>
-            <h4>
-              <a href="https://www.linkedin.com/in/rmdrake8/">LinkedIn</a>
-            </h4>
+          <div class="social-icons-container">
+              <a href="https://github.com/rmdrake8">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/rmdrake8/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
           </div>
         </div>
-
-
+        <!-- Sean Flynn -->
         <div class="author">
           <img src="../assets/sean-photo.jpeg" />
           <h3>Sean Flynn</h3>
-          <div>
-            <div class="social-icons-container">
-              <a href="http://github.com/seanflynn5">
+          <div class="social-icons-container">
+              <a href="https://github.com/seanflynn5">
                   <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
               </a>
               <a href="https://www.linkedin.com/in/sean-g-flynn/">
                   <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
               </a>
-            </div>
           </div>
         </div>
-
-
+        <!-- Zach Pestaina -->
         <div class="author">
           <img src="../assets/zach-photo.jpeg" />
           <h3>Zach Pestaina</h3>
-          <div class="links">
-            <h4><a href="https://github.com/zachpestaina">Github</a></h4>
-            <h4>
-              <a href="https://www.linkedin.com/in/zachpestaina/">LinkedIn</a>
-            </h4>
+          <div class="social-icons-container">
+              <a href="https://github.com/zachpestaina">
+                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+              </a>
+              <a href="https://www.linkedin.com/in/zachpestaina/">
+                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+              </a>
           </div>
         </div>
       </div>
 
-
       <div class="prevue-github-panel">
-        <h3 >
+        <h3>
         PreVue is an open source tool and has room for more features. We welcome contributors!
         </h3>
       </div>
-
       <div id="see-prevue-button" class="prevue-github-panel">
       <v-btn @click="toGithub" width="250px" color="white" class="mt-4">
             See PreVue on Github
@@ -146,7 +198,7 @@
       </div>
       
       
-
+      <!-- html for the fifth / bottom / community panel -->
       <div class="border">
         <h4 id="community">
         Community
@@ -160,10 +212,22 @@
         <p class="community-hyperlinks">
             <a href="https://twitter.com/prevue_oslabs">Twitter</a>
         </p>
+        <p class="community-hyperlinks">
+            <a href="">Medium</a>
+        </p>
+        <p class="community-hyperlinks">
+            <a href="">Product Hunt</a>
+        </p>
       </div>
+
     </div>
   </div>
 </template>
+
+
+
+
+
 
 <script>
 export default {
@@ -208,6 +272,12 @@ export default {
 };
 </script>
 
+
+
+
+
+
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@800&display=swap');
 
@@ -217,24 +287,12 @@ html {
   height: 140vh;
   overflow-y: auto;
 }
-
-video {
-  width: 70%;
-  height: 70%;
-}
-
-#video-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .scroll {
   height: 120vh;
   overflow-y: auto;
 }
 
 #splash {
-  /* background-image: url('../assets/background.jpg'); */
   background-size: contain;
   background-repeat: repeat;
   background-attachment: fixed;
@@ -248,9 +306,61 @@ video {
   justify-content: center;
 }
 
-.header-text {
-  text-align: center;
+
+
+
+/************ css for the navigation bar ***********/
+#toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-end;  */
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px; 
+  z-index: 1;
+  font-size: 18px;
 }
+
+#toolbar-content {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+#toolbar-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: auto; 
+}
+
+/* targeting the prevue-link id elements, could use that instead */
+#toolbar h4,
+#toolbar > div > h4 {
+  margin: 0;
+  margin-left: auto; 
+  margin-right: 18px;
+}
+
+#prevue-link:hover {
+  color: green;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  #toolbar h4,
+  #toolbar > div > h4 {
+    display: none; 
+  }
+}
+
+
+/*********** css for the first/top panel ***********/
 
 #header-container {
   display: flex;
@@ -268,6 +378,10 @@ video {
   padding-bottom:90px;
 }
 
+.header-text {
+  text-align: center;
+}
+
 #prevue-header {
   font-family: 'Open Sans';
   font-weight: bolder;
@@ -278,6 +392,29 @@ video {
   text-align: center;
 }
 
+#subtitle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #555; 
+}
+
+#video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+video {
+  width: 90%;
+  height: auto; 
+  border-radius: 9px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+
+
+/*********** css for the second panel ***********/
 .second-panel {
   text-align: center;
   padding: 1em;
@@ -304,58 +441,8 @@ video {
   
 }
 
-video {
-  width: 90%;
-  height: auto; 
-  border-radius: 9px; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
 
-#subtitle {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: #555; 
-}
-
-#prevue-link:hover {
-  color: green;
-  cursor: pointer;
-}
-
-.border {
-  text-align: center;
-  padding: 1em;
-  width: 100vw;
-  
-}
-
-/* .bottom-elements {
-  display: flex;
-  padding-top:40px;
-  margin-bottom: 1em;
-  justify-content: center;
-  align-items: center;
-} */
-
-#community {
-  color: inherit;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 15px;
-}
-.community-hyperlinks a {
-  color: inherit;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10px;
-  font-size: 14px;
-}
-
+/*********** css for the third panel ***********/
 #third-panel-container {
   display: flex;
   justify-content: space-between;
@@ -375,7 +462,7 @@ video {
   text-decoration: none;
   text-align: right;
   background: linear-gradient(to right, #044c49, #0dbd27); 
-  -webkit-background-clip: text; /* For Safari/Chrome/iOS */
+  -webkit-background-clip: text; /* For Safari/Chrome/iOS -- need to get clarity on what this does*/
   color: transparent;
   background-clip: text;
 }
@@ -390,51 +477,17 @@ video {
   text-align: right;
 }
 
-#toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
+/*********** css for the fourth / team contributors panel ***********/
+
+.prevue-github-panel {
   display: flex;
-  align-items: center;
-  /* justify-content: flex-end;  */
-  background-color: white;
-  border-bottom: 1px solid lightgrey;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 8px; 
-  z-index: 1;
-  font-size: 18px;
+  justify-content: center;
+  padding-bottom: 10px;
+  background: linear-gradient(to left, #39b982, #0e7d78); 
+  color : white;
+  width: 150%;
+  box-sizing: border-box;
 }
-
-#toolbar-logo {
-  width: 60px;
-  height: 60px;
-  margin-right: auto; 
-}
-
-#toolbar-content {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-}
-
-
-#toolbar h4,
-#toolbar > div > h4 {
-  margin: 0;
-  margin-left: auto; 
-  margin-right: 18px;
-}
-
-@media screen and (max-width: 500px) {
-  #toolbar h4,
-  #toolbar > div > h4 {
-    display: none; 
-  }
-}
-
-
 .authors {
   display: flex;
   justify-content: center;
@@ -444,7 +497,6 @@ video {
   width: 150%;
   box-sizing: border-box;
 }
-
 .author {
   display: flex;
   flex-direction: column;
@@ -456,7 +508,6 @@ video {
   border: 1px solid rgba(255, 255, 255, 0.5); 
   transition: background-color 0.2s ease;
 }
-
 .author:hover {
   background-color: rgba(255, 255, 255, 0.5); 
 }
@@ -466,20 +517,6 @@ video {
   padding-bottom: 15px;
   box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.7);
 }
-
-
-
-/* .github {
-  height: 60px;
-  box-shadow: none !important;
-  padding-top:8px;
-}
-
-.linkedin {
-  height: 50px;
-  box-shadow: none !important;
-  padding-top:8px;
-} */
 
 .social-icons-container {
   display: flex;
@@ -495,7 +532,7 @@ video {
 .github {
   box-shadow: none !important;
   padding-top: 8px;
-  margin-right: -125px; /* Add margin-right for spacing */
+  margin-right: -125px; /* Add margin-right for spacing - find a better way to do this */
   height: 55px;
 }
 
@@ -504,24 +541,39 @@ video {
    
 }
 
-.links {
-  display: flex;
+#see-prevue-button {
+  padding-bottom: 60px;
 }
 
-.links h4 {
-  margin: 0 0px 0 5px;
+
+
+
+/*********** css for the fifth / bottom / community panel ***********/
+
+.border {
+  text-align: center;
+  padding: 1em;
+  width: 100vw;
 }
 
-.prevue-github-panel {
+#community {
+  color: inherit;
+  text-decoration: none;
   display: flex;
   justify-content: center;
-  padding-bottom: 10px;
-  background: linear-gradient(to left, #39b982, #0e7d78); 
-  color : white;
-  width: 150%;
-  box-sizing: border-box;
+  align-items: center;
+  padding-bottom: 15px;
+  padding-top: 20px;
 }
-
+.community-hyperlinks a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
 h2.prevue-github-panel {
   display: flex;
   justify-content: center;
@@ -532,17 +584,15 @@ h2.prevue-github-panel {
   width: 150%;
   box-sizing: border-box;
 }
-
-#list {
-  margin: 0 10em 0em 10em;
-}
-
-#see-prevue-button {
-  padding-bottom: 60px;
-}
-
-
 </style>
+
+
+
+
+
+<!-- ****************************************************************************************************************  ORIGINAL SPLASH PAGE 
+**************************************************************************************************************** 
+-->
 
 
 
