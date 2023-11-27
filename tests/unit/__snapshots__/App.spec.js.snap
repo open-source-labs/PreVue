@@ -1,0 +1,148 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App.vue > renders App correctly 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <v-card
+    id="app"
+  >
+    <v-layout>
+      <nav-bar-stub
+        id="nav"
+        imageurl="../src/assets/logo.png"
+      />
+      <v-main
+        style="min-height: 300px;"
+      >
+        <router-view />
+      </v-main>
+    </v-layout>
+  </v-card>
+  <!-- &lt;v-app&gt;
+    &lt;div id="app" class="hero"&gt;
+      &lt;NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"&gt;&lt;/NavBar&gt;
+
+      &lt;section&gt;
+        &lt;router-view /&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/v-app&gt; -->
+  
+</div>
+`;
+
+exports[`App.vue > renders App correctly 2`] = `
+<div
+  data-v-app=""
+>
+  
+  <v-card
+    id="app"
+  >
+    <v-layout>
+      <nav-bar-stub
+        id="nav"
+        imageurl="../src/assets/logo.png"
+      />
+      <v-main
+        style="min-height: 300px;"
+      >
+        <router-view />
+      </v-main>
+    </v-layout>
+  </v-card>
+  <!-- &lt;v-app&gt;
+    &lt;div id="app" class="hero"&gt;
+      &lt;NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"&gt;&lt;/NavBar&gt;
+
+      &lt;section&gt;
+        &lt;router-view /&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/v-app&gt; -->
+  
+</div>
+`;
+
+exports[`App.vue > renders html correct 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <v-card
+    id="app"
+  >
+    <v-layout>
+      <nav-bar-stub
+        id="nav"
+        imageurl="../src/assets/logo.png"
+      />
+      <v-main
+        style="min-height: 300px;"
+      >
+        <router-view />
+      </v-main>
+    </v-layout>
+  </v-card>
+  <!-- &lt;v-app&gt;
+    &lt;div id="app" class="hero"&gt;
+      &lt;NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"&gt;&lt;/NavBar&gt;
+
+      &lt;section&gt;
+        &lt;router-view /&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/v-app&gt; -->
+  
+</div>
+`;
+
+exports[`App.vue > renders html correctly 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <v-card
+    id="app"
+  >
+    <v-layout>
+      <nav-bar-stub
+        id="nav"
+        imageurl="../src/assets/logo.png"
+      />
+      <v-main
+        style="min-height: 300px;"
+      >
+        <router-view />
+      </v-main>
+    </v-layout>
+  </v-card>
+  <!-- &lt;v-app&gt;
+    &lt;div id="app" class="hero"&gt;
+      &lt;NavBar v-if="!$route.meta.hideNavbar"  id="nav" imageUrl="../src/assets/logo.png"&gt;&lt;/NavBar&gt;
+
+      &lt;section&gt;
+        &lt;router-view /&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/v-app&gt; -->
+  
+</div>
+`;
+
+exports[`App.vue renders correct 1`] = `
+<div
+  class="hero is-fullHeight"
+  id="app"
+>
+  <navbar-stub />
+   
+  <section
+    class="section"
+  >
+    <router-view />
+  </section>
+</div>
+`;
