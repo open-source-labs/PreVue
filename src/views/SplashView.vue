@@ -104,7 +104,7 @@
 
 
        <!-- html for the fourth / team contributors panel -->
-      <h2 class="prevue-github-panel">PreVue Contributors</h2>
+      <h1 class="prevue-github-panel">PreVue Contributors</h1>
       <!-- PreVue 3.0 Contributors -->
       <div class="authors">
         <!-- Ilay Eskinazi -->
@@ -569,7 +569,6 @@ video {
 
 .linkedin:hover, .github:hover {
   cursor: pointer;
-   
 }
 
 #see-prevue-button {
@@ -605,11 +604,11 @@ video {
   padding-bottom: 10px;
   font-size: 14px;
 }
-h2.prevue-github-panel {
+h1.prevue-github-panel {
   display: flex;
   justify-content: center;
-  padding-top:40px;
-  padding-bottom: 40px;
+  padding-top:85px;
+  padding-bottom: 30px;
   background: linear-gradient(to left, #39b982, #0e7d78); 
   color : white;
   width: 150%;
