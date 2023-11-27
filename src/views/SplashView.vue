@@ -11,6 +11,7 @@
       - the subtitle fonts in different sections are different sizes I believe
       - page reload is SUPER choppy, not sure if we can do anything about it
       - from the component tree, if you click the splash page/home icon on the far top left, the word "PreVue" is displaced in the nav bar until you refresh
+      - there are multiple h1s, I know that's a no-no *shrugs*
   toolbar
       - where does the home page link to? do we need it in the nav bar at all?
       - maybe the “team” link should auto-scroll down to the bottom part of the page where contributors are?
