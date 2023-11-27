@@ -43,7 +43,7 @@ accountRouter.get(
     console.log('after requestGitHUbIdentity'),
       console.log('res.locals.access_token', res.locals.access_token),
       console.log('final redirect to homepage');
-    res.redirect('/');
+    res.redirect('/home');
   }
 );
 
