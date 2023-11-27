@@ -170,41 +170,72 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   name: 'Splash',
 
   beforeCreate() {
     fetch('/users/validateSession', {
-      credentials: 'include'
-      // headers: {
-      //   'Access-Control-Allow-Origin': ['localhost:4173']
-      // }
-    }).then(res => {
-      if (res.status === 200) {
-        this.toHome();
-      }
-    });
+      method: 'GET',
+      credentials: 'include' // Ensures cookies are sent with the request
+    })
+      .then(res => {
+        if (res.status === 200) {
+          // User is authenticated
+          this.toHome();
+        } else {
+          // User is not authenticated;
+        }
+      })
+      .catch(err => {
+        // Handle any errors, such as network issues
+        console.error('Error validating session:', err);
+      });
   },
   methods: {
-    // oauth() {
-    //   // make request to endpoint, to be redirected in server
-    //   fetch('/users/oauth', {
-    //     method: 'GET',
-    //     redirect: 'follow'
-    //     // headers: { 'Access-Control-Allow-Origin': ['localhost:4173'] }
-    //   })
-    //     .then(res => {
-    //       return res.json();
-    //     })
-    //     .then(data => window.location.replace(data));
-    // },
+    toHome() {
+      this.$router.push('/home');
+    },
     oauth() {
       // Redirect the client to the backend OAuth endpoint
       window.location.href = '/users/oauth';
-    },
+    }
+  }
+};
+</script> -->
+
+<script>
+export default {
+  name: 'Splash',
+
+  methods: {
     toHome() {
       this.$router.push('/home');
+    },
+    oauth() {
+      // Redirect the client to the backend OAuth endpoint
+      window.location.href = '/users/oauth';
+      // After redirecting, call validateSession to check if the user is authenticated
+      this.validateSession();
+    },
+    validateSession() {
+      fetch('/users/validateSession', {
+        method: 'GET',
+        credentials: 'include' // Ensures cookies are sent with the request
+      })
+        .then(res => {
+          if (res.status === 200) {
+            // User is authenticated
+            this.toHome();
+          } else {
+            // User is not authenticated;
+            // Handle the unauthenticated case as needed
+          }
+        })
+        .catch(err => {
+          // Handle any errors, such as network issues
+          console.error('Error validating session:', err);
+        });
     }
   }
 };

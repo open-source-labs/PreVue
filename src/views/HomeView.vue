@@ -1,30 +1,24 @@
 <template>
   <v-card>
     <v-layout>
-      <v-navigation-drawer
-        id="side-nav"
-        :style="{
-          'background-color': 'rgb(30, 31, 33)'
-        }"
-        width="250"
-        permanent
-      >
-        <RouteDisplay /><HomeSidebar />
+      <v-navigation-drawer id="side-nav" :style="{
+        'background-color': 'rgb(30, 31, 33)'
+      }" width="250" permanent>
+        <RouteDisplay />
+        <HomeSidebar />
       </v-navigation-drawer>
 
-      <v-app-bar color="grey" height="48" flat><ProjectTabs /></v-app-bar>
+      <v-app-bar color="grey" height="48" flat>
+        <ProjectTabs />
+      </v-app-bar>
 
-      <v-navigation-drawer
-        :style="{ 'background-color': 'rgb(30, 31, 33)' }"
-        location="right"
-        width="180"
-        permanent
-        ><HomeQueue
-      /></v-navigation-drawer>
+      <v-navigation-drawer :style="{ 'background-color': 'rgb(30, 31, 33)' }" location="right" width="180" permanent>
+        <HomeQueue />
+      </v-navigation-drawer>
 
       <v-main>
-        <v-container style="min-height: 300px"
-          ><ComponentDisplay />
+        <v-container style="min-height: 300px">
+          <ComponentDisplay />
         </v-container>
       </v-main>
     </v-layout>
@@ -51,7 +45,7 @@ export default {
   beforeMount() {
     this.isLoggedIn();
   },
-  data() {},
+  data() { },
   methods: {
     ...mapActions(['setLogin']),
     async isLoggedIn() {
@@ -74,7 +68,7 @@ export default {
 </script>
 
 <style>
-#side-nav > * {
+#side-nav>* {
   font-size: 14px;
 }
 </style>
