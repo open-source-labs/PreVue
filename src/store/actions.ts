@@ -22,9 +22,6 @@ const actions: Actions = {
 
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
-   // console.log('componentName is', componentName)
-   //console.log('componentNameInputValue is', state.componentNameInputValue)
-    //console.log('componentMap is', state.componentMap)
 
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
@@ -105,9 +102,32 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_ROUTE, payload);
   },
   [types.setActiveComponent]: ({ commit }, payload) => {
-    console.log(payload);
     commit(types.SET_ACTIVE_COMPONENT, payload);
   },
+
+
+
+  [types.setActiveElement]: ({ commit }, payload) => { //new
+    commit(types.SET_ACTIVE_ELEMENT, payload);
+  },
+  [types.deleteActiveElement]: ({ commit }) => {
+    commit(types.DELETE_ACTIVE_ELEMENT)
+  },
+  [types.setComponentIndex]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_INDEX, payload)
+  },
+  [types.setElementIndex]: ({ commit }, payload) => {
+    commit(types.SET_ELEMENT_INDEX, payload)
+  },
+  [types.saveState]: ({ commit }) => {
+    commit(types.SAVE_STATE)
+  },
+  [types.restoreState]: ({ commit }) => {
+    commit(types.RESTORE_STATE)
+  },
+
+
+
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);
   },

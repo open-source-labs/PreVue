@@ -31,7 +31,7 @@
           required
           v-model="componentNameInputValue"
           variant="underlined"
-          label="Enter a Component Name"
+          label="Enter A Component Name"
           placeholder="myCustomComponent"
           :style="{ color: '#f5f4f3' }"
         >

@@ -4,6 +4,7 @@
 
     <Vue3DraggableResizable
       class="component-box"
+
       v-for="(componentData, index) in activeRouteArray"
       :draggable="isDraggable"
       :resizable="true"
@@ -19,9 +20,7 @@
       @click="onClick(componentData)"
       @activated="onActivated(componentData)"
       @deactivated="onDeactivated"
-      @drag-start="activeComponentData, onDrag"
       @drag-end="onDragEnd"
-      @resize-start="activeComponentData, onResize"
       @resize-end="onResizeEnd"
       @dblclick.native="onDoubleClick(componentData)"
     >
@@ -29,8 +28,17 @@
     <h3>{{ componentData.componentName}}</h3>
       
     <Vue3DraggableResizable
+      v-for="(element, i) in elementsAndChildren(index)"
       class="component-elements"
-      v-for="(element, i) in theHtmlList(index)"
+      :class="{
+        'layer1': element.depth === 1,
+        'layer2': element.depth === 2,
+        'layer3': element.depth === 3,
+        'layer4': element.depth === 4,
+        'layer5': element.depth === 5,
+        'layer6': element.depth === 6,
+        'layer7': element.depth === 7
+      }"
       :draggable="true"
       :resizable="true"
       :disabledX="false"
@@ -40,20 +48,21 @@
       :y="elementPosition(i, index).y"
       :w="elementPosition(i, index).w"
       :h="elementPosition(i, index).h"
+      @activated="activateElement(i, index); activateElementOn(i, index)"
+      @deactivated="deactivateElement(i, index)"
       @resize-end="resizeElement($event, i, index)"
       @drag-start="notDraggable()"
       @drag-end="$event => {
       draggableAgain();
       updatePosition($event, i, index);
     }"
-    >
+  >
       <div 
         v-if="element.text === 'div'"
         class="div"
         :alt="div-component" >
         div
-        </div>
-
+      </div>
 
       <img v-else 
       :src="`./src/assets/${element.text}.svg`" 
@@ -97,62 +106,122 @@ export default {
 
   mounted() {
     // allows active user created component to be deleted when backspace is pressed
+    window.addEventListener('keydown', event => {
+      if (event.key === 'q') { 
+        console.log("Q", this.$store.state.routes[this.activeRoute])
+      }
+    })
     window.addEventListener('keyup', event => {
       if (event.key === 'Backspace') {
-        if (this.activeComponent && this.activeComponentData.isActive) {
+        console.log('backspace',this.activeElement && this.activeElement.isActive === true)
+        if (this.activeElement && this.activeElement.isActive === true){ 
+          this.$store.dispatch('saveState')
+          this.$store.dispatch('deleteActiveElement')
+          // setTimeout(() => this.$store.dispatch('deleteActiveElement'), 7000)
+        }
+        else if (this.activeComponent && this.activeComponentData.isActive) {
+          this.$store.dispatch('saveState')
           this.$store.dispatch('deleteActiveComponent');
+           }
+          }
+        });
+
+    window.addEventListener('keydown', event => {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'z') {
+        if(this.$store.state.arrayOfStates.length > 0){
+          console.log("UNDO invoked");
+          this.$store.dispatch('restoreState')
         }
       }
     });
   },
 
   computed: {
-    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap']),
+    ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement', 'elementIndex', 'componentIndex']),
     activeRouteArray() {
-      console.log("routes:", this.routes[this.activeRoute])
-      console.log("active routes:", this.activeRoute)
+      //console.log("routes:", this.routes[this.activeRoute])
+      //console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
 
     activeComponentData() {
-      // console.log("active comp:", this.activeComponent)
-      // console.log("active route array:", this.activeRouteArray)
-      console.log("comp map:", this.componentMap)
-      console.log("routes:", this.routes)
+      //console.log("comp map:", this.componentMap)
+      //console.log("routes:", this.routes)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
       })[0];
     },
-
-    theHtmlList() {
-    return (i) => {
-      return this.routes[this.activeRoute][i].htmlList;
+    theHtmlList(){
+    return (index) => {
+      return this.routes[this.activeRoute][index].htmlList;
       }
     },
-
+    elementsAndChildren(){
+    return (index) => {
+      const newArr = [];
+      const list = this.theHtmlList(index);
+      if(!Array.isArray(list)) { 
+        console.log ("ERROR")
+        return newArr
+      }
+      const mapAll = function(arr, currentDepth = 0){
+        arr.forEach(el => {
+          const newDepth = currentDepth + 1
+           if (Array.isArray(el.children) && el.children.length > 0){
+            mapAll(el.children, newDepth)
+          }
+          el.depth = newDepth
+          newArr.push(el)
+          })
+        }
+      mapAll(list)
+      return newArr
+      }
+    },
     elementPosition() {
       return (i, index) => { 
-        // console.log("Sdf", this.routes[this.activeRoute][index].htmlList[i])
-        // console.log("X", x)
-         return this.routes[this.activeRoute][index].htmlList[i]
+         return this.elementsAndChildren(index)[i]
       }
-    }
+    },
+    activateElementOn(){
+      return(i, index) => {
+        //console.log("deactivated", this.elementPosition(i, index).isActive)
+        console.log("ACTIVE ELEMENT", this.elementPosition(i, index))
+        this.elementPosition(i, index).isActive = true;
+      }
+    },
+    deactivateElement(){
+      return(i, index) => {
+       // console.log("deactivated", this.elementPosition(i, index).isActive)
+        this.elementPosition(i, index).isActive = false;
+      }
+    },
   },
 
   methods: {
-    ...mapActions(['setActiveComponent', 'updateOpenModal']),
-
-    onResize: function(x) {
-      // updates state associated with active component to reflect start of resize user has made to the component
-      this.activeComponentData.x = x.x;
-      this.activeComponentData.y = x.y;
-      this.activeComponentData.w = x.w;
-      this.activeComponentData.h = x.h;
+    ...mapActions(['setActiveComponent', 'updateOpenModal', 'setActiveElement', 'setComponentIndex', 'setElementIndex']),
+    activateElement(i, index){
+        //console.log("ELLEMENT ACTIVATED")
+        //console.log("componentIndexFFF1", index)
+        this.$store.dispatch('setComponentIndex', index)
+        .then(() => {
+          //console.log("componentIndexFFF2", this.$store.state.componentIndex)
+          
+          return this.$store.dispatch('setElementIndex', i)
+        })
+        .then(() => {
+          //console.log("elementIndexFFF",this.$store.state.elementIndex)
+          return this.$store.dispatch('setActiveElement', this.elementPosition(i ,index))
+        })
+        .then(() => {
+         // console.log("activeElement1111",this.$store.state.activeElement)
+        })
     },
 
     resizeElement: function(x, i, index){
+      this.$store.dispatch('saveState')
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
       this.elementPosition(i, index).w = x.w
@@ -160,12 +229,14 @@ export default {
     },
 
     updatePosition: function(x, i, index){//yeehaw
-      console.log("xxx", x)
+      this.$store.dispatch('saveState')
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
     },
 
     onResizeEnd: function(x) {
+      this.$store.dispatch('saveState')
+
       // updates state associated with active component to reflect end of resize user has made to the component
       this.activeComponentData.isActive = true;
       this.activeComponentData.x = x.x;
@@ -174,23 +245,19 @@ export default {
       this.activeComponentData.h = x.h;
     },
 
-    onDrag: function(x) {
-      // updates state associated with active component to reflect start of drag user has made to the component
-      this.activeComponentData.x = x.x;
-      this.activeComponentData.y = x.y;
-    },
-
     onDragEnd: function(x) {
+      this.$store.dispatch('saveState')
       // updates state associated with active component to reflect end of drag user has made to the component
       this.activeComponentData.x = x.x;
-      console.log("XD", x)
       this.activeComponentData.y = x.y;
     },
 
     onActivated(componentData) {
       // updates state to reflect current selected componenet (i.e. active component)
+      console.log("activated")
       this.setActiveComponent(componentData.componentName);
       this.activeComponentData.isActive = true;
+      this.activeElement.isActive = false
     },
 
     onDeactivated() {
@@ -221,32 +288,65 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .component-display {
   color: #3ab982;
-  border: 1px solid rgb(0, 205, 68);
+  border: 2px inset rgb(148, 142, 142);
   border-radius: 10px;
   position: relative;
   height: 84vh;
 }
+
 .component-box {
   box-sizing: border-box;
   color: #3ab982;
+  background-color: #e3e3e3;
   border-radius: 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center; 
+  box-shadow: 3px 3px 5px rgb(61, 59, 59);
 }
 
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.layer1 {
+  z-index: 1;
+}
+.layer2 {
+  z-index: 2;
+}
+.layer3 {
+  z-index: 3;
+}
+.layer4 {
+  z-index: 4;
+}
+.layer5 {
+  z-index: 5;
+}
+.layer6 {
+  z-index: 6;
+}
+.layer7 {
+  z-index: 7;
+}
 .component-elements {
+
   box-sizing: content-box;
   border-radius: 7px;
   margin: 5px;
-  color: #3AB982;
+  color: #84a891;
+  background-color: #ffffff;
   /* border: 2px solid rgb(255, 0, 221); */
   object-fit: cover;
+  display: flex;
+  align-content: stretch;
+  justify-content: stretch;
   /* position: sticky; */
 }
 
@@ -254,7 +354,10 @@ export default {
 .graphic {
   height: calc(100%);
   width: calc(100%);
-  object-fit: cover;
+  min-width: 30px;
+  min-height: 30px;
+  box-shadow: 3px 3px 5px rgb(80, 95, 80);
+  border-radius: 20px;
 }
 
 .div {
@@ -262,8 +365,9 @@ export default {
   height: calc(100%);
   width: calc(100%);
   border-radius: 5px;
-  text-align: center;
+  text-align: right;
+  color: rgb(41, 41, 232);
+  letter-spacing: 3px;
+  font-weight: bold;
 }
-
-
 </style>
