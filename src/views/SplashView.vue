@@ -1,7 +1,38 @@
+<!-- 
+  Notes :
+    - Design was inspired by → https://www.svelvet.io/ 
+    - Original splash page code is at the bottom of this file
+
+  Things to be worked on / looked at :
+  entire page
+      - problems with resizing, the page is not responsive. i used a very basic media query to help the navbar, but want to limit resizing of other things :
+          - how much smaller snippets get when the page size changes
+          - the team members – pushing them to the next line instead of them disappearing once the page  
+      - the subtitle fonts in different sections are different sizes I believe
+      - page reload is SUPER choppy, not sure if we can do anything about it
+      - from the component tree, if you click the splash page/home icon on the far top left, the word "PreVue" is displaced in the nav bar until you refresh
+  toolbar
+      - where does the home page link to? do we need it in the nav bar at all?
+      - maybe the “team” link should auto-scroll down to the bottom part of the page where contributors are?
+      - I removed the bullets from OG splash page that detailed instructions for how to use the app. maybe that could be a part of our official Docs on a separate page? → https://www.overvue.org/docs/installation 
+            other fancier examples :
+                http://www.seeqrapp.com/docs 
+                https://svelvet.mintlify.app/introduction 
+  second panel
+        - "learn more" button can link to the docs
+  third panel
+        - idk wtf to do with panel 3, need some content
+  fourth panel / team section 
+        - when the github icon is clicked, it redirects to linkedin. wtf does that happen?
+        - need to update our team's hyperlinks
+  bottom panel 
+        - medium and product hunt hyperlinks need to be updated
+-->
+
+
 <template>
   <div class="scroll">
     <div id="splash">
-
       <!-- html for the navigation bar -->
       <div id="toolbar">
         <!-- left side of nav bar -->
@@ -20,7 +51,7 @@
           <h4 id="prevue-link">Docs</h4>
         </div>
         <div @click="oauth">
-          <h4 id="prevue-link">Github</h4>
+          <h4 id="prevue-link">Sign-In</h4>
         </div>
       </div>
 
