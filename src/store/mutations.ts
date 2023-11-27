@@ -157,7 +157,6 @@ const mutations: MutationTree<State> = {
       for (const [i, el] of arr.entries()) {
         console.log("EL", el)
         if (el.id === id) {
-          console.log("FUCK")
           newList = arr.slice(); // create a shallow copy
           newList.splice(i, 1); // delete the id'd element
           if(!oldIndex.length){
