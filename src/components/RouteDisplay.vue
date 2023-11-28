@@ -4,20 +4,19 @@
     id="sidebar1"
     class="rounded-0"
     :style="{
-      'background-color': '#565656',
-      'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px'
+      'background-color': '#3b444b',
+      padding: '16px 0px 20px 0px'
     }"
   >
     <v-card-title
       :style="{
-        'font-size': '14px',
+        'font-size': '20px',
         color: '#f5f4f3',
         'font-weight': '550',
-        padding: '24px 24px 0 24px'
+        padding: '30px 24px 0 24px'
       }"
     >
-      <strong>Route Creator</strong>
+      <strong>View Creator</strong>
     </v-card-title>
     <v-card-actions class="d-block">
       <v-form
@@ -29,8 +28,8 @@
         <v-text-field
           v-model="newRoute"
           variant="underlined"
-          label="Route name"
-          placeholder="myCustomRoute"
+          label="Enter A View Name"
+          placeholder="myCustomView"
           required
           :style="{ color: '#f5f4f3' }"
         >
@@ -74,7 +73,7 @@ export default {
 
 <style scoped>
 #sidebar1 > div {
-  padding: 0;
+  padding: 25;
 }
 
 .v-label.v-field-label,

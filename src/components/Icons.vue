@@ -28,7 +28,8 @@ export default {
   },
   methods: {
     changeState(elementName) {
-      // emits event to be registered by HomeSidebar parent component, allows html element selections to be updated in state
+      // emits event to be registered by HomeSidebar parent component, 
+      //allows html element selections to be updated in state
       this.$emit('getClickedIcon', elementName);
     }
   }
@@ -38,8 +39,8 @@ export default {
 <style scoped>
 .icon-grid {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-row-gap: 0.5em;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-row-gap: 1.5em;
 }
 
 button {

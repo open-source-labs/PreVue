@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -17,6 +18,7 @@ const projectRouter = require('./routes/projectRouter');
 const mongoose = require('mongoose');
 const myURI = process.env.MONGO_URI;
 const { MongoClient } = require('mongodb');
+console.log(`MongoDB URI: ${process.env.MONGO_URI}`);
 mongoose
   .connect(myURI, {
     // options for the connect method to parse the URI
@@ -25,7 +27,11 @@ mongoose
     // sets the name of the DB that our collections are part of
     dbName: 'prevueDB',
   })
-  .then(() => console.log('Connected to Mongo DB.'))
+  .then(() => {
+    console.log('Connected to Mongo DB.');
+    console.log('GitHub Client ID:', process.env.GITHUB_OAUTH_CLIENT_ID);
+    console.log('GitHub Client Secret:', process.env.GITHUB_OAUTH_CLIENT_SECRET);
+  })
   .catch((err) => console.log(err));
 
 // Global Middleware

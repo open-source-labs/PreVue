@@ -6,7 +6,7 @@ export type Icons = {
   form: string;
   img: string;
   link: string;
-  list: string;
+  'list-item': string;
   paragraph: string;
   'list-ol': string;
   'list-ul': string;
@@ -20,7 +20,7 @@ export type HtmlElementMap = {
   form: string[];
   img: string[];
   link: string[];
-  list: string[];
+  'list-item': string[];
   paragraph: string[];
   'list-ol': string[];
   'list-ul': string[];
@@ -37,6 +37,7 @@ export type Component = {
   y?: number;
   h?: number;
   w?: number;
+  id?: number;
 };
 export type ComponentMap = {
   [k: string]: Component;
@@ -60,7 +61,13 @@ export type State = {
   componentNameInputValue: string;
   activeRoute: string;
   activeComponent: string;
+
+  activeElement: string; //new
+  componentIndex: number; //new
+  elementIndex: number; //new
+
   projectName: string;
+  editedProjectName: string;
   selectedElementList: object[];
   componentChildrenMultiselectValue: string[];
   modalOpen: boolean;
@@ -68,7 +75,11 @@ export type State = {
   saved: boolean;
   loggedIn: boolean;
   rerenderKey: number;
+
+  arrayOfStates: Array<object>;
 };
+
+// export type StateQueue = State[]
 
 export type Mutations<State> = {
   [k: Type]: (
@@ -86,6 +97,10 @@ export type HtmlChild = {
   text: string;
   children: HtmlChild[];
   _id?: number;
+  x?: number;
+  y?: number;
+  w?: number; 
+  h?: number; 
 };
 
 export type HtmlList = HtmlChild[];

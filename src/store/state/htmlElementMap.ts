@@ -8,7 +8,7 @@ const htmlElementMap: HtmlElementMap = {
   form: ['<form>', '</form>'],
   img: ['<img>', ''],
   link: ['<a href="#"/>', ''],
-  list: ['<li>', '</li>'],
+  'list-item': ['<li>', '</li>'],
   paragraph: ['<p>', '</p>'],
   'list-ol': ['<ol>', '</ol>'],
   'list-ul': ['<ul>', '</ul>'],

@@ -5,6 +5,9 @@ const actions: Actions = {
   [types.incRerenderKey]: ({ commit }) => {
     commit(types.INC_RERENDER_KEY);
   },
+  [types.updateProjectName]: ({ commit }, payload) => {
+    commit(types.UPDATE_PROJECT_NAME, payload);
+  },
   [types.setLogin]: ({ commit }, payload) => {
     commit(types.SET_LOGIN, payload);
   },
@@ -17,10 +20,17 @@ const actions: Actions = {
   [types.initialiseStore]: ({ commit }) => {
     commit(types.INITIALISESTORE);
   },
+
+
+
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
+
+
+
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
+
       commit(
         types.ADD_COMPONENT_TO_ACTIVE_ROUTE_CHILDREN,
         payload.componentName
@@ -41,10 +51,12 @@ const actions: Actions = {
   },
   [types.setSelectedElementList]: ({ commit }, payload) => {
     if (payload) {
+      
       commit(types.SET_SELECTED_ELEMENT_LIST, payload);
     }
   },
   [types.addToSelectedElementList]: ({ commit }, payload) => {
+    //console.log('action payload is', payload);
     commit(types.ADD_TO_SELECTED_ELEMENT_LIST, payload);
   },
   [types.addToComponentElementList]: ({ commit }, payload) => {
@@ -63,6 +75,7 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_COMPONENT, '');
   },
   [types.deleteSelectedElement]: ({ commit }, payload) => {
+    //console.log('this is the payload', payload)
     commit(types.DELETE_SELECTED_ELEMENT, payload);
   },
   [types.setState]: ({ commit }, payload) => {
@@ -94,9 +107,32 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_ROUTE, payload);
   },
   [types.setActiveComponent]: ({ commit }, payload) => {
-    console.log(payload);
     commit(types.SET_ACTIVE_COMPONENT, payload);
   },
+
+
+
+  [types.setActiveElement]: ({ commit }, payload) => { //new
+    commit(types.SET_ACTIVE_ELEMENT, payload);
+  },
+  [types.deleteActiveElement]: ({ commit }) => {
+    commit(types.DELETE_ACTIVE_ELEMENT)
+  },
+  [types.setComponentIndex]: ({ commit }, payload) => {
+    commit(types.SET_COMPONENT_INDEX, payload)
+  },
+  [types.setElementIndex]: ({ commit }, payload) => {
+    commit(types.SET_ELEMENT_INDEX, payload)
+  },
+  [types.saveState]: ({ commit }) => {
+    commit(types.SAVE_STATE)
+  },
+  [types.restoreState]: ({ commit }) => {
+    commit(types.RESTORE_STATE)
+  },
+
+
+
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);
   },

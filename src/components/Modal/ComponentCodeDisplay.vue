@@ -10,9 +10,12 @@ import { mapState } from 'vuex';
 export default {
   name: 'ComponentCodeDisplay',
   computed: {
-    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
+    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap', 'routes', 'activeRoute', 'componentIndex']),
     activeComponentHtmlList: {
       get() {
+       console.log("COMPCODE", this.routes[this.activeRoute][this.componentIndex].htmlList)
+       return this.routes[this.activeRoute][this.componentIndex].htmlList
+
         // return html list associated with active component from state
         return this.componentMap[this.activeComponent].htmlList;
       }
@@ -22,6 +25,7 @@ export default {
     activeComponentHtmlList: {
       // watching htmlList in state to reactively display any changes as a result of changes made to list in sibling component
       handler(oldList, newList) {
+        console.log("CHANGED")
         this.displayHtmlList(newList);
       },
       // dealing with nested objects, hence need deep property

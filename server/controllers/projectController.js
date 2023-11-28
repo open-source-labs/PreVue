@@ -8,6 +8,7 @@ const projectController = {};
 projectController.saveProject = (req, res, next) => {
   const { project_name, projectObject } = req.body;
   Project.findOne({ project_name }).then(data => {
+    console.log(`data for saveProject: ${data}`);
     if (!data) {
       Project.create({
         project_name,

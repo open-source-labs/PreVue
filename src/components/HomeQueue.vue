@@ -3,20 +3,20 @@
   <v-card
     class="home-queue"
     :style="{
-      'background-color': '#565656',
-      'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px'
+      'background-color': '#3b444b',
+      padding: '16px 0px 24px 0px',
+      height: '9000px'
     }"
   >
     <v-card-title
       :style="{
-        'font-size': '14px',
-        color: 'white',
-        'font-weight': '700',
-        padding: '0 24px 0 24px'
+        'font-size': '20px',
+        color: '#f5f4f3',
+        padding: '30px 0px 20px 20px',
+        'white-space': 'normal'
       }"
     >
-      Selected Elements
+      <strong>Selected Elements</strong>
     </v-card-title>
     <draggable
       v-model="renderList"
@@ -27,12 +27,12 @@
       @start="drag = true"
       @end="drag = false"
     >
-      <template #item="{element}">
+
+      <template #item="{element, index}">
         <v-chip class="ma-2 list-group-item">
-          {{ element.text }}
+          <span style="margin-right: 8px; margin-left: 18px; font-size: 16px;">{{ element.text }}</span>
           <i
             class="fas fa fa-trash fa-md"
-            style="color: white;"
             @click="deleteElement(index)"
             :style="{ 'margin-left': 'auto' }"
           >
@@ -59,6 +59,7 @@ export default {
     renderList: {
       get() {
         // return list of user selected html elements associated with created component
+        
         return this.$store.state.selectedElementList;
       },
       set(value) {
@@ -78,6 +79,9 @@ export default {
   methods: {
     deleteElement(index) {
       // remove selected html element when trashcan icon is clicked from elements associated the user created component
+
+      console.log(index)
+      
       this.$store.dispatch(deleteSelectedElement, index);
     }
   }
@@ -85,22 +89,37 @@ export default {
 </script>
 
 <style scoped>
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(2px); }
+}
 .fa-trash:hover {
   cursor: pointer;
   color: red;
+  animation: shake 0.5s ease-in-out infinite;
 }
 
 .list-group-item {
   margin: 2px;
   background-color: #39b982;
-  height: 35px;
-  padding-top: 2px;
-  text-align: center;
+  height: 45px;
+  padding-top: 30px;
+  width: 220px;
 }
 
 .list-group-item:hover {
   background-color: rgba(0, 255, 126, 0.40242034313725494);
 }
+
+.index-label {
+  color: white;
+  margin-right: 8px;
+}
+
 /* .home-queue {
   border: 1px solid white;
   background-color: hsl(222, 15%, 26%);

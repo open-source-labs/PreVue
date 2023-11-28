@@ -3,12 +3,12 @@
   <v-select
     :style="{
       'background-color': 'inherit',
-      'border-bottom': '0.5px solid #6a696a',
-      padding: '0 24px 0 24px',
+      'border-bottom': '5px solid #6a696a',
+      padding: '0 24px 20px 24px',
       color: '#f5f4f3'
     }"
     clearable
-    placeholder="Select a route"
+    placeholder="Select A View"
     :items="Object.keys(routes)"
     variant="underlined"
     route-text="name"
