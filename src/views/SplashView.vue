@@ -39,20 +39,20 @@
         <!-- left side of nav bar -->
         <div id="toolbar-content">
           <img src="../assets/logo.png" alt="PreVue Logo" id="toolbar-logo" />
-          <h2>PreVue</h2>
+            <h1>PreVue</h1>
         </div>
         <!-- right side of nav bar -->
         <div @click="toHome">
-          <h4 id="prevue-link">Home</h4>
+          <h3 id="prevue-link">Home</h3>
         </div>
         <div @click="toHome">
-          <h4 id="prevue-link">Team</h4>
+          <h3 id="prevue-link">Team</h3>
         </div>
         <div @click="toHome">
-          <h4 id="prevue-link">Docs</h4>
+          <h3 id="prevue-link">Docs</h3>
         </div>
         <div @click="oauth">
-          <h4 id="prevue-link">Sign-In</h4>
+          <h3 id="prevue-link">Sign-In</h3>
         </div>
       </div>
 
@@ -365,6 +365,12 @@ html {
   margin-right: auto;
 }
 
+#toolbar-content h2 {
+  color: blue;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #toolbar-logo {
   width: 60px;
   height: 60px;
@@ -372,8 +378,8 @@ html {
 }
 
 /* targeting the prevue-link id elements, could use that instead */
-#toolbar h4,
-#toolbar > div > h4 {
+#toolbar h3,
+#toolbar > div > h3 {
   margin: 0;
   margin-left: auto; 
   margin-right: 18px;
