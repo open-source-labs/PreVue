@@ -398,8 +398,8 @@ html {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding-bottom: 115px;
+  padding-top: 120px;
   background: linear-gradient(to bottom, transparent 60%, #39b982 100%)
 }
 
@@ -450,8 +450,8 @@ video {
 .second-panel {
   text-align: center;
   padding: 1em;
-  padding-top: 90px;
-  padding-bottom: 70px;
+  padding-top: 130px;
+  padding-bottom: 175px;
   color: white;
   background: #39b982;
   width: 100vw;
@@ -479,8 +479,8 @@ video {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  padding-bottom: 30px;
-  padding-top: 60px;
+  padding-bottom: 100px;
+  padding-top: 100px;
   background: white;
   box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.9);
 }
