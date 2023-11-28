@@ -14,7 +14,7 @@
         <RouteDisplay /><HomeSidebar />
       </v-navigation-drawer>
 
-      <v-app-bar color='#8d949e' height="80" style="width: 1790px; z-index: 1;" flat><ProjectTabs /></v-app-bar>
+      <v-app-bar color='#8d949e' height="80" style="width: 9790px; z-index: 1;" flat><ProjectTabs /></v-app-bar>
 
  
       <v-navigation-drawer
