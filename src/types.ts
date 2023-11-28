@@ -37,6 +37,7 @@ export type Component = {
   y?: number;
   h?: number;
   w?: number;
+  id?: number;
 };
 export type ComponentMap = {
   [k: string]: Component;
@@ -74,7 +75,11 @@ export type State = {
   saved: boolean;
   loggedIn: boolean;
   rerenderKey: number;
+
+  arrayOfStates: Array<object>;
 };
+
+// export type StateQueue = State[]
 
 export type Mutations<State> = {
   [k: Type]: (

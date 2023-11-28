@@ -38,16 +38,17 @@ export default {
       'clickedComponent',
       'componentMap',
       'activeComponent',
-      'routes'
+      'routes',
+      'activeRoute'
     ]),
-    children() {
-      return this.componentMap[this.activeComponent].children.reduce(
-        (acc, curr) => {
-          return acc.concat(curr);
-        },
-        []
-      );
-    }
+    // children() {
+    //   return this.componentMap[this.activeComponent].children.reduce(
+    //     (acc, curr) => {
+    //       return acc.concat(curr);
+    //     },
+    //     []
+    //   );
+    // }
   },
   methods: {
     ...mapActions([

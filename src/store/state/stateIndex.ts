@@ -39,7 +39,11 @@ const newState: State = {
   htmlElements: [],
   saved: false,
   loggedIn: false,
-  rerenderKey: 0
+  rerenderKey: 0,
+
+  arrayOfStates: [],
 };
+
+console.log('newState',newState)
 
 export default newState;
