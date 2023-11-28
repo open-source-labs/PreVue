@@ -45,7 +45,10 @@ export default {
           method: 'POST',
           credentials: 'include',
           body: JSON.stringify(stateToSave),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' }
+          headers: { 
+            'Content-type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': ['localhost:4173']
+           }
         });
 
         if (!response.ok) {
