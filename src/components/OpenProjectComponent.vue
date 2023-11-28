@@ -81,12 +81,9 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
-.open-btn {
-  font-family: 'Nunito', sans-serif;
-}
 
 .white--text {
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .white--text:hover {
