@@ -37,6 +37,7 @@ export type Component = {
   y?: number;
   h?: number;
   w?: number;
+  id?: number;
 };
 export type ComponentMap = {
   [k: string]: Component;
@@ -66,6 +67,7 @@ export type State = {
   elementIndex: number; //new
 
   projectName: string;
+  editedProjectName: string;
   selectedElementList: object[];
   componentChildrenMultiselectValue: string[];
   modalOpen: boolean;
@@ -73,7 +75,11 @@ export type State = {
   saved: boolean;
   loggedIn: boolean;
   rerenderKey: number;
+
+  arrayOfStates: Array<object>;
 };
+
+// export type StateQueue = State[]
 
 export type Mutations<State> = {
   [k: Type]: (

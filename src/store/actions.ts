@@ -5,6 +5,9 @@ const actions: Actions = {
   [types.incRerenderKey]: ({ commit }) => {
     commit(types.INC_RERENDER_KEY);
   },
+  [types.updateProjectName]: ({ commit }, payload) => {
+    commit(types.UPDATE_PROJECT_NAME, payload);
+  },
   [types.setLogin]: ({ commit }, payload) => {
     commit(types.SET_LOGIN, payload);
   },
@@ -22,9 +25,8 @@ const actions: Actions = {
 
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
-   // console.log('componentName is', componentName)
-   //console.log('componentNameInputValue is', state.componentNameInputValue)
-    //console.log('componentMap is', state.componentMap)
+
+
 
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
@@ -121,6 +123,12 @@ const actions: Actions = {
   },
   [types.setElementIndex]: ({ commit }, payload) => {
     commit(types.SET_ELEMENT_INDEX, payload)
+  },
+  [types.saveState]: ({ commit }) => {
+    commit(types.SAVE_STATE)
+  },
+  [types.restoreState]: ({ commit }) => {
+    commit(types.RESTORE_STATE)
   },
 
 

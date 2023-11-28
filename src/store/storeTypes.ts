@@ -2,6 +2,7 @@ import { Type } from '../types';
 
 //Mutations
 export const INC_RERENDER_KEY: Type = 'INC_RERENDER_KEY';
+export const UPDATE_PROJECT_NAME = 'UPDATE_PROJECT_NAME';
 export const SET_LOGIN: Type = 'SET_LOGIN';
 export const REPLACE_STATE: Type = 'REPLACE_STATE';
 export const NAME_PROJECT: Type = 'NAME_PROJECT';
@@ -12,7 +13,8 @@ export const SET_ACTIVE_ELEMENT: Type = 'SET_ACTIVE_ELEMENT';//new
 export const DELETE_ACTIVE_ELEMENT: Type = 'DELETE_ACTIVE_ELEMENT'//new
 export const SET_ELEMENT_INDEX: Type = 'SET_ELEMENT_INDEX';//new
 export const SET_COMPONENT_INDEX: Type = 'SET_COMPONENT_INDEX';//new
-
+export const SAVE_STATE: Type = 'SAVE_STATE'; //new
+export const RESTORE_STATE: Type = 'RESTORE_STATE'; //new
 
 export const ADD_COMPONENT_TO_COMPONENT_MAP: Type =
   'ADD_COMPONENT_TO_COMPONENT_MAP';
@@ -58,6 +60,7 @@ export const UPDATE_OPEN_MODAL: Type = 'UPDATE_OPEN_MODAL';
 
 //Actions
 export const registerComponent: Type = 'registerComponent';
+export const updateProjectName: Type = 'updateProjectName';
 export const setSelectedElementList: Type = 'setSelectedElementList';
 export const addToSelectedElementList: Type = 'addToSelectedElementList';
 export const addToComponentElementList: Type = 'addToComponentElementList';
@@ -77,6 +80,8 @@ export const setActiveElement: Type = 'setActiveElement'; //new
 export const deleteActiveElement: Type = 'deleteActiveElement'; //new
 export const setComponentIndex: Type = 'setComponentIndex'; //new
 export const setElementIndex: Type = 'setElementIndex'; //new
+export const saveState: Type = 'saveState'; //new
+export const restoreState: Type = 'restoreState'; //new
 
 
 export const setActiveRoute: Type = 'setActiveRoute';
