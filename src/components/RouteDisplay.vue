@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 #sidebar1 > div {
-  padding: 0;
+  padding: 25;
 }
 
 .v-label.v-field-label,

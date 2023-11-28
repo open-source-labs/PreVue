@@ -5,7 +5,7 @@
     :style="{
       'background-color': '#3b444b',
       padding: '16px 0px 24px 0px',
-      height: '1400px'
+      height: '9000px'
     }"
   >
     <v-card-title
@@ -108,9 +108,7 @@ export default {
   background-color: #39b982;
   height: 45px;
   padding-top: 30px;
-  
   width: 220px;
-
 }
 
 .list-group-item:hover {

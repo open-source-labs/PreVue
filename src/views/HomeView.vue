@@ -1,13 +1,11 @@
 <template>
   <v-card>
-    <v-layout :style="{'margin-bottom': '30px'}"  class="full-height">
+    <v-layout :style="{'margin-bottom': '30px'}" >
       <v-navigation-drawer
         id="side-nav"
         :style="{
           'background-color': '#3b444b',
-         
-          'height': '100%',
-          
+          'height': '9000px'
         }"
         permanent
       >
@@ -78,18 +76,9 @@ export default {
 </script>
 
 <style>
-.full-height {
-  height: 100%;
-}
 
 #side-nav > * {
   font-size: 14px;
 }
 
-#bottom-bar {
-  position: absolute; /* or position: absolute; */
-  bottom: 0;
-  width: 100%; /* Make the bar span the entire width of the viewport */
-  height: 15px
-}
 </style>
