@@ -75,14 +75,23 @@ oAuthController.queryGitHubAPIWithAccessToken = async (req, res, next) => {
     const { data } = await axios.get('https://api.github.com/user', {
       headers: { Authorization: `Bearer ${auth}` }
     });
-    console.log('response from the api');
-    console.log(data);
+    // Log response data from GitHub API
+    console.log('Response from GitHub API:', data);
 
-    // set info from api to res.locals
+    // Check if necessary fields are present
+    if (!data || !data.login || !data.id) {
+      throw new Error('Required GitHub user data not found');
+    }
+
+    // set info from api to res.locals. -> Process GitHub Data
+    const processedData = processGitHubData(data);
     res.locals = {
       ...res.locals,
-      ...processGitHubData(data)
+      ...processedData
     };
+
+    // Log res.locals to verify
+    console.log('res.locals after processing:', res.locals);
 
     return next();
   } catch (error) {

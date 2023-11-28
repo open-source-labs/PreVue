@@ -53,7 +53,7 @@ export default {
   beforeMount() {
     this.isLoggedIn();
   },
-  data() {},
+  data() { },
   methods: {
     ...mapActions(['setLogin']),
     async isLoggedIn() {
