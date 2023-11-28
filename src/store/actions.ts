@@ -5,6 +5,9 @@ const actions: Actions = {
   [types.incRerenderKey]: ({ commit }) => {
     commit(types.INC_RERENDER_KEY);
   },
+  [types.updateProjectName]: ({ commit }, payload) => {
+    commit(types.UPDATE_PROJECT_NAME, payload);
+  },
   [types.setLogin]: ({ commit }, payload) => {
     commit(types.SET_LOGIN, payload);
   },
@@ -22,6 +25,8 @@ const actions: Actions = {
 
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
+
+
 
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);

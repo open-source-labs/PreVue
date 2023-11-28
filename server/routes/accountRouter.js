@@ -6,15 +6,20 @@ const authController = require('../controllers/authController');
 const accountRouter = express.Router();
 
 // route for GitHub OAuth
-accountRouter.get(
-  '/oauth',
-  oAuthController.oAuthLogin,
-  // oAuthController.requestGitHubIdentity,
-  (req, res) => {
-    console.log('Oauth Router console log');
-    return res.status(200).json(res.locals.url);
-  }
-);
+// accountRouter.get(
+//   '/oauth',
+//   oAuthController.oAuthLogin,
+//   // oAuthController.requestGitHubIdentity,
+//   (req, res) => {
+//     console.log('Oauth Router console log');
+//     return res.status(200).json(res.locals.url);
+//   }
+// );
+
+accountRouter.get('/oauth', oAuthController.oAuthLogin, (req, res) => {
+  // Instead of sending the URL back in the response, redirect the client to it
+  res.redirect(res.locals.url.toString());
+});
 
 // retrieves specific user projects
 accountRouter.get(

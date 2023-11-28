@@ -19,7 +19,7 @@ const vuetify = createVuetify({
 const app = createApp({
   extends: App,
   beforeCreate() {
-    store.commit('initializeStore');
+    store.commit('initialiseStore');
   }
 });
 

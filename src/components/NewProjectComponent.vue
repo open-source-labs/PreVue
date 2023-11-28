@@ -40,7 +40,8 @@ export default {
         activeRoute: 'HomeView',
         activeComponent: '',
         selectedElementList: [],
-        projectName: 'Untitled-1',
+        projectName: 'Project-Name',
+        editedProjectName: 'Project-Name',
         componentChildrenMultiselectValue: [],
         modalOpen: false,
         htmlElements: [],
@@ -49,6 +50,7 @@ export default {
         rerenderKey: 0
       };
       this.replaceState(state);
+      console.log('this.$store.state.editedProjectName is', this.$store.state.editedProjectName);
     }
   }
 };

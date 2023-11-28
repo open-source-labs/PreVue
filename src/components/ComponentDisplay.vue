@@ -295,6 +295,7 @@ export default {
   border-radius: 10px;
   position: relative;
   height: 84vh;
+  box-shadow: 0 0 10px rgb(94, 92, 92);
 }
 
 .component-box {
@@ -306,7 +307,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; 
-  box-shadow: 3px 3px 5px rgb(61, 59, 59);
+  box-shadow: 0 0 5px 2px rgba(189, 188, 188, 0.6);
 }
 
 .image {
@@ -336,7 +337,6 @@ export default {
   z-index: 7;
 }
 .component-elements {
-
   box-sizing: content-box;
   border-radius: 7px;
   margin: 5px;
@@ -356,7 +356,7 @@ export default {
   width: calc(100%);
   min-width: 30px;
   min-height: 30px;
-  box-shadow: 3px 3px 5px rgb(80, 95, 80);
+  box-shadow: 0 0 5px 2px rgba(220, 220, 220, 0.5);
   border-radius: 20px;
 }
 

@@ -3,8 +3,9 @@ import { MutationTree } from 'vuex';
 import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
 
-const mutations: MutationTree<State> = {
-  initializeStore(state: State) {
+const mutations: Mutations<State> = {
+  initialiseStore(state: State) {
+
     if (localStorage.getItem('store')) {
       this.replaceState(
         Object.assign(
@@ -19,6 +20,10 @@ const mutations: MutationTree<State> = {
   },
   [types.INC_RERENDER_KEY]: (state: State) => {
     state.rerenderKey++;
+  },
+  [types.UPDATE_PROJECT_NAME]: (state: State, payload) => {
+    //console.log(payload);
+    state.editedProjectName = payload;
   },
   [types.SET_LOGIN]: (state: State, payload) => {
     state.loggedIn = payload;

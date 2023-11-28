@@ -67,6 +67,7 @@ export type State = {
   elementIndex: number; //new
 
   projectName: string;
+  editedProjectName: string;
   selectedElementList: object[];
   componentChildrenMultiselectValue: string[];
   modalOpen: boolean;
