@@ -61,7 +61,6 @@ export default {
         }
       });
       const data = await res.json();
-      console.log("dada", data)
       // update state with project found in database
       this.replaceState(data);
     },
