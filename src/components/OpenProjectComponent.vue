@@ -51,7 +51,7 @@ export default {
     async selectProject() {
       const selected = this.selected;
       // request to find projects by the logged in user
-      const res = await fetch('http://localhost:8080/projects/saveProject', {
+      const res = await fetch('http://localhost:8080/projects/getProject', {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify({ project_name: selected }),
@@ -61,7 +61,7 @@ export default {
         }
       });
       const data = await res.json();
-
+      console.log("dada", data)
       // update state with project found in database
       this.replaceState(data);
     },
