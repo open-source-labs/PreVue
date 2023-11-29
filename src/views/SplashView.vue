@@ -62,12 +62,13 @@
       <div id="third-panel-container">
         <div id="header-content">
           <div id="video-container">
-            <video src="../assets/PreVueDemo.mp4" muted autoplay loop></video>
+            <video src="../assets/PreVueDemo2.mp4" muted autoplay loop></video>
           </div>
           <div class="header-text">
-            <h1 id="third-panel-header">All-in-One Prototyping Tool For Vue Developers</h1>
-            <p id="third-panel-subtitle">A user-friendly, entirely open-source platform for conceptualizing and
-              visualizing your Vue components
+            <h1 id="third-panel-header">Easily Save, Export and Open Your Creations</h1>
+            <p id="third-panel-subtitle">
+              Streamline the UX/UI-to-development pipeline by 
+              having production-ready code at the click of a button
             </p>
           </div>
         </div>

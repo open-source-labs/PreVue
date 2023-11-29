@@ -26,7 +26,8 @@ PreVue allows users to conceptualize and visualize component architecture by all
   2. Set up different routes and views
   3. Establish parent-child component relationships
   4. View application hierarchy in tree format
-  5. Export the component architecture as a Vue application created with default Vite settings.
+  5. Save and open projects you are working on, ensuring that progress is not lost and can be revisited at any time.
+  6. Export the component architecture as a Vue application created with default Vite settings.
 
 Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them anytime.
 the component architecture as a Vue application created with the default Vue CLI settings.
@@ -136,6 +137,13 @@ Coming soon!
 ## Changelog
 
 ---
+PreVue 3.0 Adds:
+- ---> not sure how to word OAuth updates
+- Full CRUD functionality for prototype creation
+- Implementation of appropriate hierarchal relationships reflected in UI
+- Website and Homepage redesign for seamless user experience
+- Realistic rendering of elements to Component Display
+- Project naming & export ability 
 
 PreVue 2.0 Adds:
 - Implementation of PreVue as a web application
@@ -146,15 +154,20 @@ PreVue 2.0 Adds:
 - Testing with Vitest and Supertest (and Jest)
 
 
-## Contributing
+## Contributing to PreVue
 
 ---
 
-We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Also follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates. Some ideas for future contributions include:
+We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates. 
 
-- Project livesharing (via Websockets)
+Ideas for additional features include:
+
+- Project livesharing for collaborative sessions (via Websockets)
 - Migrate state management from Vuex to Pinia
 - More thorough testing with Jest
+- Ability to rename and add styling to individual components
+- Containerization of PreVue App
+- User Authentication updates via OAuth 
 
 ## Authors
 
