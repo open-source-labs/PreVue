@@ -26,8 +26,8 @@ PreVue allows users to conceptualize and visualize component architecture by all
   2. Set up different routes and views
   3. Establish parent-child component relationships
   4. View application hierarchy in tree format
-  5. Save and open projects you are working on, ensuring that progress is not lost and can be revisited at any time.
-  6. Export the component architecture as a Vue application created with default Vite settings.
+  5. Save and open projects you are working on, ensuring that progress is not lost and can be revisited at any time
+  6. Export the component architecture as a Vue application created with default Vite settings
 
 Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them anytime.
 the component architecture as a Vue application created with the default Vue CLI settings.
@@ -123,31 +123,33 @@ Coming soon!
 
 ---
 
-- [Vue.js](https://vuejs.org/)
-- [Vue Router](https://router.vuejs.org/guide/#html)
-- [Vuex](https://vuex.vuejs.org/)
-- [Vite](https://vitejs.dev/)
-- [Node.js](https://nodejs.org/en)
-- [Express](https://expressjs.com/)
-- [Vuetify](https://vuetifyjs.com/)
-- [Jest](https://jestjs.io/)
-- [Vue Test Utils](https://test-utils.vuejs.org/)
-- [SuperTest](https://www.npmjs.com/package/supertest)
+1. [Express](https://expressjs.com/)
+2. [Jest](https://jestjs.io/)
+3. [MongoDB](https://www.mongodb.com/)
+4. [Mongoose](https://mongoosejs.com/)
+5. [Node.js](https://nodejs.org/en)
+6. [SuperTest](https://www.npmjs.com/package/supertest)
+7. [Vite](https://vitejs.dev/)
+8. [Vue Router](https://router.vuejs.org/guide/#html)
+9. [Vue Test Utils](https://test-utils.vuejs.org/)
+10. [Vue.js](https://vuejs.org/)
+11. [Vuex](https://vuex.vuejs.org/)
+12. [Vuetify](https://vuetifyjs.com/)
 
 ## Changelog
 
 ---
 PreVue 3.0 Adds:
-- ---> not sure how to word OAuth updates
+- OAuth integration with GitHub for secure authentication
 - Full CRUD functionality for prototype creation
-- Implementation of appropriate hierarchal relationships reflected in UI
+- Implementation of appropriate hierarchical relationships reflected in UI
 - Website and Homepage redesign for seamless user experience
 - Realistic rendering of elements to Component Display
-- Project naming & export ability 
+- Delete and Undo functionality for individual Components
+- Project saving, loading & export ability 
 
 PreVue 2.0 Adds:
 - Implementation of PreVue as a web application
-- OAuth via GitHub
 - TypeScript integration
 - Backend infrastructure built with Node/Express
 - General UI/UX enhancements
@@ -172,6 +174,13 @@ Ideas for additional features include:
 ## Authors
 
 ---
+
+Prevue 3.0 
+
+- **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
+- **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
+- **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
+- **Nathan Bornstein** [@greenteaisgreat](https://github.com/greenteaisgreat)
 
 PreVue 2.0
 - **Jason Boo** [@jasonboo123](https://github.com/jasonboo123)

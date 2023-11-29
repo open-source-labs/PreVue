@@ -9,13 +9,10 @@
           <h1>PreVue</h1>
         </div>
         <!-- right side of nav bar -->
-        <div @click="toHome">
-          <h3 id="prevue-link">Home</h3>
-        </div>
         <div>
           <h3 id="prevue-link"><a href="#team" class="no-style" @click="scrollToTeam">Team</a></h3>
         </div>
-        <div @click="toHome">
+        <div @click="toDocs">
           <h3 id="prevue-link">Docs</h3>
         </div>
         <div @click="oauth">
@@ -51,11 +48,10 @@
         <p id="subtitle-second-panel">PreVue allows you to easily build intuitive user interfaces and construct pre-built
           components with hierarchal data flow, seamless drag-and-drop, customizable file exports and more!
         </p>
-        <v-btn width="150px" color="white" class="mt-4">
+        <v-btn @click="toReadme" width="150px" color="white" class="mt-4">
           Learn More
         </v-btn>
       </div>
-
 
 
       <!-- html for the third panel -->
@@ -261,6 +257,18 @@ export default {
           // Handle any errors, such as network issues
           console.error('Error validating session:', err);
         });
+    },
+    toGithub() {
+      // Redirect to the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main';
+    },
+    toReadme() {
+      // Redirect to the README section of the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main#readme';
+    },
+    toDocs() {
+      // Redirect to the README section of the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main#readme';
     },
     scrollToTeam(event) {
       // Prevent the default anchor link behavior
