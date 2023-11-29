@@ -77,33 +77,33 @@
       <div class="authors">
         <!-- Ilay Eskinazi -->
         <div class="author">
-          <img src="../assets/ilay-photo.jpg" />
+          <img class="authorimg" src="../assets/ilay-photo.jpg" />
           <h3>Ilay Eskinazi</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/jasonboo123">
+              <a href="https://github.com/Pixolino">
                   <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
               </a>
-              <a href="https://www.linkedin.com/in/jason-boo/">
+              <a href="https://www.linkedin.com/in/ilay-eskinazi/">
                   <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
               </a>
           </div>
         </div>
         <!-- Nathan Bornstein -->
         <div class="author">
-          <img src="../assets/nathan-photo.jpg" />
+          <img class="authorimg" src="../assets/nathan-photo.jpg" />
           <h3>Nathan Bornstein</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/rmdrake8">
+              <a href="https://github.com/greenteaisgreat">
                   <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
               </a>
-              <a href="https://www.linkedin.com/in/rmdrake8/">
+              <a href="https://www.linkedin.com/in/nathangbornstein/">
                   <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
               </a>
           </div>
         </div>
         <!-- April Sanders -->
         <div class="author">
-          <img src="../assets/april-photo.jpg" />
+          <img class="authorimg" src="../assets/april-photo.jpg" />
           <h3>April Sanders</h3>
           <div class="social-icons-container">
               <a href="https://github.com/algorithmrhythm">
@@ -116,13 +116,13 @@
         </div>
         <!-- Cole Jaeger -->
         <div class="author">
-          <img src="../assets/cole-photo.jpg" />
+          <img class="authorimg" src="../assets/cole-photo.jpg" />
           <h3>Cole Jaeger</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/zachpestaina">
+              <a href="https://github.com/colejaeger0">
                   <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
               </a>
-              <a href="https://www.linkedin.com/in/zachpestaina/">
+              <a href="https://www.linkedin.com/in/cole-jaeger-861154122/">
                   <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
               </a>
           </div>
@@ -133,7 +133,7 @@
       <div class="authors">
         <!-- Jason Boo -->
         <div class="author">
-          <img src="../assets/jason-photo.jpg" />
+          <img class="authorimg" src="../assets/jason-photo.jpg" />
           <h3>Jason Boo</h3>
           <div class="social-icons-container">
               <a href="https://github.com/jasonboo123">
@@ -146,7 +146,7 @@
         </div>
         <!-- Robert Drake -->
         <div class="author">
-          <img src="../assets/robert-photo.jpeg" />
+          <img class="authorimg" src="../assets/robert-photo.jpeg" />
           <h3>Robert Drake</h3>
           <div class="social-icons-container">
               <a href="https://github.com/rmdrake8">
@@ -159,7 +159,7 @@
         </div>
         <!-- Sean Flynn -->
         <div class="author">
-          <img src="../assets/sean-photo.jpeg" />
+          <img class="authorimg" src="../assets/sean-photo.jpeg" />
           <h3>Sean Flynn</h3>
           <div class="social-icons-container">
               <a href="https://github.com/seanflynn5">
@@ -172,7 +172,7 @@
         </div>
         <!-- Zach Pestaina -->
         <div class="author">
-          <img src="../assets/zach-photo.jpeg" />
+          <img class="authorimg" src="../assets/zach-photo.jpeg" />
           <h3>Zach Pestaina</h3>
           <div class="social-icons-container">
               <a href="https://github.com/zachpestaina">
@@ -507,7 +507,7 @@ video {
 .author:hover {
   background-color: rgba(255, 255, 255, 0.5); 
 }
-.author img {
+.authorimg {
   width: 10em;
   border-radius: 50%;
   padding-bottom: 15px;
@@ -520,16 +520,13 @@ video {
 }
 
 .linkedin {
-  height: 50px;
-  box-shadow: none !important;
-  padding-top: 8px;
+  height: 30px;
+  width: 40px;
 }
 
 .github {
-  box-shadow: none !important;
-  padding-top: 8px;
-  margin-right: -125px; /* Add margin-right for spacing - find a better way to do this */
-  height: 55px;
+  height: 40px;
+  width: 40px;
 }
 
 .linkedin:hover, .github:hover {
