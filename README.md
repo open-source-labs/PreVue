@@ -159,6 +159,11 @@ We encourage you to submit issues for any bugs or ideas for enhancements. Please
 ## Authors
 
 ---
+PreVue 3.0
+- **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
+- **Nathan Bornstein** [@greenteaisgreat](https://github.com/greenteaisgreat)
+- **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
+- **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
 
 PreVue 2.0
 - **Jason Boo** [@jasonboo123](https://github.com/jasonboo123)
