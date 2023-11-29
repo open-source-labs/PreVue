@@ -13,7 +13,8 @@
     "vite": "npm run server",
     "server": "node server/server.js",
     "test": "NODE_ENV=test vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "start": "node server/server.js"
   },
   "license": "MIT",
   "dependencies": {

@@ -98,7 +98,7 @@ export default {
 
   data() {
     return {
-      // by default modal associated with active component for further user custimaztion should be hidden
+      // by default modal associated with active component for further user customization should be hidden
       modalOpen: false,
       isDraggable: true
     };
@@ -117,7 +117,6 @@ export default {
         if (this.activeElement && this.activeElement.isActive === true){ 
           this.$store.dispatch('saveState')
           this.$store.dispatch('deleteActiveElement')
-          // setTimeout(() => this.$store.dispatch('deleteActiveElement'), 7000)
         }
         else if (this.activeComponent && this.activeComponentData.isActive) {
           this.$store.dispatch('saveState')
@@ -139,15 +138,11 @@ export default {
   computed: {
     ...mapState(['routes', 'activeRoute', 'activeComponent', 'componentMap', 'activeElement', 'elementIndex', 'componentIndex']),
     activeRouteArray() {
-      //console.log("routes:", this.routes[this.activeRoute])
-      //console.log("active routes:", this.activeRoute)
       // returns components associated with current active route
       return this.routes[this.activeRoute];
     },
 
     activeComponentData() {
-      //console.log("comp map:", this.componentMap)
-      //console.log("routes:", this.routes)
       // returns object containing data associated with current active component
       return this.activeRouteArray.filter(componentData => {
         return componentData.componentName === this.activeComponent;
@@ -187,14 +182,12 @@ export default {
     },
     activateElementOn(){
       return(i, index) => {
-        //console.log("deactivated", this.elementPosition(i, index).isActive)
         console.log("ACTIVE ELEMENT", this.elementPosition(i, index))
         this.elementPosition(i, index).isActive = true;
       }
     },
     deactivateElement(){
       return(i, index) => {
-       // console.log("deactivated", this.elementPosition(i, index).isActive)
         this.elementPosition(i, index).isActive = false;
       }
     },
@@ -203,20 +196,14 @@ export default {
   methods: {
     ...mapActions(['setActiveComponent', 'updateOpenModal', 'setActiveElement', 'setComponentIndex', 'setElementIndex']),
     activateElement(i, index){
-        //console.log("ELLEMENT ACTIVATED")
-        //console.log("componentIndexFFF1", index)
         this.$store.dispatch('setComponentIndex', index)
         .then(() => {
-          //console.log("componentIndexFFF2", this.$store.state.componentIndex)
-          
           return this.$store.dispatch('setElementIndex', i)
         })
         .then(() => {
-          //console.log("elementIndexFFF",this.$store.state.elementIndex)
           return this.$store.dispatch('setActiveElement', this.elementPosition(i ,index))
         })
         .then(() => {
-         // console.log("activeElement1111",this.$store.state.activeElement)
         })
     },
 
@@ -228,7 +215,7 @@ export default {
       this.elementPosition(i, index).h = x.h
     },
 
-    updatePosition: function(x, i, index){//yeehaw
+    updatePosition: function(x, i, index){
       this.$store.dispatch('saveState')
       this.elementPosition(i, index).x = x.x
       this.elementPosition(i, index).y = x.y
@@ -342,12 +329,10 @@ export default {
   margin: 5px;
   color: #84a891;
   background-color: #ffffff;
-  /* border: 2px solid rgb(255, 0, 221); */
   object-fit: cover;
   display: flex;
   align-content: stretch;
   justify-content: stretch;
-  /* position: sticky; */
 }
 
 /*CSS styles to dynamically adjust the specific component graphic, relative to its parent container*/

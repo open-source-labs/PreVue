@@ -20,7 +20,6 @@
         </div>
       </div>
 
-
       <!-- html for the first/top panel -->
       <div id="header-container">
         <div id="header-content">
@@ -39,9 +38,6 @@
         </div>
       </div>
 
-
-
-
       <!-- html for the second panel -->
       <div class="second-panel">
         <h2>Intuitive & Customizable</h2>
@@ -52,7 +48,6 @@
           Learn More
         </v-btn>
       </div>
-
 
       <!-- html for the third panel -->
       <div id="third-panel-container">
@@ -69,7 +64,6 @@
           </div>
         </div>
       </div>
-
 
       <!-- html for the fourth / team contributors panel -->
       <h1 class="prevue-github-panel" id="team">PreVue Contributors</h1>
@@ -196,7 +190,6 @@
         </v-btn>
       </div>
 
-
       <!-- html for the fifth / bottom / community panel -->
       <div class="border">
         <h4 id="community">
@@ -222,8 +215,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -286,12 +277,6 @@ export default {
 };
 </script>
 
-
-
-
-
-
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@800&display=swap');
 
@@ -321,9 +306,6 @@ html {
   justify-content: center;
 }
 
-
-
-
 /************ css for the navigation bar ***********/
 #toolbar {
   position: fixed;
@@ -333,7 +315,6 @@ html {
   height: 70px;
   display: flex;
   align-items: center;
-  /* justify-content: flex-end;  */
   background-color: white;
   border-bottom: 1px solid lightgrey;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -374,13 +355,11 @@ html {
 }
 
 @media screen and (max-width: 500px) {
-
   #toolbar h4,
   #toolbar>div>h4 {
     display: none;
   }
 }
-
 
 /*********** css for the first/top panel ***********/
 
@@ -434,8 +413,6 @@ video {
   overflow: hidden;
 }
 
-
-
 /*********** css for the second panel ***********/
 .second-panel {
   text-align: center;
@@ -462,7 +439,6 @@ video {
   padding-right: 300px;
 
 }
-
 
 /*********** css for the third panel ***********/
 #third-panel-container {
@@ -568,9 +544,6 @@ video {
 #see-prevue-button {
   padding-bottom: 60px;
 }
-
-
-
 
 /*********** css for the fifth / bottom / community panel ***********/
 

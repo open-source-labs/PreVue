@@ -21,12 +21,8 @@ const actions: Actions = {
     commit(types.INITIALISESTORE);
   },
 
-
-
   [types.registerComponent]: ({ state, commit }, payload) => {
     const { componentName } = payload;
-
-
 
     if (!state.componentMap[componentName]) {
       commit(types.ADD_COMPONENT_TO_COMPONENT_MAP, payload);
@@ -110,8 +106,6 @@ const actions: Actions = {
     commit(types.SET_ACTIVE_COMPONENT, payload);
   },
 
-
-
   [types.setActiveElement]: ({ commit }, payload) => { //new
     commit(types.SET_ACTIVE_ELEMENT, payload);
   },
@@ -130,8 +124,6 @@ const actions: Actions = {
   [types.restoreState]: ({ commit }) => {
     commit(types.RESTORE_STATE)
   },
-
-
 
   [types.setRoutes]: ({ commit }, payload) => {
     commit(types.SET_ROUTES, payload);

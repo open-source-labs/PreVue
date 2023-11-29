@@ -59,7 +59,6 @@ export default {
     renderList: {
       get() {
         // return list of user selected html elements associated with created component
-        
         return this.$store.state.selectedElementList;
       },
       set(value) {
@@ -79,9 +78,6 @@ export default {
   methods: {
     deleteElement(index) {
       // remove selected html element when trashcan icon is clicked from elements associated the user created component
-
-      console.log(index)
-      
       this.$store.dispatch(deleteSelectedElement, index);
     }
   }
@@ -119,27 +115,4 @@ export default {
   color: white;
   margin-right: 8px;
 }
-
-/* .home-queue {
-  border: 1px solid white;
-  background-color: hsl(222, 15%, 26%);
-  height: 100%;
-}
-li {
-  list-style-type: none;
-}
-.list-group-item {
-  margin: 2px;
-  border: 1px solid black;
-  border-radius: 0.5cm;
-  background-color: #e7d5bc;
-  height: 35px;
-  padding-top: 2px;
-  text-align: center;
-}
-
-.fa-trash:hover {
-  cursor: pointer;
-  color: red;
-} */
 </style>

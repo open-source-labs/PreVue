@@ -2,13 +2,13 @@ import { Type } from '../types';
 
 //Mutations
 export const INC_RERENDER_KEY: Type = 'INC_RERENDER_KEY';
-export const UPDATE_PROJECT_NAME = 'UPDATE_PROJECT_NAME';
 export const SET_LOGIN: Type = 'SET_LOGIN';
 export const REPLACE_STATE: Type = 'REPLACE_STATE';
 export const NAME_PROJECT: Type = 'NAME_PROJECT';
 export const INITIALISESTORE: Type = 'INITIALISESTORE';
 export const ADD_COMPONENT: Type = 'ADD_COMPONENT';
 
+export const UPDATE_PROJECT_NAME = 'UPDATE_PROJECT_NAME'; //new
 export const SET_ACTIVE_ELEMENT: Type = 'SET_ACTIVE_ELEMENT';//new
 export const DELETE_ACTIVE_ELEMENT: Type = 'DELETE_ACTIVE_ELEMENT'//new
 export const SET_ELEMENT_INDEX: Type = 'SET_ELEMENT_INDEX';//new
@@ -60,7 +60,6 @@ export const UPDATE_OPEN_MODAL: Type = 'UPDATE_OPEN_MODAL';
 
 //Actions
 export const registerComponent: Type = 'registerComponent';
-export const updateProjectName: Type = 'updateProjectName';
 export const setSelectedElementList: Type = 'setSelectedElementList';
 export const addToSelectedElementList: Type = 'addToSelectedElementList';
 export const addToComponentElementList: Type = 'addToComponentElementList';
@@ -76,6 +75,7 @@ export const changeActiveTab: Type = 'changeActiveTab';
 export const addRouteToRouteMap: Type = 'addRouteToRouteMap';
 export const setActiveComponent: Type = 'setActiveComponent';
 
+export const updateProjectName: Type = 'updateProjectName'; //new
 export const setActiveElement: Type = 'setActiveElement'; //new
 export const deleteActiveElement: Type = 'deleteActiveElement'; //new
 export const setComponentIndex: Type = 'setComponentIndex'; //new

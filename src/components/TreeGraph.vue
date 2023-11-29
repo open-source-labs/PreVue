@@ -100,7 +100,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@450&display=swap');
 
 .container {
-  
   margin-top: 40px;
   display: flex;
   flex-direction: column;

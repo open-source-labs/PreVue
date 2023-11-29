@@ -80,7 +80,6 @@ export type State = {
 };
 
 // export type StateQueue = State[]
-
 export type Mutations<State> = {
   [k: Type]: (
     state: State,
