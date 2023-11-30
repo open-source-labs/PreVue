@@ -7,7 +7,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <h3 align="center">
-All in One Prototyping Tool 
+All-in-One Prototyping Tool 
 For Vue Developers
 
 </h3>
@@ -16,29 +16,30 @@ For Vue Developers
 From Component Architecture to Code Exporting
 </h4>
 
-<h4 align='center'>
+<!-- <h4 align='center'>
   https://www.prevue.live
-</h4>
+</h4> -->
+
+<p align="center">
+  <img width="1000" src="src/assets/new-banner.png?raw=true">
+</p>
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
 
-  1. Create components and preview their associated code
-  2. Set up different routes and views
-  3. Establish parent-child component relationships
-  4. View application hierarchy in tree format
-  5. Save and open projects you are working on, ensuring that progress is not lost and can be revisited at any time
-  6. Export the component architecture as a Vue application created with default Vite settings
+&rarr; Build components, visualize UI and preview the associated code
+&rarr; Set up different routes and views
+&rarr; Establish parent-child component relationships
+&rarr; View application hierarchy in tree format
+&rarr; Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time
+&rarr; Export component architecture as a Vue application created with default Vite settings
 
-Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them anytime.
-the component architecture as a Vue application created with the default Vue CLI settings.
+Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
 
-<p align="center">
+<!-- <p align="center">
   <img width="1000" src="src/assets/pvv.png?raw=true">
-
-</p>
+</p> -->
 
 ## Getting Started
-
 
 ## How to use
 
@@ -52,7 +53,6 @@ the component architecture as a Vue application created with the default Vue CLI
 - Drag the elements to change their order
 - Once you're satisfied, click the button to ‘add a component’ and it will show up in the working area. Resize and move components to fit the design you have in mind.
 
-
 <img width="1000" src="src/assets/PreVueDemo.gif">
 
 #### Editing Components
@@ -61,7 +61,6 @@ the component architecture as a Vue application created with the default Vue CLI
 - Add additional elements to a component with a live preview of the component code
 - Drag elements on the right side bar to nest elements
 - Establish parent-child component relationships via the dropdown menu when creating or editing components
-
 
 <img width="1000" src="src/assets/componentdisplay.png?raw=true">
 
@@ -90,7 +89,6 @@ the component architecture as a Vue application created with the default Vue CLI
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
-
 <img src='src/assets/PreVueExportDemo.gif'/>
 
 ##### Code Exporting
@@ -113,7 +111,6 @@ src/
 ```
 
 ## Running your own local version
-
 
 ### Setup
 
@@ -139,28 +136,30 @@ Coming soon!
 ## Changelog
 
 ---
+
 PreVue 3.0 Adds:
+
 - OAuth integration with GitHub for secure authentication
 - Full CRUD functionality for prototype creation
 - Implementation of appropriate hierarchical relationships reflected in UI
 - Website and Homepage redesign for seamless user experience
 - Realistic rendering of elements to Component Display
 - Delete and Undo functionality for individual Components
-- Project saving, loading & export ability 
+- Project saving, loading & export ability
 
 PreVue 2.0 Adds:
+
 - Implementation of PreVue as a web application
 - TypeScript integration
 - Backend infrastructure built with Node/Express
 - General UI/UX enhancements
 - Testing with Vitest and Supertest (and Jest)
 
-
 ## Contributing to PreVue
 
 ---
 
-We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates. 
+We encourage you to submit issues for any bugs or ideas for enhancements. Please feel free to fork this repo and submit pull requests to contribute as well. Follow PreVue on [LinkedIn](https://www.linkedin.com/company/prevue-live/) for more updates.
 
 Ideas for additional features include:
 
@@ -169,18 +168,20 @@ Ideas for additional features include:
 - More thorough testing with Jest
 - Ability to rename and add styling to individual components
 - Containerization of PreVue App
-- User Authentication updates via OAuth 
+- User Authentication updates via OAuth
 
 ## Authors
 
 ---
+
 PreVue 3.0
+
 - **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
 - **Nathan Bornstein** [@greenteaisgreat](https://github.com/greenteaisgreat)
 - **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
 - **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
 
-Prevue 3.0 
+Prevue 3.0
 
 - **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
 - **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
@@ -188,12 +189,14 @@ Prevue 3.0
 - **Nathan Bornstein** [@greenteaisgreat](https://github.com/greenteaisgreat)
 
 PreVue 2.0
+
 - **Jason Boo** [@jasonboo123](https://github.com/jasonboo123)
 - **Robert Drake** [@rmdrake8](https://github.com/rmdrake8)
 - **Sean Flynn** [@seanflynn5](http://github.com/seanflynn5)
 - **Zach Pestaina** [@zachpestaina](https://github.com/zachpestaina)
 
 PreVue 1.0
+
 - **Hubert Lin** [@hubelin](https://github.com/hubelin)
 - **Franklin Pinnock** [@pinnockf](https://github.com/pinnockf)
 - **Annette Lin** [@al2613](https://github.com/al2613)
