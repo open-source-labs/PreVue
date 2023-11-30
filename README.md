@@ -26,16 +26,15 @@ From Component Architecture to Code Exporting
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
 
-<p>&rarr; Build components, visualize UI and preview the associated code</p>
+&rarr; <p>Build components, visualize UI and preview the associated code</p>
+
 <p>&rarr; Set up different routes and views</p>
 <p>&rarr; Establish parent-child component relationships</p>
 <p>&rarr; View application hierarchy in tree format</p>
-<p>&rarr; Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time</p>
+&rarr; <p>Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time</p>
 <p>&rarr; Export component architecture as a Vue application created with default Vite settings</p>
 
-<p align="center">
-  Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
-</p>
+Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
 
 <!-- <p align="center">
   <img width="1000" src="src/assets/pvv.png?raw=true">
@@ -49,10 +48,10 @@ PreVue allows users to conceptualize and visualize component architecture by all
 
 - Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
 - Enter a component name in the Component Creator field and select HTML elements
-- Clicked elements will be shown in the right sidebar -- drag elements to change their order 
+- Clicked elements will be shown in the right sidebar -- drag elements to change their order
 - Once you're satisfied, click ‘add component’ button and it will show up in the working area -- resize and move components to fit the design you have in mind
 
-<img width="1000" src="src/assets/prevue-recording.gif">
+<img width="1000" src="src/assets/prevue-recording.mp4">
 
 #### Editing Components
 
