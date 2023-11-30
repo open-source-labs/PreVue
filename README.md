@@ -83,10 +83,8 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application
 - Other users can use PreVue's playground to create and export projects in single sessions without signing in
 
-<img width="1000" src="src/assets/export.gif">
-<img width="1000" src="src/assets/export.png">
-<img width="1000" src="src/assets/prevue-recording.gif">
-
+<!-- <img width="1000" src="src/assets/export.gif">
+<img width="1000" src="src/assets/export.png"> -->
 
 ### Code Exporting
 
@@ -117,18 +115,18 @@ Coming soon! -->
 
 ---
 
-<span>&rarr; [Express](https://expressjs.com/)</span>
-<span>&rarr; [Jest](https://jestjs.io/)</span>
-<span>&rarr; [MongoDB](https://www.mongodb.com/)</span>
-<span>&rarr; [Mongoose](https://mongoosejs.com/)</span>
-<span>&rarr; [Node.js](https://nodejs.org/en)</span>
-<span>&rarr; [SuperTest](https://www.npmjs.com/package/supertest)</span>
-<p>&rarr; [Vite](https://vitejs.dev/)</p>
-<p>&rarr; [Vue Router](https://router.vuejs.org/guide/#html)</p>
-<p>&rarr; [Vue Test Utils](https://test-utils.vuejs.org/)</p>
-<p>&rarr; [Vue.js](https://vuejs.org/)</p>
-<p>&rarr; [Vuex](https://vuex.vuejs.org/)</p>
-<p>&rarr; [Vuetify](https://vuetifyjs.com/)</p>
+* [Express](https://expressjs.com/)
+* [Jest](https://jestjs.io/)
+* [MongoDB](https://www.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [Node.js](https://nodejs.org/en)
+* [SuperTest](https://www.npmjs.com/package/supertest)
+* [Vite](https://vitejs.dev/)
+* [Vue Router](https://router.vuejs.org/guide/#html)
+* [Vue Test Utils](https://test-utils.vuejs.org/)
+* [Vue.js](https://vuejs.org/)
+* [Vuex](https://vuex.vuejs.org/)
+* [Vuetify](https://vuetifyjs.com/)
 
 
 ## Changelog
