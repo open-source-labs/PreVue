@@ -41,7 +41,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 </p> -->
 
 ## Getting Started
-
+---
 ### Adding Views
 - Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
 - Any components created on a given view will be automatically saved to that specific view
@@ -84,7 +84,10 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
-<img width="1000" src="src/assets/prevue-export.gif"/>
+<img width="1000" src="src/assets/prevue-export.gif">
+<!-- <img width="1000" src="src/assets/prevue-recording.gif">
+<img width="1000" src="src/assets/prevue-recording.mp4"> -->
+
 
 ### Code Exporting
 
@@ -115,18 +118,18 @@ Coming soon! -->
 
 ---
 
-&rarr; [Express](https://expressjs.com/)
-&rarr; [Jest](https://jestjs.io/)
-&rarr; [MongoDB](https://www.mongodb.com/)
-&rarr; [Mongoose](https://mongoosejs.com/)
-&rarr; [Node.js](https://nodejs.org/en)
-&rarr; [SuperTest](https://www.npmjs.com/package/supertest)
-&rarr; [Vite](https://vitejs.dev/)
-&rarr; [Vue Router](https://router.vuejs.org/guide/#html)
-&rarr; [Vue Test Utils](https://test-utils.vuejs.org/)
-&rarr; [Vue.js](https://vuejs.org/)
-&rarr; [Vuex](https://vuex.vuejs.org/)
-&rarr; [Vuetify](https://vuetifyjs.com/)
+<p>&rarr; [Express](https://expressjs.com/)</p>
+<p>&rarr; [Jest](https://jestjs.io/)</p>
+<p>&rarr; [MongoDB](https://www.mongodb.com/)</p>
+<p>&rarr; [Mongoose](https://mongoosejs.com/)</p>
+<p>&rarr; [Node.js](https://nodejs.org/en)</p>
+<p>&rarr; [SuperTest](https://www.npmjs.com/package/supertest)</p>
+<p>&rarr; [Vite](https://vitejs.dev/)</p>
+<p>&rarr; [Vue Router](https://router.vuejs.org/guide/#html)</p>
+<p>&rarr; [Vue Test Utils](https://test-utils.vuejs.org/)</p>
+<p>&rarr; [Vue.js](https://vuejs.org/)</p>
+<p>&rarr; [Vuex](https://vuex.vuejs.org/)</p>
+<p>&rarr; [Vuetify](https://vuetifyjs.com/)</p>
 
 
 ## Changelog
@@ -194,5 +197,7 @@ PreVue 1.0
 ---
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+<div>
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+</div>
