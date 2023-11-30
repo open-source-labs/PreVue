@@ -1,10 +1,13 @@
 <p align="center">
+  <img width="1000" src="src/assets/new-banner.png?raw=true">
+</p>
+
+---
+
+<p align="center">
   <img width="250" src="src/assets/prevue-large-green-bottom.png">
   <h1 align="center">PreVue </h1>
 </p>
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <h3 align="center">
 All-in-One Prototyping Tool 
@@ -19,11 +22,9 @@ From Component Architecture to Code Exporting
   https://www.prevue.live
 </h4> -->
 
-<p align="center">
-  <img width="1000" src="src/assets/new-banner.png?raw=true">
-</p>
 
-PreVue allows users to conceptualize and visualize component architecture by allowing them to :
+
+PreVue allows users to conceptualize and visualize component architecture by making it possible to :
 
 * Build components, visualize UI and preview the associated code
 * Set up different routes and views for each project
@@ -38,32 +39,34 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
   <img width="1000" src="src/assets/pvv.png?raw=true">
 </p> -->
 
+---
 ## Getting Started
 
----
-#### Adding Views
+### Adding Views
 - Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
 - Any components created on a given view will be automatically saved to that specific view
 - See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
+
 
 <p align="center">
 <img width ="300" src="src/assets/viewcreator.png?raw=true">
 </p>
 
-#### Tree View of Application Architecture
+<h2 align="center">Tree View of Application Architecture</h2>
 
 <p align="center">
   <img width="300" src="src/assets/treeview.png?raw=true">
 </p>
 
-#### Adding Components
+
+### Adding Components
 - Enter a component name in the Component Creator field and select HTML elements
 - Clicked elements will be shown in the right sidebar -- drag elements to change their order
 - Once you're satisfied, click ‘add component’ button and it will show up in the working area -- resize and move components to fit the design you have in mind
 
 <img width="1000" src="src/assets/prevue-recording.gif">
 
-#### Editing Components
+### Editing Components
 
 - Double click elements to bring up the modal view
 - Add additional elements to a component with a live preview of the component code
@@ -81,7 +84,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
-<img src='src/assets/PreVueExportDemo.gif'/>
+<img src='src/assets/prevue-export.gif'/>
 
 ##### Code Exporting
 
@@ -102,11 +105,11 @@ src/
     ...
 ```
 
-## Running your own local version
+<!-- ## Running your own local version
 
 ### Setup
 
-Coming soon!
+Coming soon! -->
 
 ## Built With
 
@@ -125,6 +128,8 @@ Coming soon!
 11. [Vuex](https://vuex.vuejs.org/)
 12. [Vuetify](https://vuetifyjs.com/)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ## Changelog
 
 ---
