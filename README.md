@@ -9,6 +9,7 @@
   <h1 align="center">PreVue </h1>
 </p>
 
+
 <h3 align="center">
 All-in-One Prototyping Tool 
 For Vue Developers
@@ -39,7 +40,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
   <img width="1000" src="src/assets/pvv.png?raw=true">
 </p> -->
 
----
+-
 ## Getting Started
 
 ### Adding Views
@@ -52,13 +53,13 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 <img width ="300" src="src/assets/viewcreator.png?raw=true">
 </p>
 
-<h2 align="center">Tree View of Application Architecture</h2>
+<h5 align="center">Tree View of Application Architecture</h5>
 
 <p align="center">
   <img width="300" src="src/assets/treeview.png?raw=true">
 </p>
 
-
+--
 ### Adding Components
 - Enter a component name in the Component Creator field and select HTML elements
 - Clicked elements will be shown in the right sidebar -- drag elements to change their order
@@ -76,7 +77,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 <img width="1000" src="src/assets/modal-image.png?raw=true">
 
 
-#### Saving / Opening / Exporting Projects
+### Saving / Opening / Exporting Projects
 
 - In order to utilize the saving and opening functionality of PreVue, please clone the repo to run on your local machine.
 - If you're signed in with GitHub, click the ‘Save Project’ icon to save it to PreVue’s database
@@ -86,7 +87,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 
 <img src='src/assets/prevue-export.gif'/>
 
-##### Code Exporting
+### Code Exporting
 
 Below is the generated directory structure of the Vue application that is created when you export your design.
 
@@ -128,13 +129,12 @@ Coming soon! -->
 11. [Vuex](https://vuex.vuejs.org/)
 12. [Vuetify](https://vuetifyjs.com/)
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 ## Changelog
 
 ---
 
-PreVue 3.0 Adds:
+PreVue 3.0 Updates:
 
 - OAuth integration with GitHub for secure authentication
 - Full CRUD functionality for prototype creation
@@ -144,7 +144,7 @@ PreVue 3.0 Adds:
 - Delete and Undo functionality for individual Components
 - Project saving, loading & export ability
 
-PreVue 2.0 Adds:
+PreVue 2.0 Updates:
 
 - Implementation of PreVue as a web application
 - TypeScript integration
@@ -169,17 +169,8 @@ Ideas for additional features include:
 
 ## Authors
 
----
-
-PreVue 3.0
-
-- **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
-- **Nathan Bornstein** [@greenteaisgreat](https://github.com/greenteaisgreat)
-- **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
-- **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
-
 Prevue 3.0
-
+---
 - **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
 - **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
 - **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
@@ -204,3 +195,5 @@ PreVue 1.0
 ---
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/teamprevue/PreVue/pulls)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
