@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" src="src/assets/prevue-large-green-bottom.png">
+  <img width="250" src="src/assets/prevue-large-green-bottom.png">
   <h1 align="center">PreVue </h1>
 </p>
 
@@ -9,7 +9,6 @@
 <h3 align="center">
 All-in-One Prototyping Tool 
 For Vue Developers
-
 </h3>
 
 <h4 align="center">
@@ -26,13 +25,12 @@ From Component Architecture to Code Exporting
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
 
-**Build components, visualize UI and preview the associated code
-* Set up different routes and views
+* Build components, visualize UI and preview the associated code
+* Set up different routes and views for each project
 * Establish parent-child component relationships
 * View application hierarchy in tree format
 * Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time
-*** Export component architecture as a Vue application created with default Vite settings
-
+* Export component architecture as a Vue application created with default Vite settings
 
 Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
 
@@ -43,10 +41,22 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 ## Getting Started
 
 ---
+#### Adding Views
+- Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
+- Any components created on a given view will be automatically saved to that specific view
+- See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
+
+<p align="center">
+<img width ="300" src="src/assets/viewcreator.png?raw=true">
+</p>
+
+#### Tree View of Application Architecture
+
+<p align="center">
+  <img width="300" src="src/assets/treeview.png?raw=true">
+</p>
 
 #### Adding Components
-
-- Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
 - Enter a component name in the Component Creator field and select HTML elements
 - Clicked elements will be shown in the right sidebar -- drag elements to change their order
 - Once you're satisfied, click ‘add component’ button and it will show up in the working area -- resize and move components to fit the design you have in mind
@@ -60,26 +70,10 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Drag selected elements to the right to nest elements
 - Establish parent-child component relationships via the dropdown menu when creating or editing components
 
-<img width="1000" src="src/assets/componentdisplay.png?raw=true">
+<img width="1000" src="src/assets/modal-image.png?raw=true">
 
-#### Adding Routes
 
-- Create different routes that represent different Views for your app.
-- Any components created on a given route will be automatically saved to that route
-- See your application’s hierarchy by clicking the ‘Tree’ icon in the navigation bar
-
-<p align="center">
-<img width ="300" src="src/assets/routecreator.png?raw=true">
-</p>
-
-#### Tree View of Application Architecture
-
-<p align="center">
-  <img width="300" src="src/assets/treeview.png?raw=true">
-
-</p>
-
-#### Saving/Opening/Exporting Projects
+#### Saving / Opening / Exporting Projects
 
 - In order to utilize the saving and opening functionality of PreVue, please clone the repo to run on your local machine.
 - If you're signed in with GitHub, click the ‘Save Project’ icon to save it to PreVue’s database
