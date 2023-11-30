@@ -14,7 +14,6 @@
 
       <v-app-bar color='#8d949e' height="80" style="width: 9790px; z-index: 1;" flat><ProjectTabs /></v-app-bar>
 
- 
       <v-navigation-drawer
         :style="{ 'background-color': '#6c757d' ,'position': 'absolute', 'top': '0', 'height': '100%'}"
         location="right"

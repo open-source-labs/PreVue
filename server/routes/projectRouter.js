@@ -4,7 +4,6 @@ const authController = require('../controllers/authController');
 const projectRouter = express.Router();
 
 // signup route
-// endpoint : /projects/saveProject
 projectRouter.post(
   '/saveProject',
   authController.authenticate,
@@ -29,7 +28,6 @@ projectRouter.post(
 projectRouter.get(
   '/find',
   projectController.findProject,
-  // oAuthController.requestGitHubIdentity,
   (req, res) => {
     return res
       .status(200)

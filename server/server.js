@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
 
 const cors = require('cors');
 const corsOptions = {
@@ -18,7 +18,6 @@ const projectRouter = require('./routes/projectRouter');
 const mongoose = require('mongoose');
 const myURI = process.env.MONGO_URI;
 const { MongoClient } = require('mongodb');
-console.log(`MongoDB URI: ${process.env.MONGO_URI}`);
 mongoose
   .connect(myURI, {
     // options for the connect method to parse the URI
@@ -29,8 +28,6 @@ mongoose
   })
   .then(() => {
     console.log('Connected to Mongo DB.');
-    console.log('GitHub Client ID:', process.env.GITHUB_OAUTH_CLIENT_ID);
-    console.log('GitHub Client Secret:', process.env.GITHUB_OAUTH_CLIENT_SECRET);
   })
   .catch((err) => console.log(err));
 
@@ -40,15 +37,15 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '..', '/dist')));
+app.use(express.static(path.join(__dirname, '..', '.')));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
+});
 
 // Routers
 app.use('/users', accountRouter);
 app.use('/projects', projectRouter);
-
-// app.get('*', (req, res) => {
-//   return res.sendFile(path.join(__dirname, '..', '/dist/index.html'));
-// });
 
 app.use((req, res) => res.sendStatus(404));
 

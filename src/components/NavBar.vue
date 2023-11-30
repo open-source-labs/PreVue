@@ -47,7 +47,7 @@ export default {
     NewProjectComponent
   },
   methods: {
-    // routing to homepage and tree view
+    //routing to homepage and tree view
     routeHome() {
       this.$router.push({ path: '/' });
     },
@@ -56,11 +56,11 @@ export default {
     }
   },
   computed: {
-    // checks if user is loggedin and conditonally renders save and open project buttons
+    //checks if user is loggedin and conditonally renders save and open project buttons
     validUser() {
       return this.$store.state.loggedIn;
     },
-    // uforces update of list of projects upon saving of new project
+    //forces update of list of projects upon saving of new project
     rerenderKey: {
       get() {
         return this.$store.state.rerenderKey;

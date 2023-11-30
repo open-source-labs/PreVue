@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    // when component is mounted displays the html list from state associated with active component
+    // when component is mounted, displays the html list from state associated with active component
     this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
@@ -84,7 +84,6 @@ export default {
 #component-code-display {
   padding: 10px;
 }
-
 .panel-heading {
   background-color: darkgray;
   padding: 10px;
@@ -92,6 +91,5 @@ export default {
 #codeDisplay {
   padding: 10px;
   background: #3ab982;
-  /* background: linear-gradient(120deg, #5c258d, #4389a2); */
 }
 </style>

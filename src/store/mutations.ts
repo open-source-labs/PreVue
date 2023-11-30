@@ -2,7 +2,6 @@ import * as types from './storeTypes';
 import { MutationTree } from 'vuex';
 import { State, Mutations, HtmlList, HtmlChild } from '../types';
 
-
 const mutations: Mutations<State> = {
   initialiseStore(state: State) {
 
@@ -22,7 +21,6 @@ const mutations: Mutations<State> = {
     state.rerenderKey++;
   },
   [types.UPDATE_PROJECT_NAME]: (state: State, payload) => {
-    //console.log(payload);
     state.editedProjectName = payload;
   },
   [types.SET_LOGIN]: (state: State, payload) => {
@@ -46,10 +44,8 @@ const mutations: Mutations<State> = {
         isActive
       }
     };
-
-    //console.log('htmlList[0] is', htmlList[0].text)
   },
-  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {//this
+  [types.ADD_TO_SELECTED_ELEMENT_LIST]: (state: State, payload) => {
     state.selectedElementList.push({ 
       text: payload, 
       children: [],
@@ -88,7 +84,6 @@ const mutations: Mutations<State> = {
     console.log("index", index)
 
     //also adds to routes
-
     console.log("COMPONENT HTML LIST FUNCTION", state.routes[state.activeRoute])
     state.routes[state.activeRoute][index].htmlList.push({ 
       text: elementName,
@@ -143,13 +138,8 @@ const mutations: Mutations<State> = {
     }
     state.componentMap = newObj;
   },
- 
 
-
-
-  // gets the component
-  // traverses the component document and 
-  // performs a splice on the element when it finds it
+  // gets the component, traverses the component document and performs a splice on the element when it finds it
   [types.DELETE_ACTIVE_ELEMENT]: (state: State) => {//new
     let { routes, activeElement, activeRoute, componentIndex } = state;
     // routes, activeRoute, arrayOfStates
@@ -204,8 +194,6 @@ const mutations: Mutations<State> = {
     state.elementIndex = payload;
   },
 
-
-
   // pushes new state to arrayOfStates
   [types.SAVE_STATE]: (state: State) => {//new
     const { routes, activeRoute, arrayOfStates } = state;
@@ -228,15 +216,12 @@ const mutations: Mutations<State> = {
     // console.log("pt 3", routes[activeRoute])
   },
 
-  
-
   [types.SET_COMPONENT_MAP]: (state: State, payload) => {
     console.log(payload);
     state.componentMap = payload;
   },
   [types.DELETE_SELECTED_ELEMENT]: (state: State, payload) => {
     console.log(state.selectedElementList)
-    //console.log('this is payload:', payload)
     state.selectedElementList.splice(payload, 1);
   },
   [types.SET_STATE]: (state: State, payload) => {

@@ -97,8 +97,8 @@ export default {
       }
     },
     validateInput() {
-      // ensures component can only be created when user has provided a component name, disables add component button
-      return this.componentNameInputValue.length < 1;
+        // ensures component can only be created when user has provided a component name, disables add component button
+        return this.componentNameInputValue.length < 1;
     }
   },
   methods: {
@@ -130,7 +130,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 #sidebar > div {

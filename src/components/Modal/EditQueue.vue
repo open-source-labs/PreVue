@@ -32,7 +32,6 @@ export default {
       get() {
         // returns html element list associated with active component from state
         const componentName = this.activeComponent;
-
         const findIndex = function(obj){
           for(const num in obj){
             if(obj[num].componentName === componentName){
@@ -41,14 +40,12 @@ export default {
          }
        }
        let index = findIndex(this.routes[this.activeRoute])
-      //  console.log("ASS", this.routes[this.activeRoute][index].htmlList) + component???
        return this.routes[this.activeRoute][index].htmlList
-
-        return this.componentMap[this.activeComponent].htmlList;
+       return this.componentMap[this.activeComponent].htmlList;
       },
       set(newArr) {
         // updates html element list in state associated with active component on reorder or drag
-        this.setClickedElementList(newArr);//maybe this can also set the state, not just this list
+        this.setClickedElementList(newArr);
       }
     }
   },

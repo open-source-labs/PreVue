@@ -6,16 +6,13 @@
         <!-- left side of nav bar -->
         <div id="toolbar-content">
           <img src="../assets/logo.png" alt="PreVue Logo" id="toolbar-logo" />
-            <h1>PreVue</h1>
+          <h1>PreVue</h1>
         </div>
         <!-- right side of nav bar -->
-        <div @click="toHome">
-          <h3 id="prevue-link">Home</h3>
+        <div>
+          <h3 id="prevue-link"><a href="#team" class="no-style" @click="scrollToTeam">Team</a></h3>
         </div>
-        <div @click="toHome">
-          <h3 id="prevue-link">Team</h3>
-        </div>
-        <div @click="toHome">
+        <div @click="toDocs">
           <h3 id="prevue-link">Docs</h3>
         </div>
         <div @click="oauth">
@@ -23,207 +20,201 @@
         </div>
       </div>
 
-
       <!-- html for the first/top panel -->
       <div id="header-container">
         <div id="header-content">
           <div class="header-text">
             <h1 id="prevue-header">All-in-One Prototyping Tool For Vue Developers</h1>
-            <p id="subtitle">A user-friendly, entirely open-source platform for conceptualizing and visualizing your Vue components
-          </p>
-          <v-btn color="#39b982" class="mt-4"  @click="toHome">
-          <strong>Get Started</strong>
-          </v-btn>
+            <p id="subtitle">A user-friendly, entirely open-source platform for conceptualizing and visualizing your Vue
+              components
+            </p>
+            <v-btn color="#39b982" class="mt-4" @click="toHome">
+              <strong>Get Started</strong>
+            </v-btn>
           </div>
-            <div id="video-container">
-              <video src="../assets/PreVueDemo.mp4" muted autoplay loop></video>
+          <div id="video-container">
+            <video src="../assets/PreVueDemo.mp4" muted autoplay loop></video>
           </div>
         </div>
       </div>
 
-      
-     
-      
       <!-- html for the second panel -->
       <div class="second-panel">
         <h2>Intuitive & Customizable</h2>
-        <p id="subtitle-second-panel">PreVue allows you to easily build intuitive user interfaces and construct pre-built components with hierarchal data flow, seamless drag-and-drop, customizable file exports and more!
+        <p id="subtitle-second-panel">PreVue allows you to easily build intuitive user interfaces and construct pre-built
+          components with hierarchal data flow, seamless drag-and-drop, customizable file exports and more!
         </p>
-        <v-btn width="150px" color="white" class="mt-4">
-            Learn More
+        <v-btn @click="toReadme" width="150px" color="white" class="mt-4">
+          Learn More
         </v-btn>
       </div>
-      
-
 
       <!-- html for the third panel -->
       <div id="third-panel-container">
         <div id="header-content">
           <div id="video-container">
-              <video src="../assets/PreVueDemo.mp4" muted autoplay loop></video>
-            </div>
+            <video src="../assets/PreVueDemo2.mp4" muted autoplay loop></video>
+          </div>
           <div class="header-text">
-            <h1 id="third-panel-header">All-in-One Prototyping Tool For Vue Developers</h1>
-            <p id="third-panel-subtitle">A user-friendly, entirely open-source platform for conceptualizing and visualizing your Vue components
+            <h1 id="third-panel-header">Easily Save, Export and Open Your Creations</h1>
+            <p id="third-panel-subtitle">
+              Streamline the UX/UI-to-development pipeline by 
+              having production-ready code at the click of a button
             </p>
           </div>
         </div>
       </div>
 
-
-       <!-- html for the fourth / team contributors panel -->
-      <h1 class="prevue-github-panel">PreVue Contributors</h1>
+      <!-- html for the fourth / team contributors panel -->
+      <h1 class="prevue-github-panel" id="team">PreVue Contributors</h1>
       <!-- PreVue 3.0 Contributors -->
       <div class="authors">
         <!-- Ilay Eskinazi -->
         <div class="author">
-          <img src="../assets/ilay-photo.jpg" />
+          <img class="authorimg" src="../assets/ilay-photo.jpg" />
           <h3>Ilay Eskinazi</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/jasonboo123">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/jason-boo/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/Pixolino">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/ilay-eskinazi/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- Nathan Bornstein -->
         <div class="author">
-          <img src="../assets/nathan-photo.jpg" />
+          <img class="authorimg" src="../assets/nathan-photo.jpg" />
           <h3>Nathan Bornstein</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/rmdrake8">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/rmdrake8/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/greenteaisgreat">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/nathangbornstein/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- April Sanders -->
         <div class="author">
-          <img src="../assets/april-photo.jpg" />
+          <img class="authorimg" src="../assets/april-photo.jpg" />
           <h3>April Sanders</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/algorithmrhythm">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/aprilshorttsanders/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/algorithmrhythm">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/aprilshorttsanders/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- Cole Jaeger -->
         <div class="author">
-          <img src="../assets/cole-photo.jpg" />
+          <img class="authorimg" src="../assets/cole-photo.jpg" />
           <h3>Cole Jaeger</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/zachpestaina">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/zachpestaina/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/colejaeger0">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/cole-jaeger-861154122/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
       </div>
-      
+
       <!-- PreVue 2.0 Contributors -->
       <div class="authors">
         <!-- Jason Boo -->
         <div class="author">
-          <img src="../assets/jason-photo.jpg" />
+          <img class="authorimg" src="../assets/jason-photo.jpg" />
           <h3>Jason Boo</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/jasonboo123">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/jason-boo/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/jasonboo123">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/jason-boo/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- Robert Drake -->
         <div class="author">
-          <img src="../assets/robert-photo.jpeg" />
+          <img class="authorimg" src="../assets/robert-photo.jpeg" />
           <h3>Robert Drake</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/rmdrake8">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/rmdrake8/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/rmdrake8">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/rmdrake8/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- Sean Flynn -->
         <div class="author">
-          <img src="../assets/sean-photo.jpeg" />
+          <img class="authorimg" src="../assets/sean-photo.jpeg" />
           <h3>Sean Flynn</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/seanflynn5">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/sean-g-flynn/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/seanflynn5">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/sean-g-flynn/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
         <!-- Zach Pestaina -->
         <div class="author">
-          <img src="../assets/zach-photo.jpeg" />
+          <img class="authorimg" src="../assets/zach-photo.jpeg" />
           <h3>Zach Pestaina</h3>
           <div class="social-icons-container">
-              <a href="https://github.com/zachpestaina">
-                  <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
-              </a>
-              <a href="https://www.linkedin.com/in/zachpestaina/">
-                  <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
-              </a>
+            <a href="https://github.com/zachpestaina">
+              <img class="github" src="../assets/github-icon-white.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/zachpestaina/">
+              <img class="linkedin" src="../assets/linkedin-svg.svg" alt="LinkedIn Icon">
+            </a>
           </div>
         </div>
       </div>
 
       <div class="prevue-github-panel">
         <h3>
-        PreVue is an open source tool and has room for more features. We welcome contributors!
+          PreVue is an open source tool and has room for more features. We welcome contributors!
         </h3>
       </div>
       <div id="see-prevue-button" class="prevue-github-panel">
-      <v-btn @click="toGithub" width="250px" color="white" class="mt-4">
-            See PreVue on Github
-      </v-btn>
+        <v-btn @click="toGithub" width="250px" color="white" class="mt-4">
+          See PreVue on Github
+        </v-btn>
       </div>
-      
-      
+
       <!-- html for the fifth / bottom / community panel -->
       <div class="border">
         <h4 id="community">
-        Community
-        </h4> 
+          Community
+        </h4>
         <p class="community-hyperlinks">
-            <a href="https://github.com/oslabs-beta/PreVue3.0">GitHub</a>
+          <a href="https://github.com/oslabs-beta/PreVue3.0">GitHub</a>
         </p>
         <p class="community-hyperlinks">
-            <a href="https://www.linkedin.com/company/prevue-live/">LinkedIn</a>
+          <a href="https://www.linkedin.com/company/prevue-live/">LinkedIn</a>
         </p>
         <p class="community-hyperlinks">
-            <a href="https://twitter.com/prevue_oslabs">Twitter</a>
+          <a href="https://twitter.com/prevue_oslabs">Twitter</a>
         </p>
         <p class="community-hyperlinks">
-            <a href="">Medium</a>
+          <a href="">Medium</a>
         </p>
         <p class="community-hyperlinks">
-            <a href="">Product Hunt</a>
+          <a href="">Product Hunt</a>
         </p>
       </div>
 
     </div>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -257,16 +248,34 @@ export default {
           // Handle any errors, such as network issues
           console.error('Error validating session:', err);
         });
+    },
+    toGithub() {
+      // Redirect to the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main';
+    },
+    toReadme() {
+      // Redirect to the README section of the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main#readme';
+    },
+    toDocs() {
+      // Redirect to the README section of the GitHub repository
+      window.location.href = 'https://github.com/oslabs-beta/PreVue3.0/tree/main#readme';
+    },
+    scrollToTeam(event) {
+      // Prevent the default anchor link behavior
+      event.preventDefault();
+
+      // Use Vue's nextTick to wait for the DOM to update
+      this.$nextTick(() => {
+        const teamSection = document.getElementById('team');
+        if (teamSection) {
+          teamSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     }
   }
 };
 </script>
-
-
-
-
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@800&display=swap');
@@ -277,6 +286,7 @@ html {
   height: 140vh;
   overflow-y: auto;
 }
+
 .scroll {
   height: 120vh;
   overflow-y: auto;
@@ -296,9 +306,6 @@ html {
   justify-content: center;
 }
 
-
-
-
 /************ css for the navigation bar ***********/
 #toolbar {
   position: fixed;
@@ -308,11 +315,10 @@ html {
   height: 70px;
   display: flex;
   align-items: center;
-  /* justify-content: flex-end;  */
   background-color: white;
   border-bottom: 1px solid lightgrey;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 8px; 
+  padding: 8px;
   z-index: 1;
   font-size: 18px;
 }
@@ -332,14 +338,14 @@ html {
 #toolbar-logo {
   width: 60px;
   height: 60px;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 /* targeting the prevue-link id elements, could use that instead */
 #toolbar h3,
-#toolbar > div > h3 {
+#toolbar>div>h3 {
   margin: 0;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: 18px;
 }
 
@@ -350,11 +356,10 @@ html {
 
 @media screen and (max-width: 500px) {
   #toolbar h4,
-  #toolbar > div > h4 {
-    display: none; 
+  #toolbar>div>h4 {
+    display: none;
   }
 }
-
 
 /*********** css for the first/top panel ***********/
 
@@ -371,7 +376,7 @@ html {
   display: flex;
   align-items: center;
   padding: 50px;
-  padding-bottom:90px;
+  padding-bottom: 90px;
 }
 
 .header-text {
@@ -391,7 +396,7 @@ html {
 #subtitle {
   font-size: 1.4rem;
   font-weight: 300;
-  color: #555; 
+  color: #555;
 }
 
 #video-container {
@@ -402,13 +407,11 @@ html {
 
 video {
   width: 90%;
-  height: auto; 
-  border-radius: 9px; 
+  height: auto;
+  border-radius: 9px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-
-
 
 /*********** css for the second panel ***********/
 .second-panel {
@@ -434,9 +437,8 @@ video {
   padding-bottom: 10px;
   padding-left: 300px;
   padding-right: 300px;
-  
-}
 
+}
 
 /*********** css for the third panel ***********/
 #third-panel-container {
@@ -457,8 +459,9 @@ video {
   padding-left: 100px;
   text-decoration: none;
   text-align: right;
-  background: linear-gradient(to right, #044c49, #0dbd27); 
-  -webkit-background-clip: text; /* For Safari/Chrome/iOS -- need to get clarity on what this does*/
+  background: linear-gradient(to right, #044c49, #0dbd27);
+  -webkit-background-clip: text;
+  /* For Safari/Chrome/iOS -- need to get clarity on what this does*/
   color: transparent;
   background-clip: text;
 }
@@ -466,7 +469,7 @@ video {
 #third-panel-subtitle {
   font-size: 1.4rem;
   font-weight: 300;
-  color: #555; 
+  color: #555;
   padding-bottom: 1vw;
   padding-right: 100px;
   padding-left: 125px;
@@ -479,20 +482,22 @@ video {
   display: flex;
   justify-content: center;
   padding-bottom: 10px;
-  background: linear-gradient(to left, #39b982, #0e7d78); 
-  color : white;
+  background: linear-gradient(to left, #39b982, #0e7d78);
+  color: white;
   width: 150%;
   box-sizing: border-box;
 }
+
 .authors {
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
-  background: linear-gradient(to left, #39b982, #0e7d78); 
-  color : white;
+  background: linear-gradient(to left, #39b982, #0e7d78);
+  color: white;
   width: 150%;
   box-sizing: border-box;
 }
+
 .author {
   display: flex;
   flex-direction: column;
@@ -501,13 +506,15 @@ video {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 10%;
-  border: 1px solid rgba(255, 255, 255, 0.5); 
+  border: 1px solid rgba(255, 255, 255, 0.5);
   transition: background-color 0.2s ease;
 }
+
 .author:hover {
-  background-color: rgba(255, 255, 255, 0.5); 
+  background-color: rgba(255, 255, 255, 0.5);
 }
-.author img {
+
+.authorimg {
   width: 10em;
   border-radius: 50%;
   padding-bottom: 15px;
@@ -520,28 +527,23 @@ video {
 }
 
 .linkedin {
-  height: 50px;
-  box-shadow: none !important;
-  padding-top: 8px;
+  height: 30px;
+  width: 40px;
 }
 
 .github {
-  box-shadow: none !important;
-  padding-top: 8px;
-  margin-right: -125px; /* Add margin-right for spacing - find a better way to do this */
-  height: 55px;
+  height: 40px;
+  width: 40px;
 }
 
-.linkedin:hover, .github:hover {
+.linkedin:hover,
+.github:hover {
   cursor: pointer;
 }
 
 #see-prevue-button {
   padding-bottom: 60px;
 }
-
-
-
 
 /*********** css for the fifth / bottom / community panel ***********/
 
@@ -560,6 +562,7 @@ video {
   padding-bottom: 15px;
   padding-top: 20px;
 }
+
 .community-hyperlinks a {
   color: inherit;
   text-decoration: none;
@@ -569,14 +572,42 @@ video {
   padding-bottom: 10px;
   font-size: 14px;
 }
+
 h1.prevue-github-panel {
   display: flex;
   justify-content: center;
-  padding-top:85px;
+  padding-top: 85px;
   padding-bottom: 30px;
-  background: linear-gradient(to left, #39b982, #0e7d78); 
-  color : white;
+  background: linear-gradient(to left, #39b982, #0e7d78);
+  color: white;
   width: 150%;
   box-sizing: border-box;
+}
+
+a.no-style {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.no-style:hover {
+  text-decoration: underline;
+}
+
+
+#prevue-link a {
+  color: #1f2937;
+  /* This should be the same color as your other nav links */
+  text-decoration: none;
+}
+
+#prevue-link a:hover {
+  color: green;
+  /* Hover color for your nav links */
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 </style>
