@@ -85,9 +85,8 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
 <img width="1000" src="src/assets/prevue-export.gif">
-<!-- <img width="1000" src="src/assets/prevue-recording.gif">
-<img width="1000" src="src/assets/prevue-recording.mp4"> -->
-
+<img width="1000" src="src/assets/prevue-recording.gif">
+<img width="1000" src="src/assets/prevue-recording.mp4">
 
 ### Code Exporting
 
