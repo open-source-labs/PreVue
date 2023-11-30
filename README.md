@@ -84,7 +84,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
-<img width="1000" src='src/assets/prevue-export.gif'/>
+<img width="1000" src="src/assets/prevue-export.gif"/>
 
 ### Code Exporting
 
