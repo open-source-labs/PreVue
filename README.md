@@ -26,14 +26,16 @@ From Component Architecture to Code Exporting
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
 
-&rarr; Build components, visualize UI and preview the associated code
-&rarr; Set up different routes and views
-&rarr; Establish parent-child component relationships
-&rarr; View application hierarchy in tree format
-&rarr; Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time
-&rarr; Export component architecture as a Vue application created with default Vite settings
+<p>&rarr; Build components, visualize UI and preview the associated code</p>
+<p>&rarr; Set up different routes and views</p>
+<p>&rarr; Establish parent-child component relationships</p>
+<p>&rarr; View application hierarchy in tree format</p>
+<p>&rarr; Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time</p>
+<p>&rarr; Export component architecture as a Vue application created with default Vite settings</p>
 
-Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
+<p align="center">
+  Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
+</p>
 
 <!-- <p align="center">
   <img width="1000" src="src/assets/pvv.png?raw=true">
@@ -41,25 +43,22 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 
 ## Getting Started
 
-## How to use
-
 ---
 
 #### Adding Components
 
-- Double click on the application icon
-- Create components by entering a name and clicking the HTML elements you need
-- Clicked elements will be shown in the right sidebar
-- Drag the elements to change their order
-- Once you're satisfied, click the button to ‘add a component’ and it will show up in the working area. Resize and move components to fit the design you have in mind.
+- Select an existing view from the View Creator dropdown, or enter a new view name, then select your custom view from the View Creator dropdown
+- Enter a component name in the Component Creator field and select HTML elements
+- Clicked elements will be shown in the right sidebar -- drag elements to change their order 
+- Once you're satisfied, click ‘add component’ button and it will show up in the working area -- resize and move components to fit the design you have in mind
 
-<img width="1000" src="src/assets/PreVueDemo.gif">
+<img width="1000" src="src/assets/prevue-recording.gif">
 
 #### Editing Components
 
 - Double click elements to bring up the modal view
 - Add additional elements to a component with a live preview of the component code
-- Drag elements on the right side bar to nest elements
+- Drag selected elements to the right to nest elements
 - Establish parent-child component relationships via the dropdown menu when creating or editing components
 
 <img width="1000" src="src/assets/componentdisplay.png?raw=true">
