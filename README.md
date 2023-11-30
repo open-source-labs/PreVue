@@ -117,8 +117,8 @@ Coming soon! -->
 
 ---
 
-<p>&rarr; [Express](https://expressjs.com/)</p>
-<p>&rarr; [Jest](https://jestjs.io/)</p>
+<span>&rarr; [Express](https://expressjs.com/)</span>
+<div>&rarr; [Jest](https://jestjs.io/)</div>
 <p>&rarr; [MongoDB](https://www.mongodb.com/)</p>
 <p>&rarr; [Mongoose](https://mongoosejs.com/)</p>
 <p>&rarr; [Node.js](https://nodejs.org/en)</p>
