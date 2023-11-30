@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
 
 const cors = require('cors');
 const corsOptions = {
@@ -37,7 +37,11 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '..', '/dist')));
+app.use(express.static(path.join(__dirname, '..', '.')));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
+});
 
 // Routers
 app.use('/users', accountRouter);

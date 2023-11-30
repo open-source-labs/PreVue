@@ -6,8 +6,8 @@ const GITHUB_OAUTH_CLIENT_ID = process.env.GITHUB_OAUTH_CLIENT_ID;
 const GITHUB_OAUTH_CLIENT_SECRET = process.env.GITHUB_OAUTH_CLIENT_SECRET;
 const GITHUB_ACCESS_TOKEN_REQUEST_URL = `https://github.com/login/oauth/access_token`;
 const GITHUB_REDIRECT_URI = process.env.GITHUB_REDIRECT_URI;
-let str = GITHUB_OAUTH_CLIENT_ID.toString();
-let newStr = GITHUB_REDIRECT_URI.toString();
+let str = GITHUB_OAUTH_CLIENT_ID
+let newStr = GITHUB_REDIRECT_URI
 
 // first step of OAuth: redirects user to github with specific client id and redirect uri's concatenated
 oAuthController.oAuthLogin = async (req, res, next) => {
