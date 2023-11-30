@@ -40,7 +40,6 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
   <img width="1000" src="src/assets/pvv.png?raw=true">
 </p> -->
 
--
 ## Getting Started
 
 ### Adding Views
@@ -59,7 +58,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
   <img width="300" src="src/assets/treeview.png?raw=true">
 </p>
 
---
+
 ### Adding Components
 - Enter a component name in the Component Creator field and select HTML elements
 - Clicked elements will be shown in the right sidebar -- drag elements to change their order
@@ -85,7 +84,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Once you're satisfied, click the export project icon to export your awesome project as new Vue application!
 - Other users can use PreVue's playground to create and export projects in single sessions.
 
-<img src='src/assets/prevue-export.gif'/>
+<img width="1000" src='src/assets/prevue-export.gif'/>
 
 ### Code Exporting
 
@@ -116,18 +115,18 @@ Coming soon! -->
 
 ---
 
-1. [Express](https://expressjs.com/)
-2. [Jest](https://jestjs.io/)
-3. [MongoDB](https://www.mongodb.com/)
-4. [Mongoose](https://mongoosejs.com/)
-5. [Node.js](https://nodejs.org/en)
-6. [SuperTest](https://www.npmjs.com/package/supertest)
-7. [Vite](https://vitejs.dev/)
-8. [Vue Router](https://router.vuejs.org/guide/#html)
-9. [Vue Test Utils](https://test-utils.vuejs.org/)
-10. [Vue.js](https://vuejs.org/)
-11. [Vuex](https://vuex.vuejs.org/)
-12. [Vuetify](https://vuetifyjs.com/)
+&rarr; [Express](https://expressjs.com/)
+&rarr; [Jest](https://jestjs.io/)
+&rarr; [MongoDB](https://www.mongodb.com/)
+&rarr; [Mongoose](https://mongoosejs.com/)
+&rarr; [Node.js](https://nodejs.org/en)
+&rarr; [SuperTest](https://www.npmjs.com/package/supertest)
+&rarr; [Vite](https://vitejs.dev/)
+&rarr; [Vue Router](https://router.vuejs.org/guide/#html)
+&rarr; [Vue Test Utils](https://test-utils.vuejs.org/)
+&rarr; [Vue.js](https://vuejs.org/)
+&rarr; [Vuex](https://vuex.vuejs.org/)
+&rarr; [Vuetify](https://vuetifyjs.com/)
 
 
 ## Changelog
@@ -170,7 +169,7 @@ Ideas for additional features include:
 ## Authors
 
 Prevue 3.0
----
+
 - **April Sanders** [@algorithmrhythm](https://github.com/algorithmrhythm)
 - **Cole Jaeger** [@colejaeger0](https://github.com/colejaeger0)
 - **Ilay Eskinazi** [@Pixolino](https://github.com/Pixolino)
