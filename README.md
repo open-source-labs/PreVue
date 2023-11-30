@@ -26,13 +26,13 @@ From Component Architecture to Code Exporting
 
 PreVue allows users to conceptualize and visualize component architecture by allowing them to :
 
-&rarr; <p>Build components, visualize UI and preview the associated code</p>
+**Build components, visualize UI and preview the associated code
+* Set up different routes and views
+* Establish parent-child component relationships
+* View application hierarchy in tree format
+* Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time
+*** Export component architecture as a Vue application created with default Vite settings
 
-<p>&rarr; Set up different routes and views</p>
-<p>&rarr; Establish parent-child component relationships</p>
-<p>&rarr; View application hierarchy in tree format</p>
-&rarr; <p>Save and open projects that are currently in progress, ensuring that completed work is not lost and can be revisited at any time</p>
-<p>&rarr; Export component architecture as a Vue application created with default Vite settings</p>
 
 Use PreVue to create projects in single sessions or sign in with GitHub to save projects and update them at your convenience!
 
@@ -51,7 +51,7 @@ Use PreVue to create projects in single sessions or sign in with GitHub to save 
 - Clicked elements will be shown in the right sidebar -- drag elements to change their order
 - Once you're satisfied, click ‘add component’ button and it will show up in the working area -- resize and move components to fit the design you have in mind
 
-<img width="1000" src="src/assets/prevue-recording.mp4">
+<img width="1000" src="src/assets/prevue-recording.gif">
 
 #### Editing Components
 
