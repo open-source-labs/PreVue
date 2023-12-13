@@ -10,9 +10,12 @@ import { mapState } from 'vuex';
 export default {
   name: 'ComponentCodeDisplay',
   computed: {
-    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap']),
+    ...mapState(['componentMap', 'activeComponent', 'htmlElementMap', 'routes', 'activeRoute', 'componentIndex']),
     activeComponentHtmlList: {
       get() {
+       console.log("COMPCODE", this.routes[this.activeRoute][this.componentIndex].htmlList)
+       return this.routes[this.activeRoute][this.componentIndex].htmlList
+
         // return html list associated with active component from state
         return this.componentMap[this.activeComponent].htmlList;
       }
@@ -22,6 +25,7 @@ export default {
     activeComponentHtmlList: {
       // watching htmlList in state to reactively display any changes as a result of changes made to list in sibling component
       handler(oldList, newList) {
+        console.log("CHANGED")
         this.displayHtmlList(newList);
       },
       // dealing with nested objects, hence need deep property
@@ -29,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    // when component is mounted displays the html list from state associated with active component
+    // when component is mounted, displays the html list from state associated with active component
     this.displayHtmlList(this.activeComponentHtmlList);
   },
   methods: {
@@ -80,7 +84,6 @@ export default {
 #component-code-display {
   padding: 10px;
 }
-
 .panel-heading {
   background-color: darkgray;
   padding: 10px;
@@ -88,6 +91,5 @@ export default {
 #codeDisplay {
   padding: 10px;
   background: #3ab982;
-  /* background: linear-gradient(120deg, #5c258d, #4389a2); */
 }
 </style>

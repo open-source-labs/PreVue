@@ -4,14 +4,14 @@
     id="sidebar"
     class="rounded-0"
     :style="{
-      'background-color': '#565656',
-      'border-bottom': '0.5px solid #6a696a',
-      padding: '16px 0px 24px 0px'
+      'background-color': '#3b444b',
+      
+      padding: '10px 0px 100px 0px',
     }"
   >
     <v-card-title
       :style="{
-        'font-size': '14px',
+        'font-size': '19px',
         color: '#f5f4f3',
         'font-weight': '550',
         padding: '0 24px 0 24px'
@@ -31,7 +31,7 @@
           required
           v-model="componentNameInputValue"
           variant="underlined"
-          label="Component name"
+          label="Enter A Component Name"
           placeholder="myCustomComponent"
           :style="{ color: '#f5f4f3' }"
         >
@@ -39,6 +39,7 @@
       </v-form>
       <Icons @getClickedIcon="addToSelectedElementList" />
       <ChildrenMultiselect />
+
       <div
         :style="{
           display: 'flex',
@@ -96,8 +97,8 @@ export default {
       }
     },
     validateInput() {
-      // ensures component can only be created when user has provided a component name, disables add component button
-      return this.componentNameInputValue.length < 1;
+        // ensures component can only be created when user has provided a component name, disables add component button
+        return this.componentNameInputValue.length < 1;
     }
   },
   methods: {
@@ -129,6 +130,7 @@ export default {
   }
 };
 </script>
+
 <style>
 #sidebar > div {
   padding: 0;

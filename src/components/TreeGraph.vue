@@ -2,13 +2,17 @@
   <!--the tree; where the hierarchy of your project's components is displayed-->
   <div class="container">
     <vue-tree
-      style="width: 1000px; height: 600px; border: 1px solid gray"
+      style="width: 1000px; 
+            height: 600px; 
+            border: 2px inset rgb(148, 142, 142); 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(94, 92, 92);"
       :dataset="data"
       :config="treeConfig"
     >
     </vue-tree>
     <div @click="backToWorkspace">
-      <h2>Back to workspace</h2>
+      <h2>Return to Workspace</h2>
     </div>
   </div>
 </template>
@@ -92,15 +96,23 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@450&display=swap');
+
 .container {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+h2 {
+  padding-top: 25px;
+  font-family: 'Montserrat';
+}
+
 h2:hover {
-  color: green;
+  color: rgb(34, 173, 34);
   cursor: pointer;
 }
 </style>

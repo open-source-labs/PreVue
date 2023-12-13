@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
 
 const cors = require('cors');
 const corsOptions = {
@@ -25,7 +26,9 @@ mongoose
     // sets the name of the DB that our collections are part of
     dbName: 'prevueDB',
   })
-  .then(() => console.log('Connected to Mongo DB.'))
+  .then(() => {
+    console.log('Connected to Mongo DB.');
+  })
   .catch((err) => console.log(err));
 
 // Global Middleware
@@ -34,15 +37,15 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '..', '/dist')));
+app.use(express.static(path.join(__dirname, '..', '.')));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
+});
 
 // Routers
 app.use('/users', accountRouter);
 app.use('/projects', projectRouter);
-
-// app.get('*', (req, res) => {
-//   return res.sendFile(path.join(__dirname, '..', '/dist/index.html'));
-// });
 
 app.use((req, res) => res.sendStatus(404));
 

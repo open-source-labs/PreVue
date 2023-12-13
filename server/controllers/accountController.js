@@ -1,11 +1,12 @@
+require('dotenv').config();
 const Users = require('../models/accountModels');
+const jwt = require('jsonwebtoken');
 const accountController = {};
 
-// enters a user into the database after GitHub OAuth if an entry
-// does not already exist
+// enters a user into the database after GitHub OAuth if an entry does not already exist
 accountController.createUser = (req, res, next) => {
   const { username, id } = res.locals;
-  //Making sure username does not exist
+  //Making sure username exists
   Users.findOne({ username })
     .then(data => {
       if (!data) {
@@ -26,8 +27,7 @@ accountController.createUser = (req, res, next) => {
     });
 };
 
-// showing the logged in user's projects before the mounting
-// of the home page
+// showing logged in user's projects before mounting
 accountController.userProjects = (req, res, next) => {
   Users.findOne({ username: res.locals.username })
     .then(data => {
@@ -44,8 +44,6 @@ accountController.userProjects = (req, res, next) => {
 
 // just for test purposes; returns all users in the database
 accountController.findUser = (req, res, next) => {
-  // write code here
-  // const { username } = req.body;
   Users.find({})
     .then(data => {
       res.locals.username = data;

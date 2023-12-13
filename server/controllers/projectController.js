@@ -2,12 +2,11 @@ const Project = require('../models/projectModels');
 const User = require('../models/accountModels');
 const projectController = {};
 
-// saving a project
-// we query the database to see if a project with the name on the req.body already exists
-// if not, create a project; if so, update the project under that name with req.body.projectObject
+// saving a project:
 projectController.saveProject = (req, res, next) => {
   const { project_name, projectObject } = req.body;
   Project.findOne({ project_name }).then(data => {
+    console.log(`Saving project...`);
     if (!data) {
       Project.create({
         project_name,
@@ -26,7 +25,7 @@ projectController.saveProject = (req, res, next) => {
           });
         });
     } else {
-      // if the project already exists, it is updated with the new state
+      // if project already exists, update with new state
       Project.findOneAndUpdate(
         { project_name },
         { projectObject: req.body.projectObject }
@@ -46,8 +45,7 @@ projectController.saveProject = (req, res, next) => {
   });
 };
 
-// updates project_ids of of User who is saving a project
-// if it already exists in their projects array, it is not added
+// Updates project_ids of User who's saving a project. If it already exists, it's not added.
 projectController.userQuery = (req, res, next) => {
   User.findOneAndUpdate(
     { username: res.locals.username },
@@ -66,7 +64,7 @@ projectController.userQuery = (req, res, next) => {
     });
 };
 
-// for retrieving projects ('open project' on frontend)
+//For retrieving projects ('open project' on frontend)
 projectController.getProject = (req, res, next) => {
   Project.findOne({
     project_name: req.body.project_name,
@@ -84,7 +82,7 @@ projectController.getProject = (req, res, next) => {
     });
 };
 
-// general query to find all projects; not used in app itself
+//general query to find all projects; not used in app itself
 projectController.findProject = (req, res, next) => {
   Project.find({})
     .then(data => {
